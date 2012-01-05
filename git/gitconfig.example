@@ -1,0 +1,19 @@
+# Sample gitconfig
+#
+# This is a sample gitconfig. Usually we keep a lot of sensitive information
+# here (things like authentication tokens, email addresses, and so on), so this
+# file is ignored in this project's .gitignore.
+#
+# To set this up, rename this file to `gitconfig`
+[user]
+    name = Charles-Axel Dein
+    email = yourname@example.com
+[color]
+    ui = true
+[alias]
+    unstage = reset HEAD
+    uncommit = reset --soft HEAD^
+[core]
+    excludesfile = ~/.gitignore
+    quotepath = false
+    editor = mvim
