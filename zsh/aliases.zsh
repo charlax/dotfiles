@@ -11,3 +11,6 @@ fi
 
 # pythonbrew virtual env
 alias pyenvuse="pythonbrew venv use"
+
+alias e="mvim"
+alias v="vim"
