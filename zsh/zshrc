@@ -1,5 +1,8 @@
-source ~/.dotfiles/zsh/env.zsh
-source ~/.dotfiles/zsh/aliases.zsh
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles
+
+# source every .zsh file in this rep
+for config_file ($ZSH/**/*.zsh) source $config_file
 
 #{{{ ZSH Modules
 
@@ -15,11 +18,8 @@ zsh-mime-setup
 export PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%. %{$reset_color%}%% "
 
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE
-# between quotation marks is the tool output for LS_COLORS
-export LS_COLORS="di=31;41:ln=31;41:so=31;41:pi=31;41:ex=31;41:bd=31;41:cd=31;41:su=31;41:sg=31;41:tw=31;41:ow=31;41:"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-export EDITOR="vim"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # beeps are annoying
 setopt NO_BEEP
