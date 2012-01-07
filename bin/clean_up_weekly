@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Emptying Downloads and Desktop
+
+for dir in ~/Downloads ~/Desktop
+do
+    if [ "$(ls -A $DIR 2> /dev/null)" == "" ]; then
+        rmtrash $dir/*
+    else
+        echo "$dir is already empty"
+    fi
+done

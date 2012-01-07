@@ -1,7 +1,7 @@
 Prerequisites
 =============
 
-    $ brew install coreutils
+    $ brew install coreutils rmtrash
 
 Installation
 ============
