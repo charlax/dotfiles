@@ -2,6 +2,7 @@ Prerequisites
 =============
 
     $ brew install coreutils rmtrash
+    $ brew install tmux # screen equivalent
 
 Installation
 ============
