@@ -6,7 +6,8 @@ import logging
 
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 
-CONFIGURATION_FILES = ["zsh/zshrc", "git/gitignore", "git/gitconfig"]
+CONFIGURATION_FILES = ["zsh/zshrc", "git/gitignore", "git/gitconfig",
+        "latex/latexmkrc"]
 
 def symlink_configuration_file(f):
     """Symlink a configuration to ~
