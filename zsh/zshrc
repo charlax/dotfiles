@@ -1,7 +1,7 @@
-# shortcut to this dotfiles path is $ZSH
+# Shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
-# source every .zsh file in this rep
+# Source every .zsh file in this rep
 for config_file ($ZSH/**/*.zsh) source $config_file
 
 #{{{ ZSH Modules
@@ -14,7 +14,7 @@ zsh-mime-setup
 
 #}}}
 
-# Change prompt
+# Prompt
 export PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%. %{$reset_color%}%% "
 
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE

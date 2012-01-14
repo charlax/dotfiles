@@ -10,6 +10,12 @@ then
 fi
 
 # pythonbrew virtual env
-alias pyenvuse="pythonbrew venv use"
+alias pyvenvuse="pythonbrew venv use"
 
 alias v="vim"
+
+# cd by .. or ... or ... or mv file ..../.
+alias '..'='cd ..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'

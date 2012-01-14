@@ -27,6 +27,7 @@ def install():
 
 def main():
     install()
+    os.system("chflags nohidden ~/Library/")
 
 if __name__ == "__main__":
     main()
