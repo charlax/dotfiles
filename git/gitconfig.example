@@ -16,4 +16,4 @@
 [core]
     excludesfile = ~/.gitignore
     quotepath = false
-    editor = mvim
+    editor = vim
