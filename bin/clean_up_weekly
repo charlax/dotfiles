@@ -1,12 +1,14 @@
-#!/bin/sh
+#!/usr/bin/python
+# Emptying some folders
 
-# Emptying Downloads and Desktop
+import os
 
-for dir in ~/Downloads ~/Desktop
-do
-    if [ "$(ls -A $DIR 2> /dev/null)" == "" ]; then
-        rmtrash $dir/*
-    else
-        echo "$dir is already empty"
-    fi
-done
+directories = ("~/Downloads", "~/Desktop")
+
+directories = map(os.path.expanduser, directories)
+
+for d in directories:
+    if os.listdir(d):
+        os.system("rmtrash %s/*" % d)
+    else:
+        print "%s is already empty" % d
