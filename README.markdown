@@ -2,12 +2,12 @@ Prerequisites
 =============
 
     $ brew install coreutils rmtrash zsh
-    $ brew install tmux # screen equivalent
 
 Installation
 ============
 
-    $ python install.py
+    $ git clone git@github.com:charlax/dotfiles.git .dotfiles # in ~
+    $ python .dotfiles/install.py
 
 You may have to remove some pre-existing files manually.
 
