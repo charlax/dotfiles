@@ -2,13 +2,21 @@
 # Emptying some folders
 
 import os
+import glob
 
 directories = ("~/Downloads", "~/Desktop")
 
 directories = map(os.path.expanduser, directories)
 
+def listdir_nohidden(path):
+    return glob.glob(os.path.join(path, '*'))
+
 for d in directories:
-    if os.listdir(d):
+    if listdir_nohidden(d):
+        print "\nRemoving the following files in %s" % d
+
+        for f in listdir_nohidden(d):
+            print "  %s" % f
         os.system("rmtrash %s/*" % d)
     else:
         print "%s is already empty" % d
