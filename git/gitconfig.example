@@ -13,6 +13,7 @@
 [alias]
     unstage = reset HEAD
     uncommit = reset --soft HEAD^
+    co = checkout
 [core]
     excludesfile = ~/.gitignore
     quotepath = false
