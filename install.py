@@ -28,6 +28,9 @@ def install():
 def main():
     install()
     os.system("chflags nohidden ~/Library/")
+    # Prevent Finder from asking for confirmation before changing an extension
+    os.system("defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false")
+    os.system("killall Finder")
 
 if __name__ == "__main__":
     main()
