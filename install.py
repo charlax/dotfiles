@@ -31,6 +31,8 @@ def main():
     # Prevent Finder from asking for confirmation before changing an extension
     os.system("defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false")
     os.system("killall Finder")
+    # ack: grep replacement
+    os.system("brew install ack")
 
 if __name__ == "__main__":
     main()
