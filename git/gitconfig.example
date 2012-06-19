@@ -14,6 +14,7 @@
     unstage = reset HEAD
     uncommit = reset --soft HEAD^
     co = checkout
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 [core]
     excludesfile = ~/.gitignore
     quotepath = false
