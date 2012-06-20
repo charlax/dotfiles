@@ -33,6 +33,7 @@ def main():
     os.system("killall Finder")
     # ack: grep replacement
     os.system("brew install ack")
+    print "Install finished. You now need to install or update pythonbrew"
 
 if __name__ == "__main__":
     main()
