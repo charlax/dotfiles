@@ -27,6 +27,8 @@ def install():
 
 def main():
     install()
+    os.system("brew install coreutils rmtrash zsh")
+    os.system("chsh -s /bin/zsh")
     os.system("chflags nohidden ~/Library/")
     # Prevent Finder from asking for confirmation before changing an extension
     os.system("defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false")
