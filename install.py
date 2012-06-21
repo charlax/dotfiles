@@ -27,12 +27,8 @@ def install():
 
 def main():
     install()
-    os.system("chflags nohidden ~/Library/")
-    # Prevent Finder from asking for confirmation before changing an extension
-    os.system("defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false")
-    os.system("killall Finder")
-    # ack: grep replacement
     os.system("brew install ack")
+    os.system("sh %s/osx_config.sh" % DOTFILES_PATH)
     print "Install finished. You now need to install or update pythonbrew"
 
 if __name__ == "__main__":
