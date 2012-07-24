@@ -11,6 +11,12 @@ Installation
 
 You may have to remove some pre-existing files manually.
 
+Misc
+====
+
+Keyboard shortcuts to [lock the
+screen](http://hints.macworld.com/article.php?story=20090831093941225).
+
 Acknowledgments
 ===============
 

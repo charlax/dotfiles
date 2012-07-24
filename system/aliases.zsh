@@ -13,6 +13,7 @@ fi
 alias pyvenvuse="pythonbrew venv use"
 
 alias v="vim"
+alias m="mvim"
 
 # cd by .. or ... or ... or mv file ..../.
 alias '..'='cd ..'
