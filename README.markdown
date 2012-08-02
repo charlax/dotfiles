@@ -3,6 +3,10 @@ Prerequisites
 
     $ brew install coreutils rmtrash zsh
 
+Or:
+
+    $ aptitude install zsh
+
 Installation
 ============
 
