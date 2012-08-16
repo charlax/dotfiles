@@ -27,25 +27,52 @@ List of software
 
 Other tools to install:
 
-* iTerm2
-* Chrome
-* Dropbox
-* Flux
-* Pythonbrew
-* Things
+* App Cleaner
+* Audacity
 * Brew
+* Calibre
+* Chrome
+* Chrome Canary
+* Colloquy
+* Cyberduck
+* Disk Inventory X
+* Dropbox
 * Evernote
-* Quicksilver
-* Skype
-* Telephone
-* Spotify
-* TextWrangler (one never knows)
-* Time Out
-* VLC
-* Skitch
-* Xcode
-* TeX
+* Face Time
+* Firefox
+* Flux
+* GitX
+* Github
+* ImageOptim
+* Kindle
+* LibreOffice
+* MPEG Streamclip
 * Mental Case
+* Mental Case
+* OmmWriter
+* Pomodoro
+* Pythonbrew
+* Quicksilver
+* Skitch
+* Skype
+* Spotify
+* Sublime Text
+* TeX
+* Telephone
+* TextWrangler (one never knows)
+* Things
+* Time Out
+* Tramsmission
+* Twitter
+* VLC
+* Virtual Box
+* Wireshark
+* XCode
+* XMind
+* Xcode
+* iChm
+* iStumbler
+* iTerm2
 
 Acknowledgments
 ===============
