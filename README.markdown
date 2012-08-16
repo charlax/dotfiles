@@ -1,12 +1,13 @@
 Prerequisites
 =============
 
-    $ brew install coreutils rmtrash zsh
+Only tested on Mac Os X 10.6. Homebrew should be installed.
 
 Installation
 ============
 
-    $ git clone git@github.com:charlax/dotfiles.git .dotfiles # in ~
+    $ cd ~
+    $ git clone git@github.com:charlax/dotfiles.git .dotfiles
     $ python .dotfiles/install.py
 
 You may have to remove some pre-existing files manually.

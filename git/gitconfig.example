@@ -19,3 +19,7 @@
     excludesfile = ~/.gitignore
     quotepath = false
     editor = vim
+
+[merge "pofile"]
+    name = Gettext merge driver
+    driver = git merge-po %O %A %B
