@@ -30,6 +30,7 @@ def main():
     os.system("brew update")
     os.system("brew install -U ack zsh git coreutils zsh-completions rmtrash")
     os.system("sh %s/osx_config.sh" % DOTFILES_PATH)
+
     print "Install finished. You now need to install or update pythonbrew"
     print "You need to add zsh to /etc/shells and then run:"
     print "$ chsh -s /usr/local/bin/zsh"
