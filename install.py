@@ -50,7 +50,9 @@ def install(args):
 
     if args.with_dotvim:
         print "Installing dotvim..."
-        os.system("curl https://raw.github.com/charlax/dotvim/master/install.py -o- | python")
+        os.system("curl https://raw.github.com/charlax/dotvim/master/install.py -o install_dotvim.py")
+        os.system("python install_dotvim.py")
+        os.remove("install_dotvim.py")
 
     print "Install complete."
 
