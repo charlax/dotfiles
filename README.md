@@ -1,20 +1,16 @@
-Prerequisites
-=============
-
-Only tested on Mac Os X 10.6. Homebrew should be installed.
-
-Or:
-
-    $ aptitude install zsh
-
 Installation
 ============
 
-    $ cd ~
-    $ git clone git@github.com:charlax/dotfiles.git .dotfiles
-    $ python .dotfiles/install.py
+    $ wget https://raw.github.com/charlax/dotfiles/master/install.py
+    $ python install.py # If you want only dotfiles
+    $ python install.py --with-dotvim # If you want also my dotvim
 
-You may have to remove some pre-existing files manually.
+You should read the script before executing it.
+
+Prerequisites
+=============
+
+Tested on Mac Os X 10.6 and Ubuntu 12.04.
 
 Misc
 ====
