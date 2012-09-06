@@ -14,9 +14,6 @@ zsh-mime-setup
 
 #}}}
 
-# Prompt
-export PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%. %{$reset_color%}%% "
-
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -131,13 +128,3 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 
 #}}}
-
-# http://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
-
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select

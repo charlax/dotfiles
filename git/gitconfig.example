@@ -10,11 +10,19 @@
     email = yourname@example.com
 [color]
     ui = true
+
 [alias]
     unstage = reset HEAD
     uncommit = reset --soft HEAD^
     co = checkout
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    c = !git add . && git commit -a && git push
+    recommit = !git add . && git commit --amend
+    go = checkout -B
+    d = diff
+    s = status
+    br = branch
+
 [core]
     excludesfile = ~/.gitignore
     quotepath = false
@@ -23,3 +31,9 @@
 [merge "pofile"]
     name = Gettext merge driver
     driver = git merge-po %O %A %B
+
+[url "git@github.com:/"]
+    insteadOf = "gh:/"
+
+[push]
+    default = upstream

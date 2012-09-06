@@ -1,1 +1,9 @@
+# gettext
 --type-set=po=.po
+# coffeescript
+--type-set=eco=.eco
+--type-set=coffee=.coffee
+# less
+--type-set=less=.less
+
+--ignore-dir=build

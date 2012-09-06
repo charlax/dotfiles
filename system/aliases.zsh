@@ -9,11 +9,9 @@ then
   alias la='gls -A --color'
 fi
 
-# pythonbrew virtual env
-alias pyvenvuse="pythonbrew venv use"
-
 alias v="vim"
 alias m="mvim"
+alias p="python"
 
 # cd by .. or ... or ... or mv file ..../.
 alias '..'='cd ..'
