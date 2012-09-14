@@ -6,8 +6,8 @@ import logging
 import os
 import platform
 
-DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 REPOSITORY = "git://github.com/charlax/dotfiles.git"
+DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = ["zsh/zshrc", "git/gitignore", "git/gitconfig",
         "latex/latexmkrc", "ctags/ctags", "ack/ackrc"]
 
@@ -42,6 +42,7 @@ def install_software():
     elif system == "Linux":
         os.system("sudo apt-get update")
         os.system("sudo apt-get install -q -y ack-grep zsh coreutils wget")
+        print "Changing default shell"
         os.system("chsh -s /bin/zsh")
 
     os.system("sudo easy_install pip")
@@ -54,22 +55,22 @@ def install_software():
         os.remove("install_dotvim.py")
 
 
-def clone_dotfile():
+def clone_dotfile(repo, path):
     """Clone or update the dotfiles directory."""
 
-    if not os.path.exists(DOTFILES_PATH):
-        os.system("git clone %s %s" % (REPOSITORY, DOTFILES_PATH))
+    if not os.path.exists(path):
+        os.system("git clone %s %s" % (repo, path))
     else:
-        os.system("cd %s && git checkout master && git pull" % DOTFILES_PATH)
+        os.system("cd %s && git checkout master && git pull" % path)
 
-    if not os.path.exists(DOTFILES_PATH):
-        raise Exception("Dotfiles path '%s' does not exist" % DOTFILES_PATH)
+    if not os.path.exists(path):
+        raise Exception("Dotfiles path '%s' does not exist" % path)
 
 
 def install(args):
     """Install the dotfiles."""
 
-    clone_dotfile()
+    clone_dotfile(REPOSITORY, DOTFILES_PATH)
 
     for f in CONFIGURATION_FILES:
         symlink_configuration_file(f)
