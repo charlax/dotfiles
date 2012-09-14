@@ -32,8 +32,8 @@ def install_software():
 
     if system == "Darwin":
         os.system("brew update")
-        os.system("brew install -U ack zsh git coreutils zsh-completions rmtrash"
-                " automake wget")
+        os.system("brew install -U ack zsh git coreutils zsh-completions "
+                " rmtrash automake wget")
         os.system("sh %s/osx_config.sh" % DOTFILES_PATH)
 
         print "You need to add zsh to /etc/shells and then run:"
@@ -54,10 +54,22 @@ def install_software():
         os.remove("install_dotvim.py")
 
 
+def clone_dotfile():
+    """Clone or update the dotfiles directory."""
+
+    if not os.path.exists(DOTFILES_PATH):
+        os.system("git clone %s %s" % (REPOSITORY, DOTFILES_PATH))
+    else:
+        os.system("cd %s && git checkout master && git pull" % DOTFILES_PATH)
+
+    if not os.path.exists(DOTFILES_PATH):
+        raise Exception("Dotfiles path '%s' does not exist" % DOTFILES_PATH)
+
+
 def install(args):
     """Install the dotfiles."""
 
-    os.system("git clone %s ~/.dotfiles" % REPOSITORY)
+    clone_dotfile()
 
     for f in CONFIGURATION_FILES:
         symlink_configuration_file(f)
