@@ -33,7 +33,7 @@ def install_software():
     if system == "Darwin":
         os.system("brew update")
         os.system("brew install -U ack zsh git coreutils zsh-completions "
-                " rmtrash automake wget")
+                " rmtrash automake wget mercurial")
         os.system("sh %s/osx_config.sh" % DOTFILES_PATH)
 
         print "You need to add zsh to /etc/shells and then run:"

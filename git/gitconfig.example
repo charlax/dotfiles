@@ -16,12 +16,17 @@
     uncommit = reset --soft HEAD^
     co = checkout
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+    short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+    changelog = log --pretty=format:\" * %s\"
     c = !git add . && git commit -a && git push
     recommit = !git add . && git commit --amend
     go = checkout -B
     d = diff
     s = status
-    br = branch
+    st = status
+    stat = status
+    b = branch -v
 
 [core]
     excludesfile = ~/.gitignore

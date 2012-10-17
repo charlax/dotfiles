@@ -1,4 +1,4 @@
-function rmove-orig-files {
+function remove-orig-files {
     git status -su | grep -e"\.orig$" | cut -f2 -d" " | xargs rm -i
 }
 

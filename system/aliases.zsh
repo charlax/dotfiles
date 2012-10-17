@@ -13,8 +13,7 @@ alias v="vim"
 alias m="mvim"
 alias p="python"
 
-# cd by .. or ... or ... or mv file ..../.
-alias '..'='cd ..'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
+alias tf='tail -f'
+
+alias ka9='killall -9'
+alias k9='kill -9'
