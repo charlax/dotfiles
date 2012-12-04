@@ -46,7 +46,7 @@ def install_software():
         os.system("chsh -s /bin/zsh")
 
     os.system("sudo easy_install pip")
-    os.system("sudo pip install virtualenv virtualenvwrapper autopep8")
+    os.system("sudo pip install virtualenv virtualenvwrapper autopep8 ipdb")
 
     if args.with_dotvim:
         print "Installing dotvim..."

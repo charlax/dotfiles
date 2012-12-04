@@ -5,5 +5,9 @@
 --type-set=coffee=.coffee
 # less
 --type-set=less=.less
+# .ini configuration files
+--type-set=ini=.ini
+# mako templates
+--type-set=mako=.mako
 
 --ignore-dir=build
