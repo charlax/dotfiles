@@ -42,8 +42,8 @@ def install_software():
     elif system == "Linux":
         os.system("sudo apt-get update")
         os.system("sudo apt-get install -q -y ack-grep zsh coreutils wget")
-        print "Changing default shell"
-        os.system("chsh -s /bin/zsh")
+        # print "Changing default shell"
+        # os.system("chsh -s /bin/zsh")
 
     os.system("sudo easy_install pip")
     os.system("sudo pip install virtualenv virtualenvwrapper autopep8 ipdb")
