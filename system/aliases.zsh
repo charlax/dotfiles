@@ -12,8 +12,6 @@ fi
 alias v="vim"
 alias m="mvim"
 alias p="ipython"
-alias g="git"
-alias gs="git status"
 
 alias tf='tail -f'
 
@@ -21,3 +19,21 @@ alias ka9='killall -9'
 alias k9='kill -9'
 
 alias grep='grep --color=auto'
+
+# Git
+alias g="git"
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
+alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gpu='git pull'
+alias gcl='git clone'
+alias grepush='git recommit && git push -f'

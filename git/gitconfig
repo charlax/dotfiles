@@ -15,6 +15,7 @@
     changelog = log --pretty=format:\" * %s\"
     c = !git add . && git commit -a && git push
     recommit = !git add . && git commit --amend
+    repush = !git recommit && git push -f
     go = checkout -B
     d = diff
     s = status

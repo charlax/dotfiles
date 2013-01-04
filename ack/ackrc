@@ -5,8 +5,12 @@
 --type-set=coffee=.coffee
 # less
 --type-set=less=.less
+# stylus
+--type-set=stylus=.styl
 # .ini configuration files
 --type-set=ini=.ini
+# .json
+--type-set=json=.json
 # mako templates
 --type-set=mako=.mako
 
