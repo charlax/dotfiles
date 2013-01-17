@@ -1,5 +1,6 @@
 export PATH="/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
