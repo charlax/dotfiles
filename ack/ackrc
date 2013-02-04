@@ -13,5 +13,7 @@
 --type-set=json=.json
 # mako templates
 --type-set=mako=.mako
+# jade templates
+--type-set=jade=.jade
 
 --ignore-dir=build

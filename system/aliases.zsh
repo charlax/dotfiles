@@ -33,8 +33,10 @@ alias gma='git commit -am'
 alias gb='git branch'
 alias gc='git checkout'
 alias gr='git commit --amend' # git recommit
-alias gra='git remote add'
-alias grr='git remote rm'
+alias gra='git add . && git commit --amend && git push -f'
 alias gpu='git pull'
 alias gcl='git clone'
 alias grepush='git recommit && git push -f'
+
+# setup.py
+alias pypi_submit="python setup.py register sdist bdist upload"
