@@ -1,0 +1,5 @@
+ipdb
+ipython
+flake8
+nose
+ipdbplugin

@@ -2,27 +2,57 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import errno
 import logging
 import os
 import platform
 
 REPOSITORY = "git://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
-CONFIGURATION_FILES = ["zsh/zshrc", "git/gitignore", "git/gitconfig",
-        "latex/latexmkrc", "ctags/ctags", "ack/ackrc"]
+CONFIGURATION_FILES = (
+    "zsh/zshrc",
+    "git/gitignore",
+    "git/gitconfig",
+    "latex/latexmkrc",
+    "ctags/ctags",
+    "ack/ackrc",
+    ("virtualenvs/postmkvirtualenv", "~/.virtualenvs/"),
+)
 
 
-def symlink_configuration_file(f):
+def force_symlink(src, dest):
+    """Force symlink a file."""
+    try:
+        os.symlink(src, dest)
+    except OSError, e:
+        if e.errno == errno.EEXIST:
+            os.remove(dest)
+            os.symlink(src, dest)
+
+
+def symlink_configuration_file(f, dest=None, force=False):
     """Symlink a configuration to ~."""
 
     source = os.path.join(DOTFILES_PATH, f)
-    target = os.path.join(os.environ["HOME"], "." + os.path.basename(f))
 
-    if os.path.islink(target) or os.path.exists(target):
-        logging.error("%s exists" % target)
+    if not dest:
+        dest = os.path.join(os.environ["HOME"], "." + os.path.basename(f))
     else:
-        os.symlink(source, target)
-        logging.info("%s symlinked to %s" % (source, target))
+        f = os.path.basename(f)
+        if dest.endswith("/"):
+            dest = os.path.expanduser(dest) + f
+        else:
+            dest = os.path.expanduser(dest)
+
+    if not force and (os.path.islink(dest) or os.path.exists(dest)):
+        print "Not symlinking '%s': already exists." % dest
+    else:
+        print "Symlinking '%s' -> '%s'." % (source, dest)
+        if not force:
+            os.symlink(source, dest)
+        else:
+            force_symlink(source, dest)
+        logging.info("%s symlinked to %s" % (source, dest))
 
 
 def install_software():
@@ -46,7 +76,7 @@ def install_software():
         # os.system("chsh -s /bin/zsh")
 
     os.system("sudo easy_install pip")
-    os.system("sudo pip install virtualenv virtualenvwrapper autopep8 ipdb")
+    os.system("sudo pip install virtualenv virtualenvwrapper autopep8")
 
     if args.with_dotvim:
         print "Installing dotvim..."
@@ -67,16 +97,25 @@ def clone_dotfile(repo, path):
         raise Exception("Dotfiles path '%s' does not exist" % path)
 
 
-def install(args):
-    """Install the dotfiles."""
-
-    clone_dotfile(REPOSITORY, DOTFILES_PATH)
+def symlink(args):
+    """Symlink the files."""
 
     for f in CONFIGURATION_FILES:
-        symlink_configuration_file(f)
+        if isinstance(f, (tuple, list)):
+            symlink_configuration_file(*f, force=args.force_symlink)
+        else:
+            symlink_configuration_file(f, force=args.force_symlink)
 
+
+def main(args):
+    """Install the dotfiles."""
+
+    # Must install before symlinking. Otherwise, some directory would
+    # not exist, in particular ~/.virtualenvs
     if not args.only_symlink:
+        clone_dotfile(REPOSITORY, DOTFILES_PATH)
         install_software()
+    symlink(args)
 
     print "Install complete."
 
@@ -85,8 +124,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
     parser.add_argument("--with-dotvim", action="store_true",
             help="Also install charlax's dotvim repository")
-    parser.add_argument("--only-symlink", action="store_true",
+    parser.add_argument("--only-symlink", "-s", action="store_true",
             help="Only symlink the files")
+    parser.add_argument("--force-symlink", "-f", action="store_true",
+            help="Force symlink the files")
     args = parser.parse_args()
 
-    install(args)
+    main(args)
