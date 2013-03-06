@@ -11,6 +11,7 @@ REPOSITORY = "git://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
     "zsh/zshrc",
+    "hg/hgrc",
     "git/gitignore",
     "git/gitconfig",
     "latex/latexmkrc",
@@ -76,7 +77,7 @@ def install_software():
         # os.system("chsh -s /bin/zsh")
 
     os.system("sudo easy_install pip")
-    os.system("sudo pip install virtualenv virtualenvwrapper autopep8")
+    os.system("sudo pip install virtualenv virtualenvwrapper autopep8 flake8 httpie")
 
     if args.with_dotvim:
         print "Installing dotvim..."

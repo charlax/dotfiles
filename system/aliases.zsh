@@ -34,6 +34,7 @@ alias gb='git branch'
 alias gc='git checkout'
 alias gr='git commit --amend' # git recommit
 alias gra='git add . && git commit --amend && git push -f'
+alias grm='git rebase master'
 alias gpu='git pull'
 alias gcl='git clone'
 alias grepush='git recommit && git push -f'
