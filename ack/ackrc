@@ -15,5 +15,9 @@
 --type-set=mako=.mako
 # jade templates
 --type-set=jade=.jade
+# behave tests
+--type-set=behave=.feature
+# restructured text
+--type-set=rest=.rst
 
 --ignore-dir=build
