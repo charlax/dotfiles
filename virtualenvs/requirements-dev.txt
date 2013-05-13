@@ -1,4 +1,3 @@
 ipdb
 ipython
-flake8
 ipdbplugin
