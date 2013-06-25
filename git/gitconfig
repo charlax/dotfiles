@@ -40,4 +40,4 @@
     insteadOf = "gh:/"
 
 [push]
-    default = upstream
+    default = simple
