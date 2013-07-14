@@ -56,12 +56,11 @@ Other tools to install:
 * TextWrangler (I use Vim but just in case)
 * Things
 * Time Out
-* Tramsmission
+* Transmission
 * VLC
 * Virtual Box
 * Wireshark
 * XCode
-* XMind
 * iTerm2
 
 Acknowledgments
