@@ -31,6 +31,7 @@ Other tools to install:
 * Chrome
 * Chrome Canary
 * Colloquy
+* Crashplan
 * Cyberduck
 * Disk Inventory X
 * Dropbox
