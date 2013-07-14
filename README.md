@@ -25,7 +25,6 @@ List of software
 
 Other tools to install:
 
-* App Cleaner
 * Audacity
 * Brew
 * Calibre
@@ -36,7 +35,6 @@ Other tools to install:
 * Disk Inventory X
 * Dropbox
 * Evernote
-* Face Time
 * Firefox
 * Flux
 * GitX
@@ -46,30 +44,23 @@ Other tools to install:
 * LibreOffice
 * MPEG Streamclip
 * Mental Case
-* Mental Case
 * OmmWriter
 * Pomodoro
-* Pythonbrew
 * Quicksilver
 * Skitch
 * Skype
 * Spotify
-* Sublime Text
 * TeX
 * Telephone
-* TextWrangler (one never knows)
+* TextWrangler (I use Vim but just in case)
 * Things
 * Time Out
 * Tramsmission
-* Twitter
 * VLC
 * Virtual Box
 * Wireshark
 * XCode
 * XMind
-* Xcode
-* iChm
-* iStumbler
 * iTerm2
 
 Acknowledgments
