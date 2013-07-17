@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git fetch origin
+git rebase origin/master
