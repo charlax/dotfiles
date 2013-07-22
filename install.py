@@ -50,7 +50,10 @@ def symlink_configuration_file(f, dest=None, force=False):
     else:
         print "Symlinking '%s' -> '%s'." % (source, dest)
         if not force:
-            os.symlink(source, dest)
+            try:
+                os.symlink(source, dest)
+            except OSError as e:
+                print "Could not symlink %s: %r" % (source, e)
         else:
             force_symlink(source, dest)
         logging.info("%s symlinked to %s" % (source, dest))
@@ -59,14 +62,16 @@ def symlink_configuration_file(f, dest=None, force=False):
 def install_software():
     """Install software."""
 
+    print "Installing software..."
+
     system = platform.system()
 
     if system == "Darwin":
         os.system("brew update")
         os.system("brew install -U ack zsh git coreutils zsh-completions "
-                " rmtrash automake wget mercurial")
-        os.system("sh %s/osx_config.sh" % DOTFILES_PATH)
+                  "rmtrash automake wget mercurial")
 
+        print "You might want to run osx_config.sh in the dotfiles repo."
         print "You need to add zsh to /etc/shells and then run:"
         print "$ chsh -s /usr/local/bin/zsh"
 
@@ -76,6 +81,7 @@ def install_software():
         # print "Changing default shell"
         # os.system("chsh -s /bin/zsh")
 
+    print "Installing pip"
     os.system("sudo easy_install pip")
     os.system("sudo pip install virtualenv virtualenvwrapper autopep8 flake8 httpie")
 
