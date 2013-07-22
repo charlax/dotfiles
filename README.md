@@ -14,6 +14,9 @@ Tested on Mac Os X 10.8 and Ubuntu 12.04.
 
 On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to install some software.
 
+You'll also need [Solarized](http://ethanschoonover.com/solarized)'s custom
+palettes for iTerm.
+
 Misc
 ====
 
