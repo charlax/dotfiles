@@ -82,8 +82,10 @@ def install_software():
         # os.system("chsh -s /bin/zsh")
 
     print "Installing pip"
-    os.system("sudo easy_install pip")
-    os.system("sudo pip install virtualenv virtualenvwrapper autopep8 flake8 httpie")
+    print "It's actually better to install it via brew"
+    print "$ brew install python python3"
+    # os.system("sudo easy_install pip")
+    # os.system("sudo pip install virtualenv virtualenvwrapper autopep8 flake8 ipython httpie")
 
     if args.with_dotvim:
         print "Installing dotvim..."
