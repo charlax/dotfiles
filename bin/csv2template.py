@@ -30,7 +30,7 @@ if __name__ == '__main__':
         description="Render the template using CSV data")
     parser.add_argument("csv", type=argparse.FileType('rU'))
 
-    template_group = parser.add_mutually_exclusive_group()
+    template_group = parser.add_mutually_exclusive_group(required=True)
     template_group.add_argument(
         "template", type=argparse.FileType('r'), nargs='?')
     template_group.add_argument("--template", dest='template_string')
@@ -39,8 +39,5 @@ if __name__ == '__main__':
                         default=sys.stdout)
 
     args = parser.parse_args()
-
-    if not args.template and not args.template_string:
-        parser.error("Either template or --template must be provided")
 
     main(args)
