@@ -1,4 +1,4 @@
-export PATH="$(brew --prefix)/share/npm/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export DOTFILES="$HOME/.dotfiles/"
