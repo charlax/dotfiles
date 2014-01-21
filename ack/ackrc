@@ -21,3 +21,4 @@
 --type-set=rest=.rst
 
 --ignore-dir=build
+--ignore-dir=htmlcov
