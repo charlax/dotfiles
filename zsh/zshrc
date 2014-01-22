@@ -12,6 +12,8 @@ compinit
 promptinit
 zsh-mime-setup
 
+autoload -Uz history-beginning-search-menu
+
 #}}}
 
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE
@@ -26,6 +28,9 @@ setopt NO_BEEP
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 bindkey -M viins '\C-i' complete-word
+# History completion
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
 
 # Faster! (?)
 zstyle ':completion::complete:*' use-cache 1
