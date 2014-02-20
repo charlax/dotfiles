@@ -8,3 +8,5 @@ export PROJECT_HOME="$HOME/Documents/Projects"
 [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 [[ -e /usr/local/share/npm/bin ]] && export PATH="/usr/local/share/npm/bin:$PATH"
+
+[[ -e /usr/texbin ]] && export PATH="/usr/texbin:$PATH"
