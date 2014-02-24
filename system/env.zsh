@@ -1,5 +1,5 @@
 export EDITOR="vim"
-export WORKON_HOME="~/.virtualenvs"
+
 # Useful when forwarding TZ env variable via SSH (SendEnv TZ)
 export TZ="America/Los_Angeles"
 
