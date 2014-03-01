@@ -1,20 +1,20 @@
 # Shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
-# Source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh) source $config_file
-
 #{{{ ZSH Modules
 
-autoload -U compinit promptinit zcalc zsh-mime-setup colors zmv
+autoload -U compinit promptinit zcalc zsh-mime-setup colors zmv cdr
 colors
 compinit
 promptinit
 zsh-mime-setup
 
-autoload -Uz history-beginning-search-menu
+autoload -Uz history-beginning-search-menu add-zsh-hook
 
 #}}}
+
+# Source every .zsh file in this rep
+for config_file ($ZSH/**/*.zsh) source $config_file
 
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE
 

@@ -17,6 +17,16 @@ On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to install
 You'll also need [Solarized](http://ethanschoonover.com/solarized)'s custom
 palettes for iTerm.
 
+Plugins
+=======
+
+Adding a ZSH plugin
+-------------------
+
+    $ git submodule add https://github.com/... zsh/plugins/plugin-name
+
+Then add the description in the README.
+
 Misc
 ====
 
@@ -55,10 +65,8 @@ Other tools to install:
 * Skype
 * Spotify
 * TeX
-* Telephone
 * TextWrangler (I use Vim but just in case)
 * Things
-* Time Out
 * Transmission
 * VLC
 * Virtual Box
