@@ -17,6 +17,7 @@ CONFIGURATION_FILES = (
     "latex/latexmkrc",
     "ctags/ctags",
     "ack/ackrc",
+    ("pip/pip.conf", "~/.pip/pip.conf"),
     ("virtualenvs/postmkvirtualenv", "~/.virtualenvs/"),
 )
 
