@@ -10,7 +10,6 @@ then
 fi
 
 alias v="vim"
-alias m="mvim"
 alias p="ipython"
 
 alias tf='tail -f'

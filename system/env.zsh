@@ -1,4 +1,5 @@
 export EDITOR="vim"
+export EDITOR_GUI="mvim"
 
 # Useful when forwarding TZ env variable via SSH (SendEnv TZ)
 export TZ="America/Los_Angeles"
