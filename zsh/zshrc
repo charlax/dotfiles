@@ -37,6 +37,9 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# VCS information for prompt
+autoload -Uz vcs_info
+
 # Faster! (?)
 zstyle ':completion::complete:*' use-cache 1
 
