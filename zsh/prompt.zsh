@@ -10,8 +10,9 @@ setopt PROMPT_SUBST
 
 zstyle ':vcs_info:*' enable git svn hg
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' formats "%{$fg[yellow]%}%c%{$reset_color%}(%{$fg[yellow]%}%b%{$reset_color%}%{$fg[red]%}%u%{$reset_color%}) "
+zstyle ':vcs_info:*' formats "(%{$fg[yellow]%}%b%{$reset_color%}%{$fg[red]%}%u%{$reset_color%}%{$fg[yellow]%}%c%{$reset_color%}) "
 zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '*'
 
 # Prompt
 function precmd() {
