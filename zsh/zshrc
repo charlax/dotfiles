@@ -112,6 +112,11 @@ HISTFILE=~/.zsh_history
 SAVEHIST=10000
 HISTSIZE=10000
 
+# OPTIONS
+
+# Make it possible to change directories without writing cd
+setopt auto_cd
+
 # Don't overwrite, append!
 setopt APPEND_HISTORY
 
