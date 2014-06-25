@@ -34,7 +34,6 @@ def force_symlink(src, dest):
 
 def symlink_configuration_file(f, dest=None, force=False):
     """Symlink a configuration to ~."""
-
     source = os.path.join(DOTFILES_PATH, f)
 
     if not dest:
@@ -62,11 +61,9 @@ def symlink_configuration_file(f, dest=None, force=False):
 
 def install_software():
     """Install software."""
-
     print "Installing software..."
 
     system = platform.system()
-
     if system == "Darwin":
         os.system("brew update")
         os.system("brew install -U ack zsh git coreutils zsh-completions "
@@ -79,25 +76,21 @@ def install_software():
     elif system == "Linux":
         os.system("sudo apt-get update")
         os.system("sudo apt-get install -q -y ack-grep zsh coreutils wget")
-        # print "Changing default shell"
-        # os.system("chsh -s /bin/zsh")
+        print "Changing default shell"
+        os.system("sudo chsh -s /bin/zsh $USER")
 
-    print "Installing pip"
-    print "It's actually better to install it via brew"
-    print "$ brew install python python3"
-    # os.system("sudo easy_install pip")
-    # os.system("sudo pip install virtualenv virtualenvwrapper autopep8 flake8 ipython httpie")
+    print "Installing important Python packages"
+    os.system("sudo pip install virtualenv virtualenvwrapper flake8 httpie")
 
     if args.with_dotvim:
         print "Installing dotvim..."
-        os.system("curl https://raw.github.com/charlax/dotvim/master/install.py -o install_dotvim.py")
+        os.system("curl https://raw.githubusercontent.com/charlax/dotvim/master/install.py -o install_dotvim.py")
         os.system("python install_dotvim.py")
         os.remove("install_dotvim.py")
 
 
 def clone_dotfile(repo, path):
     """Clone or update the dotfiles directory."""
-
     if not os.path.exists(path):
         os.system("git clone %s %s" % (repo, path))
     else:
@@ -109,7 +102,6 @@ def clone_dotfile(repo, path):
 
 def symlink(args):
     """Symlink the files."""
-
     for f in CONFIGURATION_FILES:
         if isinstance(f, (tuple, list)):
             symlink_configuration_file(*f, force=args.force_symlink)
@@ -124,8 +116,12 @@ def main(args):
     # not exist, in particular ~/.virtualenvs
     if not args.only_symlink:
         clone_dotfile(REPOSITORY, DOTFILES_PATH)
-        install_software()
     symlink(args)
+
+    # We need to symlink before installing other software, because
+    # installing other software has a higher probability to fail.
+    if not args.only_symlink:
+        install_software()
 
     print "Install complete."
 
