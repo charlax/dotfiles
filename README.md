@@ -1,7 +1,7 @@
 Installation
 ============
 
-    $ curl -O https://raw.github.com/charlax/dotfiles/master/install.py
+    $ curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
     $ python install.py # If you want only dotfiles
     $ python install.py --with-dotvim # If you want also my dotvim
 
