@@ -40,3 +40,6 @@ alias grepush='git recommit && git push -f'
 
 # setup.py
 alias pypi_submit="python setup.py register sdist bdist upload"
+
+# ctags
+alias ctg='ack -f --type=python . | ctags -L - -f .tags; ack -f --type=python $VIRTUAL_ENV | ctags -L - -f .tags_env'
