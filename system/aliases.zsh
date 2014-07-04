@@ -41,5 +41,15 @@ alias grepush='git recommit && git push -f'
 # setup.py
 alias pypi_submit="python setup.py register sdist bdist upload"
 
+# Python
+alias venv='python -m venv'
+alias serve='python -m http.server'
+alias pydoc='python -m pydoc'
+alias pdb='python -m ipdb'
+alias pytime='python -m timeit'
+alias pyprof='python -m profile'
+alias jcat='python -m json.tool'
+alias cal='python -m calendar'
+
 # ctags
 alias ctg='ack -f --type=python . | ctags -L - -f .tags; ack -f --type=python $VIRTUAL_ENV | ctags -L - -f .tags_env'
