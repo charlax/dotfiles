@@ -43,7 +43,7 @@ alias pypi_submit="python setup.py register sdist bdist upload"
 
 # Python
 alias venv='python -m venv'
-alias serve='python -m http.server'
+alias serve='python3 -m http.server'
 alias pydoc='python -m pydoc'
 alias pdb='python -m ipdb'
 alias pytime='python -m timeit'
