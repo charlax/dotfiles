@@ -116,6 +116,8 @@ HISTSIZE=10000
 
 # Make it possible to change directories without writing cd
 setopt auto_cd
+# Sets the search path for the cd command
+cdpath=(~ $CODE_PATH $DROPBOX_FOLDER)
 
 # Don't overwrite, append!
 setopt APPEND_HISTORY
