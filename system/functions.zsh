@@ -16,3 +16,14 @@ function remove-trailing-spaces-in-py-files {
 function git-amend-last-commit-set-date-to-now {
     GIT_COMMITTER_DATE="`date`" git commit --amend --date "`date`"
 }
+
+# Gather data from the output, but starting with a particular line, and ending
+# with another.
+# http://howardabrams.com/projects/dot-files/sh-functions.html
+function clip {
+    FIRST=$1
+    ENDING=$2
+    PADDING=${3:-""}
+
+    perl -ne "\$s=1 if (/$FIRST/); \$s=0 if (/$ENDING/); print \"$PADDING\$_\" if (\$s==1);"
+}
