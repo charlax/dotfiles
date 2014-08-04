@@ -10,15 +10,16 @@ import platform
 REPOSITORY = "git://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
-    "zsh/zshrc",
-    "hg/hgrc",
+    "ack/ackrc",
+    "ctags/ctags",
     "git/gitignore",
     "git/gitconfig",
+    "hg/hgrc",
     "latex/latexmkrc",
-    "ctags/ctags",
-    "ack/ackrc",
     ("pip/pip.conf", "~/.pip/pip.conf"),
+    "system/colors/dir_colors",
     ("virtualenvs/postmkvirtualenv", "~/.virtualenvs/"),
+    "zsh/zshrc",
 )
 
 
@@ -104,9 +105,9 @@ def symlink(args):
     """Symlink the files."""
     for f in CONFIGURATION_FILES:
         if isinstance(f, (tuple, list)):
-            symlink_configuration_file(*f, force=args.force_symlink)
+            symlink_configuration_file(*f, force=args.symlink_force)
         else:
-            symlink_configuration_file(f, force=args.force_symlink)
+            symlink_configuration_file(f, force=args.symlink_force)
 
 
 def main(args):
@@ -114,13 +115,13 @@ def main(args):
 
     # Must install before symlinking. Otherwise, some directory would
     # not exist, in particular ~/.virtualenvs
-    if not args.only_symlink:
+    if not args.symlink_only:
         clone_dotfile(REPOSITORY, DOTFILES_PATH)
     symlink(args)
 
     # We need to symlink before installing other software, because
     # installing other software has a higher probability to fail.
-    if not args.only_symlink:
+    if not args.symlink_only:
         install_software()
 
     print "Install complete."
@@ -130,9 +131,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
     parser.add_argument("--with-dotvim", action="store_true",
             help="Also install charlax's dotvim repository")
-    parser.add_argument("--only-symlink", "-s", action="store_true",
+    parser.add_argument("--symlink-only", "-s", action="store_true",
             help="Only symlink the files")
-    parser.add_argument("--force-symlink", "-f", action="store_true",
+    parser.add_argument("--symlink-force", "-f", action="store_true",
             help="Force symlink the files")
     args = parser.parse_args()
 

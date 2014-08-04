@@ -18,6 +18,9 @@ for config_file ($ZSH/**/*.zsh) source $config_file
 
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE
 
+# Colors for ls/gls
+eval `gdircolors $HOME/.dir_colors`
+
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # beeps are annoying
@@ -117,7 +120,7 @@ HISTSIZE=10000
 # Make it possible to change directories without writing cd
 setopt auto_cd
 # Sets the search path for the cd command
-cdpath=(~ $CODE_PATH $DROPBOX_FOLDER)
+cdpath=($HOME $CODE_PATH $DROPBOX_FOLDER)
 
 # Don't overwrite, append!
 setopt APPEND_HISTORY
