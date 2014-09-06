@@ -68,7 +68,9 @@ def install_software():
     if system == "Darwin":
         os.system("brew update")
         os.system("brew install -U ack zsh git coreutils zsh-completions "
-                  "rmtrash automake wget mercurial git-flow")
+                  "rmtrash automake wget mercurial git-flow "
+                  "python python3 "
+                  )
 
         print "You might want to run osx_config.sh in the dotfiles repo."
         print "You need to add zsh to /etc/shells and then run:"
