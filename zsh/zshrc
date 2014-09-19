@@ -101,7 +101,7 @@ zstyle ':completion::approximate*:*' prefix-needed false
 
 # Sound completion for kill
 # http://forums.gentoo.org/viewtopic-t-204402-start-0.html
-zstyle ':completion:*:processes' command 'ps -au$USER' 
+zstyle ':completion:*:processes' command 'ps -au$USER'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;32'
 
 #}}}

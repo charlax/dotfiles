@@ -6,6 +6,7 @@ export DOTFILES="$HOME/.dotfiles/"
 [[ -e /usr/local/share/npm/bin ]] && export PATH="/usr/local/share/npm/bin:$PATH"
 [[ -e /usr/texbin ]] && export PATH="/usr/texbin:$PATH"
 [[ -e /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 dropbox_config=$HOME/.dropbox/info.json
 [[ -e $dropbox_config ]] && export DROPBOX_FOLDER=`cat $dropbox_config | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["personal"]["path"]'`
