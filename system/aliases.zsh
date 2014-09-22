@@ -17,10 +17,13 @@ alias tf='tail -f'
 alias ka9='killall -9'
 alias k9='kill -9'
 
+# Python virtualenv
+alias aa='source env/bin/activate'
+
 alias grep='grep --color=auto'
 
 # Git
-alias g="git"
+alias g='git'
 alias ga='git add'
 alias gp='git push'
 alias gl='git log'
