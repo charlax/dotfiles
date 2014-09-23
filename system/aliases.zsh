@@ -32,6 +32,7 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gca='git commit -a'
 alias gcm='git commit -m'
+alias gcma='git commit -am'
 alias gb='git branch'
 alias gc='git checkout'
 alias gr='git commit --amend' # git recommit
