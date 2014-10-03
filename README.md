@@ -36,6 +36,8 @@ screen](http://hints.macworld.com/article.php?story=20090831093941225).
 List of software
 ================
 
+    $ brew cask install mactex
+
 Other tools to install:
 
 * Audacity
