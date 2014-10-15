@@ -23,3 +23,4 @@
 --ignore-dir=build
 --ignore-dir=.tox
 --ignore-dir=htmlcov
+--nopo
