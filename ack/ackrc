@@ -20,6 +20,7 @@
 # restructured text
 --type-set=rest=.rst
 
+--ignore-file=is:tags
 --ignore-dir=build
 --ignore-dir=.tox
 --ignore-dir=htmlcov
