@@ -21,6 +21,7 @@
 --type-set=rest=.rst
 
 --ignore-file=is:tags
+--ignore-file=is:.coverage
 --ignore-dir=build
 --ignore-dir=.tox
 --ignore-dir=htmlcov
