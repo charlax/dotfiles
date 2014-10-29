@@ -69,7 +69,7 @@ def install_software():
         os.system("brew update")
         os.system("brew install -U ack zsh git coreutils zsh-completions "
                   "rmtrash automake wget mercurial git-flow "
-                  "python python3 autojump"
+                  "python python3 autojump hub"
                   )
 
         print "You might want to run osx_config.sh in the dotfiles repo."
@@ -132,11 +132,11 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
     parser.add_argument("--with-dotvim", action="store_true",
-            help="Also install charlax's dotvim repository")
+                        help="Also install charlax's dotvim repository")
     parser.add_argument("--symlink-only", "-s", action="store_true",
-            help="Only symlink the files")
+                        help="Only symlink the files")
     parser.add_argument("--symlink-force", "-f", action="store_true",
-            help="Force symlink the files")
+                        help="Force symlink the files")
     args = parser.parse_args()
 
     main(args)
