@@ -69,7 +69,7 @@ def install_software():
         os.system("brew update")
         os.system("brew install -U ack zsh git coreutils zsh-completions "
                   "rmtrash automake wget mercurial git-flow "
-                  "python python3 autojump hub"
+                  "python python3 autojump hub unrar"
                   )
 
         print "You might want to run osx_config.sh in the dotfiles repo."
