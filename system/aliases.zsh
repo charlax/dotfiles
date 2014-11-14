@@ -54,6 +54,7 @@ alias pytime='python -m timeit'
 alias pyprof='python -m profile'
 alias jcat='python -m json.tool'
 alias cal='python -m calendar'
+alias aactivate='source env/bin/activate'
 
 # ctags
 alias ctg='ack -f --type=python . | ctags -L - -f tags; ack -f --type=python $VIRTUAL_ENV | ctags -L - -f tags_env'
