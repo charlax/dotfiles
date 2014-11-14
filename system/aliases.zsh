@@ -58,3 +58,8 @@ alias cal='python -m calendar'
 # ctags
 alias ctg='ack -f --type=python . | ctags -L - -f tags; ack -f --type=python $VIRTUAL_ENV | ctags -L - -f tags_env'
 alias ctag='ctg'
+
+# Vagrant
+va () {
+    boxer v $VAGRANTNAME $@
+}

@@ -30,8 +30,9 @@ Then add the description in the README.
 Misc
 ====
 
-Keyboard shortcuts to [lock the
-screen](http://hints.macworld.com/article.php?story=20090831093941225).
+* Keyboard shortcuts to [lock the screen](http://hints.macworld.com/article.php?story=20090831093941225).
+* Installing my [vim dotfiles](https://github.com/charlax/dotvim) is available
+  through the `install_vim_dotfiles.sh` command.
 
 List of software
 ================
