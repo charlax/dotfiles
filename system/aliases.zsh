@@ -64,3 +64,4 @@ alias ctag='ctg'
 va () {
     boxer v $VAGRANTNAME $@
 }
+alias vassh='va -c ssh'
