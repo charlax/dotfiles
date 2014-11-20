@@ -2,7 +2,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 export DOTFILES="$HOME/.dotfiles/"
 
-[[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
 [[ -e /usr/local/share/npm/bin ]] && export PATH="/usr/local/share/npm/bin:$PATH"
 [[ -e /usr/texbin ]] && export PATH="/usr/texbin:$PATH"
 [[ -e /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
