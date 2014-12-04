@@ -6,3 +6,7 @@ foreground-vim() {
 }
 zle -N foreground-vim
 bindkey '^Z' foreground-vim
+
+# Bind delete key to something meaningful like... deleting.
+bindkey    "^[[3~"          delete-char
+bindkey    "^[3;5~"         delete-char
