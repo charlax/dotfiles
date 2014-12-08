@@ -18,6 +18,7 @@ CONFIGURATION_FILES = (
     "latex/latexmkrc",
     ("pip/pip.conf", "~/.pip/pip.conf"),
     "system/colors/dir_colors",
+    "tmux/tmux.conf",
     ("virtualenvs/postmkvirtualenv", "~/.virtualenvs/"),
     "zsh/zshrc",
 )
