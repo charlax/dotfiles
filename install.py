@@ -84,7 +84,9 @@ def install_software():
         os.system("sudo chsh -s /bin/zsh $USER")
 
     print "Installing important Python packages"
-    os.system("sudo pip install virtualenv virtualenvwrapper flake8 httpie")
+    # pprintpp is used to pretty print Python structured on the cli
+    os.system("sudo pip install virtualenv virtualenvwrapper flake8 httpie "
+              "pprintpp)
 
     if args.with_dotvim:
         print "Installing dotvim..."
