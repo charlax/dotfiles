@@ -21,6 +21,9 @@ def main(args):
         template_string = args.template.read()
     template = jinja2.Template(template_string)
 
+    if args.header:
+        args.outfile.write(args.header + "\n")
+
     for line in csv_file:
         line = {k.replace(' ', '_'): v for k, v in line.iteritems()}
         args.outfile.write(template.render(**line) + "\n")
@@ -30,6 +33,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Render the template using CSV data")
     parser.add_argument("csv", type=argparse.FileType('rU'))
+    parser.add_argument("--header",
+                        help='content to put at the top of output')
 
     template_group = parser.add_mutually_exclusive_group(required=True)
     template_group.add_argument(
