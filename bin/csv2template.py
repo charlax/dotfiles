@@ -22,6 +22,7 @@ def main(args):
     template = jinja2.Template(template_string)
 
     for line in csv_file:
+        line = {k.replace(' ', '_'): v for k, v in line.iteritems()}
         args.outfile.write(template.render(**line) + "\n")
 
 
