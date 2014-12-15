@@ -14,4 +14,6 @@ function check_args {
 }
 
 check_args "$@"
+echo "git adding"
+git add .
 git diff --name-only --diff-filter=ACMRTUXB $DIFF_AGAINST | rsync --files-from=- -avz -e ssh . $@
