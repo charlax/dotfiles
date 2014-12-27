@@ -12,18 +12,27 @@ import sys
 import jinja2
 
 
-def main(args):
-
-    csv_file = csv.DictReader(args.csv)
-
+def get_template(args):
+    """Return template."""
     template_string = args.template_string
     if not template_string:
-        template_string = args.template.read()
+        if args.use_csv_header_as_template:
+            template_string = args.csv.readline()
+        else:
+            template_string = args.template.read()
+
     template = jinja2.Template(template_string)
+    return template
+
+
+def main(args):
+    """Render the template."""
+    template = get_template(args)
 
     if args.header:
         args.outfile.write(args.header + "\n")
 
+    csv_file = csv.DictReader(args.csv)
     for line in csv_file:
         line = {k.replace(' ', '_'): v for k, v in line.iteritems()}
         args.outfile.write(template.render(**line) + "\n")
@@ -38,10 +47,20 @@ if __name__ == '__main__':
 
     template_group = parser.add_mutually_exclusive_group(required=True)
     template_group.add_argument(
-        "template", type=argparse.FileType('r'), nargs='?')
-    template_group.add_argument("--template", dest='template_string')
+        "--template",
+        type=argparse.FileType('r'),
+        help='template filename')
+    template_group.add_argument(
+        "--template-string",
+        help='template string')
+    template_group.add_argument(
+        "--template-use-csv-header",
+        action='store_true',
+        dest='use_csv_header_as_template',
+        help="Use the CSV's first line as the template")
 
-    parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
+    parser.add_argument('--outfile',
+                        type=argparse.FileType('w'),
                         default=sys.stdout)
 
     args = parser.parse_args()
