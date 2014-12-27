@@ -25,5 +25,6 @@
 --ignore-dir=build
 --ignore-dir=.tox
 --ignore-dir=htmlcov
+--ignore-dir=cover
 --ignore-dir=env
 --nopo
