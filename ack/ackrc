@@ -22,6 +22,9 @@
 
 --ignore-file=is:tags
 --ignore-file=is:.coverage
+--ignore-file=is:coverage.xml
+--ignore-file=is:SOURCES.txt
+--ignore-dir=build
 --ignore-dir=build
 --ignore-dir=.tox
 --ignore-dir=htmlcov
