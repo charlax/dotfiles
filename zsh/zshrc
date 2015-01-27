@@ -19,7 +19,7 @@ for config_file ($ZSH/**/*.zsh) source $config_file
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE
 
 # Colors for ls/gls
-eval `gdircolors $HOME/.dir_colors`
+eval `gdircolors $HOME/.dir_colors 2> /dev/null`
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 

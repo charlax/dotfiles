@@ -33,6 +33,8 @@ Misc
 * Keyboard shortcuts to [lock the screen](http://hints.macworld.com/article.php?story=20090831093941225).
 * Installing my [vim dotfiles](https://github.com/charlax/dotvim) is available
   through the `install_vim_dotfiles.sh` command.
+* You can copy the dotfiles to another folder with this command:
+  ``rsync -vv -r --exclude='.git' --filter="dir-merge,- .gitignore" ~/.dotfiles/ new_path``
 
 List of software
 ================
