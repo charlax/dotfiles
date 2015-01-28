@@ -25,6 +25,9 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # beeps are annoying
 setopt NO_BEEP
+# Do not throw error if no files matched glob pattern
+# Useful because I often copy paste URL on the command line
+unsetopt NOMATCH
 
 #{{{ Completion Stuff
 
