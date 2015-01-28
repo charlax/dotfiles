@@ -33,7 +33,8 @@ def main(args):
         args.outfile.write(args.header + "\n")
 
     csv_file = csv.DictReader(args.csv)
-    for line in csv_file:
+    rows = ({k.strip(): v.strip() for k, v in row.iteritems()} for row in csv_file)
+    for line in rows:
         line = {k.replace(' ', '_'): v for k, v in line.iteritems()}
         args.outfile.write(template.render(**line) + "\n")
 
