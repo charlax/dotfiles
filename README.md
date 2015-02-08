@@ -35,7 +35,7 @@ Misc
   through the `install_vim_dotfiles.sh` command.
 * You can copy the dotfiles to another folder with this command:
   ``rsync -vv -r --exclude='.git' --filter="dir-merge,- .gitignore" ~/.dotfiles/ new_path``
-* [entr](http://entrproject.org/) is used to run arbitrary commands when files
+* [entr](https://bitbucket.org/eradman/entr/) is used to run arbitrary commands when files
   are changed.
 
 List of software

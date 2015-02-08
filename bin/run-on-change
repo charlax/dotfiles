@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function usage {
+    echo "Usage: $0 command"
+    exit 0
+}
+
+function check_args {
+    if [[ "$@" = "" ]]; then
+        usage
+    fi
+}
+
+check_args "$@"
+echo "$@"
+while sleep 1; do
+    find . -not -path '*/\.*' -not -iname '*\.pyc' | entr -c -d $@
+done
