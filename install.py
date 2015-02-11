@@ -74,6 +74,8 @@ def install_software():
                   "rmtrash automake wget mercurial git-flow "
                   "python python3 autojump hub unrar highlight "
                   "entr "
+                  # JSON parser
+                  "jq "
                   )
 
         print "You might want to run osx_config.sh in the dotfiles repo."
