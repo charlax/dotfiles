@@ -13,6 +13,7 @@ function check_args {
 
 check_args "$@"
 echo "$@"
+$(echo "$@")  || true
 while sleep 1; do
-    find . -not -path '*/\.*' -not -iname '*\.pyc' | entr -c -d $@
+    find . -not -path '*/\.*' -not -iname '*\.pyc' | entr -c -d "$@"
 done
