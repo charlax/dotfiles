@@ -17,7 +17,7 @@
     recommit = !git commit --amend
     repush = !git recommit && git push -f
     pr = !git commit -av && git push -f && hub pull-request
-    go = checkout -B
+    go = checkout -b
     d = diff
     s = status
     st = status
