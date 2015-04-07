@@ -91,7 +91,7 @@ def install_software():
     print "Installing important Python packages"
     # pprintpp is used to pretty print Python structured on the cli
     os.system("sudo pip install virtualenv virtualenvwrapper flake8 httpie "
-              "pprintpp)
+              "pprintpp")
 
     if args.with_dotvim:
         print "Installing dotvim..."
