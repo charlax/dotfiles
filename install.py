@@ -16,10 +16,10 @@ CONFIGURATION_FILES = (
     "git/gitconfig",
     "hg/hgrc",
     "latex/latexmkrc",
-    ("pip/pip.conf", "~/.pip/pip.conf"),
+    ("pip/pip.conf", ".pip/pip.conf"),
     "system/colors/dir_colors",
     "tmux/tmux.conf",
-    ("virtualenvs/postmkvirtualenv", "~/.virtualenvs/"),
+    ("virtualenvs/postmkvirtualenv", ".virtualenvs/"),
     "zsh/zshrc",
 )
 
@@ -34,21 +34,29 @@ def force_symlink(src, dest):
             os.symlink(src, dest)
 
 
-def symlink_configuration_file(f, dest=None, force=False):
+def symlink_configuration_file(f, dest=None, force=False, base_path=None):
     """Symlink a configuration to ~."""
-    source = os.path.join(DOTFILES_PATH, f)
+    if base_path:
+        if base_path == '.':
+            source_base_path = '.dotfiles'
+        else:
+            source_base_path = os.path.join(base_path, '.dotfiles')
+    else:
+        source_base_path = DOTFILES_PATH
+
+    dest_base_path = base_path or os.environ["HOME"]
+    source = os.path.join(source_base_path, f)
 
     if not dest:
-        dest = os.path.join(os.environ["HOME"], "." + os.path.basename(f))
+        dest = os.path.join(dest_base_path, "." + os.path.basename(f))
     else:
-        f = os.path.basename(f)
-        if dest.endswith("/"):
-            dest = os.path.expanduser(dest) + f
-        else:
-            dest = os.path.expanduser(dest)
+        dest = os.path.join(dest_base_path, dest)
+
+    print "Will link %s to %s" % (source, dest)
 
     if not force and (os.path.islink(dest) or os.path.exists(dest)):
         print "Not symlinking '%s': already exists." % dest
+
     else:
         print "Symlinking '%s' -> '%s'." % (source, dest)
         if not force:
@@ -110,9 +118,13 @@ def symlink(args):
     """Symlink the files."""
     for f in CONFIGURATION_FILES:
         if isinstance(f, (tuple, list)):
-            symlink_configuration_file(*f, force=args.symlink_force)
+            symlink_configuration_file(*f,
+                                       base_path=args.symlink_base,
+                                       force=args.symlink_force)
         else:
-            symlink_configuration_file(f, force=args.symlink_force)
+            symlink_configuration_file(f,
+                                       base_path=args.symlink_base,
+                                       force=args.symlink_force)
 
 
 def main(args):
@@ -134,10 +146,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
     parser.add_argument("--with-dotvim", action="store_true",
                         help="Also install charlax's dotvim repository")
-    parser.add_argument("--install", "-s", action="store_true",
+    parser.add_argument("--install", action="store_true",
                         help="Also install sofware")
     parser.add_argument("--symlink-force", "-f", action="store_true",
                         help="Force symlink the files")
+    parser.add_argument("--symlink-base",
+                        help="Base path for symlinks")
     args = parser.parse_args()
 
     main(args)
