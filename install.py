@@ -67,15 +67,10 @@ def install_software():
 
     system = platform.system()
     if system == "Darwin":
-        # TODO: put this in a file, with comments about what each
-        # software does.
         os.system("brew update")
         os.system("brew install -U ack zsh git coreutils zsh-completions "
                   "rmtrash automake wget mercurial git-flow "
-                  "python python3 autojump hub unrar highlight "
-                  "entr "
-                  # JSON parser
-                  "jq "
+                  "python python3 autojump hub unrar highlight"
                   )
 
         print "You might want to run osx_config.sh in the dotfiles repo."
@@ -95,7 +90,7 @@ def install_software():
 
     if args.with_dotvim:
         print "Installing dotvim..."
-        os.system("curl https://raw.githubusercontent.com/charlax/dotvim/master/install.py -o install_dotvim.py")
+        os.system("curl https://raw.githubusercontent.com/charlax/dotvim/master/install.py -o install_dotvim.py")  # noqa
         os.system("python install_dotvim.py")
         os.remove("install_dotvim.py")
 
@@ -122,16 +117,14 @@ def symlink(args):
 
 def main(args):
     """Install the dotfiles."""
-
     # Must install before symlinking. Otherwise, some directory would
     # not exist, in particular ~/.virtualenvs
-    if not args.symlink_only:
-        clone_dotfile(REPOSITORY, DOTFILES_PATH)
+    clone_dotfile(REPOSITORY, DOTFILES_PATH)
     symlink(args)
 
     # We need to symlink before installing other software, because
     # installing other software has a higher probability to fail.
-    if not args.symlink_only:
+    if args.install:
         install_software()
 
     print "Install complete."
@@ -141,8 +134,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
     parser.add_argument("--with-dotvim", action="store_true",
                         help="Also install charlax's dotvim repository")
-    parser.add_argument("--symlink-only", "-s", action="store_true",
-                        help="Only symlink the files")
+    parser.add_argument("--install", "-s", action="store_true",
+                        help="Also install sofware")
     parser.add_argument("--symlink-force", "-f", action="store_true",
                         help="Force symlink the files")
     args = parser.parse_args()

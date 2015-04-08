@@ -10,9 +10,10 @@ You should read the script before executing it.
 Prerequisites
 =============
 
-Tested on Mac Os X 10.8 and Ubuntu 12.04.
+Tested on Mac Os X 10.8, 10.10 and Ubuntu 12.04.
 
-On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to install some software.
+On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
+install some software.
 
 You'll also need [Solarized](http://ethanschoonover.com/solarized)'s custom
 palettes for iTerm.
@@ -45,12 +46,10 @@ List of software
 
 Other tools to install:
 
-* Audacity
 * Brew
 * Calibre
 * Chrome
 * Chrome Canary
-* Colloquy
 * Crashplan
 * Cyberduck
 * Disk Inventory X
@@ -58,23 +57,16 @@ Other tools to install:
 * Evernote
 * Firefox
 * Flux
-* GitX
-* Github
-* ImageOptim
 * Kindle
 * LibreOffice
 * MPEG Streamclip
 * Mental Case
-* OmmWriter
 * Pomodoro
-* Quicksilver
-* Skitch
 * Skype
 * Spotify
 * TeX
 * TextWrangler (I use Vim but just in case)
 * Things
-* Transmission
 * VLC
 * Virtual Box
 * Wireshark

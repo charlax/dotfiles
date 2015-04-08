@@ -1,6 +1,6 @@
 [user]
-    name = Charles-Axel Dein
-    email = ca@d3in.org
+	name = Charles-Axel Dein
+	email = ca@d3in.org
 
 [color]
     ui = true
@@ -43,3 +43,5 @@
     default = simple
 [help]
     autocorrect = 1
+[rerere]
+	enabled = true
