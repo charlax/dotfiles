@@ -8,29 +8,37 @@ script repeatedly which each line of the CSV file.
 import argparse
 import csv
 import imp
+import logging
+
+logger = logging.getLogger('csv2python')
 
 
-def get_handle_function(script_filename):
+def get_script(script_filename):
     """Get the handle function from a filename."""
     script = imp.load_source('handler', script_filename)
-    return script.handle
+    return script
 
 
 def main(args):
     """Render the template."""
     csv_file = csv.DictReader(args.csv)
-    handle = get_handle_function(args.python_script)
+    script = get_script(args.python_script)
     rows = [{k.strip(): v.strip()
              for k, v in row.iteritems()} for row in csv_file]
 
     total = len(rows)
-    print('%d rows to handle.' % total)
+    logger.info('%d rows to handle.', total)
+
+    # Call before hook.
+    if hasattr(script, 'before'):
+        script.before()
+
     for i, line in enumerate(rows):
         if i == args.stop_after:
-            print('Stopping after %d iteration.' % args.stop_after)
+            logger.info('Stopping after %d iteration.', args.stop_after)
             break
-        print('Handling row %d/%d' % (i + 1, total))
-        handle(line)
+        logger.info('Handling row %d/%d', i + 1, total)
+        script.handle(line)
 
 
 if __name__ == '__main__':
