@@ -1,4 +1,7 @@
 #!/bin/sh
 
-git fetch origin
-git rebase origin/master
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+git checkout master
+git pull
+git checkout $CURRENT_BRANCH
+git rebase master
