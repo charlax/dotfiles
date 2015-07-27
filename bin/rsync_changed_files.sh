@@ -16,4 +16,11 @@ function check_args {
 check_args "$@"
 echo "git adding"
 git add .
+
+echo ""
+echo "Pushing all files"
 git diff --name-only --diff-filter=ACMRTUXB $DIFF_AGAINST | rsync --files-from=- -avz -e ssh . $@
+
+# echo ""
+# echo "Removing deleted files"
+# git diff --name-only --diff-filter=D $DIFF_AGAINST | ssh $@ rm
