@@ -78,6 +78,7 @@ def install_software():
         os.system("brew install -U ack zsh git coreutils zsh-completions "
                   "rmtrash automake wget mercurial git-flow "
                   "python python3 autojump hub unrar highlight"
+                  "miller "  # for name-indexed data such as CSV
                   "autoenv "
                   )
 
