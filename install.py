@@ -16,6 +16,7 @@ CONFIGURATION_FILES = (
     "git/gitconfig",
     "hg/hgrc",
     "latex/latexmkrc",
+    ("ssh/rc", ".ssh/rc"),
     "system/colors/dir_colors",
     "tmux/tmux.conf",
     ("virtualenvs/postmkvirtualenv", ".virtualenvs/"),
