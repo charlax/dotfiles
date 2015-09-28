@@ -31,13 +31,14 @@ Then add the description in the README.
 Misc
 ====
 
-* Keyboard shortcuts to [lock the screen](http://hints.macworld.com/article.php?story=20090831093941225).
+* Keyboard shortcuts to [lock the
+  screen](http://hints.macworld.com/article.php?story=20090831093941225).
 * Installing my [vim dotfiles](https://github.com/charlax/dotvim) is available
   through the `install_vim_dotfiles.sh` command.
-* You can copy the dotfiles to another folder with this command:
-  ``rsync -vv -r --exclude='.git' --filter="dir-merge,- .gitignore" ~/.dotfiles/ new_path``
-* [entr](https://bitbucket.org/eradman/entr/) is used to run arbitrary commands when files
-  are changed.
+* You can copy the dotfiles in the current directory through
+  `copy-dotfiles-here.sh`
+* [entr](https://bitbucket.org/eradman/entr/) is used to run arbitrary commands
+  when files are changed.
 
 List of software
 ================
