@@ -8,6 +8,7 @@ rendered template.
 import argparse
 import csv
 import sys
+import uuid
 
 import jinja2
 
@@ -25,15 +26,22 @@ def get_template(args):
     return template
 
 
+def format_uuid(value):
+    """Format a uuid."""
+    return str(uuid.UUID(value))
+
+
 def main(args):
     """Render the template."""
+    jinja2.defaults.DEFAULT_FILTERS['format_uuid'] = format_uuid
     template = get_template(args)
 
     if args.header:
         args.outfile.write(args.header + "\n")
 
     csv_file = csv.DictReader(args.csv)
-    rows = ({k.strip(): v.strip() for k, v in row.iteritems()} for row in csv_file)
+    rows = ({k.strip(): v.strip() for k, v in row.iteritems()}
+            for row in csv_file)
     for line in rows:
         line = {k.replace(' ', '_'): v for k, v in line.iteritems()}
         args.outfile.write(template.render(**line) + "\n")
@@ -42,7 +50,8 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Render the template using CSV data")
-    parser.add_argument("csv", type=argparse.FileType('rU'))
+    parser.add_argument("csv", nargs="?", type=argparse.FileType('rU'),
+                        default=sys.stdin)
     parser.add_argument("--header",
                         help='content to put at the top of output')
 
