@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import argparse
@@ -11,6 +11,7 @@ REPOSITORY = "git://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
     "ack/ackrc",
+    ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     "ctags/ctags",
     "git/gitignore",
     "git/gitconfig",
@@ -34,6 +35,14 @@ def force_symlink(src, dest):
             os.symlink(src, dest)
 
 
+def create_folder(dest):
+    """Create folder if not exists."""
+    if os.path.exists(dest):
+        return
+    print "Folder %s does not exist, creating" % dest
+    os.makedirs(dest)
+
+
 def symlink_configuration_file(f, dest=None, force=False, base_path=None):
     """Symlink a configuration to ~."""
     if base_path:
@@ -53,6 +62,8 @@ def symlink_configuration_file(f, dest=None, force=False, base_path=None):
         dest = os.path.join(dest_base_path, dest)
 
     print "Will link %s to %s" % (source, dest)
+
+    create_folder(os.path.dirname(dest))
 
     if not force and (os.path.islink(dest) or os.path.exists(dest)):
         print "Not symlinking '%s': already exists." % dest
