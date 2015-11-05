@@ -59,6 +59,9 @@ alias cal='python -m calendar'
 alias ctg='ack -f --type=python . | ctags -L - -f tags'
 alias ctag='ctg'
 
+# tmux
+alias tma="if tmux has; then tmux attach; else tmux new; fi"
+
 # Vagrant
 va () {
     boxer v $VAGRANTNAME $@
