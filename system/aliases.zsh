@@ -19,6 +19,7 @@ alias k9='kill -9'
 
 # Python virtualenv
 alias aa='source env/bin/activate'
+alias aactivate='source env/bin/activate'
 
 alias grep='grep --color=auto'
 

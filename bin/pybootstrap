@@ -1,0 +1,6 @@
+#!/bin/bash
+
+virtualenv env
+aactivate
+make bootstrap || echo "Make bootstrap failed"
+pip install -r requirements.txt || echo "pip install -r requirements.txt failed"
