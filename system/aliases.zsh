@@ -42,6 +42,7 @@ alias grm='git rebase master'
 alias gpu='git pull'
 alias gcl='git clone'
 alias grepush='git recommit && git push -f'
+alias gsp='git stash && git pull && git stash pop'
 
 # setup.py
 alias pypi_submit="python setup.py register sdist bdist upload"
