@@ -1,0 +1,2 @@
+# See what port a given process ID has open using lsof
+lsof -p PID
