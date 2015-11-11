@@ -1,2 +1,14 @@
 # See what port a given process ID has open using lsof
 lsof -p PID
+
+# Check which process is using a given port
+lsof -i :PORT_NUMBER
+
+# Count number of lines of code (requires cloc)
+cloc .
+
+# Get certificate information
+ openssl x509 -in file.crt -text
+
+# Get the git authors' email for the last 60 days
+git log --since=60.days --format='%ae' | sort -u

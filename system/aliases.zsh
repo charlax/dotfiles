@@ -64,6 +64,9 @@ alias ctag='ctg'
 # tmux
 alias tma="if tmux has; then tmux attach; else tmux new; fi"
 
+# Cheatsheet
+alias cheatsheet="vim ~/.dotfiles/cheatsheet.txt"
+
 # Vagrant
 va () {
     boxer v $VAGRANTNAME $@
