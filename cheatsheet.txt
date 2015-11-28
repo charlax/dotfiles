@@ -15,3 +15,12 @@ git log --since=60.days --format='%ae' | sort -u
 
 # Show which line is missing in file1 but is in file2
 comm -23 file1.txt file2.txt
+
+# Get high-level overview of your machine's performance
+glances  # requires pip install glances
+
+# Setup an ssh tunnel that tunnel localhost:4479 to remote:4479
+# -f: background
+# -N: do not issue a command
+# -L [bind_address:]port:host:hostport
+ssh -f -N -L 4479:localhost:4479 remote
