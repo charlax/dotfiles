@@ -72,3 +72,6 @@ va () {
     boxer v $VAGRANTNAME $@
 }
 alias vassh='va -c ssh'
+
+# Mac Os X
+alias chrome='open -a "Google Chrome"'
