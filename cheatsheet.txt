@@ -24,3 +24,6 @@ glances  # requires pip install glances
 # -N: do not issue a command
 # -L [bind_address:]port:host:hostport
 ssh -f -N -L 4479:localhost:4479 remote
+
+# List all computers in the network
+arp -a
