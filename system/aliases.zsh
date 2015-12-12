@@ -75,3 +75,4 @@ alias vassh='va -c ssh'
 
 # Mac Os X
 alias chrome='open -a "Google Chrome"'
+alias iawriter='open -a "IA Writer"'
