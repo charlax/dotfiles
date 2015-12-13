@@ -43,36 +43,27 @@ Misc
 List of software
 ================
 
-    $ brew cask install mactex
+Install brew, then run `install/osx_software_install.sh`.
 
-Other tools to install:
+Can be useful:
 
-* Brew
-* Calibre
-* Chrome
-* Chrome Canary
-* Crashplan
-* Cyberduck
 * Disk Inventory X
-* Dropbox
-* Evernote
-* Firefox
-* Flux
-* Kindle
-* LibreOffice
 * MPEG Streamclip
-* Mental Case
-* Pomodoro
-* Skype
-* Spotify
-* TeX
-* TextWrangler (I use Vim but just in case)
-* Things
-* VLC
 * Virtual Box
 * Wireshark
+
+From App Store:
+
 * XCode
-* iTerm2
+* Kindle
+* Mental Case
+* TextWrangler (I use Vim but just in case)
+
+Manually:
+
+* Firefox (as of writing, does not work with some apps)
+* Spotify
+* Things
 
 Acknowledgments
 ===============
