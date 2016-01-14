@@ -4,6 +4,3 @@ for app in "${apps[@]}"
 do
     brew cask install --appdir="/Applications" $app
 done
-
-# If necessary
-# brew cask install mactex
