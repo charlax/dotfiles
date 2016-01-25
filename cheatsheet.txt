@@ -27,3 +27,6 @@ ssh -f -N -L 4479:localhost:4479 remote
 
 # List all computers in the network
 arp -a
+
+# Continue partially downloaded file
+wget -c http://...
