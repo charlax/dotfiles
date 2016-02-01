@@ -40,3 +40,8 @@ ssh-reagent () {
     done
     echo "Cannot find ssh agent - maybe you should reconnect and forward it?"
 }
+
+function ackf {
+    # grep is for coloring in the output
+    find ./ -iname "*$1*" -print | grep $1
+}
