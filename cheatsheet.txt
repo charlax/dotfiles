@@ -39,3 +39,6 @@ cat filename | sed "s/[\'\"]//g"
 
 # Count number of occurrence of lines
 cat filename | sort | uniq -c
+
+# Diff the n first lines of two files
+diff <(head -n 1 file1) <(head -n 1 file2)
