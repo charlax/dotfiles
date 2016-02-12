@@ -42,3 +42,9 @@ cat filename | sort | uniq -c
 
 # Diff the n first lines of two files
 diff <(head -n 1 file1) <(head -n 1 file2)
+
+# Get python docs on function
+pydoc sorted
+
+# Remove files from list
+xargs rm < ../../../../.unused_cassette.log
