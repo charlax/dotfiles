@@ -51,3 +51,9 @@ xargs rm < ../../../../.unused_cassette.log
 
 # Add a TOC to all markdown files (requires doctoc)
 doctoc .
+
+# Show which local branch is tracking which remote branch (git)
+git remote show origin
+
+# Uninstall all python packages including "toaster" in their name
+pip freeze | grep toaster | xargs pip uninstall -y
