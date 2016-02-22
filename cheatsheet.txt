@@ -31,6 +31,9 @@ arp -a
 # Continue partially downloaded file
 wget -c http://...
 
+# Continue partially downloaded file, reconnecting when idle and retrying indefinitely
+wget -c --tries=0 --read-timeout=20 http://
+
 # Keep only the second column of a ':' delimited file
 cat filename | cut -d':' -f2
 
@@ -57,3 +60,6 @@ git remote show origin
 
 # Uninstall all python packages including "toaster" in their name
 pip freeze | grep toaster | xargs pip uninstall -y
+
+# Echo to a file that needs sudo access
+sudo sh -c 'echo "Text I want to write" >> /path/to/file'
