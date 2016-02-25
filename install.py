@@ -7,7 +7,7 @@ import logging
 import os
 import platform
 
-REPOSITORY = "git://github.com/charlax/dotfiles.git"
+REPOSITORY = "https://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
     "ack/ackrc",
