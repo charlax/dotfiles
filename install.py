@@ -86,17 +86,11 @@ def install_software():
 
     system = platform.system()
     if system == "Darwin":
-        os.system("brew update")
-        os.system("brew install -U ack zsh git coreutils zsh-completions "
-                  "rmtrash automake wget mercurial git-flow "
-                  "python python3 autojump hub unrar highlight"
-                  "miller "  # for name-indexed data such as CSV
-                  "autoenv "
-                  )
+        os.system("./install/oxs_install.sh")
 
         print "You might want to run osx_config.sh in the dotfiles repo."
         print "You need to add zsh to /etc/shells and then run:"
-        print "$ chsh -s /usr/local/bin/zsh"
+        print "$ sudo sh -c 'echo \"/usr/local/bin/zsh\" >> /etc/shells' && chsh -s /usr/local/bin/zsh"
 
     elif system == "Linux":
         os.system("sudo apt-get update")
@@ -111,12 +105,6 @@ def install_software():
     # pprintpp is used to pretty print Python structured on the cli
     # os.system("sudo pip install virtualenv virtualenvwrapper flake8 httpie "
     #           "pprintpp")
-
-    if args.with_dotvim:
-        print "Installing dotvim..."
-        os.system("curl https://raw.githubusercontent.com/charlax/dotvim/master/install.py -o install_dotvim.py")  # noqa
-        os.system("python install_dotvim.py")
-        os.remove("install_dotvim.py")
 
 
 def clone_dotfile(repo, path):
@@ -154,6 +142,12 @@ def main(args):
     # installing other software has a higher probability to fail.
     if args.install:
         install_software()
+
+    if args.with_dotvim:
+        print "Installing dotvim..."
+        os.system("curl https://raw.githubusercontent.com/charlax/dotvim/master/install.py -o install_dotvim.py")  # noqa
+        os.system("python install_dotvim.py")
+        os.remove("install_dotvim.py")
 
     print "Install complete."
 
