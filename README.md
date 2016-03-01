@@ -18,6 +18,11 @@ install some software.
 You'll also need [Solarized](http://ethanschoonover.com/solarized)'s custom
 palettes for iTerm.
 
+Features
+========
+
+* [fzf](https://github.com/junegunn/fzf): fuzzy file finder
+
 Plugins
 =======
 
