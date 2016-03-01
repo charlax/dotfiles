@@ -63,3 +63,9 @@ pip freeze | grep toaster | xargs pip uninstall -y
 
 # Echo to a file that needs sudo access
 sudo sh -c 'echo "Text I want to write" >> /path/to/file'
+
+# Find a pid using pgrep. '-f' tells pgrep to match against everything, not just process name
+pgrep -f python
+
+# Kill process matching pattern
+pkill -f python

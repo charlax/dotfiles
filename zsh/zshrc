@@ -155,3 +155,5 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 
 #}}}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
