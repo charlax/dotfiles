@@ -5,4 +5,4 @@ set -x
 
 git add .
 git commit -am "$1"
-git push
+arc diff --use-commit-message HEAD
