@@ -69,3 +69,6 @@ pgrep -f python
 
 # Kill process matching pattern
 pkill -f python
+
+# Define default argument in bash script
+ARG1=${1:-foo}
