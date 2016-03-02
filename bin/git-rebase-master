@@ -1,7 +1,14 @@
 #!/bin/sh
 
+set -e
+set -x
+
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-git checkout master
+MASTER=${1:-master}
+
+echo "Pulling and rebasing on $MASTER"
+
+git checkout $MASTER
 git pull
 git checkout $CURRENT_BRANCH
-git rebase master
+git rebase $MASTER
