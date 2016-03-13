@@ -37,6 +37,9 @@ wget -c --tries=0 --read-timeout=20 http://
 # Keep only the second column of a ':' delimited file
 cat filename | cut -d':' -f2
 
+# Keep only the fourth column of a ' ' delimited tabular file
+cat filename | cut -d\  -f4
+
 # Remove all occurences of quotes
 cat filename | sed "s/[\'\"]//g"
 
@@ -72,3 +75,8 @@ pkill -f python
 
 # Define default argument in bash script
 ARG1=${1:-foo}
+
+# Iterate over a list of things in a text file
+for toaster in $(cat toasters.txt) ; do
+     echo ${toaster}
+done
