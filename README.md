@@ -69,6 +69,7 @@ Manually:
 * Firefox (as of writing, does not work with some apps)
 * Spotify
 * Things
+* TextExpander (not anymore on the app store)
 
 Acknowledgments
 ===============
