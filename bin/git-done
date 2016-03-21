@@ -4,5 +4,6 @@ set -e
 set -x
 
 git add .
+git diff HEAD
 git commit -am "$1"
 git push
