@@ -7,6 +7,10 @@ Installation
 
 You should read the script before executing it.
 
+You'll also need to:
+
+* Create `git/gitconfig.local` with your username and name.
+
 Prerequisites
 =============
 
