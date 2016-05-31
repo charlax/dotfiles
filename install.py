@@ -15,6 +15,7 @@ CONFIGURATION_FILES = (
     "ctags/ctags",
     "git/gitignore",
     "git/gitconfig",
+    "git/gitconfig.local",
     "hg/hgrc",
     "latex/latexmkrc",
     ("ssh/rc", ".ssh/rc"),

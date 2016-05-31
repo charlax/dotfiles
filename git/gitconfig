@@ -1,6 +1,5 @@
-[user]
-	name = Charles-Axel Dein
-	email = charles@uber.com
+[include]
+  path = ~/.gitconfig.local
 
 [color]
     ui = true
@@ -38,14 +37,15 @@
 
 [url "git@github.com:/"]
     insteadOf = "gh:/"
+
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
 
 [push]
     default = simple
+
 [help]
     autocorrect = 1
+
 [rerere]
 	enabled = true
-[url "ssh://gitolite@code.uber.internal:2222/"]
-	insteadOf = https://code.uber.internal/
