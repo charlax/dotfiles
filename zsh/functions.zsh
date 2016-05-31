@@ -1,4 +1,4 @@
-psg () 
+psg ()
 {
     ps aux | grep --color=auto $1
 }
@@ -12,11 +12,15 @@ fi
 }
 
 # (f)ind by (n)ame
-# usage: fn foo 
+# usage: fn foo
 # to find all files containing 'foo' in the name
 function fn() { ls **/*$1* }
 
 # Make it easier to search ZSH documentation
 zman() {
     PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
+function whattoalias() {
+  history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -n|tail -n10
 }

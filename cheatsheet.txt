@@ -80,3 +80,6 @@ ARG1=${1:-foo}
 for toaster in $(cat toasters.txt) ; do
      echo ${toaster}
 done
+
+# Run command once per line of input
+cat file.txt | xargs -n1 echo
