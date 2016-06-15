@@ -1,3 +1,5 @@
+# Unsorted
+
 # See what port a given process ID has open using lsof
 lsof -p PID
 
@@ -9,12 +11,6 @@ cloc .
 
 # Get certificate information
 openssl x509 -in file.crt -text
-
-# Get the git authors' email for the last 60 days
-git log --since=60.days --format='%ae' | sort -u
-
-# List committers sorted by number of commits
-git shortlog -ns
 
 # Show which line is missing in file1 but is in file2
 comm -23 file1.txt file2.txt
@@ -61,9 +57,6 @@ xargs rm < ../../../../.unused_cassette.log
 # Add a TOC to all markdown files (requires doctoc)
 doctoc .
 
-# Show which local branch is tracking which remote branch (git)
-git remote show origin
-
 # Uninstall all python packages including "toaster" in their name
 pip freeze | grep toaster | xargs pip uninstall -y
 
@@ -86,3 +79,21 @@ done
 
 # Run command once per line of input
 cat file.txt | xargs -n1 echo
+
+# Git
+
+## Get the git authors' email for the last 60 days
+
+git log --since=60.days --format='%ae' | sort -u
+
+## List committers sorted by number of commits
+
+git shortlog -ns
+
+## Checkout commit by date
+
+git checkout `git rev-list -n 1 --before="2016-03-29 12:00" master`
+
+## Show which local branch is tracking which remote branch (git)
+
+git remote show origin
