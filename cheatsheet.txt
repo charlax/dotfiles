@@ -80,6 +80,9 @@ done
 # Run command once per line of input
 cat file.txt | xargs -n1 echo
 
+# Create gif from video
+gifify screencast.mkv -o screencast.gif --resize 800:-1
+
 # Git
 
 ## Get the git authors' email for the last 60 days
