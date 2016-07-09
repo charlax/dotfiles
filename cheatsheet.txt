@@ -83,6 +83,9 @@ cat file.txt | xargs -n1 echo
 # Create gif from video
 gifify screencast.mkv -o screencast.gif --resize 800:-1
 
+# Download files numbered 1 to 20
+wget http://cloud.com/1/{1..20}.py
+
 # Git
 
 ## Get the git authors' email for the last 60 days
