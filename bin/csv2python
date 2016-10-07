@@ -5,18 +5,61 @@ csv2python.py
 Takes a CSV and Python script as input, call a ``handle()`` function in the
 script repeatedly which each line of the CSV file.
 """
+from __future__ import print_function
+
 import argparse
 import csv
 import imp
+import inspect
 import logging
+import sys
 
 logger = logging.getLogger('csv2python')
+
+EXTRA_DOC = """
+
+The Python file needs to have a handle() function accepting one or two
+arguments.
+
+
+    # row is a dictionary containing the row data.
+    def handle(row):
+        print(row['name'])
+
+    # If the function accepts two arguments, the first one is the row
+    # number (starts with 1).
+    def handle(line_number, row):
+        if line_number == 1:
+            print('toaster_name,color')
+
+"""
 
 
 def get_script(script_filename):
     """Get the handle function from a filename."""
     script = imp.load_source('handler', script_filename)
     return script
+
+
+def number_of_arguments(func):
+    """Return the number of arguments."""
+    return len(inspect.getargspec(func).args)
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
+
+def handle(handler, index, row):
+    try:
+        if number_of_arguments(handler) == 1:
+            handler(row)
+        else:
+            handler(index, row)
+
+    except KeyError:
+        eprint('Got exception with line %d: %s' % (index, row))
+        raise
 
 
 def main(args):
@@ -33,23 +76,43 @@ def main(args):
     if hasattr(script, 'before'):
         script.before()
 
-    for i, line in enumerate(rows):
-        if i == args.stop_after:
+    handler = getattr(script, args.function)
+
+    if args.whole:
+        handle(handler, -1, rows)
+        return
+
+    for index, line in enumerate(rows, start=1):
+        if index == args.stop_after:
             logger.info('Stopping after %d iteration.', args.stop_after)
             break
-        logger.info('Handling row %d/%d', i + 1, total)
-        script.handle(line)
+        logger.info('Handling row %d/%d', index + 1, total)
+        handle(handler, index, line)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Render the template using CSV data")
-    parser.add_argument("csv", type=argparse.FileType('rU'))
+        description="Render the template using CSV data",
+        epilog=EXTRA_DOC,
+        formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument("csv", nargs="?", type=argparse.FileType('rU'),
+                        default=sys.stdin)
     parser.add_argument("python_script", type=str)
     parser.add_argument(
         "--stop-after",
         type=int,
         help='stop after x iteration')
+    parser.add_argument(
+        "--whole",
+        action='store_true',
+        default=False,
+        help='pass the whole file as a list of dict to the function')
+    parser.add_argument(
+        "--function",
+        type=str,
+        default='handle',
+        help='handler function name (default: %(default)s)')
     args = parser.parse_args()
 
     main(args)
