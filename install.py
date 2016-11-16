@@ -10,7 +10,6 @@ import platform
 REPOSITORY = "https://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
-    "ack/ackrc",
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     "ctags/ctags",
     "git/gitignore",
@@ -95,7 +94,7 @@ def install_software():
 
     elif system == "Linux":
         os.system("sudo apt-get update")
-        os.system("sudo apt-get install -q -y ack-grep zsh coreutils wget")
+        os.system("sudo apt-get install -q -y silversearcher-ag zsh coreutils wget")
         print "Changing default shell"
         os.system("sudo chsh -s /bin/zsh $USER")
 

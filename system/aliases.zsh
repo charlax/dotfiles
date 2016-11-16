@@ -62,7 +62,7 @@ alias pprint='python -c "import pprint, sys, ast; pprint.pprint(ast.literal_eval
 alias pprint_clipboard='pbpaste | pprint'
 
 # ctags
-alias ctg='ack -f --type=python . | ctags -L - -f tags'
+alias ctg='g -l --python . | ctags -L - -f tags'
 alias ctag='ctg'
 
 # tmux
