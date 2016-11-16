@@ -29,6 +29,9 @@ setopt NO_BEEP
 # Useful because I often copy paste URL on the command line
 unsetopt NOMATCH
 
+# Activate bash-style comments
+setopt interactivecomments
+
 #{{{ Completion Stuff
 
 fpath=(/usr/local/share/zsh-completions $fpath)
