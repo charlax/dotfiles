@@ -11,3 +11,6 @@ alias checkout='cd ~/Downloads && m '
 
 # git-done is a script defined in bin/
 alias gogo='git-done'
+
+alias ia="iawriter"
+alias iar="iawriter README*"
