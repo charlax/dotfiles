@@ -68,8 +68,10 @@ openssl x509 -in file.crt -text
 
 ## Show which line is missing in file1 but is in file2
 
+Both files need to be sorted first.
+
 ```
-comm -23 file1.txt file2.txt
+comm -13 file1.txt file2.txt
 ```
 
 ## Get high-level overview of your machine's performance
