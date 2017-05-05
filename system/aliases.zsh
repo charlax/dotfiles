@@ -79,4 +79,6 @@ alias vassh='va -c ssh'
 
 # Mac Os X
 alias chrome='open -a "Google Chrome"'
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 alias iawriter='open -a "IA Writer"'

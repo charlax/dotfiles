@@ -75,6 +75,11 @@ Manually:
 * Things
 * TextExpander (not anymore on the app store)
 
+Useful software (not installed by default)
+------------------------------------------
+
+* [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
+
 Acknowledgments
 ===============
 
