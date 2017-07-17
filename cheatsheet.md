@@ -238,6 +238,12 @@ git checkout `git rev-list -n 1 --before="2016-03-29 12:00" master`
 git remote show origin
 ```
 
+## Show commits by author
+
+```
+git log --author="..."
+```
+
 # String manipulation (sed, awk, etc.)
 
 ## Remove line matching pattern
@@ -245,3 +251,8 @@ git remote show origin
 ```
 cat file | sed '/^-\+/d'
 ```
+
+# System
+
+## Show most used commands
+
