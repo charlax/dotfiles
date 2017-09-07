@@ -35,8 +35,12 @@
   - [List committers sorted by number of commits](#list-committers-sorted-by-number-of-commits)
   - [Checkout commit by date](#checkout-commit-by-date)
   - [Show which local branch is tracking which remote branch (git)](#show-which-local-branch-is-tracking-which-remote-branch-git)
+  - [Show commits by author](#show-commits-by-author)
+  - [Show only staged changes](#show-only-staged-changes)
 - [String manipulation (sed, awk, etc.)](#string-manipulation-sed-awk-etc)
   - [Remove line matching pattern](#remove-line-matching-pattern)
+- [System](#system)
+  - [Show most used commands](#show-most-used-commands)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
