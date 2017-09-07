@@ -1,5 +1,4 @@
 [[ -e /usr/texbin ]] && export PATH="/usr/texbin:$PATH"
-[[ -e /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
 [[ -s `brew --prefix 2> /dev/null`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 dropbox_config=$HOME/.dropbox/info.json
@@ -11,10 +10,6 @@ export CODE_PATH="$HOME/Documents/Dev"
 
 # GO
 export GOPATH=$HOME/golang
-
-# virtualenvwrapper
-export PROJECT_HOME="$CODE_PATH"
-export WORKON_HOME="$HOME/.virtualenvs"
 
 # Core paths
 

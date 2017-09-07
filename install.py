@@ -101,11 +101,6 @@ def install_software():
     # Generate markdown table of content
     os.system("npm install -g doctoc")
 
-    # print "Installing important Python packages"
-    # pprintpp is used to pretty print Python structured on the cli
-    # os.system("sudo pip install virtualenv virtualenvwrapper flake8 httpie "
-    #           "pprintpp")
-
 
 def clone_dotfile(repo, path):
     """Clone or update the dotfiles directory."""
