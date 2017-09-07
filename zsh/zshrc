@@ -1,3 +1,6 @@
+# For profiling
+# zmodload zsh/zprof
+
 # Shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
@@ -162,3 +165,6 @@ setopt HIST_FIND_NO_DUPS
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# For profiling
+# zprof

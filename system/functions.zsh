@@ -45,3 +45,25 @@ function f {
     # grep is for coloring in the output
     find ./ -iname "*$1*" -print | grep $1
 }
+
+psg ()
+{
+    ps aux | grep --color=auto $1
+}
+
+function psaux {
+if [[ -n "$1" ]];then
+    ps aux | head -1 && ps aux | grep "$1" | grep -v grep
+else
+    echo 'You must supply a grep search expression!'
+fi
+}
+
+# Make it easier to search ZSH documentation
+zman() {
+    PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
+function whattoalias() {
+  history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -n|tail -n10
+}

@@ -51,6 +51,21 @@ Misc
 * [entr](https://bitbucket.org/eradman/entr/) is used to run arbitrary commands
   when files are changed.
 
+Profiling ZSH
+-------------
+
+Use `zprof`:
+
+```
+# At the beginning of your file, e.g. zshrc
+zmodload zsh/zprof
+
+...
+
+# At the end:
+zprof
+```
+
 List of software
 ================
 
