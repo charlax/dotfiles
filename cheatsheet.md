@@ -199,7 +199,6 @@ done
 ```
 cat file.txt | xargs -n1 echo
 ```
-
 ## Create gif from video
 
 ```
@@ -244,6 +243,12 @@ git remote show origin
 git log --author="..."
 ```
 
+## Show only staged changes
+
+```
+git diff --cached
+```
+
 # String manipulation (sed, awk, etc.)
 
 ## Remove line matching pattern
@@ -256,3 +261,4 @@ cat file | sed '/^-\+/d'
 
 ## Show most used commands
 
+See `whattoalias` in `functions.zsh`.
