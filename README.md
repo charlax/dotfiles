@@ -26,6 +26,8 @@ Features
 ========
 
 * [fzf](https://github.com/junegunn/fzf): fuzzy file finder
+* [autojump](https://github.com/wting/autojump): a cd commands that learns
+  about your favorite directories.
 
 Plugins
 =======
