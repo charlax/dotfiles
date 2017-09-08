@@ -77,6 +77,8 @@ va () {
 }
 alias vassh='va -c ssh'
 
+alias ack="ag"
+
 # Mac Os X
 alias chrome='open -a "Google Chrome"'
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"

@@ -13,6 +13,6 @@ export GOPATH=$HOME/golang
 
 # Core paths
 
-export PATH="/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin:$GOPATH/bin"
+export PATH="/usr/local/opt/gettext/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin:$GOPATH/bin"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 export DOTFILES="$HOME/.dotfiles/"
