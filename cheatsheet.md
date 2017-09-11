@@ -84,15 +84,6 @@ comm -13 file1.txt file2.txt
 glances  # requires pip install glances
 ```
 
-## Setup an ssh tunnel that tunnel localhost:4479 to remote:4479
-
-```
-# -f: background
-# -N: do not issue a command
-# -L [bind_address:]port:host:hostport
-ssh -f -N -L 4479:localhost:4479 remote
-```
-
 ## List all computers in the network
 
 ```
@@ -266,3 +257,21 @@ cat file | sed '/^-\+/d'
 ## Show most used commands
 
 See `whattoalias` in `functions.zsh`.
+
+## SSH
+
+### Setup an SSH tunnel that tunnel localhost:4479 to remote:4479
+
+```
+# -f: background
+# -N: do not issue a command
+# -L [bind_address:]port:host:hostport
+ssh -f -N -L 4479:localhost:4479 remote
+```
+
+### Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop
+
+```
+ssh -N -L localhost:$PORT:$remote:$PORT BRIDGE_MACHINE_USER@BRIDGE_MACHINE
+```
+
