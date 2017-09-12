@@ -32,6 +32,11 @@
 [branch]
     autosetuprebase = always
 
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+    prompt = false
+
 [merge "pofile"]
     name = Gettext merge driver
     driver = git merge-po %O %A %B
