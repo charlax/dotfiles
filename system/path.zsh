@@ -8,11 +8,13 @@ export CODE_PATH="$HOME/Documents/Dev"
 # Override if Dropbox is there
 [[ -n ${DROPBOX_FOLDER+x} ]] && export CODE_PATH="$DROPBOX_FOLDER/Code"
 
-# GO
+# Go
 export GOPATH=$HOME/golang
 
-# Core paths
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
+# Core paths
 export PATH="/usr/local/opt/gettext/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin:$GOPATH/bin"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 export DOTFILES="$HOME/.dotfiles/"
