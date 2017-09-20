@@ -25,7 +25,8 @@ palettes for iTerm.
 Features
 ========
 
-* [fzf](https://github.com/junegunn/fzf): fuzzy file finder
+* [fzf](https://github.com/junegunn/fzf): fuzzy file finder. To use it on the
+  command line, prefix with `**`, then press tab. For instance: `vim **<TAB>`.
 * [autojump](https://github.com/wting/autojump): a cd commands that learns
   about your favorite directories.
 
