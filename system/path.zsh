@@ -12,7 +12,7 @@ export CODE_PATH="$HOME/Documents/Dev"
 export GOPATH=$HOME/golang
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) >/dev/null 2>&1
 
 # Core paths
 export PATH="/usr/local/opt/gettext/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin:$GOPATH/bin"
