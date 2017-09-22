@@ -1,3 +1,3 @@
 #!/bin/sh
 
-doctoc --title "# Table of Contents" .
+doctoc --title "# Table of Contents" ./*.md
