@@ -7,17 +7,10 @@
   - [Check which process is using a given port](#check-which-process-is-using-a-given-port)
   - [Count number of lines of code (requires cloc)](#count-number-of-lines-of-code-requires-cloc)
   - [Get certificate information](#get-certificate-information)
-  - [Show which line is missing in file1 but is in file2](#show-which-line-is-missing-in-file1-but-is-in-file2)
   - [Get high-level overview of your machine's performance](#get-high-level-overview-of-your-machines-performance)
-  - [Setup an ssh tunnel that tunnel localhost:4479 to remote:4479](#setup-an-ssh-tunnel-that-tunnel-localhost4479-to-remote4479)
   - [List all computers in the network](#list-all-computers-in-the-network)
   - [Continue partially downloaded file](#continue-partially-downloaded-file)
   - [Continue partially downloaded file, reconnecting when idle and retrying indefinitely](#continue-partially-downloaded-file-reconnecting-when-idle-and-retrying-indefinitely)
-  - [Keep only the second column of a ':' delimited file](#keep-only-the-second-column-of-a--delimited-file)
-  - [Keep only the fourth column of a ' ' delimited tabular file](#keep-only-the-fourth-column-of-a---delimited-tabular-file)
-  - [Remove all occurrences of quotes](#remove-all-occurrences-of-quotes)
-  - [Count number of occurrence of lines](#count-number-of-occurrence-of-lines)
-  - [Diff the n first lines of two files](#diff-the-n-first-lines-of-two-files)
   - [Get python docs on function (defined in aliases.sh)](#get-python-docs-on-function-defined-in-aliasessh)
   - [Remove files from list](#remove-files-from-list)
   - [Add a TOC to all markdown files (requires doctoc)](#add-a-toc-to-all-markdown-files-requires-doctoc)
@@ -39,8 +32,16 @@
   - [Show only staged changes](#show-only-staged-changes)
 - [String manipulation (sed, awk, etc.)](#string-manipulation-sed-awk-etc)
   - [Remove line matching pattern](#remove-line-matching-pattern)
+  - [Keep only the fourth column of a ' ' delimited tabular file](#keep-only-the-fourth-column-of-a---delimited-tabular-file)
+  - [Remove all occurrences of quotes](#remove-all-occurrences-of-quotes)
+  - [Count number of occurrence of lines](#count-number-of-occurrence-of-lines)
+  - [Diff the n first lines of two files](#diff-the-n-first-lines-of-two-files)
+  - [Hide first line of output](#hide-first-line-of-output)
 - [System](#system)
   - [Show most used commands](#show-most-used-commands)
+  - [SSH](#ssh)
+    - [Setup an SSH tunnel that tunnel localhost:4479 to remote:4479](#setup-an-ssh-tunnel-that-tunnel-localhost4479-to-remote4479)
+    - [Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop](#setup-an-ssh-tunnel-that-tunnels-localhostport-to-remoteport-through-another-hop)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -70,14 +71,6 @@ cloc .
 openssl x509 -in file.crt -text
 ```
 
-## Show which line is missing in file1 but is in file2
-
-Both files need to be sorted first.
-
-```
-comm -13 file1.txt file2.txt
-```
-
 ## Get high-level overview of your machine's performance
 
 ```
@@ -100,36 +93,6 @@ wget -c http://...
 
 ```
 wget -c --tries=0 --read-timeout=20 http://
-```
-
-## Keep only the second column of a ':' delimited file
-
-```
-cat filename | cut -d':' -f2
-```
-
-## Keep only the fourth column of a ' ' delimited tabular file
-
-```
-cat filename | cut -d\  -f4
-```
-
-## Remove all occurrences of quotes
-
-```
-cat filename | sed "s/[\'\"]//g"
-```
-
-## Count number of occurrence of lines
-
-```
-cat filename | sort | uniq -c
-```
-
-## Diff the n first lines of two files
-
-```
-diff <(head -n 1 file1) <(head -n 1 file2)
 ```
 
 ## Get python docs on function (defined in aliases.sh)
@@ -194,6 +157,7 @@ done
 ```
 cat file.txt | xargs -n1 echo
 ```
+
 ## Create gif from video
 
 ```
@@ -250,6 +214,36 @@ git diff --cached
 
 ```
 cat file | sed '/^-\+/d'
+```
+
+## Keep only the fourth column of a ' ' delimited tabular file
+
+```
+cat filename | cut -d\  -f4
+```
+
+## Remove all occurrences of quotes
+
+```
+cat filename | sed "s/[\'\"]//g"
+```
+
+## Count number of occurrence of lines
+
+```
+cat filename | sort | uniq -c
+```
+
+## Diff the n first lines of two files
+
+```
+diff <(head -n 1 file1) <(head -n 1 file2)
+```
+
+## Hide first line of output
+
+```
+cat $FILENAME | sed -n '1!p'
 ```
 
 # System

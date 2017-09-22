@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+# Table of Contents
+
+- [Installation](#installation)
+- [Prerequisites](#prerequisites)
+- [Features](#features)
+- [Plugins](#plugins)
+  - [Adding a ZSH plugin](#adding-a-zsh-plugin)
+- [Misc](#misc)
+  - [Profiling ZSH](#profiling-zsh)
+- [List of software](#list-of-software)
+  - [Useful software (not installed by default)](#useful-software-not-installed-by-default)
+- [Acknowledgments](#acknowledgments)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Installation
 ============
 
