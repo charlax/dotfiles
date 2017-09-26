@@ -1,9 +1,37 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
-set -x
+PROGRAM_NAME=$0
 
-git add .
-git diff HEAD
-git commit -am "$1"
+set -o nounset
+set -o errexit
+
+
+function usage {
+    echo "usage: $PROGRAM_NAME [file] message"
+    exit 1
+}
+
+if [ "$#" = 2 ]; then
+    GIT_PATH=$1
+    MESSAGE=$2
+elif [ "$#" = 1 ]; then
+    GIT_PATH="."
+    MESSAGE=$1
+else
+    usage
+fi
+
+echo "GIT_PATH = '$GIT_PATH'"
+echo "MESSAGE = '$MESSAGE'"
+
+echo "Adding $GIT_PATH"
+git add $GIT_PATH
+
+echo "Showing git diff"
+git diff --cached
+
+echo "Committing"
+git commit -m "$MESSAGE"
+
+echo "Pushing"
 git push
