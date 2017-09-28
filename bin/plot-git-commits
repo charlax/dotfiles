@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -o nounset
+set -o errexit
+
+tmp_file=$(mktemp -t plot-git-commits)
+
+echo "tmp_file: " + $tmp_file
+
+git log --date=short | grep '^Date' | cut -d ':' -f 2 | cut -d ' ' -f 4 | count2csv > $tmp_file
+
+gnuplot -e "
+    set output 'commits-per-day.png';
+    set title 'Number of commits per day';
+    set term png truecolor giant;
+    set xdata time;
+    set timefmt '%Y-%m-%d';
+    set xtics format '%b %y';
+    set xtics '2007-01-02', 12*2629746, '2018-01-02';
+    set grid y;
+    set grid x;
+    set datafile separator ',';
+    plot '$tmp_file' using 1:2 with impulses title 'authored';
+"
