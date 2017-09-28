@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import argparse
+import sys
+from collections import Counter
+
+
+def parse(type_, item):
+    """Parse a data type."""
+    if type_ == "date":
+        return 1
+    else:
+        raise ValueError("Invalid type '%s'" % type_)
+
+
+def main(args):
+    """Count input, return count as CSV."""
+    counts = Counter(i.strip() for i in args.input.readlines())
+
+    for item, count in counts.items():
+        if args.date:
+            item = parse("date", item)
+        print(item + "," + str(count))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Count input lines (like uniq)",
+    )
+    parser.add_argument("input", nargs="?", type=argparse.FileType('rU'),
+                        default=sys.stdin)
+    parser.add_argument(
+        "--date",
+        action="store_true",
+        default=False,
+        help="Parse input as date")
+    args = parser.parse_args()
+
+    main(args)
