@@ -1,8 +1,37 @@
 #!/bin/bash
 
-set -e
-set -x
+set -o nounset
+set -o errexit
 
-git add .
-git commit -am "$1"
-arc diff --use-commit-message HEAD
+confirm() {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure? [y/N]} " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [[ "$BRANCH" = "master" ]]; then
+    BRANCH_NAME="ca/$(date +'%F')"
+    confirm "On master, will create banch $BRANCH_NAME?" && git go $BRANCH_NAME
+fi
+
+# Uncommitted work
+if ! git diff-index --quiet HEAD --; then
+    git add .
+    git commit -m "$1"
+fi
+
+DIFF_ID=$(arc which | grep -E "D[0-9]+" -o)
+if [[ "$DIFF_ID" != "" ]]; then
+    echo "Diff ID found: $DIFF_ID"
+    arc diff --update $DIFF_ID
+else
+    arc diff --use-commit-message HEAD
+fi
