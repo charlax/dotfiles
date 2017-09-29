@@ -7,11 +7,11 @@ confirm() {
     # call with a prompt string or use a default
     read -r -p "${1:-Are you sure? [y/N]} " response
     case "$response" in
-        [yY][eE][sS]|[yY])
-            true
+        [nN][oO]|[nN])
+            false
             ;;
         *)
-            false
+            true
             ;;
     esac
 }
@@ -19,19 +19,25 @@ confirm() {
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [[ "$BRANCH" = "master" ]]; then
     BRANCH_NAME="ca/$(date +'%F')"
-    confirm "On master, will create banch $BRANCH_NAME?" && git go $BRANCH_NAME
+    confirm "On master, will create banch $BRANCH_NAME? [Y/n]" && git go $BRANCH_NAME
 fi
 
 # Uncommitted work
-if ! git diff-index --quiet HEAD --; then
+if test -n "$(git status --porcelain)"; then
+    echo "Committing work"
     git add .
     git commit -m "$1"
+else
+    echo "No work to commit."
 fi
 
-DIFF_ID=$(arc which | grep -E "D[0-9]+" -o)
+DIFF_ID=$(arc which | grep -E "D[0-9]+" -o) || true
+echo "Diff ID: $DIFF_ID"
+
 if [[ "$DIFF_ID" != "" ]]; then
     echo "Diff ID found: $DIFF_ID"
     arc diff --update $DIFF_ID
 else
+    echo "No diff found, creating one."
     arc diff --use-commit-message HEAD
 fi
