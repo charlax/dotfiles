@@ -12,6 +12,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 
 COMMAND = "git log --date=short | grep '^Date' | cut -d ':' -f 2 | cut -d ' ' -f 4 > %s"
+# --grep=fix --grep=revert --grep=bug --grep=outage -i
 TEMP_FILE_PREFIX = "plot-git-commits"
 TEMP_FILE_SUFFIX = ".csv"
 DATE_FORMAT = "%Y-%m-%d"
