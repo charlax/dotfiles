@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Based on https://github.com/jezen/jezenthomas.com/blob/master/posts/2015/visualising-code-growth-with-git-and-d3.md
+
+set -e
+
+FIRST_COMMIT_DATE=$(git rev-list --max-parents=0 HEAD | xargs git show --format=%aI --no-patch)
+LAST_COMMIT_DATE=$(git log -1 --format=%cd)
+
+revisions() {
+    # Get list of revisions, grouping by day.
+    git log --reverse --format="%cd,%ci,%H" --date=format:"%Y-%m-%d" | sort -u -t, -k1,1 | cut -d "," -f 3
+}
+
+commit_date() {
+    git show --format="%cd" --date=format:"%Y-%m-%d" "$rev" | head -n 1
+}
+
+number_of_lines() {
+    # Only counts Python lines, basically
+    cloc $rev --exclude-lang=YAML,JSON,Mako,SQL,JavaScript,PHP,HTML,CSS,make,Markdown,INI,XML,"Bourne Shell","PO File","Bourne Again Shell" --csv --quiet | grep Python | cut -d ',' -f 5
+}
+
+for rev in $(revisions); do
+  printf "%s,%s\n" "$(number_of_lines | xargs)" "$(commit_date)"
+done
