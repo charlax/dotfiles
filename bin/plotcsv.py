@@ -18,7 +18,8 @@ DEFAULT_TITLE = "Title"
 def graph(*, title, data, output_filename):
     """Graph the data."""
     x, y = data
-    plt.bar(x, y)
+    # Or .bar for bar plots
+    plt.plot(x, y)
 
     plt.title(title)
     plt.grid(False)
