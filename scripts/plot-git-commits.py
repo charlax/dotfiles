@@ -23,7 +23,7 @@ def graph(input_data, output_filename):
     """Graph the data."""
     x = list(input_data.keys())
     y = list(input_data.values())
-    plt.bar(x, y)
+    plt.plot(x, y)
 
     plt.ylabel("Commits")
     plt.title("Commits per day")
