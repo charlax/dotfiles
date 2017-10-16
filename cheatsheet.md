@@ -23,6 +23,8 @@
   - [Run command once per line of input](#run-command-once-per-line-of-input)
   - [Create gif from video](#create-gif-from-video)
   - [Download files numbered 1 to 20](#download-files-numbered-1-to-20)
+- [Images](#images)
+  - [Resize while keeping aspect ratio](#resize-while-keeping-aspect-ratio)
 - [Git](#git)
   - [Get the git authors' email for the last 60 days](#get-the-git-authors-email-for-the-last-60-days)
   - [List committers sorted by number of commits](#list-committers-sorted-by-number-of-commits)
@@ -37,11 +39,11 @@
   - [Count number of occurrence of lines](#count-number-of-occurrence-of-lines)
   - [Diff the n first lines of two files](#diff-the-n-first-lines-of-two-files)
   - [Hide first line of output](#hide-first-line-of-output)
+- [SSH](#ssh)
+  - [Setup an SSH tunnel that tunnel localhost:4479 to remote:4479](#setup-an-ssh-tunnel-that-tunnel-localhost4479-to-remote4479)
+  - [Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop](#setup-an-ssh-tunnel-that-tunnels-localhostport-to-remoteport-through-another-hop)
 - [System](#system)
   - [Show most used commands](#show-most-used-commands)
-  - [SSH](#ssh)
-    - [Setup an SSH tunnel that tunnel localhost:4479 to remote:4479](#setup-an-ssh-tunnel-that-tunnel-localhost4479-to-remote4479)
-    - [Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop](#setup-an-ssh-tunnel-that-tunnels-localhostport-to-remoteport-through-another-hop)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
