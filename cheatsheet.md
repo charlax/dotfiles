@@ -170,6 +170,18 @@ gifify screencast.mkv -o screencast.gif --resize 800:-1
 wget http://cloud.com/1/{1..20}.py
 ```
 
+# Images
+
+## Resize while keeping aspect ratio
+
+```
+# resize image to width 25, keeping aspect ratio
+convert -geometry 25x src/image1.png out/image1.png
+
+# resize image to height 25, keeping aspect ratio
+convert -geometry x25 src/image1.png out/image1.png
+```
+
 # Git
 
 ## Get the git authors' email for the last 60 days
@@ -246,15 +258,9 @@ diff <(head -n 1 file1) <(head -n 1 file2)
 cat $FILENAME | sed -n '1!p'
 ```
 
-# System
+# SSH
 
-## Show most used commands
-
-See `whattoalias` in `functions.zsh`.
-
-## SSH
-
-### Setup an SSH tunnel that tunnel localhost:4479 to remote:4479
+## Setup an SSH tunnel that tunnel localhost:4479 to remote:4479
 
 ```
 # -f: background
@@ -263,9 +269,14 @@ See `whattoalias` in `functions.zsh`.
 ssh -f -N -L 4479:localhost:4479 remote
 ```
 
-### Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop
+## Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop
 
 ```
 ssh -N -L localhost:$PORT:$remote:$PORT BRIDGE_MACHINE_USER@BRIDGE_MACHINE
 ```
 
+# System
+
+## Show most used commands
+
+See `whattoalias` in `functions.zsh`.
