@@ -5,13 +5,13 @@
 # ~/.pyenvs/matplotlib/bin/pip install matplotlib
 
 import os
+import csv
 import tempfile
-from collections import Counter
 from datetime import datetime
 
 import matplotlib.pyplot as plt
 
-COMMAND = "git log --date=short | grep '^Date' | cut -d ':' -f 2 | cut -d ' ' -f 4 > %s"
+COMMAND = "git log --date=short | grep '^Date' | cut -d ':' -f 2 | cut -d ' ' -f 4 | sort | uniq -c | sed -e 's/^ *//;s/ /,/' > %s"
 # --grep=fix --grep=revert --grep=bug --grep=outage -i
 TEMP_FILE_PREFIX = "plot-git-commits"
 TEMP_FILE_SUFFIX = ".csv"
@@ -19,18 +19,51 @@ DATE_FORMAT = "%Y-%m-%d"
 CHART_FILENAME = "commits-per-day.png"
 
 
-def graph(input_data, output_filename):
+def graph(x, y, output_filename):
     """Graph the data."""
-    x = list(input_data.keys())
-    y = list(input_data.values())
-    plt.plot(x, y)
+    fig = plt.figure(figsize=(7, 5), dpi=300)
+    plt.bar(x, y)
 
-    plt.ylabel("Commits")
+    moving_averages = running_mean(y, 2 * 30)
+    plt.plot(x, moving_averages,
+             linewidth=2,
+             label="60-day moving average",
+             color="tab:orange")
+
     plt.title("Commits per day")
     plt.grid(False)
+    plt.legend()
 
     print("Chart written to %s" % output_filename)
     plt.savefig(output_filename)
+
+
+def running_mean(l, N):
+    sum_ = 0
+    result = list(0 for x in l)
+
+    for i in range(0, N):
+        sum_ = sum_ + l[i]
+        result[i] = sum_ / (i+1)
+
+    for i in range(N, len(l)):
+        sum_ = sum_ - l[i-N] + l[i]
+        result[i] = sum_ / N
+
+    return result
+
+
+def parse_data(filename):
+    """Get and parse the data."""
+    x, y = [], []
+    with open(filename) as f:
+        reader = csv.reader(f)
+        # first column is number, second is datetime
+        for row in reader:
+            x.append(datetime.strptime(row[1], DATE_FORMAT))
+            y.append(int(row[0]))
+
+    return x, y
 
 
 def main():
@@ -40,11 +73,8 @@ def main():
     print("Temp CSV for data: %s" % temp_filename)
     os.system(COMMAND % temp_filename)
 
-    with open(temp_filename) as fp:
-        counts = Counter(i.strip() for i in fp.readlines())
-
-    data = {datetime.strptime(x[0], DATE_FORMAT): x[1] for x in counts.items()}
-    graph(data, CHART_FILENAME)
+    x, y = parse_data(temp_filename)
+    graph(x, y, CHART_FILENAME)
 
 
 if __name__ == "__main__":
