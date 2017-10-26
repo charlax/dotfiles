@@ -5,24 +5,25 @@
     ui = true
 
 [alias]
-    unstage = reset HEAD
-    uncommit = reset --soft HEAD^
-    co = checkout
-    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-    changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
-    short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
-    changelog = log --pretty=format:\" * %s\"
+    authors = shortlog -ns
+    b = branch -v
     c = !git add . && git commit -a && git push
+    changelog = log --pretty=format:\" * %s\"
+    changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+    co = checkout
+    d = diff
+    go = checkout -b
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    pr = !git commit -av && git push -f && hub pull-request
     recommit = !git commit --amend
     repush = !git recommit && git push -f
-    pr = !git commit -av && git push -f && hub pull-request
-    go = checkout -b
-    d = diff
     s = status
+    short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
     st = status
+    stashpush = !git stash && git pull && git push && git stash pop
     stat = status
-    b = branch -v
-    authors = shortlog -ns
+    uncommit = reset --soft HEAD^
+    unstage = reset HEAD
 
 [core]
     excludesfile = ~/.gitignore
