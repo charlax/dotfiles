@@ -42,6 +42,8 @@
 - [SSH](#ssh)
   - [Setup an SSH tunnel that tunnel localhost:4479 to remote:4479](#setup-an-ssh-tunnel-that-tunnel-localhost4479-to-remote4479)
   - [Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop](#setup-an-ssh-tunnel-that-tunnels-localhostport-to-remoteport-through-another-hop)
+- [Stats](#stats)
+  - [Show list of most invited emails in calendar](#show-list-of-most-invited-emails-in-calendar)
 - [System](#system)
   - [Show most used commands](#show-most-used-commands)
 
