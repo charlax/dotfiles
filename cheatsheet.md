@@ -277,6 +277,16 @@ ssh -f -N -L 4479:localhost:4479 remote
 ssh -N -L localhost:$PORT:$remote:$PORT BRIDGE_MACHINE_USER@BRIDGE_MACHINE
 ```
 
+# Stats
+
+## Show list of most invited emails in calendar
+
+```
+grep -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' file.ics | sort | uniq -c | sort -n | tail -n 100
+```
+
+`grep -o` makes grep only show the matching pattern.
+
 # System
 
 ## Show most used commands
