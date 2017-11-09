@@ -5,7 +5,7 @@ set -o errexit
 
 confirm() {
     # call with a prompt string or use a default
-    read -r -p "${1:-Are you sure? [y/N]} " response
+    read -r -p "${1:-Are you sure? [Y/n]} " response
     case "$response" in
         [nN][oO]|[nN])
             false
