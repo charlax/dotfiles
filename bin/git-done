@@ -1,23 +1,59 @@
 #!/usr/bin/env bash
 
-PROGRAM_NAME=$0
-
 set -o nounset
 set -o errexit
 
+PROGRAM_NAME=${0##*/}
 
 function usage {
-    echo "usage: $PROGRAM_NAME [file] message"
+    echo "Usage: $PROGRAM_NAME [--help/-h] [--no-push/-n] [path] message"
     exit 1
 }
 
-if [ "$#" = 2 ]; then
-    GIT_PATH=$1
-    MESSAGE=$2
-elif [ "$#" = 1 ]; then
+# Defaults for options
+HELP=false
+PUSH=true
+OPTIONS=()
+
+while true; do
+    # ${parameter:-word}: if parameter is unset, return word
+    # See Shell Parameter Expansion
+    case "${1:-}" in
+        -h | --help)
+            HELP=true
+            shift
+            ;;
+        -n | --no-push)
+            PUSH=false
+            shift
+            ;;
+        -*)
+            echo >&2 "Invalid option: $1"
+            usage
+            ;;
+        "")
+            # End of arguments
+            break
+            ;;
+        *)
+            OPTIONS+=("$1")
+            shift
+            ;;
+    esac
+done
+
+if [ $HELP = true ]; then
+    usage
+fi
+
+if [ "${#OPTIONS[@]}" -eq 2 ]; then
+    GIT_PATH=${OPTIONS[0]}
+    MESSAGE=${OPTIONS[1]}
+elif [ "${#OPTIONS[@]}" -eq 1 ]; then
     GIT_PATH="."
-    MESSAGE=$1
+    MESSAGE=${OPTIONS[0]}
 else
+    echo >&2 "Invalid number of arguments"
     usage
 fi
 
@@ -33,5 +69,7 @@ git diff --cached
 echo "Committing"
 git commit -m "$MESSAGE"
 
-echo "Pushing"
-git push
+if [ $PUSH = true ]; then
+    echo "Pushing"
+    git push
+fi
