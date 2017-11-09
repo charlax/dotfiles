@@ -10,6 +10,19 @@ function usage {
     exit 1
 }
 
+confirm() {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure? [Y/n]} " response
+    case "$response" in
+        [nN][oO]|[nN])
+            false
+            ;;
+        *)
+            true
+            ;;
+    esac
+}
+
 # Defaults for options
 HELP=false
 PUSH=true
@@ -71,5 +84,5 @@ git commit -m "$MESSAGE"
 
 if [ $PUSH = true ]; then
     echo "Pushing"
-    git push
+    confirm "Should I push? [Y/n]" && git push
 fi
