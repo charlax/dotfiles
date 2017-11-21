@@ -5,9 +5,10 @@
 """
 csv2template.py
 
-Objective: takes a CSV and a Jinja2 template as input, output the
-rendered template.
+Take a CSV and a Jinja2 template as input, output the rendered template.
+
 """
+
 import argparse
 import contextlib
 import csv
@@ -17,13 +18,22 @@ import uuid
 
 import jinja2
 
+DEFAULT_SKIP_COLUMN_NAME = "__SKIP__"
 HELP = """
+Advanced topics
+---------------
+
+* You can skip rows by adding a column `__SKIP__` in your CSV, and put a
+  truthy value ("TRUE", "True", "1", "YES", "yes") in it.
+
 Examples
 --------
 
-# Renders each line as a file named after the pattern
+# Renders each row as a file named after the pattern
 $ csv2template --template template.md --outfiles-name-pattern "out/{{ Name }}.md" file.csv
 """
+
+TRUTHY_VALUES = {'True', 'TRUE', '1', 'yes', 'YES'}
 
 
 def get_template(args):
@@ -58,6 +68,11 @@ def get_outfile(*, outfile, outfiles_name_template, line):
         yield open(filename, "w")
 
 
+def should_skip_row(line, *, column_name):
+    """Return true if the row should be skipped."""
+    return line[column_name].strip() in TRUTHY_VALUES
+
+
 def main(args):
     """Render the template."""
     jinja2.defaults.DEFAULT_FILTERS['format_uuid'] = format_uuid
@@ -76,6 +91,9 @@ def main(args):
             for row in csv_file)
     for line in rows:
         line = {k.replace(' ', '_'): v for k, v in line.items()}
+        if should_skip_row(line, column_name=args.skip_column_name):
+            continue
+
         with get_output(line=line) as outfile:
             outfile.write(template.render(**line) + "\n")
 
@@ -89,7 +107,12 @@ if __name__ == '__main__':
     parser.add_argument("csv", nargs="?", type=argparse.FileType('rU'),
                         default=sys.stdin)
     parser.add_argument("--header",
-                        help='content to put at the top of output')
+                        help="content to put at the top of output")
+    parser.add_argument("--skip-column-name",
+                        type=str,
+                        default=DEFAULT_SKIP_COLUMN_NAME,
+                        help="skip rows that have a truthy value in this column"
+                        )
 
     template_group = parser.add_mutually_exclusive_group(required=True)
     template_group.add_argument(
@@ -103,14 +126,15 @@ if __name__ == '__main__':
         "--template-use-csv-header",
         action='store_true',
         dest='use_csv_header_as_template',
-        help="Use the CSV's first line as the template")
+        help="use the CSV's first line as the template")
 
     outfile_group = parser.add_mutually_exclusive_group()
     outfile_group.add_argument('--outfile',
                                type=argparse.FileType('w'),
-                               help="Defaults to standard output")
+                               help="defaults to standard output")
     outfile_group.add_argument("--outfiles-name-pattern",
-                               help="Pattern for output filenames")
+                               type=str,
+                               help="pattern for output filenames")
 
     args = parser.parse_args()
 
