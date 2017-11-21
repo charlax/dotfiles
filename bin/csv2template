@@ -1,4 +1,7 @@
-#!env python
+#!/usr/bin/env python3
+
+# source  ~/.pyenvs/csv2template/bin/activate
+
 """
 csv2template.py
 
@@ -6,11 +9,21 @@ Objective: takes a CSV and a Jinja2 template as input, output the
 rendered template.
 """
 import argparse
+import contextlib
 import csv
+import functools
 import sys
 import uuid
 
 import jinja2
+
+HELP = """
+Examples
+--------
+
+# Renders each line as a file named after the pattern
+$ csv2template --template template.md --outfiles-name-pattern "out/{{ Name }}.md" file.csv
+"""
 
 
 def get_template(args):
@@ -31,6 +44,20 @@ def format_uuid(value):
     return str(uuid.UUID(value))
 
 
+@contextlib.contextmanager
+def get_outfile(*, outfile, outfiles_name_template, line):
+    """Return output file handler."""
+    if outfile and outfiles_name_template:
+        raise ValueError("Can't provide both outfile and name template")
+
+    if outfile:
+        yield outfile
+
+    if outfiles_name_template:
+        filename = outfiles_name_template.render(**line)
+        yield open(filename, "w")
+
+
 def main(args):
     """Render the template."""
     jinja2.defaults.DEFAULT_FILTERS['format_uuid'] = format_uuid
@@ -39,17 +66,26 @@ def main(args):
     if args.header:
         args.outfile.write(args.header + "\n")
 
+    get_output = functools.partial(
+        get_outfile,
+        outfile=args.outfile,
+        outfiles_name_template=jinja2.Template(args.outfiles_name_pattern))
+
     csv_file = csv.DictReader(args.csv)
-    rows = ({k.strip(): v.strip() for k, v in row.iteritems()}
+    rows = ({k.strip(): v.strip() for k, v in row.items()}
             for row in csv_file)
     for line in rows:
-        line = {k.replace(' ', '_'): v for k, v in line.iteritems()}
-        args.outfile.write(template.render(**line) + "\n")
+        line = {k.replace(' ', '_'): v for k, v in line.items()}
+        with get_output(line=line) as outfile:
+            outfile.write(template.render(**line) + "\n")
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Render the template using CSV data")
+        description="Render the template using CSV data",
+        epilog=HELP,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
     parser.add_argument("csv", nargs="?", type=argparse.FileType('rU'),
                         default=sys.stdin)
     parser.add_argument("--header",
@@ -69,10 +105,16 @@ if __name__ == '__main__':
         dest='use_csv_header_as_template',
         help="Use the CSV's first line as the template")
 
-    parser.add_argument('--outfile',
-                        type=argparse.FileType('w'),
-                        default=sys.stdout)
+    outfile_group = parser.add_mutually_exclusive_group()
+    outfile_group.add_argument('--outfile',
+                               type=argparse.FileType('w'),
+                               help="Defaults to standard output")
+    outfile_group.add_argument("--outfiles-name-pattern",
+                               help="Pattern for output filenames")
 
     args = parser.parse_args()
+
+    if not (args.outfile or args.outfiles_name_pattern):
+        args.outfile = sys.stdout
 
     main(args)
