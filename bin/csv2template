@@ -13,6 +13,7 @@ import argparse
 import contextlib
 import csv
 import functools
+import os.path
 import sys
 import uuid
 
@@ -30,7 +31,11 @@ Examples
 --------
 
 # Renders each row as a file named after the pattern
-$ csv2template --template template.md --outfiles-name-pattern "out/{{ Name }}.md" file.csv
+csv2template --template template.md --outfiles-name-pattern "out/{{ Name }}.md" file.csv
+
+# Renders each row as a file named after the "__FILENAME__"'s column
+# value and in a folder named "out"
+csv2template --template template.md --outfolder out --outfiles-name-use-column __FILENAME__ file.csv
 """
 
 TRUTHY_VALUES = {'True', 'TRUE', '1', 'yes', 'YES'}
@@ -55,17 +60,34 @@ def format_uuid(value):
 
 
 @contextlib.contextmanager
-def get_outfile(*, outfile, outfiles_name_template, line):
+def get_outfile(*,
+                outfile,
+                outfiles_name_template,
+                outfiles_name_use_column,
+                outfolder,
+                line):
     """Return output file handler."""
-    if outfile and outfiles_name_template:
-        raise ValueError("Can't provide both outfile and name template")
+    if len(list(filter(
+            None,
+            (outfile, outfiles_name_template, outfiles_name_use_column)))) != 1:
+        raise ValueError("Contradicting arguments")
 
     if outfile:
         yield outfile
 
     if outfiles_name_template:
         filename = outfiles_name_template.render(**line)
-        yield open(filename, "w")
+
+    if outfiles_name_use_column:
+        filename = line[outfiles_name_use_column]
+
+    if outfolder:
+        filename = os.path.join(outfolder, filename)
+
+    sys.stderr.write("Writing to: %s\n" % filename)
+
+    # TODO: ideally we should close it
+    yield open(filename, "w")
 
 
 def should_skip_row(line, *, column_name):
@@ -81,10 +103,15 @@ def main(args):
     if args.header:
         args.outfile.write(args.header + "\n")
 
+    filename_template = (args.outfiles_name_pattern
+                         and jinja2.Template(args.outfiles_name_pattern))
     get_output = functools.partial(
         get_outfile,
+        outfolder=args.outfolder,
         outfile=args.outfile,
-        outfiles_name_template=jinja2.Template(args.outfiles_name_pattern))
+        outfiles_name_template=filename_template,
+        outfiles_name_use_column=args.outfiles_name_use_column,
+    )
 
     csv_file = csv.DictReader(args.csv)
     rows = ({k.strip(): v.strip() for k, v in row.items()}
@@ -113,6 +140,8 @@ if __name__ == '__main__':
                         default=DEFAULT_SKIP_COLUMN_NAME,
                         help="skip rows that have a truthy value in this column"
                         )
+    parser.add_argument("--outfolder",
+                        help="where to export the files")
 
     template_group = parser.add_mutually_exclusive_group(required=True)
     template_group.add_argument(
@@ -135,10 +164,15 @@ if __name__ == '__main__':
     outfile_group.add_argument("--outfiles-name-pattern",
                                type=str,
                                help="pattern for output filenames")
+    outfile_group.add_argument("--outfiles-name-use-column",
+                               type=str,
+                               help="use column with this name for filenames")
 
     args = parser.parse_args()
 
-    if not (args.outfile or args.outfiles_name_pattern):
+    if not (args.outfile
+            or args.outfiles_name_pattern
+            or args.outfiles_name_use_column):
         args.outfile = sys.stdout
 
     main(args)
