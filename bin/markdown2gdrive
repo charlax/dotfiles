@@ -1,0 +1,85 @@
+#!/bin/zsh
+
+set -euo pipefail
+IFS=$'\n\t'
+PROGRAM_NAME=$0
+
+function usage {
+    echo "Usage: $PROGRAM_NAME [--parent/-p] path"
+    exit 1
+}
+
+HELP=false
+OPTIONS=()
+PARENT=""
+# Tried docx (weird margins), rtf (imported in raw format), opendocument (same), odt (pretty good)
+FORMAT="html"
+PANDOC_OPTIONS="-c $DOTFILES_PATH/pandoc/pandoc.css"
+
+while true; do
+    # ${parameter:-word}: if parameter is unset, return word
+    # See Shell Parameter Expansion
+    case "${1:-}" in
+        -h | --help)
+            HELP=true
+            shift
+            ;;
+        -p | --parent)
+            shift
+            if test $# -gt 0; then
+                PARENT=$1
+            else
+                echo "no parent specified"
+                usage
+            fi
+            shift
+            ;;
+        -*)
+            echo >&2 "Invalid option: $1"
+            usage
+            ;;
+        *)
+            OPTIONS+=("${1:-}")
+            if test $# -gt 0; then
+                shift
+            else
+                break
+            fi
+            ;;
+    esac
+done
+
+if [ $HELP = true ]; then
+    usage
+fi
+
+filename=${OPTIONS[1]:-}
+if [ -z "$filename" ]; then
+    echo >&2 "Invalid number of argument, need markdown path to be passed"
+    usage
+fi
+
+export_filename=$(echo "$(mktemp -d)/${${filename:r}:t}.$FORMAT")
+
+echo "Converting $filename to $export_filename"
+set -x
+pandoc $filename --from markdown --to $FORMAT -o "$export_filename"
+set +x
+[ $? -ne 0 ] && { printf "Conversion failed\n"; rm "$export_filename"; exit 1; }
+
+ls $export_filename
+
+if [ -z $PARENT ]; then
+    to_run="gdrive import \"$export_filename\""
+else
+    to_run="gdrive import -p $PARENT \"$export_filename\""
+fi
+
+set -x
+ls $export_filename
+eval $to_run
+set +x
+
+exit 0
+
+# rm "$export_filename"

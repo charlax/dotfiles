@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+set -e
+set -x
+
+if [ -z "$1" ]; then
+	echo >&2 "Invalid number of argument, need folder path to be passed"
+fi
+
+for filename in ./$1/*.md; do
+	local pdf_filename=${filename:r}
+	echo "Converting $filename to $pdf_filename"
+	pandoc $filename --pdf-engine=xelatex -o $pdf_filename.pdf
+done
