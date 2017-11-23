@@ -10,11 +10,13 @@ function usage {
 }
 
 HELP=false
+TESTING=false
 OPTIONS=()
 PARENT=""
 # Tried docx (weird margins), rtf (imported in raw format), opendocument (same), odt (pretty good)
 FORMAT="html"
-PANDOC_OPTIONS="-c $DOTFILES_PATH/pandoc/pandoc.css"
+# -s: standalone HTML file
+PANDOC_OPTIONS=(-s -H ${DOTFILES}pandoc/pandoc.css)
 
 while true; do
     # ${parameter:-word}: if parameter is unset, return word
@@ -22,6 +24,10 @@ while true; do
     case "${1:-}" in
         -h | --help)
             HELP=true
+            shift
+            ;;
+        -t | --testing)
+            TESTING=true
             shift
             ;;
         -p | --parent)
@@ -63,9 +69,14 @@ export_filename=$(echo "$(mktemp -d)/${${filename:r}:t}.$FORMAT")
 
 echo "Converting $filename to $export_filename"
 set -x
-pandoc $filename --from markdown --to $FORMAT -o "$export_filename"
+pandoc $filename ${PANDOC_OPTIONS[@]} --from markdown --to $FORMAT -o "$export_filename"
 set +x
 [ $? -ne 0 ] && { printf "Conversion failed\n"; rm "$export_filename"; exit 1; }
+
+if [ $TESTING = true ]; then
+    open "$export_filename"
+    exit 0
+fi
 
 ls $export_filename
 
