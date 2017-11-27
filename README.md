@@ -87,7 +87,11 @@ zprof
 List of software
 ================
 
-Install brew, then run `install/osx_software_install.sh`.
+Install brew, then run `install/osx_software_install.sh`. This will install, in
+particular:
+
+* `tldr`, which is a community-maintained summary of manual pages. Example
+  usage: `tldr tar`.
 
 Can be useful:
 

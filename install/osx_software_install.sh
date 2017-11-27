@@ -1,4 +1,4 @@
-declare -a apps=("chrome" "crashplan" "dropbox" "iterm2" "things" "calibre" "cyberduck" "firefox" "flux" "vlc" "typora")
+declare -a apps=("chrome" "crashplan" "dropbox" "iterm2" "things" "calibre" "cyberduck" "firefox" "flux" "vlc" "typora" "tldr")
 
 set -x
 
