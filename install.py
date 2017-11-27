@@ -12,6 +12,7 @@ DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     "ctags/ctags",
+    "ghci/ghci",
     "git/gitignore",
     "git/gitconfig",
     "git/gitconfig.local",
