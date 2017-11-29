@@ -17,6 +17,7 @@
     pr = !git commit -av && git push -f && hub pull-request
     recommit = !git commit --amend
     repush = !git recommit && git push -f
+    rmbranch = branch -d
     s = status
     short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
     st = status
