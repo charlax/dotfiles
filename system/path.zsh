@@ -8,7 +8,7 @@ export CODE_PATH="$HOME/Documents/Dev"
 [[ -n ${DROPBOX_FOLDER+x} ]] && export CODE_PATH="$DROPBOX_FOLDER/Code"
 
 # Go
-export GOPATH=$HOME/golang
+export GOPATH=$CODE_PATH/golang
 
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) >/dev/null 2>&1
