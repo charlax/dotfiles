@@ -19,6 +19,7 @@ CONFIGURATION_FILES = (
     "hg/hgrc",
     "latex/latexmkrc",
     ("ssh/rc", ".ssh/rc"),
+    ("ssh/config", ".ssh/config"),
     "system/colors/dir_colors",
     "tmux/tmux.conf",
     ("virtualenvs/postmkvirtualenv", ".virtualenvs/"),
