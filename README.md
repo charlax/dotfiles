@@ -28,6 +28,15 @@ You'll also need to:
 
 * Create `git/gitconfig.local` with your username and name.
 
+Software install
+----------------
+
+Run `install/osx_software_install.sh`. This will install, in
+particular:
+
+* `tldr`, which is a community-maintained summary of manual pages. Example
+  usage: `tldr tar`.
+
 Prerequisites
 =============
 
@@ -86,14 +95,8 @@ zmodload zsh/zprof
 zprof
 ```
 
-List of software
-================
-
-Install brew, then run `install/osx_software_install.sh`. This will install, in
-particular:
-
-* `tldr`, which is a community-maintained summary of manual pages. Example
-  usage: `tldr tar`.
+List of software to install manually
+====================================
 
 Can be useful:
 
