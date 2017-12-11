@@ -57,3 +57,6 @@
 
 [rerere]
 	enabled = true
+[user]
+	name = Charles-Axel Dein
+	email = ca@d3in.org
