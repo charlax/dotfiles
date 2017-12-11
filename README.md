@@ -34,7 +34,9 @@ Prerequisites
 Tested on Mac Os X 10.8, 10.10 and Ubuntu 12.04.
 
 On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
-install some software.
+install some software. As of writing, to install it you just need:
+
+    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 You'll also need [Solarized](http://ethanschoonover.com/solarized)'s custom
 palettes for iTerm.
@@ -113,6 +115,7 @@ Manually:
 * Spotify
 * Things
 * TextExpander (not anymore on the app store)
+* Dropbox
 
 Useful software (not installed by default)
 ------------------------------------------
