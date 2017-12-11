@@ -31,24 +31,25 @@ You'll also need to:
 Software install
 ----------------
 
-Run `install/osx_software_install.sh`. This will install, in
+Run `install/osx_install.sh` and `install/osx_extra_install.sh`. This will install, in
 particular:
 
 * `tldr`, which is a community-maintained summary of manual pages. Example
   usage: `tldr tar`.
 
+Setting the default shell to ZSH
+--------------------------------
+
+Go to the `Users & Groups` pane of the System Preferences, unlock it, right
+click on the user and set the shell to the output of `which zsh`.
+
 Prerequisites
 =============
-
-Tested on Mac Os X 10.8, 10.10 and Ubuntu 12.04.
 
 On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
 install some software. As of writing, to install it you just need:
 
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-You'll also need [Solarized](http://ethanschoonover.com/solarized)'s custom
-palettes for iTerm.
 
 Features
 ========
@@ -114,11 +115,13 @@ From App Store:
 
 Manually:
 
-* Firefox (as of writing, does not work with some apps)
+* Chrome
+* Firefox
 * Spotify
 * Things
 * TextExpander (not anymore on the app store)
 * Dropbox
+* iTerm
 
 Useful software (not installed by default)
 ------------------------------------------
