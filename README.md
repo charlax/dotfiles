@@ -70,17 +70,20 @@ Checklist on fresh installation
 * Set keyboard shortcuts
   * Switch Alfred & Spotlight's shortcuts
   * Set the change input source shortcuts
+* Change key repeat and delay until repeat
+* Remove sound effects
 
 Setup the following apps:
 
-* Divvy
-* Flux
-* TestExpander
-* Evernote
 * Chrome
-* Things cloud
-* Password application
+* Divvy
 * Dropbox
+* Evernote
+* Fantastical 2
+* Flux
+* Password application
+* TestExpander
+* Things cloud
 * backup
 * Set iTerm2's preference file folder (they include setting ZSH as the default
   shell)
