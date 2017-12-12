@@ -65,18 +65,26 @@ This will install, in particular:
 Checklist on fresh installation
 -------------------------------
 
-* Setup Things cloud
-* Setup password application
-* Setup Dropbox
-* Setup backup
-* Set iterm's preference file folder
 * Change the computer name
+* Add French input source
+* Set keyboard shortcuts
+  * Switch Alfred & Spotlight's shortcuts
+  * Set the change input source shortcuts
 
-Setting the default shell to ZSH
---------------------------------
+Setup the following apps:
 
-Go to the `Users & Groups` pane of the System Preferences, unlock it, right
-click on the user and set the shell to the output of `which zsh`.
+* Divvy
+* Flux
+* TestExpander
+* Evernote
+* Chrome
+* Things cloud
+* Password application
+* Dropbox
+* backup
+* Set iTerm2's preference file folder (they include setting ZSH as the default
+  shell)
+* Set Alfred's preference file folder
 
 Features
 ========
