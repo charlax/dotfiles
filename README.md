@@ -18,10 +18,24 @@
 Prerequisites
 =============
 
+XCode
+-----
+
+Install XCode, then open it. Run this as well:
+
+    $ xcode-select --install
+
+Homebrew
+--------
+
 On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
 install some software. As of writing, to install it you just need:
 
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+On a fresh installation, you might also need to setup your Github SSH keys. You can test them with:
+
+    $ ssh -T git@github.com
 
 Installation
 ============
@@ -47,6 +61,16 @@ This will install, in particular:
 
 * `tldr`, which is a community-maintained summary of manual pages. Example
   usage: `tldr tar`.
+
+Checklist on fresh installation
+-------------------------------
+
+* Setup Things cloud
+* Setup password application
+* Setup Dropbox
+* Setup backup
+* Set iterm's preference file folder
+* Change the computer name
 
 Setting the default shell to ZSH
 --------------------------------
