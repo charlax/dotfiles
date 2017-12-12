@@ -82,28 +82,6 @@ def symlink_configuration_file(f, dest=None, force=False, base_path=None):
         logging.info("%s symlinked to %s" % (source, dest))
 
 
-def install_software():
-    """Install software."""
-    print "Installing software..."
-
-    system = platform.system()
-    if system == "Darwin":
-        os.system("./install/oxs_install.sh")
-
-        print "You might want to run osx_config.sh in the dotfiles repo."
-        print "You need to add zsh to /etc/shells and then run:"
-        print "$ sudo sh -c 'echo \"/usr/local/bin/zsh\" >> /etc/shells' && chsh -s /usr/local/bin/zsh"
-
-    elif system == "Linux":
-        os.system("sudo apt-get update")
-        os.system("sudo apt-get install -q -y silversearcher-ag zsh coreutils wget")
-        print "Changing default shell"
-        os.system("sudo chsh -s /bin/zsh $USER")
-
-    # Generate markdown table of content
-    os.system("npm install -g doctoc")
-
-
 def clone_dotfile(repo, path):
     """Clone or update the dotfiles directory."""
     if not os.path.exists(path):
@@ -135,11 +113,6 @@ def main(args):
     clone_dotfile(REPOSITORY, DOTFILES_PATH)
     symlink(args)
 
-    # We need to symlink before installing other software, because
-    # installing other software has a higher probability to fail.
-    if args.install:
-        install_software()
-
     if args.with_dotvim:
         print "Installing dotvim..."
         os.system("curl https://raw.githubusercontent.com/charlax/dotvim/master/install.py -o install_dotvim.py")  # noqa
@@ -153,8 +126,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
     parser.add_argument("--with-dotvim", action="store_true",
                         help="Also install charlax's dotvim repository")
-    parser.add_argument("--install", action="store_true",
-                        help="Also install sofware")
     parser.add_argument("--symlink-force", "-f", action="store_true",
                         help="Force symlink the files")
     parser.add_argument("--symlink-base",

@@ -15,6 +15,14 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+Prerequisites
+=============
+
+On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
+install some software. As of writing, to install it you just need:
+
+    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 Installation
 ============
 
@@ -24,15 +32,11 @@ Installation
 
 You should read the script before executing it.
 
-You'll also need to:
-
-* Create `git/gitconfig.local` with your username and name.
-
 Software install
 ----------------
 
-Run `install/osx_install.sh` and `install/osx_extra_install.sh`. This will install, in
-particular:
+Run `install/osx_install.sh` and `install/osx_app_install.sh`. This will
+install, in particular:
 
 * `tldr`, which is a community-maintained summary of manual pages. Example
   usage: `tldr tar`.
@@ -42,14 +46,6 @@ Setting the default shell to ZSH
 
 Go to the `Users & Groups` pane of the System Preferences, unlock it, right
 click on the user and set the shell to the output of `which zsh`.
-
-Prerequisites
-=============
-
-On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
-install some software. As of writing, to install it you just need:
-
-    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 Features
 ========
@@ -109,19 +105,15 @@ Can be useful:
 From App Store:
 
 * XCode
+* Things
 * Kindle
-* Mental Case
 * TextWrangler (I use Vim but just in case)
 
 Manually:
 
-* Chrome
-* Firefox
 * Spotify
-* Things
 * TextExpander (not anymore on the app store)
 * Dropbox
-* iTerm
 
 Useful software (not installed by default)
 ------------------------------------------
