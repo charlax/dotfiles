@@ -31,7 +31,8 @@ Installation
     $ python install.py # If you want only dotfiles
     $ python install.py --with-dotvim # If you want also my dotvim
 
-You should read the script before executing it.
+You should read the script before executing it. By default, dotfiles are stored
+in `~/.dotfiles/`.
 
 Software install
 ----------------
@@ -40,6 +41,7 @@ To install some extra software, run the following:
 
     $ ./install/osx_install.sh
     $ ./install/osx_app_install.sh
+    $ install_vim_dotfiles.sh
 
 This will install, in particular:
 
