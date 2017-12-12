@@ -26,6 +26,7 @@ install some software. As of writing, to install it you just need:
 Installation
 ============
 
+    $ cd ~/Downloads
     $ curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
     $ python install.py # If you want only dotfiles
     $ python install.py --with-dotvim # If you want also my dotvim
@@ -35,8 +36,12 @@ You should read the script before executing it.
 Software install
 ----------------
 
-Run `install/osx_install.sh` and `install/osx_app_install.sh`. This will
-install, in particular:
+To install some extra software, run the following:
+
+    $ ./install/osx_install.sh
+    $ ./install/osx_app_install.sh
+
+This will install, in particular:
 
 * `tldr`, which is a community-maintained summary of manual pages. Example
   usage: `tldr tar`.
@@ -55,27 +60,13 @@ Features
 * [autojump](https://github.com/wting/autojump): a cd commands that learns
   about your favorite directories.
 
-Plugins
-=======
-
-Adding a ZSH plugin
--------------------
-
-    $ git submodule add https://github.com/... zsh/plugins/plugin-name
-
-Then add the description in the README.
-
 Misc
 ====
 
-* Keyboard shortcuts to [lock the
-  screen](http://hints.macworld.com/article.php?story=20090831093941225).
 * Installing my [vim dotfiles](https://github.com/charlax/dotvim) is available
   through the `install_vim_dotfiles.sh` command.
 * You can copy the dotfiles in the current directory through
   `copy-dotfiles-here.sh`
-* [entr](https://bitbucket.org/eradman/entr/) is used to run arbitrary commands
-  when files are changed.
 
 Profiling ZSH
 -------------
@@ -102,7 +93,7 @@ Can be useful:
 * Virtual Box
 * Wireshark
 
-From App Store:
+From App Store, among others:
 
 * XCode
 * Things
