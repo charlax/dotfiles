@@ -14,3 +14,6 @@ brew cask doctor
 rm -f ~/.zcompdump; compinit
 
 echo "Done. Feel free to run brew cleanup from time to time"
+
+echo "Updating pipenv"
+pip install --user --upgrade pipenv
