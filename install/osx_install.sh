@@ -11,5 +11,11 @@ brew install fswatch
 echo "Installing jq: json formatting"
 brew install jq
 
+echo "Install node.js"
+brew install node
+
+echo "Install tmux"
+brew install tmux
+
 # Install fzf shell bindings
 /usr/local/opt/fzf/install
