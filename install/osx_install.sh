@@ -11,11 +11,14 @@ brew install fswatch
 echo "Installing jq: json formatting"
 brew install jq
 
-echo "Install node.js"
+echo "Installing node.js"
 brew install node
 
-echo "Install tmux"
+echo "Installing tmux"
 brew install tmux
 
-# Install fzf shell bindings
+echo "Installing pipenv"
+pip3 install --user pipenv
+
+echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
