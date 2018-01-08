@@ -17,6 +17,12 @@ brew install node
 echo "Installing tmux"
 brew install tmux
 
+echo "Installing mysql"
+brew install mysql
+
+echo "Installing telnet"
+brew install telnet
+
 echo "Installing pipenv"
 pip3 install --user pipenv
 
