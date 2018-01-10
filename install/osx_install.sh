@@ -26,5 +26,8 @@ brew install telnet
 echo "Installing pipenv"
 pip3 install --user pipenv
 
+echo "Installing awscli"
+pip3 install --user awscli
+
 echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
