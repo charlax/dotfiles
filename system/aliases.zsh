@@ -1,6 +1,4 @@
 # grc overides for ls
-#   Made possible through contributions from generous benefactors like
-#   `brew install coreutils`
 if $(gls &>/dev/null)
 then
   alias ls="gls -hF --color"
@@ -9,17 +7,18 @@ then
   alias la='gls -A --color'
 fi
 
+# Text editors
+alias m="edit"
+alias e="edit"
 alias v="vim"
-alias p="ipython"
+alias vr="vimr"
+alias nv="nvim"
+alias mr="edit --editor vimr"
 
 alias tf='tail -f'
 
 alias ka9='killall -9'
 alias k9='kill -9'
-
-# Python virtualenv
-alias aa='source env/bin/activate'
-alias aactivate='source env/bin/activate'
 
 alias grep='grep --color=auto'
 
@@ -45,10 +44,11 @@ alias gcl='git clone'
 alias grepush='git recommit && git push -f'
 alias gsp='git stash && git pull && git stash pop'
 
-# setup.py
-alias pypi_submit="python setup.py register sdist bdist upload"
-
 # Python
+alias p="ipython"
+alias pypi_submit="python setup.py register sdist bdist upload"
+alias aa='source env/bin/activate'
+alias aactivate='source env/bin/activate'
 alias venv='python -m venv'
 alias serve='python3 -m http.server'
 alias pydoc='python -m pydoc'

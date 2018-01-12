@@ -1,0 +1,38 @@
+#!/usr/local/bin/zsh
+# Open a text editor
+
+PROGRAM_NAME=${0##*/}
+
+function usage {
+    echo "Usage: $PROGRAM_NAME [--help/-h] [--editor EDITOR] [path]"
+    exit 1
+}
+
+# Defaults to opening the default editor
+APP=$EDITOR_GUI
+while true; do
+    case "${1:-}" in
+        -h | --help)
+            usage
+            ;;
+        --editor)
+            APP=$2
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if [[ "$1" == "" ]]
+then
+    $APP .
+elif [[ $1 =~ "https://.*" ]]
+then
+    # See ZSH Parameter (Variable) Expansion
+    repo_dir=${${1##*/}%.*}
+    git clone $1 && cd $repo_dir && $EDITOR_GUI .
+else
+    $APP "$1"
+fi
