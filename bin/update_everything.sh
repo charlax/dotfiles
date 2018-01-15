@@ -13,7 +13,7 @@ brew cask doctor
 echo "Done. Feel free to run brew cleanup from time to time"
 
 echo "Updating pipenv"
-pip install --user --upgrade pipenv
+pip3 install --user --upgrade pipenv
 
 echo "Updating Vim dotfiles"
 $VIM_DOTFILES/update-plugions.sh
