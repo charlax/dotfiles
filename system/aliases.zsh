@@ -11,7 +11,7 @@ fi
 alias m="edit"
 alias e="edit"
 alias v="vim"
-alias vr="vimr"
+alias vr="vimr -s"
 alias nv="nvim"
 alias mr="edit --editor vimr"
 
