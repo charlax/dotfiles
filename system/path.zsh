@@ -3,9 +3,11 @@
 dropbox_config=$HOME/.dropbox/info.json
 [[ -e $dropbox_config ]] && export DROPBOX_FOLDER=$(cat $dropbox_config | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["personal"]["path"]')
 
-export CODE_PATH="$HOME/Documents/Dev"
+export CODE_PATH="$HOME/Documents/Code"
+export FORK_PATH="$HOME/Documents/code_forks"
 # Override if Dropbox is there
 [[ -n ${DROPBOX_FOLDER+x} ]] && export CODE_PATH="$DROPBOX_FOLDER/Code"
+[[ -n ${DROPBOX_FOLDER+x} ]] && export FORK_PATH="$DROPBOX_FOLDER/code_forks"
 
 # Go
 export GOPATH=$CODE_PATH/golang

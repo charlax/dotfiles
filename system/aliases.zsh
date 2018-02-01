@@ -7,6 +7,11 @@ then
   alias la='gls -A --color'
 fi
 
+# Go to folder
+function code  { cd $CODE_PATH }
+function forks { cd $FORK_PATH }
+function dotfiles { cd $DOTFILES }
+
 # Text editors
 alias m="edit"
 alias e="edit"
