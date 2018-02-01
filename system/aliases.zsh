@@ -46,6 +46,8 @@ alias gsp='git stash && git pull && git stash pop'
 
 # Python
 alias p="ipython"
+alias p2="python2"
+alias p3="python3"
 alias pypi_submit="python setup.py register sdist bdist upload"
 alias aa='source env/bin/activate'
 alias aactivate='source env/bin/activate'

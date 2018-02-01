@@ -29,5 +29,8 @@ pip3 install --user pipenv
 echo "Installing awscli"
 pip3 install --user awscli
 
+echo "Installing ipython"
+pip3 install --user ipython
+
 echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
