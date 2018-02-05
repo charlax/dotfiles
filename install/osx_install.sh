@@ -23,6 +23,9 @@ brew install mysql
 echo "Installing telnet"
 brew install telnet
 
+echo "Installing docker completion"
+brew install docker-completion docker-compose-completion docker-machine-completion
+
 echo "Installing pipenv"
 pip3 install --user pipenv
 
