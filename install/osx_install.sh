@@ -12,7 +12,7 @@ echo "Installing jq: json formatting"
 brew install jq
 
 echo "Installing node.js"
-brew install node
+brew install node yarn
 
 echo "Installing tmux"
 brew install tmux
