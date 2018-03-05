@@ -1,7 +1,7 @@
 [[ -s `brew --prefix 2> /dev/null`/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
 dropbox_config=$HOME/.dropbox/info.json
-[[ -e $dropbox_config ]] && export DROPBOX_FOLDER=$(cat $dropbox_config | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["personal"]["path"]')
+[[ -e $dropbox_config ]] && export DROPBOX_FOLDER=$(cat $dropbox_config | python -c 'import json,sys;obj=json.load(sys.stdin);print(obj["personal"]["path"])')
 
 export CODE_PATH="$HOME/Documents/Code"
 export FORK_PATH="$HOME/Documents/code_forks"
