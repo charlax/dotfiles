@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# This simple script can be used to handle flags that are materialized as
+# files. It will turn on the flag if off (i.e. if the file is not there), and
+# turn it off if it's on.
+
+set -o nounset
+set -o errexit
+
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+FILENAME=$1
+
+if [ -f $FILENAME ]; then
+  echo -e "Flag exists, ${RED}removing${NC}"
+  rm $FILENAME
+else
+  echo -e "Flag does not exist, ${GREEN}creating${NC}"
+  touch $FILENAME
+fi
