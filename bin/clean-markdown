@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+set -x
+
+FILE=$1
+TEMPFILE=$FILE.bak
+
+# Add newlines
+sed -E -e '/.*/G' -i '' $FILE
+
+# Replace tabs
+sed -E -e 's/	/ /g' -i '' $FILE
+
+# Headings
+sed -E -e 's/^(#+)(([[:digit:]]|[[:alpha:]])+)/\1 \2/g' -i '' $FILE
+
+# Insert a blank line before and after each heading
+sed -E -e '/^#+/{x;p;x;G;}' -i '' $FILE
+
+# Remove double-newlines
+awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2' $1 > $TEMPFILE && mv $TEMPFILE $FILE
+
+# Lists
+sed -E -e 's/^-[[:space:]]+/* /g' -i '' $FILE
+
+# Trailing whitespace
+sed -E -e 's/ *$//' -i '' $FILE
+
+# Too many spaces
+sed -E -e 's/[[:space:]]+/ /g' -i '' $FILE
+
+# Apostrophes
+sed -E -e "s/’/'/g" -i '' $FILE
+
+cat $FILE
