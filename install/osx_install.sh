@@ -11,6 +11,9 @@ brew install fswatch
 echo "Installing jq: json formatting"
 brew install jq
 
+echo "Installing httpie: CLI http client"
+brew install httpie
+
 echo "Installing node.js"
 brew install node yarn
 
