@@ -94,3 +94,5 @@ alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 alias iawriter='open -a "IA Writer"'
 alias firefox='open -a "Firefox"'
 alias ff='firefox'
+
+alias generate_secret="openssl rand -base64 32"
