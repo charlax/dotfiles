@@ -69,6 +69,7 @@ alias cal='python -m calendar'
 alias pprint='python -c "import pprint, sys, ast; pprint.pprint(ast.literal_eval(sys.stdin.read()))"'
 # pretty print clipboard
 alias pprint_clipboard='pbpaste | pprint'
+alias prp="pipenv run python"
 
 # ctags
 alias ctg='g -l --python . | ctags -L - -f tags'
