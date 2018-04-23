@@ -1,3 +1,13 @@
+# Go to folder
+function code  { cd $CODE_PATH }
+function forks { cd $FORK_PATH }
+function dotfiles { cd $DOTFILES }
+
+# cd into whatever is the forefront Finder window.
+cdf() {  # short for cdfinder
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
+
 function remove-orig-files {
     git status -su | grep -e"\.orig$" | cut -f2 -d" " | xargs rm -i
 }
