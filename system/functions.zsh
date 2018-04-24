@@ -77,3 +77,7 @@ zman() {
 function whattoalias() {
   history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -n|tail -n10
 }
+
+function generate_alpha_password {
+    LC_ALL=C tr -cd '[:alnum:]' < /dev/urandom | fold -w15 | head -n1
+}
