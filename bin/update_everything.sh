@@ -7,10 +7,11 @@ ssh-add -A
 brew update
 brew upgrade
 brew prune
+brew cleanup
 brew doctor
 brew cask doctor
 
-echo "Done. Feel free to run brew cleanup from time to time"
+echo "Done."
 
 echo "Updating pipenv"
 pip3 install --user --upgrade pipenv
