@@ -135,7 +135,6 @@ From App Store, among others:
 * XCode
 * Things
 * Kindle
-* TextWrangler (I use Vim but just in case)
 
 Manually:
 
