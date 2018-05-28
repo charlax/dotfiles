@@ -53,7 +53,7 @@ ssh-reagent () {
 
 function f {
     # grep is for coloring in the output
-    find ./ -iname "*$1*" -print | grep $1
+    find . -path ./node_modules -prune -o -iname "*$1*" -print | grep $1
 }
 
 psg ()
