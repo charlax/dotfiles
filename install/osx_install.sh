@@ -29,6 +29,9 @@ brew install telnet
 echo "Installing docker completion"
 brew install docker-completion docker-compose-completion docker-machine-completion
 
+echo "Installing ncdu: ncurses disk usage"
+brew install ncdu
+
 echo "Installing pipenv"
 pip3 install --user pipenv
 
