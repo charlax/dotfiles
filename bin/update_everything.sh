@@ -8,6 +8,7 @@ brew update
 brew upgrade
 brew prune
 brew cleanup
+brew cask upgrade
 brew doctor
 brew cask doctor
 
