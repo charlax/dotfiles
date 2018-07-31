@@ -224,6 +224,12 @@ git log --author="..."
 git diff --cached
 ```
 
+## Show unmerged branches
+
+```
+git branch --no-merged master
+```
+
 # String manipulation (sed, awk, etc.)
 
 ## Remove line matching pattern
