@@ -18,7 +18,7 @@ echo "Updating pipenv"
 pip3 install --user --upgrade pipenv
 
 echo "Updating Vim dotfiles"
-$VIM_DOTFILES/update-plugions.sh
+$VIM_DOTFILES/update-plugins.sh
 
 echo "Updating npm"
 npm install npm@latest -g
