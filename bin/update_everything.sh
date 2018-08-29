@@ -11,8 +11,8 @@ brew upgrade  || true
 brew prune
 brew cleanup
 brew cask upgrade
-brew doctor
-brew cask doctor
+brew doctor || true
+brew cask doctor || true
 
 echo "Done."
 
