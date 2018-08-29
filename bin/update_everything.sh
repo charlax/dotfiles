@@ -5,7 +5,9 @@ set -e
 
 ssh-add -A
 brew update
-brew upgrade
+
+# NOTE: when using pinned packages, brew upgrade fails
+brew upgrade  || true
 brew prune
 brew cleanup
 brew cask upgrade
@@ -14,8 +16,20 @@ brew cask doctor
 
 echo "Done."
 
-echo "Updating pipenv"
+echo "Installing/updating pip"
+pip3 install --user --upgrade pip
+
+echo "Installing/updating pipenv"
 pip3 install --user --upgrade pipenv
+
+echo "Installing/updating black (Python code formatter)"
+pip3 install --user black
+
+echo "Installing/updating awscli"
+pip3 install --user --upgrade awscli
+
+echo "Installing/updating ipython"
+pip3 install --user --upgrade ipython
 
 echo "Updating Vim dotfiles"
 $VIM_DOTFILES/update-plugins.sh

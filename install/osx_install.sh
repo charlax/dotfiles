@@ -32,14 +32,8 @@ brew install docker-completion docker-compose-completion docker-machine-completi
 echo "Installing ncdu: ncurses disk usage"
 brew install ncdu
 
-echo "Installing pipenv"
-pip3 install --user pipenv
-
-echo "Installing awscli"
-pip3 install --user awscli
-
-echo "Installing ipython"
-pip3 install --user ipython
-
 echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
+
+echo "Run update script to install the rest"
+update_everything.sh
