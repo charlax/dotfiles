@@ -3,7 +3,7 @@ set -e
 
 brew update
 brew install macvim --override-system-vim
-brew install -U zsh git coreutils zsh-completions rmtrash automake wget mercurial python python3 autojump hub unrar highlight miller fzf dos2unix the_silver_searcher findutils tldr go
+brew install -U zsh git coreutils zsh-completions rmtrash automake wget mercurial python python3 autojump hub unrar highlight miller fzf dos2unix the_silver_searcher findutils go
 
 echo "Installing fswatch: watch for file changes"
 brew install fswatch
@@ -31,6 +31,9 @@ brew install docker-completion docker-compose-completion docker-machine-completi
 
 echo "Installing ncdu: ncurses disk usage"
 brew install ncdu
+
+echo "Installing tldr: simplified and community-driven man pages"
+brew install tldr
 
 echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
