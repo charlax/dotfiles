@@ -31,9 +31,6 @@
     quotepath = false
     editor = vim
 
-[branch]
-    autosetuprebase = always
-
 [merge]
     tool = vimdiff
     conflictstyle = diff3
@@ -56,7 +53,11 @@
     autocorrect = 1
 
 [rerere]
-	enabled = true
+    enabled = true
+
 [user]
-	name = Charles-Axel Dein
-	email = ca@d3in.org
+    name = Charles-Axel Dein
+    email = ca@d3in.org
+
+[pull]
+    rebase = true
