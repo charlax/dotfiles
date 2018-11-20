@@ -26,6 +26,7 @@ CONFIGURATION_FILES = (
     "tmux/tmux.conf",
     ("virtualenvs/postmkvirtualenv", ".virtualenvs/"),
     "zsh/zshrc",
+    "zsh/zshenv",
 )
 
 
