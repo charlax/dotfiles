@@ -14,6 +14,7 @@ alias v="vim"
 alias vr="vimr -s"
 alias nv="nvim"
 alias mr="edit --editor vimr"
+alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
 alias tf='tail -f'
 
