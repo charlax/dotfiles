@@ -8,7 +8,6 @@ brew update
 
 # NOTE: when using pinned packages, brew upgrade fails
 brew upgrade  || true
-brew prune
 brew cleanup
 brew cask upgrade
 brew doctor || true
