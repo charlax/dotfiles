@@ -35,6 +35,9 @@ brew install ncdu
 echo "Installing tldr: simplified and community-driven man pages"
 brew install tldr
 
+echo "Installing editorconfig"
+brew install editorconfig
+
 echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
 
