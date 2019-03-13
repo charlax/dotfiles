@@ -76,7 +76,7 @@ Checklist on fresh installation
 Setup the following apps:
 
 * Chrome
-* Divvy
+* Spectacle (open at login)
 * Dropbox
 * Evernote
 * Fantastical 2
