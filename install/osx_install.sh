@@ -3,7 +3,12 @@ set -e
 
 brew update
 brew install macvim --override-system-vim
-brew install -U zsh git coreutils zsh-completions rmtrash automake wget mercurial python python3 autojump hub unrar highlight miller fzf dos2unix the_silver_searcher findutils go
+
+echo "Installing:"
+echo "rg: file searching"
+echo "the_silver_searcher: file searching (ag command)"
+
+brew install -U zsh git coreutils zsh-completions rmtrash automake wget mercurial python python3 autojump hub unrar highlight miller fzf dos2unix the_silver_searcher findutils goa rg
 
 echo "Installing fswatch: watch for file changes"
 brew install fswatch
