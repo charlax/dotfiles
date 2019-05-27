@@ -32,9 +32,19 @@ function +vi-git-untracked(){
 # Prompt
 function precmd() {
     vcs_info
-    # Set the tab title to current dir
-    echo -ne "\e]1;${PWD##*/}\a"
+
+    if [[ -z "$TAB_TITLE" ]]; then
+        # Set the tab title to current dir
+        echo -ne "\e]1;${PWD##*/}\a"
+    else
+        echo -ne "\e]1;${TAB_TITLE}\a"
+    fi
+
     export PROMPT="$prompt_newline%{$fg[blue]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%} \
 ${vcs_info_msg_0_}%{$fg[yellow]%}%. %{$reset_color%}$(virtualenv_info)\
 %D{%L:%M}$prompt_newline%% "
+}
+
+function settitle() {
+    TAB_TITLE="$*"
 }
