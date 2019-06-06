@@ -48,3 +48,7 @@ echo "Installing fzf shell bindings"
 
 echo "Run update script to install the rest"
 update_everything.sh
+
+echo "Installing pipx"
+python3 -m pip install --user pipx
+python3 -m userpath append ~/.local/bin
