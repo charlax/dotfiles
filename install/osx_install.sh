@@ -52,3 +52,6 @@ update_everything.sh
 echo "Installing pipx"
 python3 -m pip install --user pipx
 python3 -m userpath append ~/.local/bin
+
+echo "Installing glances, an htop alternative"
+pipx install glances
