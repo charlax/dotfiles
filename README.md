@@ -127,7 +127,7 @@ Can be useful:
 
 * Disk Inventory X
 * MPEG Streamclip
-* Virtual Box
+* Virtual Box (better to install manually as it requires Max Os X permissions)
 * Wireshark
 
 From App Store, among others:
