@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export EDITOR_GUI="vimr"
+export EDITOR_GUI="mvim"
 export SHELL=$(which zsh)
 
 [[ -e /usr/local/opt/autoenv/activate.sh ]] && source /usr/local/opt/autoenv/activate.sh
