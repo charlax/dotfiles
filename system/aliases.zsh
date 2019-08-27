@@ -94,3 +94,7 @@ alias firefox='open -a "Firefox"'
 alias ff='firefox'
 
 alias generate_secret="openssl rand -base64 32"
+
+function get_local_ip() {
+    ipconfig getifaddr en0
+}
