@@ -7,3 +7,6 @@ for app in "${apps[@]}"
 do
     brew cask install --appdir="/Applications" $app
 done
+
+echo "Installing Java"
+brew cask install adoptopenjdk8
