@@ -98,3 +98,7 @@ alias generate_secret="openssl rand -base64 32"
 function get_local_ip() {
     ipconfig getifaddr en0
 }
+
+function whats_my_ip() {
+    get_local_ip
+}
