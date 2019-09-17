@@ -45,6 +45,8 @@ alias gpu='git pull'
 alias gcl='git clone'
 alias grepush='git recommit && git push -f'
 alias gsp='git stash && git pull && git stash pop'
+# git-done is a script defined in bin/
+alias gogo='git-done'
 
 # Python
 alias p="ipython"
@@ -95,6 +97,12 @@ alias ff='firefox'
 
 alias generate_secret="openssl rand -base64 32"
 
+alias d='cd ~/Downloads'
+alias checkout='cd ~/Downloads && m '
+
+alias ia="iawriter"
+alias iar="iawriter README*"
+
 function get_local_ip() {
     ipconfig getifaddr en0
 }
@@ -102,3 +110,13 @@ function get_local_ip() {
 function whats_my_ip() {
     get_local_ip
 }
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    function pbcopy() {
+        xclip -selection clipboard
+    }
+
+    function pbpaste() {
+        xclip -selection clipboard -o
+    }
+fi
