@@ -127,7 +127,7 @@ def main(args):
 
     if args.with_dotvim:
         print("Installing dotvim...")
-        run("bin/install_vim_dotfiles.sh")
+        run(os.path.join(DOTFILES_PATH, "bin/install_vim_dotfiles.sh"))
 
     print("Install complete.")
 
