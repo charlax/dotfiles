@@ -5,10 +5,8 @@ import argparse
 import errno
 import logging
 import os
-import platform
 
 REPOSITORY = "https://github.com/charlax/dotfiles.git"
-INSTALL_SCRIPT = "https://raw.githubusercontent.com/charlax/dotvim/master/install.py"  # flake8: noqa
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
@@ -30,6 +28,13 @@ CONFIGURATION_FILES = (
 )
 
 
+def run(cmd: str) -> int:
+    r = os.system(cmd)
+    if r != 0:
+        raise OSError(f"{cmd} returned non-zero status: {r}")
+    return r
+
+
 def force_symlink(src, dest):
     """Force symlink a file."""
     try:
@@ -48,17 +53,15 @@ def create_folder(dest):
     os.makedirs(dest)
 
 
-def symlink_configuration_file(f,
-                               dest=None,
-                               force=False,
-                               base_path=None,
-                               dry_run=False):
+def symlink_configuration_file(
+    f, dest=None, force=False, base_path=None, dry_run=False
+):
     """Symlink a configuration to ~."""
     dest_base_path = base_path or os.environ["HOME"]
 
     # Source is where the dotfiles are installed, it's always relative
     # to where the files will be installed.
-    source_base_path = os.path.join(dest_base_path, '.dotfiles')
+    source_base_path = os.path.join(dest_base_path, ".dotfiles")
     source = os.path.join(source_base_path, f)
 
     if not dest:
@@ -91,7 +94,8 @@ def clone_dotfile(repo, path):
     """Clone or update the dotfiles directory."""
     if os.path.exists(path):
         return
-    os.system("git clone %s %s" % (repo, path))
+
+    run("git clone %s %s" % (repo, path))
 
     if not os.path.exists(path):
         raise Exception("Dotfiles path '%s' does not exist" % path)
@@ -105,13 +109,15 @@ def symlink(args):
                 *f,
                 base_path=args.symlink_base,
                 force=args.symlink_force,
-                dry_run=args.dry_run)
+                dry_run=args.dry_run,
+            )
         else:
             symlink_configuration_file(
                 f,
                 base_path=args.symlink_base,
                 force=args.symlink_force,
-                dry_run=args.dry_run)
+                dry_run=args.dry_run,
+            )
 
 
 def main(args):
@@ -121,9 +127,7 @@ def main(args):
 
     if args.with_dotvim:
         print("Installing dotvim...")
-        os.system("curl %s  -o install_dotvim.py" % INSTALL_SCRIPT)
-        os.system("python install_dotvim.py")
-        os.remove("install_dotvim.py")
+        run("bin/install_vim_dotfiles.sh")
 
     print("Install complete.")
 
@@ -133,17 +137,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--with-dotvim",
         action="store_true",
-        help="Also install charlax's dotvim repository")
-    parser.add_argument(
-        "--symlink-force",
-        "-f",
-        action="store_true",
-        help="Force symlink the files")
-    parser.add_argument("--dry-run", action="store_true", help="Dry run")
-    parser.add_argument(
-        "--symlink-base",
-        help="Base path for symlinks, defaults to ~",
+        help="Also install charlax's dotvim repository",
     )
+    parser.add_argument(
+        "--symlink-force", "-f", action="store_true", help="Force symlink the files"
+    )
+    parser.add_argument("--dry-run", action="store_true", help="Dry run")
+    parser.add_argument("--symlink-base", help="Base path for symlinks, defaults to ~")
 
     args = parser.parse_args()
 

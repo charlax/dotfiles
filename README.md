@@ -15,28 +15,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Prerequisites
-=============
-
-XCode
------
-
-Install XCode, then open it. Run this as well:
-
-    $ xcode-select --install
-
-Homebrew
---------
-
-On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
-install some software. As of writing, to install it you just need:
-
-    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-On a fresh installation, you might also need to setup your Github SSH keys. You can test them with:
-
-    $ ssh -T git@github.com
-
 Installation
 ============
 
@@ -48,8 +26,35 @@ Installation
 You should read the script before executing it. By default, dotfiles are stored
 in `~/.dotfiles/`.
 
-Software install
-----------------
+Prerequisites
+=============
+
+## Mac Os X
+
+### XCode
+
+Install XCode, then open it. Run this as well:
+
+    $ xcode-select --install
+
+### Homebrew
+
+On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
+install some software. As of writing, to install it you just need:
+
+    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+On a fresh installation, you might also need to setup your Github SSH keys. You can test them with:
+
+    $ ssh -T git@github.com
+
+## Linux Debian
+
+    $ apt-get update
+    $ apt-get install -y curl git
+
+Software install on Max Os X
+============================
 
 To install some extra software, run the following:
 
