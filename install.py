@@ -31,6 +31,7 @@ CONFIGURATION_FILES = (
     ("virtualenvs/postmkvirtualenv", ".virtualenvs/"),
     "zsh/zshrc",
     "zsh/zshenv",
+    "xmodmap/Xmodmap",
 )
 
 
