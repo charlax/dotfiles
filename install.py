@@ -5,9 +5,15 @@ import argparse
 import errno
 import logging
 import os
+import subprocess
+from typing import List
 
 REPOSITORY = "https://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
+
+DOTVIM_REPOSITORY = "https://github.com/charlax/dotvim.git"
+DOTVIM_PATH = os.path.join(os.environ["HOME"], ".vim")
+
 CONFIGURATION_FILES = (
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
@@ -28,11 +34,9 @@ CONFIGURATION_FILES = (
 )
 
 
-def run(cmd: str) -> int:
-    r = os.system(cmd)
-    if r != 0:
-        raise OSError(f"{cmd} returned non-zero status: {r}")
-    return r
+def run(cmd: List[str], *args, **kwargs) -> int:
+    kwargs.setdefault("check", True)
+    return subprocess.run(cmd, *args, **kwargs)
 
 
 def force_symlink(src, dest):
@@ -93,9 +97,10 @@ def symlink_configuration_file(
 def clone_dotfile(repo, path):
     """Clone or update the dotfiles directory."""
     if os.path.exists(path):
+        run(["git", "pull"], cwd=path)
         return
 
-    run("git clone %s %s" % (repo, path))
+    run(["git", "clone", repo, path])
 
     if not os.path.exists(path):
         raise Exception("Dotfiles path '%s' does not exist" % path)
@@ -131,7 +136,8 @@ def main(args):
 
     if args.with_dotvim:
         print("Installing dotvim...")
-        run(os.path.join(DOTFILES_PATH, "bin/install_vim_dotfiles.sh"))
+        clone_dotfile(DOTVIM_REPOSITORY, DOTVIM_PATH)
+        run(os.path.join(DOTVIM_PATH, "install.py"))
 
     print("Install complete.")
 
