@@ -125,6 +125,10 @@ def main(args):
     clone_dotfile(REPOSITORY, DOTFILES_PATH)
     symlink(args)
 
+    if args.with_apps:
+        print("Installing apps...")
+        run(os.path.join(DOTFILES_PATH, "install/install-all-apps.sh"))
+
     if args.with_dotvim:
         print("Installing dotvim...")
         run(os.path.join(DOTFILES_PATH, "bin/install_vim_dotfiles.sh"))
@@ -135,10 +139,15 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
     parser.add_argument(
+        "--with-all", action="store_true", help="Also install dotvim and apps"
+    )
+    parser.add_argument(
         "--with-dotvim",
         action="store_true",
         help="Also install charlax's dotvim repository",
     )
+    parser.add_argument("--with-apps", action="store_true", help="Also install apps")
+
     parser.add_argument(
         "--symlink-force", "-f", action="store_true", help="Force symlink the files"
     )
@@ -146,5 +155,9 @@ if __name__ == "__main__":
     parser.add_argument("--symlink-base", help="Base path for symlinks, defaults to ~")
 
     args = parser.parse_args()
+
+    if args.all:
+        args.with_dotvim = True
+        args.with_apps = True
 
     main(args)
