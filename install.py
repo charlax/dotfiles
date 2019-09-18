@@ -127,7 +127,7 @@ def main(args):
 
     if args.with_apps:
         print("Installing apps...")
-        run(os.path.join(DOTFILES_PATH, "install/install-all-apps.sh"))
+        run(os.path.join(DOTFILES_PATH, "install/install-apps-all.sh"))
 
     if args.with_dotvim:
         print("Installing dotvim...")
