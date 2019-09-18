@@ -156,7 +156,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if args.all:
+    if args.with_all:
         args.with_dotvim = True
         args.with_apps = True
 
