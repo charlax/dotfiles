@@ -160,4 +160,6 @@ if __name__ == "__main__":
         args.with_dotvim = True
         args.with_apps = True
 
+    os.environ["DOTFILES"] = DOTFILES_PATH
+
     main(args)
