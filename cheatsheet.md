@@ -230,6 +230,12 @@ git diff --cached
 git branch --no-merged master
 ```
 
+# Security
+
+## Run port scan
+
+    $ nmap -sC -sV -oA outfile.nmap $HOST
+
 # String manipulation (sed, awk, etc.)
 
 ## Remove line matching pattern
