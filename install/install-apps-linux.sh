@@ -4,8 +4,8 @@ set -e
 echo "Installing xclip: Linux command line clipboard grabber"
 apt-get install -y xclip
 
-echo "Installing zsh"
-apt-get install -y zsh
+# tldr: quick docs about cli
+apt-get install -y zsh tldr
 
 echo "Changing default shell"
 chsh --shell /usr/bin/zsh
