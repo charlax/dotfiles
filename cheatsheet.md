@@ -250,6 +250,12 @@ cat file | sed '/^-\+/d'
 cat filename | cut -d\  -f4
 ```
 
+## Show only third column, with awk
+
+```bash
+cat filename | awk '{ print $3 }'
+```
+
 ## Remove all occurrences of quotes
 
 ```
