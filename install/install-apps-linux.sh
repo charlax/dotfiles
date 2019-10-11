@@ -9,6 +9,11 @@ echo "tldr: quick summary of CLI commands"
 echo "dsniff: includes arpspoof"
 apt-get install -y zsh tldr dsniff
 
+#
+# SHOULD BE LAST, requires user action
+#
+
+echo "\n"
 echo "Changing default shell"
 chsh --shell /usr/bin/zsh
 

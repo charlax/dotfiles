@@ -20,11 +20,18 @@ Installation
 
     $ cd ~/Downloads
     $ curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
-    $ python install.py # If you want only dotfiles
-    $ python install.py --with-dotvim # If you want also my dotvim
+    $ python3 install.py # If you want only dotfiles
+    $ python3 install.py --with-dotvim # If you want also my dotvim
 
 You should read the script before executing it. By default, dotfiles are stored
 in `~/.dotfiles/`.
+
+Post-install
+------------
+
+To finalize and install all the require software, run:
+
+    $ ~/.dotfiles/install/install-apps-all.sh
 
 Prerequisites
 =============
@@ -52,20 +59,6 @@ On a fresh installation, you might also need to setup your Github SSH keys. You 
 
     $ apt-get update
     $ apt-get install -y curl git
-
-Software install on Max Os X
-============================
-
-To install some extra software, run the following:
-
-    $ ./install/osx_install.sh
-    $ ./install/osx_app_install.sh
-    $ install_vim_dotfiles.sh
-
-This will install, in particular:
-
-* `tldr`, which is a community-maintained summary of manual pages. Example
-  usage: `tldr tar`.
 
 Checklist on fresh installation
 -------------------------------
