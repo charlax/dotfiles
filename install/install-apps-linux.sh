@@ -7,7 +7,8 @@ apt-get install -y xclip
 echo "Installing packages"
 echo "tldr: quick summary of CLI commands"
 echo "dsniff: includes arpspoof"
-apt-get install -y zsh tldr dsniff
+echo "ripgrep: recursively searches directories for a regex pattern"
+apt-get install -y zsh tldr dsniff ripgrep
 
 #
 # SHOULD BE LAST, requires user action
