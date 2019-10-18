@@ -2,7 +2,7 @@ set -x
 set -e
 
 brew update
-brew install macvim --override-system-vim
+brew install macvim
 
 echo "Installing:"
 echo "rg: file searching"
