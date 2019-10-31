@@ -17,6 +17,7 @@ DOTVIM_PATH = os.path.join(os.environ["HOME"], ".vim")
 CONFIGURATION_FILES = (
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
+    ("config/cheat", ".config/cheat"),
     "ctags/ctags",
     "ghci/ghci",
     "git/gitignore",
@@ -31,7 +32,6 @@ CONFIGURATION_FILES = (
     ("virtualenvs/postmkvirtualenv", ".virtualenvs/"),
     "zsh/zshrc",
     "zsh/zshenv",
-    "xmodmap/Xmodmap",
 )
 
 
@@ -98,7 +98,11 @@ def symlink_configuration_file(
 def clone_dotfile(repo, path):
     """Clone or update the dotfiles directory."""
     if os.path.exists(path):
-        run(["git", "pull"], cwd=path)
+        try:
+            run(["git", "pull"], cwd=path)
+        except subprocess.CalledProcessError:
+            print("WARNING git pull failed, continuing anyway, repo might be outdated")
+
         return
 
     run(["git", "clone", repo, path])

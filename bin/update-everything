@@ -36,5 +36,8 @@ $VIM_DOTFILES/update-plugins.sh
 echo "Updating npm"
 npm install npm@latest -g
 
+echo "Updating tldr"
+tldr --update
+
 # Rebuild completions
 rm -f ~/.zcompdump; compinit

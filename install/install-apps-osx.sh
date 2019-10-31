@@ -8,8 +8,9 @@ echo "Installing:"
 echo "rg: file searching"
 echo "the_silver_searcher: file searching (ag command)"
 echo "arp-scan: ARP scanner"
+echo "cheat: cheatsheets for commands"
 
-brew install -U zsh git coreutils zsh-completions rmtrash automake wget mercurial python python3 autojump hub unrar highlight miller fzf dos2unix the_silver_searcher findutils goa rg arp-scan
+brew install -U zsh git coreutils zsh-completions rmtrash automake wget mercurial python python3 autojump hub unrar highlight miller fzf dos2unix the_silver_searcher findutils goa rg arp-scan cheat
 
 echo "Installing fswatch: watch for file changes"
 brew install fswatch

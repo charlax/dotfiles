@@ -1,0 +1,2 @@
+# Copy files excluding what git would exclude
+rsync -e ssh -avz --filter=':- .gitignore' --exclude='/.git' SRC DEST
