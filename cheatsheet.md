@@ -49,6 +49,11 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+# DEPRECATED
+
+This page is deprecated, now using `cheat` and the `cheatsheets/` folder in the
+dotfiles repo.
+
 # Unsorted
 
 ## See what port a given process ID has open using lsof
