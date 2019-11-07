@@ -1,0 +1,2 @@
+# Find files, show their name and display first 5 lines
+find / -iname '*user*' -exec head -n 5 {} \; -printf '\n__ in %p\n\n---\n\n'
