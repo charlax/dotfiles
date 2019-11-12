@@ -8,7 +8,8 @@ echo "Installing packages"
 echo "tldr: quick summary of CLI commands"
 echo "dsniff: includes arpspoof"
 echo "ripgrep: recursively searches directories for a regex pattern"
-apt-get install -y zsh tldr dsniff ripgrep
+echo "gdb: GNU debugger"
+apt-get install -y zsh tldr dsniff ripgrep gdb
 
 #
 # SHOULD BE LAST, requires user action
