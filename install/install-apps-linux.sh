@@ -9,7 +9,8 @@ echo "tldr: quick summary of CLI commands"
 echo "dsniff: includes arpspoof"
 echo "ripgrep: recursively searches directories for a regex pattern"
 echo "gdb: GNU debugger"
-apt-get install -y zsh tldr dsniff ripgrep gdb
+echo "gobuster: busting tool"
+apt-get install -y zsh tldr dsniff ripgrep gdb gobuster
 
 #
 # SHOULD BE LAST, requires user action
