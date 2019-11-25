@@ -60,6 +60,10 @@ else
     bindkey "^[[B" down-line-or-beginning-search # Down
 fi
 
+# Keep Emacs ctrl-a ctrl-e behavior
+bindkey "^A" vi-beginning-of-line
+bindkey "^E" vi-end-of-line
+
 
 # VCS information for prompt
 autoload -Uz vcs_info
