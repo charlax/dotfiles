@@ -1,0 +1,5 @@
+# show string at address
+x/s password_buffer
+
+# show value of expression
+p/s password

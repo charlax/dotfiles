@@ -1,4 +1,4 @@
-export EDITOR="nvim"
+export EDITOR="vim"
 export EDITOR_GUI="mvim"
 export SHELL=$(which zsh)
 export TERM=xterm-256color
