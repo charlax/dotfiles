@@ -45,6 +45,7 @@ alias gpu='git pull'
 alias gcl='git clone'
 alias grepush='git recommit && git push -f'
 alias gsp='git stash && git pull && git stash pop'
+alias gpgp'git pull && git push'
 # git-done is a script defined in bin/
 alias gogo='git-done'
 

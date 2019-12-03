@@ -111,6 +111,7 @@ Setup the following apps:
 * Evernote
 * TestExpander
 * Things cloud
+* Printers
 * Set iTerm2's preference file folder (they include setting ZSH as the default
   shell)
 * Set Alfred's preference file folder
@@ -145,11 +146,16 @@ zprof
 
 * [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
 
-## Manual backup before reinstall
+## Manual backup before reinstall checklist
 
 * SSH keys
 * Check each app
 * Hidden files in repo
+* `/Library/`
+* `~/Library/`
+* Make sure branches in repo are pushed
+* Google "what folders to backup"
+* What's most important? Is it backed up?
 
 # Acknowledgments
 
