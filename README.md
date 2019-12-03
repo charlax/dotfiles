@@ -95,32 +95,30 @@ cp gitconfig.local.template ~/.gitconfig.local
 
 ## Apps to install
 
-Only apps that need to be manually installed are listed here:
-
 * Annotate (App Store)
 * Be Focused (App Store)
 * Docker
-* Dropbox
+* [Dropbox](https://www.dropbox.com/install)
 * Evernote (App Store)
-* Firefox
-* Google Chrome Canary
-* Google Chrome
+* Firefox (installed by the script)
+* Google Chrome Canary (installed by the script)
+* [Google Chrome](https://www.google.com/chrome/)
 * Grammarly
 * Keynote (App Store)
 * Kindle (App Store)
-* LibreOffice
+* LibreOffice (installed by the script)
 * MindNode (App Store)
 * Notion
 * Numbers (App Store)
 * Pages (App Store)
 * Pixelmator (App Store)
-* Spectacle
+* Spectacle (installed by the script)
 * [Spotify](https://www.spotify.com/fr/download/mac)
 * Studies (App Store)
 * TextExpander (not anymore on the app store)
 * Things (App Store)
 * Time Out (App Store)
-* VLC
+* VLC (installed by the script)
 * VirtualBox (better to install manually as it requires Max Os X permissions)
 * Visual Studio Code
 * iA Writer (App Store)

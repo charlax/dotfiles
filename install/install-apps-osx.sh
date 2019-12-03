@@ -65,10 +65,6 @@ echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
 
 echo ""
-echo "Running update script to install the rest"
-update-everything.sh
-
-echo ""
 echo "Installing pipx"
 python3 -m pip install --user pipx
 python3 -m userpath append ~/.local/bin
@@ -76,3 +72,7 @@ python3 -m userpath append ~/.local/bin
 echo ""
 echo "Installing glances, an htop alternative"
 pipx install glances
+
+echo ""
+echo "Running update script to install the rest"
+update-everything

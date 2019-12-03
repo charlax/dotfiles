@@ -15,20 +15,22 @@ brew cask doctor || true
 
 echo "Done."
 
-echo "Installing/updating pip"
-pip3 install --user --upgrade pip
+# TODO: use pipx?
 
-echo "Installing/updating pipenv"
-pip3 install --user --upgrade pipenv
+# echo "Installing/updating pip"
+# pip3 install --user --upgrade pip
 
-echo "Installing/updating black (Python code formatter)"
-pip3 install --user black
+# echo "Installing/updating pipenv"
+# pip3 install --user --upgrade pipenv
 
-echo "Installing/updating awscli"
-pip3 install --user --upgrade awscli
+# echo "Installing/updating black (Python code formatter)"
+# pip3 install --user black
 
-echo "Installing/updating ipython"
-pip3 install --user --upgrade ipython
+# echo "Installing/updating awscli"
+# pip3 install --user --upgrade awscli
+
+# echo "Installing/updating ipython"
+# pip3 install --user --upgrade ipython
 
 echo "Updating Vim dotfiles"
 $VIM_DOTFILES/update-plugins.sh
@@ -40,4 +42,4 @@ echo "Updating tldr"
 tldr --update
 
 # Rebuild completions
-rm -f ~/.zcompdump; compinit
+# rm -f ~/.zcompdump; compinit

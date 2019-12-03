@@ -12,6 +12,7 @@ case "$OSTYPE" in
 
     "darwin19")
         $current_dir/install-apps-osx.sh
+        $current_dir/install-ui-apps-osx.sh
         ;;
 
 esac
