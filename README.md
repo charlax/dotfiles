@@ -53,7 +53,7 @@ See fresh install below.
 ## Linux Debian
 
 ```bash
-apt-get update
+apt update && apt upgrade
 apt-get install -y curl git
 ```
 
