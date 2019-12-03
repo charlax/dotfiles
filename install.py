@@ -97,8 +97,8 @@ def symlink_configuration_file(
     logging.info("%s symlinked to %s" % (source, dest))
 
 
-def clone_dotfile(repo, path):
-    """Clone or update the dotfiles directory."""
+def clone(repo, path):
+    """Clone or update a repo."""
     if os.path.exists(path):
         try:
             run(["git", "pull"], cwd=path)
@@ -115,6 +115,7 @@ def clone_dotfile(repo, path):
 
 def symlink(args):
     """Symlink the files."""
+    print(color.green("\nSymlinking configuration files..."))
     for f in CONFIGURATION_FILES:
         if isinstance(f, (tuple, list)):
             symlink_configuration_file(
@@ -136,19 +137,23 @@ def run_settings():
     print(color.green("\nSettings things up..."))
     run(os.path.join(DOTFILES_PATH, "install/set-config-osx.sh"))
 
+def install_apps():
+    print(color.green("\nInstall apps..."))
+    run(os.path.join(DOTFILES_PATH, "install/install-apps-all.sh"))
+
 
 def main(args):
     """Install the dotfiles."""
-    clone_dotfile(REPOSITORY, DOTFILES_PATH)
+    print(color.green("\nCloning dotfiles repo..."))
+    clone(REPOSITORY, DOTFILES_PATH)
     symlink(args)
 
     if args.with_apps:
-        print("Installing apps...")
-        run(os.path.join(DOTFILES_PATH, "install/install-apps-all.sh"))
+        install_apps()
 
     if args.with_dotvim:
         print("Installing dotvim...")
-        clone_dotfile(DOTVIM_REPOSITORY, DOTVIM_PATH)
+        clone(DOTVIM_REPOSITORY, DOTVIM_PATH)
         run(os.path.join(DOTVIM_PATH, "install.py"))
 
     if args.with_settings:

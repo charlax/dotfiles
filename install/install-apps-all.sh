@@ -1,12 +1,18 @@
 #!/bin/bash
 
-set -x
 set -e
+unset -v
 
 current_dir=$(dirname "$0")
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    $current_dir/install-apps-linux.sh
-fi
+case "$OSTYPE" in
+    "linux-gnu")
+        $current_dir/install-apps-linux.sh
+        ;;
 
-# TODO: handle Mac Os X
+    "darwin19")
+        $current_dir/install-apps-osx.sh
+        ;;
+
+esac
+

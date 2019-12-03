@@ -1,60 +1,78 @@
-set -x
 set -e
+unset -v
 
-brew update
-brew install macvim
+brew update > /dev/null
 
+
+echo ""
 echo "Installing:"
-echo "rg: file searching"
-echo "the_silver_searcher: file searching (ag command)"
+echo ""
 echo "arp-scan: ARP scanner"
 echo "cheat: cheatsheets for commands"
+echo "docker completion"
+echo "editorconfig"
+echo "fswatch: watch for file changes"
 echo "gdb: debugger"
+echo "httpie: CLI http client"
+echo "jq: json formatting"
+echo "ncdu: ncurses disk usage"
+echo "rg: file searching"
+echo "the_silver_searcher: file searching (ag command)"
+echo "tldr: simplified and community-driven man pages"
+echo ""
 
-brew install -U zsh git coreutils zsh-completions rmtrash automake wget mercurial python python3 autojump hub unrar highlight miller fzf dos2unix the_silver_searcher findutils goa rg arp-scan cheat gdb
+brew install \
+    arp-scan \
+    autojump \
+    automake  \
+    cheat \
+    coreutils \
+    docker-completion \
+    docker-compose-completion \
+    docker-machine-completion \
+    dos2unix \
+    editorconfig \
+    findutils \
+    fswatch \
+    fzf \
+    git \
+    go \
+    highlight \
+    httpie \
+    hub \
+    jq \
+    miller \
+    mysql \
+    ncdu \
+    node \
+    python \
+    python3 \
+    rg \
+    rmtrash \
+    telnet \
+    the_silver_searcher \
+    tldr \
+    tmux \
+    unrar \
+    wget \
+    yarn \
+    zsh \
+    zsh-completions
 
-echo "Installing fswatch: watch for file changes"
-brew install fswatch
 
-echo "Installing jq: json formatting"
-brew install jq
-
-echo "Installing httpie: CLI http client"
-brew install httpie
-
-echo "Installing node.js"
-brew install node yarn
-
-echo "Installing tmux"
-brew install tmux
-
-echo "Installing mysql"
-brew install mysql
-
-echo "Installing telnet"
-brew install telnet
-
-echo "Installing docker completion"
-brew install docker-completion docker-compose-completion docker-machine-completion
-
-echo "Installing ncdu: ncurses disk usage"
-brew install ncdu
-
-echo "Installing tldr: simplified and community-driven man pages"
-brew install tldr
-
-echo "Installing editorconfig"
-brew install editorconfig
-
+echo ""
 echo "Installing fzf shell bindings"
 /usr/local/opt/fzf/install
 
-echo "Run update script to install the rest"
-update_everything.sh
+echo ""
+echo "Running update script to install the rest"
+update-everything.sh
 
+echo ""
 echo "Installing pipx"
 python3 -m pip install --user pipx
 python3 -m userpath append ~/.local/bin
 
+echo ""
 echo "Installing glances, an htop alternative"
 pipx install glances
