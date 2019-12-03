@@ -146,15 +146,17 @@ zprof
 
 * [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
 
-## Manual backup before reinstall checklist
+## Checklist before reinstall
 
-* SSH keys
-* Check each app
-* Hidden files in repo
-* `/Library/`
-* `~/Library/`
+* Backup SSH keys
+* Check each app for backup
+* Backup hidden files in repo
+* Backup `/Library/`
+* Backup `~/Library/`
 * Make sure branches in repo are pushed
 * Google "what folders to backup"
+* Backup photos (too important)
+* Make sure iCloud sync is finished (check status bar in Finder)
 * What's most important? Is it backed up?
 
 # Acknowledgments
