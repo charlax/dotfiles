@@ -154,7 +154,8 @@ zprof
 * Backup `/Library/`
 * Backup `~/Library/`
 * Make sure branches in repo are pushed
-* Google "what folders to backup"
+* Search for "what folders to backup"
+* Search for "checklist before factory reset"
 * Backup photos (too important)
 * Make sure iCloud sync is finished (check status bar in Finder)
 * What's most important? Is it backed up?
