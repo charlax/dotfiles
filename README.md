@@ -37,28 +37,30 @@ To install all the required software, run:
 
 ## Mac Os X
 
-### XCode
-
-Install XCode, then open it. Run this as well:
-
-    $ xcode-select --install
-
-### Homebrew
-
-On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to install some software. As of writing, to install it you just need:
-
-    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-On a fresh installation, you might also need to setup your Github SSH keys. You can test them with:
-
-    $ ssh -T git@github.com
+See fresh install below.
 
 ## Linux Debian
 
     $ apt-get update
     $ apt-get install -y curl git
 
-# Post-install checklist on a fresh installation
+# Post-install checklist on a fresh installation - Mac Os X
+
+## After factory reset
+
+1. Install any OS upgrade
+2. Install XCode from the App Store. Open it and accept the T&C.
+3. Install [iTerm](https://iterm2.com/downloads.html)
+4. Install [Homebrew](https://brew.sh/) (see above)
+5. Run the steps below
+
+```bash
+# Install dependencies
+brew install git python3
+
+# Install ssh keys and verify you can connect to github:
+ssh -T git@github.com
+```
 
 ## Settings
 
@@ -71,35 +73,35 @@ On a fresh installation, you might also need to setup your Github SSH keys. You 
 
 ## Apps to install
 
-* Alfred
-* Annotate
-* Be Focused
-* Docker
+Only apps that need to be manually installed are listed here:
+
+* Annotate (App Store)
+* Be Focused (App Store)
+* Docker 
 * Dropbox
-* Evernote
+* Evernote (App Store)
 * Firefox
 * Google Chrome Canary
 * Google Chrome
 * Grammarly
-* Keynote
-* Kindle
+* Keynote (App Store)
+* Kindle (App Store)
 * LibreOffice
-* MindNode
+* MindNode (App Store)
 * Notion
-* Numbers
-* Pages
-* Pixelmator
+* Numbers (App Store)
+* Pages (App Store)
+* Pixelmator (App Store)
 * Spectacle
-* Spotify
-* Studies
+* [Spotify](https://www.spotify.com/fr/download/mac)
+* Studies (App Store)
 * TextExpander (not anymore on the app store)
-* Things
-* Time Out
+* Things (App Store)
+* Time Out (App Store)
 * VLC
 * VirtualBox (better to install manually as it requires Max Os X permissions)
 * Visual Studio Code
-* iA Writer
-* iTerm
+* iA Writer (App Store)
 
 Setup the following apps:
 
