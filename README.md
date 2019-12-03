@@ -4,37 +4,36 @@
 
 - [Installation](#installation)
 - [Prerequisites](#prerequisites)
+  - [Mac Os X](#mac-os-x)
+    - [XCode](#xcode)
+    - [Homebrew](#homebrew)
+  - [Linux Debian](#linux-debian)
+- [Post-install checklist on a fresh installation](#post-install-checklist-on-a-fresh-installation)
+  - [Settings](#settings)
+  - [Apps to install](#apps-to-install)
 - [Features](#features)
-- [Plugins](#plugins)
-  - [Adding a ZSH plugin](#adding-a-zsh-plugin)
 - [Misc](#misc)
   - [Profiling ZSH](#profiling-zsh)
-- [List of software](#list-of-software)
   - [Useful software (not installed by default)](#useful-software-not-installed-by-default)
+  - [Manual backup before reinstall](#manual-backup-before-reinstall)
 - [Acknowledgments](#acknowledgments)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Installation
-============
+# Installation
 
     $ cd ~/Downloads
     $ curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
     $ python3 install.py # If you want only dotfiles
     $ python3 install.py --with-dotvim # If you want also my dotvim
 
-You should read the script before executing it. By default, dotfiles are stored
-in `~/.dotfiles/`.
+You should read the script before executing it. By default, dotfiles are stored in `~/.dotfiles/`.
 
-Post-install
-------------
-
-To finalize and install all the require software, run:
+To install all the required software, run:
 
     $ ~/.dotfiles/install/install-apps-all.sh
 
-Prerequisites
-=============
+# Prerequisites
 
 ## Mac Os X
 
@@ -46,8 +45,7 @@ Install XCode, then open it. Run this as well:
 
 ### Homebrew
 
-On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to
-install some software. As of writing, to install it you just need:
+On Mac Os X: you'll need [Homebrew](http://mxcl.github.com/homebrew/) to install some software. As of writing, to install it you just need:
 
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -60,51 +58,76 @@ On a fresh installation, you might also need to setup your Github SSH keys. You 
     $ apt-get update
     $ apt-get install -y curl git
 
-Checklist on fresh installation
--------------------------------
+# Post-install checklist on a fresh installation
+
+## Settings
 
 * Change the computer name
 * Add French input source
 * Set keyboard shortcuts
-  * Switch Alfred & Spotlight's shortcuts
   * Set the change input source shortcuts
 * Change key repeat and delay until repeat
 * Remove sound effects
 
+## Apps to install
+
+* Alfred
+* Annotate
+* Be Focused
+* Docker
+* Dropbox
+* Evernote
+* Firefox
+* Google Chrome Canary
+* Google Chrome
+* Grammarly
+* Keynote
+* Kindle
+* LibreOffice
+* MindNode
+* Notion
+* Numbers
+* Pages
+* Pixelmator
+* Spectacle
+* Spotify
+* Studies
+* TextExpander (not anymore on the app store)
+* Things
+* Time Out
+* VLC
+* VirtualBox (better to install manually as it requires Max Os X permissions)
+* Visual Studio Code
+* iA Writer
+* iTerm
+
 Setup the following apps:
 
+* Password application
+* Backup application
 * Chrome
 * Spectacle (open at login)
 * Dropbox
 * Evernote
-* Fantastical 2
-* Flux
-* Password application
 * TestExpander
 * Things cloud
-* backup
 * Set iTerm2's preference file folder (they include setting ZSH as the default
   shell)
 * Set Alfred's preference file folder
 
-Features
-========
+# Features
 
-* [fzf](https://github.com/junegunn/fzf): fuzzy file finder. To use it on the
-  command line, prefix with `**`, then press tab. For instance: `vim **<TAB>`.
+* [fzf](https://github.com/junegunn/fzf): fuzzy file finder. To use it on the command line, prefix with `**`, then press tab. For instance: `vim **<TAB>`.
 * [autojump](https://github.com/wting/autojump): a cd commands that learns
   about your favorite directories.
 
-Misc
-====
+# Misc
 
-* Installing my [vim dotfiles](https://github.com/charlax/dotvim) is available
-  through the `install_vim_dotfiles.sh` command.
+* Installing my [vim dotfiles](https://github.com/charlax/dotvim) is available through the `install-vim-dotfiles.sh` command.
 * You can copy the dotfiles in the current directory through
   `copy-dotfiles-here.sh`
 
-Profiling ZSH
--------------
+## Profiling ZSH
 
 Use `zprof`:
 
@@ -118,34 +141,16 @@ zmodload zsh/zprof
 zprof
 ```
 
-List of software to install manually
-====================================
-
-Can be useful:
-
-* Disk Inventory X
-* MPEG Streamclip
-* Virtual Box (better to install manually as it requires Max Os X permissions)
-* Wireshark
-
-From App Store, among others:
-
-* XCode
-* Things
-* Kindle
-
-Manually:
-
-* Spotify
-* TextExpander (not anymore on the app store)
-* Dropbox
-
-Useful software (not installed by default)
-------------------------------------------
+## Useful software (not installed by default)
 
 * [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
 
-Acknowledgments
-===============
+## Manual backup before reinstall
+
+* SSH keys
+* Check each app
+* Hidden files in repo
+
+# Acknowledgments
 
 * [holman](https://github.com/holman/dotfiles)
