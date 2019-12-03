@@ -22,16 +22,20 @@
 
 # Installation
 
-    $ cd ~/Downloads
-    $ curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
-    $ python3 install.py # If you want only dotfiles
-    $ python3 install.py --with-dotvim # If you want also my dotvim
+```bash
+cd ~/Downloads
+curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
+python3 install.py # If you want only dotfiles
+python3 install.py --with-dotvim # If you want also my dotvim
+```
 
 You should read the script before executing it. By default, dotfiles are stored in `~/.dotfiles/`.
 
 To install all the required software, run:
 
-    $ ~/.dotfiles/install/install-apps-all.sh
+```bash
+~/.dotfiles/install/install-apps-all.sh
+```
 
 # Prerequisites
 
@@ -41,8 +45,10 @@ See fresh install below.
 
 ## Linux Debian
 
-    $ apt-get update
-    $ apt-get install -y curl git
+```bash
+apt-get update
+apt-get install -y curl git
+```
 
 # Post-install checklist on a fresh installation - Mac Os X
 
