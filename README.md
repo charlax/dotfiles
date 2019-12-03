@@ -25,8 +25,15 @@
 ```bash
 cd ~/Downloads
 curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
-python3 install.py # If you want only dotfiles
-python3 install.py --with-dotvim # If you want also my dotvim
+
+# If you want only dotfiles
+python3 install.py
+
+# On a fresh install
+python3 install.py --with-all
+
+# If you want also my dotvim
+python3 install.py --with-dotvim
 ```
 
 You should read the script before executing it. By default, dotfiles are stored in `~/.dotfiles/`.
@@ -66,6 +73,8 @@ brew install git python3
 
 # Install ssh keys and verify you can connect to github:
 ssh -T git@github.com
+
+# Then, install dotfiles and run install.py
 ```
 
 ## Settings
@@ -77,13 +86,20 @@ ssh -T git@github.com
 * Change key repeat and delay until repeat
 * Remove sound effects
 
+Other steps:
+
+```bash
+# Install local git settings
+cp gitconfig.local.template ~/.gitconfig.local
+```
+
 ## Apps to install
 
 Only apps that need to be manually installed are listed here:
 
 * Annotate (App Store)
 * Be Focused (App Store)
-* Docker 
+* Docker
 * Dropbox
 * Evernote (App Store)
 * Firefox

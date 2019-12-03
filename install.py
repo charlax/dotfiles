@@ -8,6 +8,8 @@ import os
 import subprocess
 from typing import List
 
+import color
+
 REPOSITORY = "https://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 
@@ -130,6 +132,11 @@ def symlink(args):
             )
 
 
+def run_settings():
+    print(color.green("\nSettings things up..."))
+    run(os.path.join(DOTFILES_PATH, "install/set-config-osx.sh"))
+
+
 def main(args):
     """Install the dotfiles."""
     clone_dotfile(REPOSITORY, DOTFILES_PATH)
@@ -143,6 +150,9 @@ def main(args):
         print("Installing dotvim...")
         clone_dotfile(DOTVIM_REPOSITORY, DOTVIM_PATH)
         run(os.path.join(DOTVIM_PATH, "install.py"))
+
+    if args.with_settings:
+        run_settings()
 
     print("Install complete.")
 
@@ -158,6 +168,7 @@ if __name__ == "__main__":
         help="Also install charlax's dotvim repository",
     )
     parser.add_argument("--with-apps", action="store_true", help="Also install apps")
+    parser.add_argument("--with-settings", action="store_true", help="Also run settings")
 
     parser.add_argument(
         "--symlink-force", "-f", action="store_true", help="Force symlink the files"
@@ -170,6 +181,7 @@ if __name__ == "__main__":
     if args.with_all:
         args.with_dotvim = True
         args.with_apps = True
+        args.with_settings = True
 
     os.environ["DOTFILES"] = DOTFILES_PATH
 
