@@ -77,14 +77,12 @@ ssh -T git@github.com
 # Then, install dotfiles and run install.py
 ```
 
-## Settings
+## Mac Os X Settings
 
 * Change the computer name
 * Add French input source
 * Set keyboard shortcuts
   * Set the change input source shortcuts
-* Change key repeat and delay until repeat
-* Remove sound effects
 
 Other steps:
 
@@ -97,7 +95,7 @@ cp gitconfig.local.template ~/.gitconfig.local
 
 * Annotate (App Store)
 * Be Focused (App Store)
-* Docker
+* Docker (installed via brew cask)
 * [Dropbox](https://www.dropbox.com/install)
 * Evernote (App Store)
 * Firefox (installed by the script)
@@ -108,19 +106,19 @@ cp gitconfig.local.template ~/.gitconfig.local
 * Kindle (App Store)
 * LibreOffice (installed by the script)
 * MindNode (App Store)
-* Notion
+* [Notion](https://www.notion.so/desktop)
 * Numbers (App Store)
 * Pages (App Store)
 * Pixelmator (App Store)
 * Spectacle (installed by the script)
 * [Spotify](https://www.spotify.com/fr/download/mac)
 * Studies (App Store)
-* TextExpander (not anymore on the app store)
+* [TextExpander](https://textexpander.com/download/) (not anymore on the app store)
 * Things (App Store)
 * Time Out (App Store)
 * VLC (installed by the script)
-* VirtualBox (better to install manually as it requires Max Os X permissions)
-* Visual Studio Code
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (better to install manually as it requires Max Os X permissions)
+* Visual Studio Code (installed by the script)
 * iA Writer (App Store)
 
 Setup the following apps:
@@ -128,15 +126,14 @@ Setup the following apps:
 * Password application
 * Backup application
 * Chrome
-* Spectacle (open at login)
+* Spectacle (open then run OSX config script to link configuration files)
 * Dropbox
 * Evernote
-* TestExpander
+* TextExpander
 * Things cloud
 * Printers
-* Set iTerm2's preference file folder (they include setting ZSH as the default
-  shell)
-* Set Alfred's preference file folder
+* Notion
+* Set iTerm2's preference file folder (requires full sync)
 
 # Features
 

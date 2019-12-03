@@ -52,7 +52,7 @@
     "shortcut_name" : "MoveToNextThird"
   },
   {
-    "shortcut_key_binding" : "alt+cmd+left",
+    "shortcut_key_binding" : "ctrl+alt+left",
     "shortcut_name" : "MoveToLeftHalf"
   },
   {
@@ -60,7 +60,7 @@
     "shortcut_name" : "MoveToCenter"
   },
   {
-    "shortcut_key_binding" : "alt+cmd+right",
+    "shortcut_key_binding" : "ctrl+alt+right",
     "shortcut_name" : "MoveToRightHalf"
   },
   {

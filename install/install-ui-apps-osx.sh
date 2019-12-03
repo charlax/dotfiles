@@ -21,6 +21,7 @@ brew cask install \
     postman \
     sequel-pro \
     spectacle \
+    transmission \
     typora \
     visual-studio-code \
     vlc \
