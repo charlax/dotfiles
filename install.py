@@ -137,6 +137,7 @@ def run_settings():
     print(color.green("\nSettings things up..."))
     run(os.path.join(DOTFILES_PATH, "install/set-config-osx.sh"))
 
+
 def install_apps():
     print(color.green("\nInstall apps..."))
     run(os.path.join(DOTFILES_PATH, "install/install-apps-all.sh"))
@@ -173,7 +174,9 @@ if __name__ == "__main__":
         help="Also install charlax's dotvim repository",
     )
     parser.add_argument("--with-apps", action="store_true", help="Also install apps")
-    parser.add_argument("--with-settings", action="store_true", help="Also run settings")
+    parser.add_argument(
+        "--with-settings", action="store_true", help="Also run settings"
+    )
 
     parser.add_argument(
         "--symlink-force", "-f", action="store_true", help="Force symlink the files"

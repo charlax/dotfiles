@@ -23,20 +23,18 @@
 # Installation
 
 ```bash
-cd ~/Downloads
-curl -O https://raw.githubusercontent.com/charlax/dotfiles/master/install.py
+DOTFILES="$HOME/.dotfiles"
+git clone https://github.com/charlax/dotfiles.git $DOTFILES
 
 # If you want only dotfiles
-python3 install.py
+python3 $DOTFILES/install.py
 
 # On a fresh install
-python3 install.py --with-all
+python3 $DOTFILES/install.py --with-all
 
 # If you want also my dotvim
-python3 install.py --with-dotvim
+python3 $DOTFILES/install.py --with-dotvim
 ```
-
-You should read the script before executing it. By default, dotfiles are stored in `~/.dotfiles/`.
 
 To install all the required software, run:
 

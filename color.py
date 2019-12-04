@@ -112,7 +112,7 @@ def esc(*codes: Union[int, str]) -> str:
     """Produces an ANSI escape code from a list of integers
     :rtype: text_type
     """
-    return t_('\x1b[{}m').format(t_(';').join(t_(str(c)) for c in codes))
+    return t_("\x1b[{}m").format(t_(";").join(t_(str(c)) for c in codes))
 
 
 def t_(b: Union[bytes, Any]) -> str:
@@ -132,6 +132,7 @@ def b_(t: Union[str, Any]) -> bytes:
 ###############################################################################
 # 8 bit Color
 ###############################################################################
+
 
 def make_color(start, end: str) -> Callable[[str], str]:
     def color_func(s: str) -> str:
@@ -170,7 +171,7 @@ cyan_bg = make_color(esc(46), BG_END)
 white_bg = make_color(esc(47), BG_END)
 
 HL_END = esc(22, 27, 39)
-#HL_END = esc(22, 27, 0)
+# HL_END = esc(22, 27, 0)
 
 black_hl = make_color(esc(1, 30, 7), HL_END)
 red_hl = make_color(esc(1, 31, 7), HL_END)
@@ -197,37 +198,39 @@ blink = make_color(esc(5), esc(25))
 import re  # NOQA
 
 # Default color levels for the color cube
-CUBELEVELS: List[int] = [0x00, 0x5f, 0x87, 0xaf, 0xd7, 0xff]
+CUBELEVELS: List[int] = [0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF]
 
 # Generate a list of midpoints of the above list
-SNAPS: List[int] = [(x + y) // 2 for x, y in list(zip(CUBELEVELS, [0] + CUBELEVELS))[1:]]
+SNAPS: List[int] = [
+    (x + y) // 2 for x, y in list(zip(CUBELEVELS, [0] + CUBELEVELS))[1:]
+]
 
 # Gray-scale range.
 _GRAYSCALE = [
     (0x08, 232),  # 0x08 means 080808 in HEX color
     (0x12, 233),
-    (0x1c, 234),
+    (0x1C, 234),
     (0x26, 235),
     (0x30, 236),
-    (0x3a, 237),
+    (0x3A, 237),
     (0x44, 238),
-    (0x4e, 239),
+    (0x4E, 239),
     (0x58, 240),
     (0x62, 241),
-    (0x6c, 242),
+    (0x6C, 242),
     (0x76, 243),
     (0x80, 244),
-    (0x8a, 245),
+    (0x8A, 245),
     (0x94, 246),
-    (0x9e, 247),
-    (0xa8, 248),
-    (0xb2, 249),
-    (0xbc, 250),
-    (0xc6, 251),
-    (0xd0, 252),
-    (0xda, 253),
-    (0xe4, 254),
-    (0xee, 255),
+    (0x9E, 247),
+    (0xA8, 248),
+    (0xB2, 249),
+    (0xBC, 250),
+    (0xC6, 251),
+    (0xD0, 252),
+    (0xDA, 253),
+    (0xE4, 254),
+    (0xEE, 255),
 ]
 GRAYSCALE: Dict[int, int] = dict(_GRAYSCALE)
 
@@ -261,9 +264,9 @@ def memorize(func) -> Callable:
             func._cache[args] = func(*args, **kwargs)
         return func._cache[args]
 
-    for i in ('__module__', '__name__', '__doc__'):
+    for i in ("__module__", "__name__", "__doc__"):
         setattr(wrapper, i, getattr(func, i))
-    wrapper.__dict__.update(getattr(func, '__dict__', {}))  # type: ignore
+    wrapper.__dict__.update(getattr(func, "__dict__", {}))  # type: ignore
     wrapper._origin = func  # type: ignore
     return wrapper
 
@@ -286,15 +289,19 @@ def rgb_to_xterm(r: int, g: int, b: int) -> int:
 def hex_to_rgb(hx: str) -> Tuple[int, int, int]:
     hxlen = len(hx)
     if hxlen != 3 and hxlen != 6:
-        raise ValueError('hx color must be of length 3 or 6')
+        raise ValueError("hx color must be of length 3 or 6")
     if hxlen == 3:
-        hx = t_('').join(i * 2 for i in hx)
-    parts = [int(h, 16) for h in re.split(t_(r'(..)(..)(..)'), hx)[1:4]]
+        hx = t_("").join(i * 2 for i in hx)
+    parts = [int(h, 16) for h in re.split(t_(r"(..)(..)(..)"), hx)[1:4]]
     return tuple(parts)  # type: ignore
 
 
-def make_256(start: str, end: str) -> Callable[[Union[tuple, str], str, Optional[Tuple[int, int, int]]], str]:
-    def rgb_func(rgb: Union[tuple, str], s: str, x: Optional[Tuple[int, int, int]] = None) -> str:
+def make_256(
+    start: str, end: str
+) -> Callable[[Union[tuple, str], str, Optional[Tuple[int, int, int]]], str]:
+    def rgb_func(
+        rgb: Union[tuple, str], s: str, x: Optional[Tuple[int, int, int]] = None
+    ) -> str:
         """
         :param rgb: (R, G, B) tuple, or RRGGBB hex string
         """
@@ -311,21 +318,28 @@ def make_256(start: str, end: str) -> Callable[[Union[tuple, str], str, Optional
         else:
             xcolor = rgb_to_xterm(*rgb)
 
-        tpl = start + t_('{s}') + end
-        f = tpl.format(
-            x=xcolor,
-            s=t)
+        tpl = start + t_("{s}") + end
+        f = tpl.format(x=xcolor, s=t)
 
         return f
 
     return rgb_func
 
 
-fg256 = make_256(esc(38, 5, t_('{x}')), esc(39))
-bg256 = make_256(esc(48, 5, t_('{x}')), esc(49))
-hl256 = make_256(esc(1, 38, 5, t_('{x}'), 7), esc(27, 39, 22))
+fg256 = make_256(esc(38, 5, t_("{x}")), esc(39))
+bg256 = make_256(esc(48, 5, t_("{x}")), esc(49))
+hl256 = make_256(esc(1, 38, 5, t_("{x}"), 7), esc(27, 39, 22))
 
 _grayscale_xterm_codes = [i for _, i in _GRAYSCALE]
-grayscale = {(i - _grayscale_xterm_codes[0]): make_color(esc(38, 5, i), esc(39)) for i in _grayscale_xterm_codes}
-grayscale_bg = {(i - _grayscale_xterm_codes[0]): make_color(esc(48, 5, i), esc(49)) for i in _grayscale_xterm_codes}
-grayscale_hl = {(i - _grayscale_xterm_codes[0]): make_color(esc(1, 38, 5, i, 7), esc(27, 39, 22)) for i in _grayscale_xterm_codes}
+grayscale = {
+    (i - _grayscale_xterm_codes[0]): make_color(esc(38, 5, i), esc(39))
+    for i in _grayscale_xterm_codes
+}
+grayscale_bg = {
+    (i - _grayscale_xterm_codes[0]): make_color(esc(48, 5, i), esc(49))
+    for i in _grayscale_xterm_codes
+}
+grayscale_hl = {
+    (i - _grayscale_xterm_codes[0]): make_color(esc(1, 38, 5, i, 7), esc(27, 39, 22))
+    for i in _grayscale_xterm_codes
+}
