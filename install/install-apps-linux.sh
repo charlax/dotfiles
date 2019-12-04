@@ -1,19 +1,21 @@
-set -x
 set -e
+unset -v
 
-echo "Installing xclip: Linux command line clipboard grabber"
-apt-get install -y xclip
-
+echo ""
 echo "Installing packages"
-echo "tldr: quick summary of CLI commands"
+echo ""
 echo "dsniff: includes arpspoof"
-echo "ripgrep: recursively searches directories for a regex pattern"
 echo "gdb: GNU debugger"
 echo "gobuster: busting tool"
 echo "httpie: http client"
 echo "jq: json query"
+echo "ripgrep: recursively searches directories for a regex pattern"
+echo "tldr: quick summary of CLI commands"
 echo "tree: ls in a tree"
-apt-get install -y zsh tldr dsniff ripgrep gdb gobuster httpie jq tree
+echo "xclip: Linux command line clipboard grabber"
+echo ""
+
+apt-get install -y zsh tldr dsniff ripgrep gdb gobuster httpie jq tree ssh xclip
 
 #
 # SHOULD BE LAST, requires user action
