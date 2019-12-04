@@ -20,6 +20,7 @@ brew cask install \
     libreoffice \
     postman \
     sequel-pro \
+    slack \
     spectacle \
     transmission \
     typora \
