@@ -2,13 +2,11 @@
 
 . "$(dirname "$0")/../helpers/setup.sh"
 
-printf ""
-printf "${GREEN}Updating $DOTFILES ${NC}"
+printf "\n${GREEN}Updating $DOTFILES ${NC}\n"
 
 git -C $DOTFILES pull
 python3 $DOTFILES/install.py
 
-printf ""
-printf "${GREEN}Update Vim dotfiles $VIM_DOTFILES ${NC}"
+printf "\n${GREEN}Update Vim dotfiles $VIM_DOTFILES ${NC}\n"
 
 git -C $VIM_DOTFILES pull
