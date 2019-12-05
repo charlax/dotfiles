@@ -24,7 +24,7 @@ PARENT=""
 # Tried docx (weird margins), rtf (imported in raw format), opendocument (same), odt (pretty good)
 FORMAT="html"
 # -s: standalone HTML file
-PANDOC_OPTIONS=(-s -H ${DOTFILES}pandoc/pandoc.css)
+PANDOC_OPTIONS=(-s -H $DOTFILES/pandoc/pandoc.css)
 
 while true; do
     # ${parameter:-word}: if parameter is unset, return word
