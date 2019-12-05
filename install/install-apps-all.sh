@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. "$(dirname "$0")/../helpers/setup.sh"
+
 set -e
 unset -v
 
@@ -17,3 +19,19 @@ case "$OSTYPE" in
 
 esac
 
+# Needs to happen after OS-specific install
+
+echo ""
+echo "Installing pipx"
+python3 -m pip install --user pipx
+python3 -m userpath append ~/.local/bin
+
+printf "\n${GREEN}Installing Python software with pipx${NC}\n"
+printf "\nglances: an htop alternative"
+printf "\ncheat: cheatsheets"
+pipx install glances
+pipx install cheat
+
+echo ""
+echo "Running update script to install the rest"
+update-everything

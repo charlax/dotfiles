@@ -15,7 +15,20 @@ echo "tree: ls in a tree"
 echo "xclip: Linux command line clipboard grabber"
 echo ""
 
-apt-get install -y zsh tldr dsniff ripgrep gdb gobuster httpie jq tree ssh xclip
+apt-get install -y \
+    dsniff \
+    gdb \
+    gobuster \
+    httpie \
+    jq \
+    python3-venv \
+    ripgrep \
+    ssh \
+    strace \
+    tldr \
+    tree \
+    xclip \
+    zsh
 
 #
 # SHOULD BE LAST, requires user action
