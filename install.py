@@ -21,6 +21,7 @@ CONFIGURATION_FILES = (
     ("config/fish/config.fish", ".config/fish/config.fish"),
     ("config/cheat", ".config/cheat"),
     "ctags/ctags",
+    "gdb/gdbinit",
     "ghci/ghci",
     "git/gitignore",
     "git/gitconfig",
@@ -99,18 +100,15 @@ def symlink_configuration_file(
 
 def clone(repo, path):
     """Clone or update a repo."""
-    if os.path.exists(path):
-        try:
-            run(["git", "pull"], cwd=path)
-        except subprocess.CalledProcessError:
-            print("WARNING git pull failed, continuing anyway, repo might be outdated")
-
-        return
-
-    run(["git", "clone", repo, path])
-
     if not os.path.exists(path):
-        raise Exception("Dotfiles path '%s' does not exist" % path)
+        run(["git", "clone", repo, path])
+
+    try:
+        run(["git", "pull"], cwd=path)
+        run(["git", "submodule", "init"], cwd=path)
+        run(["git", "submodule", "update"], cwd=path)
+    except subprocess.CalledProcessError:
+        print("WARNING git pull failed, continuing anyway, repo might be outdated")
 
 
 def symlink(args):
