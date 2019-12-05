@@ -1,0 +1,5 @@
+# resize image to width 25, keeping aspect ratio
+convert -geometry 25x src/image1.png out/image1.png
+
+# resize image to height 25, keeping aspect ratio
+convert -geometry x25 src/image1.png out/image1.png

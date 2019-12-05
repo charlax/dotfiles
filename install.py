@@ -134,11 +134,8 @@ def symlink(args):
 
 
 def run_settings():
-    system = platform.system()
     print(color.green("\nSettings things up..."))
-
-    if system == "Darwin":
-        run(os.path.join(DOTFILES_PATH, "install/set-config-osx.sh"))
+    run(os.path.join(DOTFILES_PATH, "install/set-config-all.sh"))
 
 
 def install_apps():

@@ -56,34 +56,10 @@ dotfiles repo.
 
 # Unsorted
 
-## See what port a given process ID has open using lsof
-
-```
-lsof -p PID
-```
-
-## Check which process is using a given port
-
-```
-lsof -i :PORT_NUMBER
-```
-
-## Count number of lines of code (requires cloc)
-
-```
-cloc .
-```
-
 ## Get certificate information
 
 ```
 openssl x509 -in file.crt -text
-```
-
-## Get high-level overview of your machine's performance
-
-```
-glances  # requires pip install glances
 ```
 
 ## List all computers in the network
@@ -92,42 +68,11 @@ glances  # requires pip install glances
 arp -a
 ```
 
-## Continue partially downloaded file
-
-```
-wget -c http://...
-```
-
-## Continue partially downloaded file, reconnecting when idle and retrying indefinitely
-
-```
-wget -c --tries=0 --read-timeout=20 http://
-```
-
-## Get python docs on function (defined in aliases.sh)
-
-```
-pydoc sorted
-```
-
 ## Remove files from list
 
 ```
 xargs rm < ../../../../.unused_cassette.log
 ````
-
-## Add a TOC to all markdown files (requires doctoc)
-
-```
-doctoc .
-```
-
-## Uninstall all python packages including "toaster" in their name
-
-```
-pip freeze | grep toaster | xargs pip uninstall -y
-
-```
 
 ## Echo to a file that needs sudo access
 
@@ -179,68 +124,6 @@ gifify screencast.mkv -o screencast.gif --resize 800:-1
 wget http://cloud.com/1/{1..20}.py
 ```
 
-# Images
-
-## Resize while keeping aspect ratio
-
-```
-# resize image to width 25, keeping aspect ratio
-convert -geometry 25x src/image1.png out/image1.png
-
-# resize image to height 25, keeping aspect ratio
-convert -geometry x25 src/image1.png out/image1.png
-```
-
-# Git
-
-## Get the git authors' email for the last 60 days
-
-```
-git log --since=60.days --format='%ae' | sort -u
-```
-
-## List committers sorted by number of commits
-
-```
-git shortlog -ns
-```
-
-## Checkout commit by date
-
-```
-git checkout `git rev-list -n 1 --before="2016-03-29 12:00" master`
-```
-
-## Show which local branch is tracking which remote branch (git)
-
-```
-git remote show origin
-```
-
-## Show commits by author
-
-```
-git log --author="..."
-```
-
-## Show only staged changes
-
-```
-git diff --cached
-```
-
-## Show unmerged branches
-
-```
-git branch --no-merged master
-```
-
-# Security
-
-## Run port scan
-
-    $ nmap -sC -sV -oA outfile.nmap $HOST
-
 # String manipulation (sed, awk, etc.)
 
 ## Remove line matching pattern
@@ -283,23 +166,6 @@ diff <(head -n 1 file1) <(head -n 1 file2)
 
 ```
 cat $FILENAME | sed -n '1!p'
-```
-
-# SSH
-
-## Setup an SSH tunnel that tunnel localhost:4479 to remote:4479
-
-```
-# -f: background
-# -N: do not issue a command
-# -L [bind_address:]port:host:hostport
-ssh -f -N -L 4479:localhost:4479 remote
-```
-
-## Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop
-
-```
-ssh -N -L localhost:$PORT:$remote:$PORT BRIDGE_MACHINE_USER@BRIDGE_MACHINE
 ```
 
 # Stats

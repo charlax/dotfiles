@@ -1,0 +1,2 @@
+# attach with iterm integration
+tmux -CC attach
