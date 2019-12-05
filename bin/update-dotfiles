@@ -6,7 +6,7 @@ echo ""
 echo "${GREEN}Updating $DOTFILES ${NC}"
 
 git -C $DOTFILES pull
-python $DOTFILES/install.py
+python3 $DOTFILES/install.py
 
 echo ""
 echo "${GREEN}Update Vim dotfiles $VIM_DOTFILES ${NC}"
