@@ -1,5 +1,0 @@
-ipdb
-ipython
-
-# Required by vim flake8 plugin
-flake8

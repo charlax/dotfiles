@@ -1,5 +1,0 @@
-#!/bin/bash
-# This hook is run after a new virtualenv is activated.
-
-easy_install readline
-pip install -r $DOTFILES/virtualenvs/requirements-dev.txt

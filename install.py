@@ -32,7 +32,6 @@ CONFIGURATION_FILES = (
     ("ssh/config", ".ssh/config"),
     "system/colors/dir_colors",
     "tmux/tmux.conf",
-    ("virtualenvs/postmkvirtualenv", ".virtualenvs/"),
     "zsh/zshrc",
     "zsh/zshenv",
 )
