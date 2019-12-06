@@ -1,5 +1,11 @@
 # show string at address
-x/s password_buffer
+(gdb) x/s password_buffer
 
 # show value of expression
-p/s password
+(gdb) p/s password
+
+# set EIP
+(gdb) set $eip = 0xVALUE
+
+# display registers
+(gdb) layout reg
