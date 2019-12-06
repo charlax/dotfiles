@@ -4,6 +4,7 @@ unset -v
 echo ""
 echo "Installing packages"
 echo ""
+echo "autojump: cd command that learns"
 echo "dsniff: includes arpspoof"
 echo "gdb: GNU debugger"
 echo "gobuster: busting tool"
@@ -16,6 +17,7 @@ echo "xclip: Linux command line clipboard grabber"
 echo ""
 
 apt-get install -y \
+    autojump \
     dsniff \
     gdb \
     gobuster \
