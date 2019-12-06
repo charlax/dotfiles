@@ -33,4 +33,4 @@ export PATH="$PYENV_ROOT/bin:/usr/local/opt/gettext/bin:/usr/local/bin:/usr/loca
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 export DOTFILES="$HOME/.dotfiles"
 
-export CHEAT_CONFIG_PATH="$DOTFILES/config/cheat"
+export CHEAT_CONFIG_PATH="$DOTFILES/config/cheat/conf.yml"
