@@ -2,7 +2,9 @@
 
 # Inspired by:
 # https://github.com/mathiasbynens/dotfiles/blob/master/.macos
-# https://github.com/gibfahn/dot
+# https://github.com/gibfahn/dot/blob/master/setup/mac.sh
+# https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
+# https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh
 
 . "$(dirname "$0")/../helpers/setup.sh" # Load helper script from dotfiles/helpers.
 
@@ -24,6 +26,12 @@ sudo nvram SystemAudioVolume=" "
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Use Dark mode.
+defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
+
+# Sound > Play user interface sound effects = false
+defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
 
 # ==============================================================================
 # Finder
