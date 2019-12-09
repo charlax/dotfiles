@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Inspired by:
-# ~/.macos — https://mths.be/macos
+# https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 # https://github.com/gibfahn/dot
 
 . "$(dirname "$0")/../helpers/setup.sh" # Load helper script from dotfiles/helpers.
@@ -13,6 +13,17 @@ osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
 sudo -v
+
+# ==============================================================================
+# System
+# ==============================================================================
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock
+# in the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # ==============================================================================
 # Finder
@@ -30,12 +41,12 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
-# Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
-# Reveal IP address, hostname, OS version, etc. when clicking the clock
-# in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.Finder FXPreferredViewStyle -string "Nlsv"
 
 # ==============================================================================
 # Mac App Store
