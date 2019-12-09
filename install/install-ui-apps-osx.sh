@@ -4,6 +4,7 @@
 echo ""
 echo "Installing Apps"
 echo ""
+echo "Discord: chat"
 echo "Spectacle: window manager"
 echo ""
 
@@ -14,6 +15,7 @@ brew cask install \
     adoptopenjdk8 \
     calibre \
     cyberduck \
+    discord \
     docker \
     firefox \
     homebrew/cask-versions/google-chrome-canary \

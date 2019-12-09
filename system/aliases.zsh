@@ -104,14 +104,6 @@ alias checkout='cd ~/Downloads && m '
 alias ia="iawriter"
 alias iar="iawriter README*"
 
-function get_local_ip() {
-    ipconfig getifaddr en0
-}
-
-function whats_my_ip() {
-    get_local_ip
-}
-
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     function pbcopy() {
         xclip -selection clipboard
