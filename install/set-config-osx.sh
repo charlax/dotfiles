@@ -41,7 +41,7 @@ defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Finder: show hidden files by default
-defaults write com.apple.finder AppleShowAllFiles -bool true
+# defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Finder: show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
