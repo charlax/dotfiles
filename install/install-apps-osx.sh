@@ -25,6 +25,7 @@ brew install \
     arp-scan \
     autojump \
     automake  \
+    bat \  # A cat(1) clone with wings.
     cheat \
     coreutils \
     docker-completion \
@@ -32,11 +33,14 @@ brew install \
     docker-machine-completion \
     dos2unix \
     editorconfig \
+    exa \  # A modern replacement for ls.
+    fd \  # A simple, fast and user-friendly alternative to 'find'
     findutils \
     fswatch \
     fzf \
     git \
     go \
+    hexyl \  # A command-line hex viewer
     highlight \
     httpie \
     hub \
@@ -54,6 +58,7 @@ brew install \
     tldr \
     tmux \
     unrar \
+    watchexec \  # Executes commands in response to file modifications
     wget \
     yarn \
     zsh \
