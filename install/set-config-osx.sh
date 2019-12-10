@@ -56,6 +56,9 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.Finder FXPreferredViewStyle -string "Nlsv"
 
+# Do not spawn tabs
+defaults write com.apple.Finder FinderSpawnTab -bool false
+
 # ==============================================================================
 # Mac App Store
 # ==============================================================================
@@ -96,9 +99,9 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Select the previou
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Set a blazingly fast keyboard repeat rate (needs relogin).
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 8
+# Set a fast keyboard repeat rate (needs relogin).
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
