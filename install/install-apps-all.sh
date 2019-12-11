@@ -27,10 +27,9 @@ python3 -m pip install --user pipx
 python3 -m userpath append ~/.local/bin
 
 printf "\n${GREEN}Installing Python software with pipx${NC}\n"
-printf "\nglances: an htop alternative"
-printf "\ncheat: cheatsheets"
-pipx install glances
-pipx install cheat
+
+pipx install glances  # an htop alternative
+pipx install cheat    # cheatsheets
 
 echo ""
 echo "Running update script to install the rest"

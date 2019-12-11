@@ -1,0 +1,9 @@
+# wfuzz: the web fuzzer
+
+# -c color
+# -d data
+wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/bad_chars.txt -d "login=login&username=admin&password=FUZZ" http://$ip
+
+# other files:
+# /usr/share/wordlists/wfuzz/Injections/All_attack.txt
+# /usr/share/wordlists/wfuzz/Injections/Traversal.txt
