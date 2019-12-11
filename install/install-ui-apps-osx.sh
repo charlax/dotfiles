@@ -20,6 +20,7 @@ brew cask install \
     firefox \
     homebrew/cask-versions/google-chrome-canary \
     libreoffice \
+    mactex \
     postman \
     sequel-pro \
     slack \
