@@ -42,7 +42,7 @@ function precmd() {
 
     export PROMPT="$prompt_newline%{$fg[blue]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%} \
 ${vcs_info_msg_0_}%{$fg[yellow]%}%. %{$reset_color%}$(virtualenv_info)\
-%D{%L:%M}$prompt_newline%% "
+$prompt_newline%% "
 }
 
 function settitle() {
