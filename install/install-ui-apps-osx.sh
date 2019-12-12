@@ -4,9 +4,6 @@
 echo ""
 echo "Installing Apps"
 echo ""
-echo "Discord: chat"
-echo "Spectacle: window manager"
-echo ""
 
 set -v
 
@@ -15,7 +12,7 @@ brew cask install \
     adoptopenjdk8 \
     calibre \
     cyberduck \
-    discord \
+    discord            \ # chat app
     docker \
     firefox \
     homebrew/cask-versions/google-chrome-canary \
@@ -24,9 +21,10 @@ brew cask install \
     postman \
     sequel-pro \
     slack \
-    spectacle \
+    spectacle          \ # window manager
     transmission \
     typora \
     visual-studio-code \
     vlc \
-    whatsapp
+    whatsapp \
+    wireshark            # network protocol optimizer
