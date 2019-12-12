@@ -4,32 +4,22 @@ unset -v
 echo ""
 echo "Installing packages"
 echo ""
-echo "autojump: cd command that learns"
-echo "dsniff: includes arpspoof"
-echo "gdb: GNU debugger"
-echo "gobuster: busting tool"
-echo "httpie: http client"
-echo "jq: json query"
-echo "ripgrep: recursively searches directories for a regex pattern"
-echo "tldr: quick summary of CLI commands"
-echo "tree: ls in a tree"
-echo "xclip: Linux command line clipboard grabber"
-echo ""
 
 apt-get install -y \
-    autojump \
-    dsniff \
-    gdb \
-    gobuster \
-    httpie \
-    jq \
-    python3-venv \
-    ripgrep \
-    ssh \
-    strace \
-    tldr \
-    tree \
-    xclip \
+    autojump       \ # cd command that learns
+    dsniff         \ # includes arpspoof
+    fzf            \ # fuzzy finder
+    gdb            \ # GNU debugger
+    gobuster       \ # busting tool
+    httpie         \ # http client
+    jq             \ # json query
+    python3-venv   \
+    ripgrep        \ # recursively searches dir for a regex pattern
+    ssh            \
+    strace         \
+    tldr           \ # quick summary of CLI commands
+    tree           \ # ls in a tree
+    xclip          \ # Linux command line clipboard grabber
     zsh
 
 #
