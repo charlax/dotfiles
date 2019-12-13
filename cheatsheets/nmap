@@ -1,0 +1,35 @@
+# Ultra fast scan
+nmap -F $ip
+
+# Pretty complete scan
+nmap -sV -sC -oA nmap $ip
+
+# Aggressive scan
+nmap -A $ip
+
+# UDP
+nmap -sU $ip
+
+# Heavy scan
+nmap -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery and safe)" $ip
+
+# Find vulns for ports
+nmap -sV --script=vulners,vuln,default --script-args mincvss=7.0 -p80,3306 -oN CVEs.nmap $ip
+nmap -sS -sV --script=default,vuln,vulners -p- -T5 $ip
+
+# Multiple scans
+nmap -sS 192.168.0.1-255 -oA scanoutput
+
+# Scan types
+
+# -sS  # TCP SYN scan
+# -sV  # version detection
+# -sU  # UDP scan
+# -sC  # run default scripts
+
+#  Scripts
+
+# --script-help
+# --script=nfs-ls
+# --script=nfs-ls -d           # debug the script
+# --script-args=nfs.version=2  # provide arguments
