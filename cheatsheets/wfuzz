@@ -2,7 +2,7 @@
 
 # -c color
 # -d data
-wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/bad_chars.txt -d "login=login&username=admin&password=FUZZ" http://$ip
+wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/bad_chars.txt -d "login=login&username=admin&password=FUZZ" $url
 
 # other files:
 # /usr/share/wordlists/wfuzz/Injections/All_attack.txt
