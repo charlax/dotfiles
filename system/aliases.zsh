@@ -1,10 +1,12 @@
 # grc overides for ls
 if $(gls &>/dev/null)
 then
-  alias ls="gls -hF --color"
-  alias l="gls -lAh --color"
-  alias ll="gls -lh --color"
-  alias la='gls -A --color'
+    alias ls="gls -hF --color"
+    alias l="gls -lAh --color"
+    alias ll="gls -lh --color"
+    alias la='gls -A --color'
+else
+    alias ls='ls --color=auto'
 fi
 
 # Text editors
@@ -77,9 +79,6 @@ alias ctag='ctg'
 # tmux
 alias tma="if tmux has; then tmux attach; else tmux new; fi"
 
-# Cheatsheet
-alias cheatsheet="vim ~/.dotfiles/cheatsheet.txt"
-
 # Vagrant
 va () {
     boxer v $VAGRANTNAME $@
@@ -89,12 +88,14 @@ alias vassh='va -c ssh'
 alias ack="ag"
 
 # Mac Os X
-alias chrome='open -a "Google Chrome"'
-alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
-alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
-alias iawriter='open -a "IA Writer"'
-alias firefox='open -a "Firefox"'
-alias ff='firefox'
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    alias chrome='open -a "Google Chrome"'
+    alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+    alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+    alias iawriter='open -a "IA Writer"'
+    alias firefox='open -a "Firefox"'
+    alias ff='firefox'
+fi
 
 alias generate_secret="openssl rand -base64 32"
 
