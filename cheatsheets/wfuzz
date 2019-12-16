@@ -2,7 +2,11 @@
 
 # -c color
 # -d data
-wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/bad_chars.txt -d "login=login&username=admin&password=FUZZ" $url
+# -Z ignore errors
+wfuzz -Z -c -z file,/usr/share/wordlists/wfuzz/Injections/bad_chars.txt -d "login=login&username=admin&password=FUZZ" $url
+
+# Display options
+# --hc 404  # hide 404
 
 # other files:
 # /usr/share/wordlists/wfuzz/Injections/All_attack.txt
