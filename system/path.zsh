@@ -25,12 +25,9 @@ PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
 # Vim dotfiles
 export VIM_DOTFILES="$HOME/.vim"
 
-# pyenv (Python versioning)
-export PYENV_ROOT="$HOME/.pyenv"
+# $HOME/.local/bin is necessary for pipx (among others)
+export PATH="/usr/local/opt/gettext/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin:$GOPATH/bin:$PYTHON_BIN_PATH:$HOME/.local/bin"
 
-
-# Core paths
-export PATH="$PYENV_ROOT/bin:/usr/local/opt/gettext/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin:$GOPATH/bin:$PYTHON_BIN_PATH:$HOME/.local/bin"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 export DOTFILES="$HOME/.dotfiles"
 

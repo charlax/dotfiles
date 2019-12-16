@@ -4,8 +4,8 @@ set -x
 set -e
 
 ssh-add -A
-brew update
 
+brew update
 # NOTE: when using pinned packages, brew upgrade fails
 brew upgrade  || true
 brew cleanup
@@ -14,6 +14,9 @@ brew doctor || true
 brew cask doctor || true
 
 echo "Done."
+
+echo "Upgrading pipx"
+python3 -m pip install -U pipx
 
 # TODO: use pipx?
 

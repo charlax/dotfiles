@@ -24,7 +24,6 @@ esac
 echo ""
 echo "Installing pipx"
 python3 -m pip install --user pipx
-python3 -m userpath append ~/.local/bin
 
 printf "\n${GREEN}Installing Python software with pipx${NC}\n"
 

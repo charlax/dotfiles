@@ -46,6 +46,7 @@ brew install \
     the_silver_searcher \ # file searching (ag command)
     tldr \      # simplified and community-driven man pages
     tmux \
+    tree \      # display file list in tree
     unrar \
     watchexec \  # Executes commands in response to file modifications
     wget \
