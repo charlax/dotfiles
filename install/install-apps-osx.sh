@@ -5,57 +5,46 @@ brew update > /dev/null
 
 
 echo ""
-echo "Installing:"
-echo ""
-echo "arp-scan: ARP scanner"
-echo "cheat: cheatsheets for commands"
-echo "docker completion"
-echo "editorconfig"
-echo "fswatch: watch for file changes"
-echo "gdb: debugger"
-echo "httpie: CLI http client"
-echo "jq: json formatting"
-echo "ncdu: ncurses disk usage"
-echo "rg: file searching"
-echo "the_silver_searcher: file searching (ag command)"
-echo "tldr: simplified and community-driven man pages"
+echo "Installing software"
 echo ""
 
 brew install \
-    arp-scan \
+    arp-scan \  # ARP scanner
     autojump \
     automake  \
-    bat \  # A cat(1) clone with wings.
-    cheat \
+    awsebcli \  # utils for AWS
+    bat \       # A cat(1) clone with wings.
+    cheat \     # cheatsheets for commands
     coreutils \
     docker-completion \
     docker-compose-completion \
     docker-machine-completion \
     dos2unix \
     editorconfig \
-    exa \  # A modern replacement for ls.
-    fd \  # A simple, fast and user-friendly alternative to 'find'
+    exa \       # A modern replacement for ls.
+    fd \        # A simple, fast and user-friendly alternative to 'find'
     findutils \
-    fswatch \
+    fswatch \   # watch for file changes
     fzf \
     git \
     go \
-    hexyl \  # A command-line hex viewer
+    hexyl \     # A command-line hex viewer
     highlight \
-    httpie \
+    httpie \    # CLI http client
     hub \
-    jq \
+    jq \        # json formatting
     miller \
     mysql \
-    ncdu \
+    ncdu \      # ncurses disk usage
     node \
     python \
     python3 \
-    rg \
+    redis  \
+    rg \        # file searching
     rmtrash \
     telnet \
-    the_silver_searcher \
-    tldr \
+    the_silver_searcher \ # file searching (ag command)
+    tldr \      # simplified and community-driven man pages
     tmux \
     unrar \
     watchexec \  # Executes commands in response to file modifications
