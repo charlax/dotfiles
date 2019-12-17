@@ -1,0 +1,2 @@
+# Create gif from video
+gifify screencast.mkv -o screencast.gif --resize 800:-1

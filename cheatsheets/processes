@@ -1,0 +1,5 @@
+# Find a pid using pgrep. '-f' tells pgrep to match against everything, not just process name
+pgrep -f python
+
+# Kill process matching pattern
+pkill -f python

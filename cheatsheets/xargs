@@ -1,0 +1,5 @@
+# Remove files from list
+xargs rm < ../../../../.unused_cassette.log
+
+# Run command once per line of input
+cat file.txt | xargs -n1 echo

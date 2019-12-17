@@ -1,0 +1,15 @@
+# while loop
+while true; do
+  echo "yes"
+done
+
+# Define default argument in bash script
+ARG1=${1:-foo}
+
+# Iterate over a list of things in a text file
+for toaster in $(cat toasters.txt) ; do
+     echo ${toaster}
+done
+
+# Download files numbered 1 to 20
+wget http://cloud.com/1/{1..20}.py

@@ -1,0 +1,18 @@
+# Remove line matching pattern
+cat file | sed '/^-\+/d'
+
+# Keep only the fourth column of a ' ' delimited tabular file
+cat filename | cut -d\  -f4
+
+# Show only third column, with awk
+cat filename | awk '{ print $3 }'
+
+# Remove all occurrences of quotes
+cat filename | sed "s/[\'\"]//g"
+
+# Hide first line of output
+cat $FILENAME | sed -n '1!p'
+
+# Show list of most invited emails in calendar
+# `grep -o` makes grep only show the matching pattern.
+grep -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' file.ics | sort | uniq -c | sort -n | tail -n 100

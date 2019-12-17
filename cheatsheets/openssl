@@ -1,0 +1,2 @@
+# Get certificate information
+openssl x509 -in file.crt -text

@@ -1,0 +1,2 @@
+# Diff the n first lines of two files
+diff <(head -n 1 file1) <(head -n 1 file2)

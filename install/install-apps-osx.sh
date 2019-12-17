@@ -33,6 +33,7 @@ brew install \
     httpie \    # CLI http client
     hub \
     jq \        # json formatting
+    john-jumbo \ # john the ripper
     miller \
     mysql \
     ncdu \      # ncurses disk usage

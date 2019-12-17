@@ -1,0 +1,2 @@
+# Echo to a file that needs sudo access
+sudo sh -c 'echo "Text I want to write" >> /path/to/file'
