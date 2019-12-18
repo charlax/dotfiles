@@ -3,25 +3,37 @@
 set -x
 set -e
 
-ssh-add -A
 
-brew update
-# NOTE: when using pinned packages, brew upgrade fails
-brew upgrade  || true
-brew cleanup
-brew cask upgrade
-brew doctor || true
-brew cask doctor || true
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+
+    ssh-add -A
+    brew update
+    # NOTE: when using pinned packages, brew upgrade fails
+    brew upgrade  || true
+    brew cleanup
+    brew cask upgrade
+    brew doctor || true
+    brew cask doctor || true
+
+fi
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    apt-get update
+    apt-get upgrade
+fi
 
 echo "Done."
+
+echo "Installing/updating pip"
+pip3 install --user --upgrade pip
 
 echo "Upgrading pipx"
 python3 -m pip install -U pipx
 
-# TODO: use pipx?
+echo "Upgrading all pipx apps"
+pipx upgrade-all
 
-# echo "Installing/updating pip"
-# pip3 install --user --upgrade pip
+# TODO: use pipx?
 
 # echo "Installing/updating pipenv"
 # pip3 install --user --upgrade pipenv
@@ -38,11 +50,10 @@ python3 -m pip install -U pipx
 echo "Updating Vim dotfiles"
 $VIM_DOTFILES/update-plugins.sh
 
-echo "Updating npm"
-npm install npm@latest -g
+if [ -x "$(npm)" ]; then
+    echo "Updating npm"
+    npm install npm@latest -g
+fi
 
 echo "Updating tldr"
 tldr --update
-
-# Rebuild completions
-# rm -f ~/.zcompdump; compinit
