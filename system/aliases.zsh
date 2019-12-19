@@ -6,7 +6,7 @@ then
     alias ll="gls -lh --color"
     alias la='gls -A --color'
 else
-    alias ls='ls --color=auto'
+    alias ls='ls --color=auto -hF'
 fi
 
 # Text editors

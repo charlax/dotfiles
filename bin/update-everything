@@ -19,7 +19,7 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     apt-get update
-    apt-get upgrade
+    apt-get upgrade -y
 fi
 
 echo "Done."

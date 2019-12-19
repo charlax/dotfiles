@@ -11,6 +11,7 @@ apt-get install -y \
     fzf            \ # fuzzy finder
     gdb            \ # GNU debugger
     gobuster       \ # busting tool
+    hexyl          \ # A command-line hex viewer
     htop           \ # process managemenent
     httpie         \ # http client
     jq             \ # json query
