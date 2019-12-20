@@ -1,0 +1,5 @@
+# md5
+hashcat -m0 ~/Downloads/hashes $WORDLIST
+
+# md5crypt()
+hashcat -m 500 hashes.hash $WORDLIST
