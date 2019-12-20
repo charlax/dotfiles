@@ -28,6 +28,7 @@ brew install \
     fzf \
     git \
     go \
+    hashcat           \ # advanced pasword recovery
     hexyl \     # A command-line hex viewer
     highlight \
     httpie \    # CLI http client
@@ -37,6 +38,7 @@ brew install \
     miller \
     mysql \
     ncdu \      # ncurses disk usage
+    nmap              \ # port scanner
     node \
     python \
     python3 \
