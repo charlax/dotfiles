@@ -1,10 +1,11 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
-set -x
-set -e
+. "$(dirname "$0")/../helpers/setup.sh"
 
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
+
+    printf "\n\n${GREEN}Updating brew packages${NC}\n"
 
     ssh-add -A
     brew update
@@ -18,22 +19,24 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    printf "\n\n${GREEN}Updating apt packages${NC}\n"
+
     apt-get update
     apt-get upgrade -y
 fi
 
 echo "Done."
 
-echo "Installing/updating pip"
+printf "\n\n${GREEN}Updating pip${NC}\n"
 pip3 install --user --upgrade pip
 
-echo "Upgrading pipx"
+printf "\n\n${GREEN}Updating pipx${NC}\n"
 python3 -m pip install -U pipx
 
-echo "Upgrading all pipx apps"
+printf "\n\n${GREEN}Updating all pipx apps${NC}\n"
 pipx upgrade-all
 
-# TODO: use pipx?
+# TODO: migrate to pipx
 
 # echo "Installing/updating pipenv"
 # pip3 install --user --upgrade pipenv
@@ -50,10 +53,12 @@ pipx upgrade-all
 echo "Updating Vim dotfiles"
 $VIM_DOTFILES/update-plugins.sh
 
-if [ -x "$(npm)" ]; then
-    echo "Updating npm"
+if command -v npm >/dev/null 2>&1; then
+    printf "\n\n${GREEN}Updating npm${NC}\n"
     npm install npm@latest -g
 fi
 
-echo "Updating tldr"
+printf "\n\n${GREEN}Updating tldr.${NC}\n"
 tldr --update
+
+printf "\n\n${GREEN}Updating done.${NC}\n"
