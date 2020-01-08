@@ -1,0 +1,43 @@
+# use a recent bash (make uses /bin/sh by default)
+SHELL := bash
+
+# not using tabs
+ifeq ($(origin .RECIPEPREFIX), undefined)
+  $(error This Make does not support .RECIPEPREFIX. Please use GNU Make 4.0 or later)
+endif
+.RECIPEPREFIX = >
+
+# each Make recipe is ran as one single shell session
+.ONESHELL
+
+# use bash strict mode
+.SHELLFLAGS := -eu -o pipefail -c
+
+# sane defaults
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
+
+# Preamble
+SHELL := bash
+.ONESHELL:
+.SHELLFLAGS := -eu -o pipefail -c
+.DELETE_ON_ERROR:
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
+
+# generating output files
+out/image-id:
+> image_id="example.com/my-app:$$(pwgen -1)"
+> docker build --tag="$${image_id}
+> echo "$${image_id}" > out/image-id
+
+# specifying inputs
+out/image-id: $(shell find src -type f)
+> image_id="example.com/my-app:$$(pwgen -1)"
+> docker build --tag="$${image_id}
+> echo "$${image_id}" > out/image-id
+
+# use sentinel files
+out/.packed.sentinel: $(shell find src -type f)
+> node run webpack ..
+> touch out/.packed.sentinel
