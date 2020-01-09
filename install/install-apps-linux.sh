@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
@@ -6,7 +6,7 @@
 set -e
 unset -v
 
-printf "\n%s\n" "${GREEN}Installing apt packages${NC}"
+log_info "\nInstalling apt packages"
 
 set +v
 

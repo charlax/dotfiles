@@ -1,3 +1,6 @@
+#!/bin/env bash
+# shellcheck disable=SC2034
+
 # Helper vars for printing in colour.
 
 # Setup with:
@@ -49,3 +52,7 @@ BGBBLUE='\033[1;44m'    # Background Bright Blue.
 BGBMAGENTA='\033[1;45m' # Background Bright Magenta (pink).
 BGBCYAN='\033[1;46m'    # Background Bright Light blue.
 BGBWHITE='\033[1;47m'   # Background Bright white.
+
+function log_info {
+  printf "${GREEN}%s${NC}" "${1}"
+}

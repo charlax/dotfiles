@@ -9,7 +9,7 @@ unset -v
 brew update > /dev/null
 
 
-printf "\n%s\n" "${GREEN}Installing brew packages${NC}"
+log_info "\nInstalling brew packages"
 
 packages=(arp-scan \  # ARP scanner
     autojump \

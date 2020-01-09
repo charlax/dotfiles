@@ -97,12 +97,14 @@ def symlink_configuration_file(
     logging.info("%s symlinked to %s" % (source, dest))
 
 
-def clone(repo, path):
+def clone_or_update(repo, path):
     """Clone or update a repo."""
     if not os.path.exists(path):
+        print(color.green("\nCloning dotfiles repo..."))
         run(["git", "clone", repo, path])
 
     try:
+        print(color.green("\nUpdating dotfiles repo..."))
         run(["git", "pull"], cwd=path)
         run(["git", "submodule", "init"], cwd=path)
         run(["git", "submodule", "update"], cwd=path)
@@ -142,8 +144,7 @@ def install_apps():
 
 def main(args):
     """Install the dotfiles."""
-    print(color.green("\nCloning dotfiles repo..."))
-    clone(REPOSITORY, DOTFILES_PATH)
+    clone_or_update(REPOSITORY, DOTFILES_PATH)
     symlink(args)
 
     if args.with_apps:
@@ -151,7 +152,7 @@ def main(args):
 
     if args.with_dotvim:
         print("Installing dotvim...")
-        clone(DOTVIM_REPOSITORY, DOTVIM_PATH)
+        clone_or_update(DOTVIM_REPOSITORY, DOTVIM_PATH)
         run(os.path.join(DOTVIM_PATH, "install.py"))
 
     if args.with_settings:
