@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
@@ -13,7 +13,7 @@ sudo apt update
 
 packages=(autojump  # cd command that leanrs
     dsniff          # includes arpspoof
-    exhuberant-ctags
+    exuberant-ctags
     fzf             # fuzzy finder
     gdb             # GNU debugger
     gobuster        # busting tool
