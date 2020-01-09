@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
