@@ -1,0 +1,33 @@
+# Cheatsheet for Vim regex
+# Inspired by [vimtips](http://rayninfo.co.uk/vimtips.html).
+
+# Replace all date in format `YYYYMMDD` to `MM/DD/YYYY`:
+%s/\(20\d\{2}\)\(\d\{2}\)\(\d\{2}\)/\2\/\3\/\1/g
+
+# Delete everything in parentheses
+:%s/(.*)//g
+
+# Grab email only, replacing the whole line
+# File:
+# Charlax <toaster@toasting.org>
+:%s/.*<//g
+:%s/>//g
+
+# Delete everything after a character
+# * Toaster: 1
+# * Toaster: 2
+# To delete everything after `:`:
+:%s/:.*//
+
+# Replace newline character "^M" and "^@"
+:%s/<Ctrl-V><Ctrl-M>/\r/g
+
+# Add a unique id to Markdown titles
+#
+# This is a good example of a complex regex which uses `\=` to trigger vim
+# command execution.
+%s%^\(#\+.*\)$%\=submatch(1).' (id::'.substitute(system('LC_ALL=C tr -cd "[:alnum:]" < /dev/urandom | fold -w15 | head -n1'), '\n','','g').')'%g
+# BEFORE:
+# Test
+# AFTER:
+# Test (id::nYgp7segfLWXeWM)

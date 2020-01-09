@@ -57,10 +57,7 @@ set +v
 # echo "Installing/updating ipython"
 # pip3 install --user --upgrade ipython
 
-if [[ -f "$VIM_DOTFILES/update-plugins.sh" ]]; then
-  echo "Updating Vim dotfiles"
-  "$VIM_DOTFILES"/update-plugins.sh
-fi
+update-vim-plugins
 
 if command -v npm >/dev/null 2>&1; then
     log_info "Updating npm"

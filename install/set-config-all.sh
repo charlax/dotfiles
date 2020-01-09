@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+current_dir=$(dirname "$0")
 
 echo "Create $HOME/Code"
-mkdir -p $HOME/Code
+mkdir -p "$HOME/Code"
 
 case "$OSTYPE" in
-    "linux-gnu")
-        $current_dir/set-config-osx.sh
+    "darwin19")
+        "$current_dir/set-config-osx.sh"
         ;;
 esac
