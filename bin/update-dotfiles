@@ -1,12 +1,15 @@
 #!/bin/bash
 
+# shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
-printf "\n${GREEN}Updating $DOTFILES ${NC}\n"
+log_info "Updating $DOTFILES"
 
-git -C $DOTFILES pull
-python3 $DOTFILES/install.py
+git -C "$DOTFILES" pull
+python3 "$DOTFILES/install.py"
 
-printf "\n${GREEN}Update Vim dotfiles $VIM_DOTFILES ${NC}\n"
+log_info "Update Vim dotfiles $VIM_DOTFILES"
 
-git -C $VIM_DOTFILES pull
+if [[ -f "$VIM_DOTFILES" ]]; then
+  git -C "$VIM_DOTFILES" pull
+fi
