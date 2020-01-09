@@ -7,8 +7,3 @@ log_info "Updating $DOTFILES"
 
 git -C "$DOTFILES" pull
 python3 "$DOTFILES/install.py"
-
-if [[ -f "$VIM_DOTFILES" ]]; then
-  log_info "Update Vim dotfiles $VIM_DOTFILES"
-  git -C "$VIM_DOTFILES" pull
-fi
