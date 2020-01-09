@@ -29,13 +29,19 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 log_info "Updating pip"
-pip3 install --user --upgrade pip
+set -v
+pip3 install --user --upgrade pip || true
+set +v
 
 log_info "Updating pipx"
+set -v
 python3 -m pip install -U pipx
+set +v
 
 log_info "Updating all pipx apps"
+set -v
 pipx upgrade-all
+set +v
 
 # TODO: migrate to pipx
 
