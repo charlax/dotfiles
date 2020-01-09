@@ -20,6 +20,20 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+# Prerequisites
+
+## Mac Os X
+
+See fresh install below.
+
+## Linux Debian
+
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install git
+```
+
 # Installation
 
 ```bash
@@ -40,19 +54,6 @@ To install all the required software, run:
 
 ```bash
 ~/.dotfiles/install/install-apps-all.sh
-```
-
-# Prerequisites
-
-## Mac Os X
-
-See fresh install below.
-
-## Linux Debian
-
-```bash
-apt update && apt upgrade
-apt-get install -y curl git
 ```
 
 # Post-install checklist on a fresh installation - Mac Os X

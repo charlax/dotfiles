@@ -1,3 +1,7 @@
+#!/bin/bash
+
+. "$(dirname "$0")/../helpers/setup.sh"
+
 set -e
 unset -v
 
@@ -5,7 +9,9 @@ echo ""
 echo "Installing packages"
 echo ""
 
-apt-get install -y \
+sudo apt update
+
+sudo apt install -y \
     autojump       \ # cd command that learns
     dsniff         \ # includes arpspoof
     fzf            \ # fuzzy finder

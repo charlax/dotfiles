@@ -1,3 +1,7 @@
+#!/bin/bash
+
+. "$(dirname "$0")/../helpers/setup.sh"
+
 set -e
 unset -v
 
