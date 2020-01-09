@@ -35,6 +35,7 @@ CONFIGURATION_FILES = (
     ("vim/config/nvim/init.vim", "~/.config/nvim/init.vim"),
     "zsh/zshrc",
     "zsh/zshenv",
+    "zsh/zprofile",
 )
 
 

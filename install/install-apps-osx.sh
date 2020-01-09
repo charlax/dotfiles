@@ -15,6 +15,7 @@ packages=(arp-scan   # ARP scanner
     automake
     awsebcli   # utils for AWS
     bat        # A cat(1) clone with wings.
+    broot      # better tree
     cheat      # cheatsheets for commands
     coreutils
     ctags

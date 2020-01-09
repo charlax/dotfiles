@@ -26,12 +26,18 @@
 
 See fresh install below.
 
-## Linux Debian
+## Linux Debian/Ubuntu
 
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install git
+sudo apt install git curl file build-essential
+```
+
+Install homebrew:
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 ```
 
 # Installation
