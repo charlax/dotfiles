@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
@@ -22,8 +24,8 @@ fi
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     log_info "Updating apt packages"
 
-    apt update
-    apt upgrade -y
+    sudo apt update
+    sudo apt upgrade -y
 fi
 
 log_info "Updating pip"
@@ -49,8 +51,10 @@ pipx upgrade-all
 # echo "Installing/updating ipython"
 # pip3 install --user --upgrade ipython
 
-echo "Updating Vim dotfiles"
-"$VIM_DOTFILES"/update-plugins.sh
+if [[ -f "$VIM_DOTFILES/update-plugins.sh" ]]; then
+  echo "Updating Vim dotfiles"
+  "$VIM_DOTFILES"/update-plugins.sh
+fi
 
 if command -v npm >/dev/null 2>&1; then
     log_info "Updating npm"
