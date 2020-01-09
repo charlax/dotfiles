@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
@@ -8,8 +8,7 @@ unset -v
 
 brew update > /dev/null
 
-
-log_info "\nInstalling brew packages"
+log_info "Installing brew packages"
 
 packages=(arp-scan \  # ARP scanner
     autojump \

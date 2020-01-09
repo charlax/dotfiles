@@ -6,7 +6,7 @@
 set -e
 unset -v
 
-log_info "\nInstalling apt packages"
+log_info "Installing apt packages"
 
 set +v
 
