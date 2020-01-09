@@ -4,11 +4,10 @@
 . "$(dirname "$0")/../helpers/setup.sh"
 
 set -e
-unset -v
 
 log_info "Installing apt packages"
 
-set -v  # display commands before executing
+set -o verbose
 
 sudo apt update
 
@@ -21,6 +20,7 @@ packages=(autojump  # cd command that leanrs
     htop            # process managemenent
     httpie          # http client
     jq              # json query
+    python3-pip
     python3-venv
     ripgrep         # recursively searches dir for a regex pattern
     shellcheck      # static analysis for shell scripts
@@ -34,13 +34,13 @@ packages=(autojump  # cd command that leanrs
 
 sudo apt install -y "${packages[@]}"
 
-unset -v
+set +o verbose
 
 #
 # SHOULD BE LAST, requires user action
 #
 
-printf "\nChanging default shell"
+log_info "Changing default shell"
 chsh --shell /usr/bin/zsh
 
-printf "\nDefault shell changed, please log out and log back again"
+log_info "Default shell changed, please log out and log back again"
