@@ -13,9 +13,6 @@ import color
 REPOSITORY = "https://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 
-DOTVIM_REPOSITORY = "https://github.com/charlax/dotvim.git"
-DOTVIM_PATH = os.path.join(os.environ["HOME"], ".vim")
-
 CONFIGURATION_FILES = (
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
@@ -139,12 +136,12 @@ def symlink(args):
 
 def run_settings():
     print(color.green("\nSettings things up..."))
-    run(os.path.join(DOTFILES_PATH, "install/set-config-all.sh"))
+    run([os.path.join(DOTFILES_PATH, "install/set-config-all.sh")])
 
 
 def install_apps():
     print(color.green("\nInstall apps..."))
-    run(os.path.join(DOTFILES_PATH, "install/install-apps-all.sh"))
+    run([os.path.join(DOTFILES_PATH, "install/install-apps-all.sh")])
 
 
 def main(args):
@@ -155,11 +152,6 @@ def main(args):
     if args.with_apps:
         install_apps()
 
-    if args.with_dotvim:
-        print("Installing dotvim...")
-        clone_or_update(DOTVIM_REPOSITORY, DOTVIM_PATH)
-        run(os.path.join(DOTVIM_PATH, "install.py"))
-
     if args.with_settings:
         run_settings()
 
@@ -168,14 +160,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install charlax's dotfiles.")
-    parser.add_argument(
-        "--with-all", action="store_true", help="Also install dotvim and apps"
-    )
-    parser.add_argument(
-        "--with-dotvim",
-        action="store_true",
-        help="Also install charlax's dotvim repository",
-    )
+    parser.add_argument("--with-all", action="store_true", help="Also install apps")
     parser.add_argument("--with-apps", action="store_true", help="Also install apps")
     parser.add_argument(
         "--with-settings", action="store_true", help="Also run settings"
@@ -190,7 +175,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.with_all:
-        args.with_dotvim = True
         args.with_apps = True
         args.with_settings = True
 
