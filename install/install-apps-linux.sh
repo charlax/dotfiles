@@ -43,7 +43,7 @@ set +o verbose
 
 CURRENT_SHELL=$(perl -e '@x=getpwuid($<); print $x[8]')
 
-if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
+if [[ ! "$CURRENT_SHELL" =~ "zsh" ]]; then
     log_info "Changing default shell"
     chsh --shell /usr/bin/zsh
 
