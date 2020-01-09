@@ -32,7 +32,7 @@ CONFIGURATION_FILES = (
     ("vim", ".vim"),
     ("vim/vimrc", ".vimrc"),
     ("vim/gvimrc", ".gvimrc"),
-    ("vim/config/nvim/init.vim", "~/.config/nvim/init.vim"),
+    ("vim/config/nvim/init.vim", ".config/nvim/init.vim"),
     "zsh/zshrc",
     "zsh/zshenv",
     "zsh/zprofile",
