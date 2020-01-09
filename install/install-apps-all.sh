@@ -19,6 +19,14 @@ case "$OSTYPE" in
         ;;
 esac
 
+log_info "Installing common brew packages"
+
+packages=(broot      # better tree
+    )
+
+brew update
+brew install "${packages[@]}"
+
 log_info "Installing vim"
 "$current_dir/install-vim.sh"
 

@@ -1,6 +1,8 @@
 # Sourced before zshrc
 # For commands and variables which should be set once or which don't need to be updated frequently
 
-if [[ -f /home/linuxbrew/.linuxbrew/bin/brew  ]]; then
+# To apply changes, run: exec zsh --login
+
+if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
   eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
