@@ -7,4 +7,3 @@ curl --path-as-is $url/../../test.txt
 curl "$url" --request-target "../" -v --path-as-is
 # * Connected to ... port 8080 (#0)
 # > GET ../ HTTP/1.1
-

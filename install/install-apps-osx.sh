@@ -52,6 +52,7 @@ packages=(arp-scan   # ARP scanner
     rg         # file searching
     rmtrash
     shellcheck   # static analysis for shell scripts
+    shfmt        # A shell parser, formatter, and interpreter
     telnet
     the_silver_searcher  # file searching ag command
     tldr       # simplified and community-driven man pages

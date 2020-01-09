@@ -1,4 +1,14 @@
-- repo: https://github.com/jumanjihouse/pre-commit-hooks
-  rev: 1.11.2
-  hooks:
-    - id: shellcheck
+exclude: '^zsh/iterm2_shell_integration\.zsh$'
+repos:
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 1.11.2
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: detect-private-key
+    - id: detect-aws-credentials

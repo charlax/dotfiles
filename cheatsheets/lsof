@@ -3,4 +3,3 @@ lsof -p PID
 
 # Check which process is using a given port
 lsof -i :PORT_NUMBER
-
