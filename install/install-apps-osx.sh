@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
 set -e
@@ -8,12 +9,9 @@ unset -v
 brew update > /dev/null
 
 
-echo ""
-echo "Installing software"
-echo ""
+printf "\n%s\n" "${GREEN}Installing brew packages${NC}"
 
-brew install \
-    arp-scan \  # ARP scanner
+packages=(arp-scan \  # ARP scanner
     autojump \
     automake  \
     awsebcli \  # utils for AWS
@@ -44,13 +42,15 @@ brew install \
     ncdu \      # ncurses disk usage
     nmap              \ # port scanner
     node \
+    pre-commit \
     python \
     python3 \
     redis  \
     rg \        # file searching
     rmtrash \
+    shellcheck \  # static analysis for shell scripts
     telnet \
-    the_silver_searcher \ # file searching (ag command)
+    the_silver_searcher \ # file searching ag command
     tldr \      # simplified and community-driven man pages
     tmux \
     tree \      # display file list in tree
@@ -60,8 +60,11 @@ brew install \
     yarn \
     zsh \
     zsh-completions
+)
+
+brew install
+brew install "${packages[@]}"
 
 
-echo ""
-echo "Installing fzf shell bindings"
+printf "\nInstalling fzf shell bindings"
 /usr/local/opt/fzf/install
