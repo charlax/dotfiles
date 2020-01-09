@@ -1,4 +1,5 @@
-#!/usr/local/bin/zsh
+#!/usr/bin/env bash
+
 # Open a text editor
 
 PROGRAM_NAME=${0##*/}
@@ -9,7 +10,9 @@ function usage {
 }
 
 # Defaults to opening the default editor
+
 APP=$EDITOR_GUI
+
 while true; do
     case "${1:-}" in
         -h | --help)
@@ -28,11 +31,11 @@ done
 if [[ "$1" == "" ]]
 then
     $APP .
-elif [[ $1 =~ "https://.*" ]]
+elif [[ $1 =~ ^https://.*$ ]]
 then
     # See ZSH Parameter (Variable) Expansion
     repo_dir=${${1##*/}%.*}
-    git clone $1 && cd $repo_dir && $EDITOR_GUI .
+    git clone "$1" && cd $repo_dir && $APP .
 else
     $APP "$1"
 fi

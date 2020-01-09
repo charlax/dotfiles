@@ -9,9 +9,6 @@ set cursorline
 hi NonText guifg=#c0c0c0 guibg=NONE
 hi SpecialKey guifg=#c0c0c0 guibg=NONE
 
-macm Window.Select\ Previous\ Tab  key=<D-A-Left>
-macm Window.Select\ Next\ Tab    key=<D-A-Right>
-
 " Don't beep
 set visualbell
 
@@ -33,6 +30,9 @@ if has("gui_macvim")
     macmenu &File.Save key=<nop>
     inoremap <D-s> <ESC>:w<CR>
     nnoremap <D-s> :w<CR>
+
+    macm Window.Select\ Previous\ Tab  key=<D-A-Left>
+    macm Window.Select\ Next\ Tab    key=<D-A-Right>
 end
 
 " Keep undo history across sessions, by storing in file.
