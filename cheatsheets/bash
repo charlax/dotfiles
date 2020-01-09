@@ -17,3 +17,9 @@ wget http://cloud.com/1/{1..20}.py
 # options
 set -v  # display commands before executing, same as:
 set -o verbose
+
+# tests
+
+## Regex check
+if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
+fi

@@ -41,7 +41,11 @@ set +o verbose
 # SHOULD BE LAST, requires user action
 #
 
-log_info "Changing default shell"
-chsh --shell /usr/bin/zsh
+CURRENT_SHELL=$(perl -e '@x=getpwuid($<); print $x[8]')
 
-log_info "Default shell changed, please log out and log back again"
+if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
+    log_info "Changing default shell"
+    chsh --shell /usr/bin/zsh
+
+    log_info "Default shell changed, please log out and log back again"
+fi
