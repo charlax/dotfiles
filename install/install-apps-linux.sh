@@ -8,7 +8,7 @@ unset -v
 
 log_info "Installing apt packages"
 
-set +v
+set -v  # display commands before executing
 
 sudo apt update
 
@@ -32,7 +32,7 @@ packages=(autojump  # cd command that leanrs
     zsh
 )
 
-sudo apt install "${packages[@]}"
+sudo apt install -y "${packages[@]}"
 
 unset -v
 

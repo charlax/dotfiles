@@ -13,3 +13,6 @@ done
 
 # Download files numbered 1 to 20
 wget http://cloud.com/1/{1..20}.py
+
+# options
+set -v  # display commands before executing
