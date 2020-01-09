@@ -17,6 +17,7 @@ packages=(arp-scan   # ARP scanner
     bat        # A cat(1) clone with wings.
     cheat      # cheatsheets for commands
     coreutils
+    ctags
     docker-completion
     docker-compose-completion
     docker-machine-completion
@@ -36,11 +37,13 @@ packages=(arp-scan   # ARP scanner
     hub
     jq         # json formatting
     john-jumbo  # john the ripper
+    macvim
     miller
     mysql
     ncdu       # ncurses disk usage
     nmap               # port scanner
     node
+    pandoc
     pre-commit
     pipx            # Install and Run Python Applications in Environments
     python

@@ -19,6 +19,9 @@ case "$OSTYPE" in
         ;;
 esac
 
+log_info "Installing vim"
+"$current_dir/install-vim.sh"
+
 log_info "Installing Python software with pipx"
 
 pipx install glances || true  # an htop alternative

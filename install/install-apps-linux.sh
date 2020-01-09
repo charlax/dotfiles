@@ -13,13 +13,16 @@ sudo apt update
 
 packages=(autojump  # cd command that leanrs
     dsniff          # includes arpspoof
+    exhuberant-ctags
     fzf             # fuzzy finder
     gdb             # GNU debugger
     gobuster        # busting tool
+    golang          # the Go programming language
     hexyl           # A command-line hex viewer
     htop            # process managemenent
     httpie          # http client
     jq              # json query
+    pandoc
     pipx            # Install and Run Python Applications in Environments
     python3-pip
     python3-venv
@@ -29,6 +32,7 @@ packages=(autojump  # cd command that leanrs
     strace
     tldr            # quick summary of CLI commands
     tree            # ls in a tree
+    vim-nox         # Vim with scripting support
     xclip           # Linux command line clipboard grabber
     zsh
 )

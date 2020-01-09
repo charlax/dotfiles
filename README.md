@@ -45,9 +45,6 @@ python3 $DOTFILES/install.py
 
 # On a fresh install
 python3 $DOTFILES/install.py --with-all
-
-# If you want also my dotvim
-python3 $DOTFILES/install.py --with-dotvim
 ```
 
 To install all the required software, run:
@@ -142,7 +139,6 @@ Setup the following apps:
 
 # Misc
 
-* Installing my [vim dotfiles](https://github.com/charlax/dotvim) is available through the `install-vim-dotfiles.sh` command.
 * You can copy the dotfiles in the current directory through
   `copy-dotfiles-here.sh`
 

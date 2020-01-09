@@ -32,6 +32,10 @@ CONFIGURATION_FILES = (
     ("ssh/config", ".ssh/config"),
     "system/colors/dir_colors",
     "tmux/tmux.conf",
+    ("vim", ".vim"),
+    ("vim/vimrc", ".vimrc"),
+    ("vim/gvimrc", ".gvimrc"),
+    ("vim/config/nvim/init.vim", "~/.config/nvim/init.vim"),
     "zsh/zshrc",
     "zsh/zshenv",
 )
@@ -39,6 +43,7 @@ CONFIGURATION_FILES = (
 
 def run(cmd: List[str], *args, **kwargs) -> int:
     kwargs.setdefault("check", True)
+    print(f"> {' '.join(cmd)}")
     return subprocess.run(cmd, *args, **kwargs)
 
 

@@ -1,18 +1,6 @@
 Installation
 ============
 
-    $ curl -s https://raw.githubusercontent.com/charlax/dotvim/master/install.py | python
-
-You should read the script before executing it.
-
-Prerequisites
-=============
-
-Install MacVim on Mac Os X
---------------------------
-
-You need [Homebrew](http://mxcl.github.com/homebrew/). Dependencies will be installed automatically.
-
 Plugins
 =======
 
