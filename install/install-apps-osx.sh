@@ -42,6 +42,7 @@ packages=(arp-scan   # ARP scanner
     nmap               # port scanner
     node
     pre-commit
+    pipx            # Install and Run Python Applications in Environments
     python
     python3
     redis

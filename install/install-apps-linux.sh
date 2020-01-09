@@ -20,6 +20,7 @@ packages=(autojump  # cd command that leanrs
     htop            # process managemenent
     httpie          # http client
     jq              # json query
+    pipx            # Install and Run Python Applications in Environments
     python3-pip
     python3-venv
     ripgrep         # recursively searches dir for a regex pattern

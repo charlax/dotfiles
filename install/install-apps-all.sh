@@ -19,12 +19,6 @@ case "$OSTYPE" in
         ;;
 esac
 
-# Needs to happen after OS-specific install
-
-echo ""
-echo "Installing pipx"
-python3 -m pip install --user pipx
-
 log_info "Installing Python software with pipx"
 
 pipx install glances  # an htop alternative
