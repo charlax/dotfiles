@@ -1,11 +1,12 @@
 #!/bin/bash
 
+# shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 
-    printf "\n\n${GREEN}Updating brew packages${NC}\n"
+    log_info "Updating brew packages"
 
     ssh-add -A
     brew update
@@ -19,21 +20,19 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    printf "\n\n${GREEN}Updating apt packages${NC}\n"
+    log_info "Updating apt packages"
 
-    apt-get update
-    apt-get upgrade -y
+    apt update
+    apt upgrade -y
 fi
 
-echo "Done."
-
-printf "\n\n${GREEN}Updating pip${NC}\n"
+log_info "Updating pip"
 pip3 install --user --upgrade pip
 
-printf "\n\n${GREEN}Updating pipx${NC}\n"
+log_info "Updating pipx"
 python3 -m pip install -U pipx
 
-printf "\n\n${GREEN}Updating all pipx apps${NC}\n"
+log_info "Updating all pipx apps"
 pipx upgrade-all
 
 # TODO: migrate to pipx
@@ -51,14 +50,14 @@ pipx upgrade-all
 # pip3 install --user --upgrade ipython
 
 echo "Updating Vim dotfiles"
-$VIM_DOTFILES/update-plugins.sh
+"$VIM_DOTFILES"/update-plugins.sh
 
 if command -v npm >/dev/null 2>&1; then
-    printf "\n\n${GREEN}Updating npm${NC}\n"
+    log_info "Updating npm"
     npm install npm@latest -g
 fi
 
-printf "\n\n${GREEN}Updating tldr.${NC}\n"
+log_info "Updating tldr."
 tldr --update
 
-printf "\n\n${GREEN}Updating done.${NC}\n"
+log_info "Everything is up to date."

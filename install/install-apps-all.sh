@@ -22,7 +22,6 @@ esac
 log_info "Installing Python software with pipx"
 
 pipx install glances  # an htop alternative
-pipx install cheat    # cheatsheets
 
 echo ""
 echo "Running update script to install the rest"
