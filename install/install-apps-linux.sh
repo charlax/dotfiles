@@ -22,6 +22,7 @@ packages=(autojump  # cd command that leanrs
     htop            # process managemenent
     httpie          # http client
     jq              # json query
+    neovim          # heavily refactored vim fork
     pandoc
     pipx            # Install and Run Python Applications in Environments
     python3-pip
