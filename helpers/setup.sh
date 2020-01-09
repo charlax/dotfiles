@@ -14,5 +14,5 @@ function log_get() {
 }
 
 function log_info() {
-  printf "\n${GREEN}%s${NC}" "$@"
+  printf "\n${GREEN}%s${NC}\n" "$@"
 }
