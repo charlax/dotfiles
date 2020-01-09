@@ -37,7 +37,7 @@ if has("gui_macvim")
 end
 
 if has("gui_gtk3")
-    set guifont=Ubuntu\ Mono:h14
+    set guifont=Ubuntu\ Mono\ 14
 endif
 
 " Keep undo history across sessions, by storing in file.
