@@ -28,34 +28,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo apt upgrade -y
 fi
 
-log_info "Updating pip"
-set -v
-pip3 install --user --upgrade pip || true
-set +v
-
-log_info "Updating pipx"
-set -v
-python3 -m pip install -U pipx
-set +v
-
 log_info "Updating all pipx apps"
 set -v
 pipx upgrade-all
 set +v
-
-# TODO: migrate to pipx
-
-# echo "Installing/updating pipenv"
-# pip3 install --user --upgrade pipenv
-
-# echo "Installing/updating black (Python code formatter)"
-# pip3 install --user black
-
-# echo "Installing/updating awscli"
-# pip3 install --user --upgrade awscli
-
-# echo "Installing/updating ipython"
-# pip3 install --user --upgrade ipython
 
 update-vim-plugins
 

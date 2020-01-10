@@ -32,6 +32,7 @@ packages=(autojump  # cd command that leanrs
     ssh
     strace
     tldr            # quick summary of CLI commands
+    tmux            # terminal multiplexer
     tree            # ls in a tree
     vim-nox         # Vim with scripting support
     xclip           # Linux command line clipboard grabber
