@@ -12,23 +12,22 @@ let maplocalleader = "\<Space>"
 " Specify a directory for plugins (for vim-plug)
 call plug#begin('~/.vim/plugged')
 
-Plug '/usr/local/opt/fzf'
-
-" Create your own text objects
+" Create your own text objects, required by vim-textobj-comment
 Plug 'kana/vim-textobj-user'
 
-" text objects for comments
+" Text objects for comments
 Plug 'glts/vim-textobj-comment'
 
-" interpret a file by function and cache file automatically
+" Interpret a file by function and cache file automatically
 Plug 'MarcWeber/vim-addon-mw-utils'
 "
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" insert or delete brackets, parens, quotes in pair
+" Insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs', {'for': ['javascript', 'typescript', 'typescriptreact', 'typescript.tsx']}
 
+" Optimized solarized color schemes
 Plug 'lifepillar/vim-solarized8'
 
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -45,15 +44,22 @@ Plug 'greyblake/vim-preview'
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 
+" syntax highlighting to RTF
 Plug 'jdonaldson/rtf-highlight'
 
-Plug 'junegunn/fzf.vim'
+" Fuzzy finder. This will also install fzf
+" https://github.com/junegunn/fzf#using-linux-package-managers
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+" Displays tags in a window, ordered by class etc.
 Plug 'majutsushi/tagbar'
+
+" A tree explorer plugin
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'mileszs/ack.vim'
 
+" Develop Cocoa/Objective-C
 Plug 'msanders/cocoa.vim', { 'for': 'cocoa' }
 
 Plug 'sinisterstuf/vim-arduino', { 'for': 'arduino' }
@@ -72,6 +78,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+" Enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
@@ -79,6 +86,7 @@ Plug 'vim-scripts/LaTeX-Box', { 'for': 'latex' }
 
 Plug 'vim-scripts/applescript.vim', { 'for': 'applescript' }
 
+" Asynchronous Lint Engine
 Plug 'w0rp/ale'
 
 " Automatically discover and properly update ctags files on save
