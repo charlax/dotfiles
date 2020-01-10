@@ -9,4 +9,7 @@ case "$OSTYPE" in
     "darwin19")
         "$current_dir/set-config-osx.sh"
         ;;
+    "linux-gnu")
+        "$current_dir/set-config-osx.sh"
+        ;;
 esac
