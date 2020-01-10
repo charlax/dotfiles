@@ -55,14 +55,6 @@ def force_symlink(src, dest):
             os.symlink(src, dest)
 
 
-def create_folder(dest):
-    """Create folder if not exists."""
-    if os.path.exists(dest):
-        return
-    print("Folder %s does not exist, creating" % dest)
-    os.makedirs(dest)
-
-
 def symlink_configuration_file(
     f, dest=None, force=False, base_path=None, dry_run=False
 ):
@@ -83,7 +75,7 @@ def symlink_configuration_file(
         print("Would symlink %s to %s" % (source, dest))
         return
 
-    create_folder(os.path.dirname(dest))
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
 
     if not force and (os.path.islink(dest) or os.path.exists(dest)):
         print("Not symlinking '%s': already exists." % dest)
@@ -149,6 +141,9 @@ def main(args):
     """Install the dotfiles."""
     clone_or_update(REPOSITORY, DOTFILES_PATH)
     symlink(args)
+
+    for d in ("~/.vim/temp/temp", "~/.vim/temp/backup", "~/.config/nvim"):
+        os.makedirs(os.path.expanduser(d), exist_ok=True)
 
     if args.with_apps:
         install_apps()

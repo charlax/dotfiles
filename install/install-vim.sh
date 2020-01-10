@@ -4,13 +4,9 @@
 . "$(dirname "$0")/../helpers/setup.sh"
 
 set -e
-unset -v
 
-mkdir -p ~/.vim/temp/temp
-mkdir -p ~/.vim/temp/backup
-mkdir -p ~/.config/nvim
+log_info "Finishing vim installation"
 
+set -v
 go get -u github.com/nsf/gocode
-
-log_info "Installing all vim plugins"
 vim +PlugInstall +qall
