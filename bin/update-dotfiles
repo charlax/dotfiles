@@ -5,5 +5,7 @@
 
 log_info "Updating $DOTFILES"
 
+# We first pull the dotfiles repo to get the updated install.py
 git -C "$DOTFILES" pull
+
 python3 "$DOTFILES/install.py"
