@@ -1,0 +1,46 @@
+#!/bin/env bash
+
+set -e
+
+# shellcheck source=../helpers/setup.sh
+. "$(dirname "$0")/../helpers/setup.sh"
+
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+
+    log_info "Updating brew packages"
+
+    ssh-add -A
+    brew update
+    # NOTE: when using pinned packages, brew upgrade fails
+    brew upgrade  || true
+    brew cleanup
+    brew cask upgrade
+    brew doctor || true
+    brew cask doctor || true
+
+fi
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    log_info "Updating apt packages"
+
+    sudo apt update
+    sudo apt upgrade -y
+fi
+
+log_info "Updating all pipx apps"
+set -v
+pipx upgrade-all
+set +v
+
+update-vim-plugins
+
+if command -v npm >/dev/null 2>&1; then
+    log_info "Updating npm"
+    npm install npm@latest -g
+fi
+
+log_info "Updating tldr."
+tldr --update
+
+log_info "Everything is up to date."
