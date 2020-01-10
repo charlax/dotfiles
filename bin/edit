@@ -13,6 +13,11 @@ function usage {
 
 APP=$EDITOR_GUI
 
+# Check if command exists
+if ! command -v "$APP" >/dev/null 2>&1; then
+  APP=$EDITOR
+fi
+
 while true; do
     case "${1:-}" in
         -h | --help)
