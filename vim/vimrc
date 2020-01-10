@@ -49,7 +49,7 @@ Plug 'jdonaldson/rtf-highlight'
 
 " Fuzzy finder. This will also install fzf
 " https://github.com/junegunn/fzf#using-linux-package-managers
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 
 " Displays tags in a window, ordered by class etc.
 Plug 'majutsushi/tagbar'

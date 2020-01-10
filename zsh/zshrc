@@ -180,6 +180,9 @@ setopt HIST_FIND_NO_DUPS
 
 # FZF
 
+# FZF on Linux
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # fzf via Homebrew
 if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
   source /usr/local/opt/fzf/shell/key-bindings.zsh
