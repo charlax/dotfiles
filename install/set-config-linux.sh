@@ -13,3 +13,4 @@ gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
 
 # Natural scrolling
 gsettings set org.gnome.desktop.peripherals.touchpad.natural-scroll true
+gsettings set org.gnome.desktop.peripherals.mouse.natural-scroll
