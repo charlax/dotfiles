@@ -12,7 +12,7 @@ brew cask install \
     adoptopenjdk8 \
     calibre \
     cyberduck \
-    discord            \ # chat app
+    discord \
     docker \
     firefox \
     homebrew/cask-versions/google-chrome-canary \
@@ -21,10 +21,10 @@ brew cask install \
     postman \
     sequel-pro \
     slack \
-    spectacle          \ # window manager
+    spectacle \
     transmission \
     typora \
     visual-studio-code \
     vlc \
     whatsapp \
-    wireshark            # network protocol optimizer
+    wireshark
