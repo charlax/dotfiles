@@ -6,3 +6,6 @@ ssh -f -N -L 4479:localhost:4479 remote
 
 # Setup an SSH tunnel that tunnels localhost:PORT to remote:PORT through another hop
 ssh -N -L localhost:$PORT:$remote:$PORT BRIDGE_MACHINE_USER@BRIDGE_MACHINE
+
+# Generate a public/private key
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
