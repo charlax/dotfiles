@@ -3,10 +3,13 @@
 # -c color
 # -d data
 # -Z ignore errors
-wfuzz -Z -c -z file,/usr/share/wordlists/wfuzz/Injections/bad_chars.txt -d "login=login&username=admin&password=FUZZ" $url
+wfuzz -Z -c -z file,/usr/share/wordlists/wfuzz/Injections/bad_chars.txt -d "login=login&username=admin&password=FUZZ" $URL
+
+wfuzz -Z -c -z file,$WORDLIST -d "user_login[username]=admin&user_login[password]=FUZZ&user_login[login]=&user_login[_token]=token" -H "Cookie: cookie" --hs ".*not correct.*" $URL
 
 # Display options
-# --hc 404  # hide 404
+# --hc 404         # hide 404
+# --hs ".*truc.*"  # hide response for which content matches regex
 
 # other files:
 # /usr/share/wordlists/wfuzz/Injections/All_attack.txt

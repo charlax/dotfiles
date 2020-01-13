@@ -11,6 +11,12 @@ set -o verbose
 
 sudo apt update
 
+# To add:
+# vscode
+# shutter # screenshot tool
+# peek    # screencast tool
+# peco    # Simplistic interactive filtering tool
+
 packages=(autojump  # cd command that leanrs
     dsniff          # includes arpspoof
     exuberant-ctags
