@@ -59,5 +59,7 @@ if [[ ! "$CURRENT_SHELL" =~ "zsh" ]]; then
     log_info "Changing default shell"
     chsh --shell /usr/bin/zsh
 
-    log_info "Default shell changed, please log out and log back again"
+    log_info "Default shell changed, this will take effect only after login/logout"
 fi
+
+exec zsh --login

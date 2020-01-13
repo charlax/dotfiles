@@ -190,6 +190,7 @@ endif
 " Vim UI configuration
 " ============================================================
 
+set mouse=a
 
 set termguicolors
 if has('gui_running') || has('gui_vimr')

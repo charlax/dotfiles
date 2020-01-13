@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Brew on Linux
+if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
 # shellcheck source=/dev/null
 [[ -s $(brew --prefix 2> /dev/null)/etc/autojump.sh ]] && . "$(brew --prefix)"/etc/autojump.sh
 [[ -s /usr/share/autojump/autojump.sh ]] && . /usr/share/autojump/autojump.sh

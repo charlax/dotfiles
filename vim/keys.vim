@@ -134,6 +134,11 @@ inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " use tab to backward cycle
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
+map <C-up> :tabr<cr>
+map <C-down> :tabl<cr>
+map <C-left> :tabp<cr>
+map <C-right> :tabn<cr>
+
 " Tabs
 if has("gui_macvim")
     " cmd + tab number jumps to tab
