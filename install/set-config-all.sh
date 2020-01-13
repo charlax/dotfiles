@@ -10,6 +10,6 @@ case "$OSTYPE" in
         "$current_dir/set-config-osx.sh"
         ;;
     "linux-gnu")
-        "$current_dir/set-config-osx.sh"
+        "$current_dir/set-config-linux.sh"
         ;;
 esac
