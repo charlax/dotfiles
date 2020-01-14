@@ -18,6 +18,7 @@ sudo apt update
 # peco    # Simplistic interactive filtering tool
 
 packages=(autojump  # cd command that leanrs
+    docker.io
     dsniff          # includes arpspoof
     exuberant-ctags
     fzf             # fuzzy finder
