@@ -26,7 +26,6 @@ alias k9='kill -9'
 alias grep='grep --color=auto'
 
 # Git
-alias g='git'
 alias ga='git add'
 alias gp='git push'
 alias gl='git log'
