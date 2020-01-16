@@ -33,6 +33,7 @@ packages=(arp-scan   # ARP scanner
     hashcat            # advanced pasword recovery
     hexyl     # A command-line hex viewer
     highlight
+    htop       # process management
     httpie     # CLI http client
     hub
     jq         # json formatting

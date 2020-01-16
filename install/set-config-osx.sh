@@ -6,6 +6,7 @@
 # https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
 # https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh
 
+# shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh" # Load helper script from dotfiles/helpers.
 
 
@@ -35,6 +36,17 @@ defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
 
 # Sound > Play feedback when volume is changed = false
 defaults write -g com.apple.sound.beep.feedback -int 0
+
+# ==============================================================================
+# Screen
+# ==============================================================================
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# System Preferences > Desktop & Screen Saver > Start after: Never
+defaults -currentHost write com.apple.screensaver idleTime -int 5
 
 # ==============================================================================
 # Finder
