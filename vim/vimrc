@@ -96,6 +96,9 @@ Plug 'ludovicchabant/vim-gutentags'
 " Terraform files
 Plug 'hashivim/vim-terraform'
 
+" Twig syntax (PHP templates)
+Plug 'nelsyeung/twig.vim'
+
 """""""""""""""""""""""""""""""""""""""""
 " Front-end dev
 """""""""""""""""""""""""""""""""""""""""
