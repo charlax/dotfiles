@@ -109,7 +109,10 @@ defaults write com.apple.dock autohide-time-modifier -float 0
 # Shift:    $
 
 # Set change input sources
-defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Select the previous input sources" "@~a"
+defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Select the previous input sources" '@~a'
+
+# cmd-shift-v
+defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Paste and Match Style" "@\$v"
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
