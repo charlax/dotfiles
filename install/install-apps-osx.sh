@@ -44,6 +44,7 @@ packages=(arp-scan   # ARP scanner
     ncdu       # ncurses disk usage
     nmap               # port scanner
     node
+    openvpn          # vpn
     pandoc
     pre-commit
     pipx            # Install and Run Python Applications in Environments
