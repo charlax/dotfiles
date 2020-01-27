@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # grc overides for ls
-if command -v "glc" > /dev/null 2>&1; then
+if command -v "gls" > /dev/null 2>&1; then
     alias ls="gls -hF --color"
     alias l="gls -lAh --color"
     alias ll="gls -lh --color"
