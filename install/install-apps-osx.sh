@@ -13,7 +13,6 @@ log_info "Installing brew packages"
 packages=(arp-scan   # ARP scanner
     autojump
     automake
-    awsebcli   # utils for AWS
     bat        # A cat(1) clone with wings.
     cheat      # cheatsheets for commands
     coreutils

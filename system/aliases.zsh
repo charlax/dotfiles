@@ -1,10 +1,12 @@
+#!/usr/bin/env bash
+
 # grc overides for ls
-if $(gls &>/dev/null)
-then
+if command -v "glc" > /dev/null 2>&1; then
     alias ls="gls -hF --color"
     alias l="gls -lAh --color"
     alias ll="gls -lh --color"
     alias la='gls -A --color'
+    alias cp="gcp"
 else
     alias ls='ls --color=auto -hF'
 fi
@@ -77,12 +79,6 @@ alias ctag='ctg'
 
 # tmux
 alias tma="if tmux has; then tmux attach; else tmux new; fi"
-
-# Vagrant
-va () {
-    boxer v $VAGRANTNAME $@
-}
-alias vassh='va -c ssh'
 
 alias ack="ag"
 
