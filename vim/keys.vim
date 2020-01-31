@@ -168,3 +168,10 @@ endif
 " I never use Ex mode, and it conflicts with my keyboard habits with French
 " layout
 noremap Q A
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+" gd h -> use left (h key in Vim)
+nnoremap gdh :diffget //2<CR>
+" gd h -> use right (l key in Vim)
+nnoremap gdl :diffget //3<CR>
