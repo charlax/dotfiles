@@ -170,7 +170,7 @@ endif
 noremap Q A
 
 " Fugitive Conflict Resolution
-nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gd :Gdiffsplit!<CR>
 " gd h -> use left (h key in Vim)
 nnoremap gdh :diffget //2<CR>
 " gd h -> use right (l key in Vim)
