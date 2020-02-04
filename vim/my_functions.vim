@@ -107,3 +107,15 @@ function! ReplaceWithUUID()
     call InsertUUID()
 endfunction
 command! ReplaceWithUUID call ReplaceWithUUID()
+
+" Copy current filename
+function! CopyCurrentFilename()
+    let @*=expand("%:p")
+endfunction
+command! CopyCurrentFilename call CopyCurrentFilename()
+
+" Copy current rel filename
+function! CopyCurrentFilenameRel()
+    let @*=expand("%")
+endfunction
+command! CopyCurrentFilenameRel call CopyCurrentFilenameRel()
