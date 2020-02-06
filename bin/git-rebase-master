@@ -1,14 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 set -x
 
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-MASTER=${1:-master}
+
+MASTER=${1:-$DEFAULT_BRANCH}
 
 echo "Pulling and rebasing on $MASTER"
 
-git checkout $MASTER
+git checkout "$MASTER"
 git pull
-git checkout $CURRENT_BRANCH
-git rebase $MASTER
+git checkout "$CURRENT_BRANCH"
+git rebase "$MASTER"
