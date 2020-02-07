@@ -28,7 +28,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo apt upgrade -y
 fi
 
-pip3 install --upgrade pip
+log_info "Updating pip"
+pip3 install --user --upgrade pip
 
 log_info "Updating all pipx apps"
 set -v
