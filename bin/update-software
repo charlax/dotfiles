@@ -7,15 +7,20 @@ set -e
 
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
+    ssh-add -A
 
     log_info "Updating brew packages"
-
-    ssh-add -A
     brew update
     # NOTE: when using pinned packages, brew upgrade fails
     brew upgrade  || true
+
+    log_info "Cleaning up brew"
     brew cleanup
+
+    log_info "Updating brew cask packages"
     brew cask upgrade
+
+    log_info "Running brew doctor"
     brew doctor || true
     brew cask doctor || true
 
