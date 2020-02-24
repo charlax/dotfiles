@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
+# shellcheck source=../helpers/setup.sh
+. "$(dirname "$0")/../helpers/setup.sh"
+
+log_info "Updating vim plugins"
+
 vim +PlugInstall +qall
 vim +PlugUpgrade +qall

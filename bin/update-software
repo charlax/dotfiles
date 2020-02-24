@@ -41,8 +41,6 @@ set -v
 pipx upgrade-all
 set +v
 
-update-vim-plugins
-
 if command -v npm >/dev/null 2>&1; then
     log_info "Updating npm"
     npm install npm@latest -g
@@ -50,5 +48,3 @@ fi
 
 log_info "Updating tldr."
 tldr --update
-
-log_info "Everything is up to date."

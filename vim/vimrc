@@ -201,7 +201,8 @@ if has('gui_running') || has('gui_vimr')
 else
     set background=dark
 endif
-colorscheme solarized8
+" on first startup, this colorscheme is not available
+silent! colorscheme solarized8
 
 " display incomplete commands
 set showcmd
