@@ -11,6 +11,9 @@ else
     alias ls='ls --color=auto -hF'
 fi
 
+# Find file (defined in functions)
+alias f="findfile"
+
 # Text editors
 alias m="edit"
 alias e="edit"

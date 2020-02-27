@@ -60,9 +60,10 @@ ssh-reagent () {
     echo "Cannot find ssh agent - maybe you should reconnect and forward it?"
 }
 
-function f {
+function findfile {
+    fd --type f "$@"
     # grep is for coloring in the output
-    find . -path ./node_modules -prune -o -iname "*$1*" -print | grep "$1"
+    # find . -path ./node_modules -prune -o -iname "*$1*" -print | grep "$1"
 }
 
 psg ()
