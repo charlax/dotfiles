@@ -209,3 +209,11 @@ fi
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    # Increase nb of fd soft limit
+    # This will only apply to processes started from the shell.
+    # $ ulimit -nS/-nH  # check the soft/hard limit
+    # $ ulimit -a       # display all limits
+    ulimit -n 20000
+fi
