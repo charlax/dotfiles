@@ -180,6 +180,10 @@ zprof
 * Make sure iCloud sync is finished (check status bar in Finder)
 * What's most important? Is it backed up?
 
+# Contributing
+
+Checkout [CONTRIBUTING.md](./CONTRIBUTING.md)
+
 # Acknowledgments
 
 * [holman](https://github.com/holman/dotfiles)

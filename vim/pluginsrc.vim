@@ -8,7 +8,7 @@ let g:LatexBox_latexmk_options = '-pvc'
 let NERDTreeIgnore = ['\.pyc$']
 
 " Only the test file is prefixed with 'test_'
-let PyUnitTestsStructure = "disabled"
+let PyUnitTestsStructure = 'disabled'
 
 " Do not conceal quotes in JSON
 let g:vim_json_syntax_conceal = 0
@@ -23,6 +23,10 @@ let g:ackprg = 'ag --vimgrep'
 
 " Use JSX syntax highlighting in all files
 let g:jsx_ext_required = 0
+
+" =======================================================
+" ALE (linting, fixing)
+" =======================================================
 
 " Linting
 let g:ale_fixers = {
@@ -48,7 +52,16 @@ function! DisableFixers()
 endfunction
 command! DisableFixers call DisableFixers()
 
-" Deoplete
+" Deactivate ALE fixes on non-Code repo
+if getcwd()!~#'Code'
+    let g:ale_fix_on_save = 0
+endif
+
+
+" =======================================================
+" Deoplete (autocomplete)
+" =======================================================
+
 " Inserting on enter is a bit annoying because deoplete is async
 let g:deoplete#enable_on_insert_enter = 0
 
