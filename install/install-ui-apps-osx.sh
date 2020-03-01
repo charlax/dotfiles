@@ -10,6 +10,7 @@ set -v
 brew cask install \
     adobe-acrobat-reader \
     adoptopenjdk8 \
+    alfred \
     calibre \
     cyberduck \
     discord \
