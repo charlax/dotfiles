@@ -22,8 +22,10 @@ esac
 log_info "Installing common brew packages"
 
 packages=(broot      # better tree
+    cw           # aws cloudwatch logs
     )
 
+brew tap lucagrulla/tap
 brew update
 brew install "${packages[@]}"
 
