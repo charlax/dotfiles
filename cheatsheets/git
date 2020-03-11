@@ -18,3 +18,11 @@ git diff --cached
 
 # Show unmerged branches
 git branch --no-merged master
+
+# Undo last merge
+git reset --hard ORIG_HEAD
+
+# Squash and merge
+git checkout master
+git merge --squash name-of-branch
+git commit  # should preserve the old commit messages
