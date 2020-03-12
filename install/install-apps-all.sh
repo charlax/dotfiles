@@ -21,8 +21,9 @@ esac
 
 log_info "Installing common brew packages"
 
-packages=(broot      # better tree
-    cw           # aws cloudwatch logs
+packages=(broot   # better tree
+    cw            # aws cloudwatch logs
+    github/gh/gh  # Github cli
     )
 
 brew tap lucagrulla/tap
