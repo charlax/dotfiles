@@ -26,3 +26,6 @@ git reset --hard ORIG_HEAD
 git checkout master
 git merge --squash name-of-branch
 git commit  # should preserve the old commit messages
+
+# Show name of current branch
+git rev-parse --abbrev-ref HEAD
