@@ -6,4 +6,5 @@
 log_info "Updating vim plugins"
 
 vim +PlugInstall +qall
+vim +PlugUpdate +qall
 vim +PlugUpgrade +qall
