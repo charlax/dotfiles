@@ -34,3 +34,6 @@
 
 # Convert each NAME_LIKE_THIS to NameLikeThis in the current line.
 :s#_*\(\u\)\(\u*\)#\1\L\2#g
+
+# Match a whole word i.e. OS but not iOS
+s/\<OS\>/OperatingSystem/g
