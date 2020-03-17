@@ -18,6 +18,7 @@ git diff --cached
 
 # Show unmerged branches
 git branch --no-merged master
+git branch --merged  # show merged branches
 
 # Undo last merge
 git reset --hard ORIG_HEAD
@@ -29,3 +30,7 @@ git commit  # should preserve the old commit messages
 
 # Show name of current branch
 git rev-parse --abbrev-ref HEAD
+
+# Reword specific commit
+git rebase -i COMMIT_ID
+# then pick "reword" on the relevant commit
