@@ -1,22 +1,44 @@
-#!/usr/bin/python
-# Emptying some folders
+#!/usr/bin/env python3
 
-import os
+import argparse
 import glob
+import os
+import subprocess
 
-directories = ("~/Downloads", "~/Desktop")
+DIRECTORIES = ("~/Downloads", "~/Desktop")
 
-directories = map(os.path.expanduser, directories)
 
 def listdir_nohidden(path):
-    return glob.glob(os.path.join(path, '*'))
+    return glob.glob(os.path.join(path, "*"))
 
-for d in directories:
-    if listdir_nohidden(d):
-        print "\nRemoving the following files in %s" % d
 
+def main(is_dry_run: bool) -> None:
+    directories = map(os.path.expanduser, DIRECTORIES)
+
+    if is_dry_run:
+        print("\nWould have removed:")
+
+    for d in directories:
+        if not listdir_nohidden(d):
+            print(f"{d} is already empty")
+            continue
+
+        print(d)
         for f in listdir_nohidden(d):
-            print "  %s" % f
-        os.system("rmtrash %s/*" % d)
-    else:
-        print "%s is already empty" % d
+            print(f"  {f}")
+
+        if is_dry_run:
+            continue
+
+        subprocess.run(f"rmtrash {d}/*", shell=True, check=True)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Delete Downloads and Desktop folders")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="do not actually delete anything"
+    )
+
+    args = parser.parse_args()
+
+    main(is_dry_run=args.dry_run)

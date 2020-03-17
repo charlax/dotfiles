@@ -16,3 +16,11 @@ repos:
     rev: v0.4a4
     hooks:
     - id: vint
+  - repo: https://github.com/psf/black
+    rev: 19.3b0
+    hooks:
+    -   id: black
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.7.9
+    hooks:
+    -   id: flake8
