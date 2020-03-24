@@ -92,6 +92,6 @@ echo "Committing"
 git commit -m "$MESSAGE"
 
 if [ $PUSH = true ]; then
-    echo "Pushing"
+    echo "Pushing your work"
     confirm "Should I push? [Y/n]" && git push
 fi
