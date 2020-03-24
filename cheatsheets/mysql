@@ -1,0 +1,8 @@
+# List all databases
+show databases;
+
+# List all tables
+show tables;
+
+# Backup
+mysqldump -h host.example.com -u username -p dbname > dbbackup.sql
