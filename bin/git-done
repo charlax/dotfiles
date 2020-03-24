@@ -6,11 +6,21 @@ set -o errexit
 PROGRAM_NAME=${0##*/}
 
 function usage {
-    echo "Usage: $PROGRAM_NAME [--help/-h] [--no-push/-n] [path] message"
+    echo "Usage: $PROGRAM_NAME [--help/-h] [--no-push/-n] [--yes/-y] [path] message"
     exit 1
 }
 
-confirm() {
+# Defaults for options
+HELP=false
+PUSH=true
+YES=false
+OPTIONS=()
+
+function confirm {
+    if [ $YES = true ]; then
+        return 1
+    fi
+
     # call with a prompt string or use a default
     read -r -p "${1:-Are you sure? [Y/n]} " response
     case "$response" in
@@ -23,11 +33,6 @@ confirm() {
     esac
 }
 
-# Defaults for options
-HELP=false
-PUSH=true
-OPTIONS=()
-
 while true; do
     # ${parameter:-word}: if parameter is unset, return word
     # See Shell Parameter Expansion
@@ -38,6 +43,10 @@ while true; do
             ;;
         -n | --no-push)
             PUSH=false
+            shift
+            ;;
+        -y | --yes)
+            YES=true
             shift
             ;;
         -*)
