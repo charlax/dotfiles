@@ -17,10 +17,6 @@ YES=false
 OPTIONS=()
 
 function confirm {
-    if [ $YES = true ]; then
-        return 1
-    fi
-
     # call with a prompt string or use a default
     read -r -p "${1:-Are you sure? [Y/n]} " response
     case "$response" in
@@ -93,5 +89,8 @@ git commit -m "$MESSAGE"
 
 if [ $PUSH = true ]; then
     echo "Pushing your work"
-    confirm "Should I push? [Y/n]" && git push
+
+    if [ $YES = true ] || confirm "Should I push? [Y/n]"; then
+        git push
+    fi
 fi
