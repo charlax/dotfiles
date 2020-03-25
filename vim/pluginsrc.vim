@@ -35,7 +35,7 @@ let g:ale_fixers = {
             \ 'typescript': ['prettier'],
             \ 'typescriptreact': ['prettier'],
             \ 'typescript.tsx': ['prettier'],
-            \ 'python': ['black'],
+            \ 'python': ['black', 'isort'],
             \}
 let g:ale_linters = {
             \ 'typescript': ['eslint', 'tsserver', 'typecheck'],
