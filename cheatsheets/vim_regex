@@ -37,3 +37,6 @@
 
 # Match a whole word i.e. OS but not iOS
 s/\<OS\>/OperatingSystem/g
+
+# Wrap all lines in quotes
+:%s/^\(.*\)$/"\1"/
