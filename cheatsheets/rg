@@ -1,0 +1,2 @@
+# search in a folder
+rg stringtomatch ./folder
