@@ -1,0 +1,2 @@
+# Get nameserver responsible for domain name
+dig @1.1.1.1 +short NS example.com
