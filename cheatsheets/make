@@ -41,3 +41,7 @@ out/image-id: $(shell find src -type f)
 out/.packed.sentinel: $(shell find src -type f)
 > node run webpack ..
 > touch out/.packed.sentinel
+
+# variables
+$<  # input (or dependency)
+$@  # output (or target)
