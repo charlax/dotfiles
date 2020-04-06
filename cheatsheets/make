@@ -43,5 +43,6 @@ out/.packed.sentinel: $(shell find src -type f)
 > touch out/.packed.sentinel
 
 # variables
-$<  # input (or dependency)
+$<  # first input (or dependency)
+$<  # all inputs (or dependency)
 $@  # output (or target)
