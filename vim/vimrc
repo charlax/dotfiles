@@ -21,6 +21,7 @@ Plug 'glts/vim-textobj-comment'
 " Interpret a file by function and cache file automatically
 Plug 'MarcWeber/vim-addon-mw-utils'
 "
+" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 

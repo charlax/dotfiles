@@ -121,3 +121,5 @@ let g:mta_filetypes = {
             \ 'xml' : 1,
             \ 'jinja' : 1,
             \ }
+
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'my_snippets']
