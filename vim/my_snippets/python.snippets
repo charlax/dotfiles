@@ -1,4 +1,4 @@
-snippet pythonscript "Python script boilerplate" b
+snippet skeletton_script "Python script skeletton" b
 #!/usr/bin/env python3
 import argparse
 import sys
@@ -17,5 +17,6 @@ if __name__ == "__main__":
         "outfile", nargs="?", type=argparse.FileType("w"), default=sys.stdout
     )
     args = parser.parse_args()
+
     sys.exit(main())
 endsnippet

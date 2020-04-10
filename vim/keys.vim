@@ -1,5 +1,9 @@
+scriptencoding utf-8
 " To check if a key is used:
 " :verbose map <key>
+"
+" E.g.
+" :verbose map <c-j>
 
 " Make `jj` and `jk` throw you into normal mode
 inoremap jj <esc>
@@ -122,11 +126,15 @@ map <Leader>n :noh<CR>
 nmap ,cs :let @*=expand("%")<CR>
 nmap ,cl :let @*=expand("%:p")<CR>
 
-" Do not use <tab> for UltiSnips - conflicts with other completion
-" Do not use leader as well - messes up with insertion mode
-let g:UltiSnipsExpandTrigger="<c-@>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" ==================================
+" Completion
+
+" Use shift-tab to go through options
+" Use tab to trigger completion
+
+" UltiSnips
+" Do not use leader - messes up with insertion mode
+let g:UltiSnipsExpandTrigger='<tab>'
 
 " Autocomplete (deoplete)
 " use tab to forward cycle
@@ -140,7 +148,7 @@ map <C-left> :tabp<cr>
 map <C-right> :tabn<cr>
 
 " Tabs
-if has("gui_macvim")
+if has('gui_macvim')
     " cmd + tab number jumps to tab
     " D maps to command key in MacVim
     noremap <D-1> 1gt
