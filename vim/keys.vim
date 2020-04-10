@@ -126,21 +126,33 @@ map <Leader>n :noh<CR>
 nmap ,cs :let @*=expand("%")<CR>
 nmap ,cl :let @*=expand("%:p")<CR>
 
-" ==================================
+" =======================================================
 " Completion
+" =======================================================
 
-" Use shift-tab to go through options
-" Use tab to trigger completion
+" https://vim.fandom.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 
-" UltiSnips
-" Do not use leader - messes up with insertion mode
-let g:UltiSnipsExpandTrigger='<tab>'
+" Use tab and shift-tab to go through options
 
-" Autocomplete (deoplete)
+" pumvisible() checks for whether the autocompletion modal is visible. If it
+" is, tab will be used to move through the matches.
+
 " use tab to forward cycle
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" use tab to backward cycle
+" use shift-tab to backward cycle
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" use enter to select an option
+inoremap <silent><expr><CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" UltiSnips (for snippet, not for autocompletion)
+
+" It is compatible with deoplete, but they solve a different thing.
+" Just like for deoplete, tab/shift-tab can be used to select the snippet
+" key. Then, c-y will trigger expand the snippet
+
+" Do not use tab - we use for autocompletion
+" Do not use leader - messes up with insertion mode
+let g:UltiSnipsExpandTrigger='<c-y>'
 
 map <C-up> :tabr<cr>
 map <C-down> :tabl<cr>

@@ -2,10 +2,13 @@ snippet skeletton_script "Python script skeletton" b
 #!/usr/bin/env python3
 import argparse
 import sys
+from typing import TextIO
 
 
-def main() -> int:
-    pass
+def main(infile: TextIO, outfile: TextIO) -> int:
+    infile.close()
+    outfile.close()
+    return 0
 
 
 if __name__ == "__main__":
@@ -18,5 +21,5 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    sys.exit(main())
+    sys.exit(main(args.infile, args.outfile))
 endsnippet

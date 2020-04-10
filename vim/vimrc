@@ -262,7 +262,8 @@ set listchars=tab:▸\ ,eol:¬
 " c: Auto-wrap comments using textwidth
 " n: When formatting text, recognize numbered lists.
 " 1: Don't break a line after a one-letter word.
-setlocal formatoptions=qcn1
+" j: Delete comment character when joining commented lines
+setlocal formatoptions=qcn1j
 
 function! s:setup_for_prose()
     setlocal textwidth=79
@@ -271,7 +272,6 @@ function! s:setup_for_prose()
     " For bulleted list to get correct indentation
     setlocal autoindent
 endfunction
-
 
 " ============================================================
 " Searching
@@ -288,9 +288,9 @@ set smartcase
 " Clearing highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
 
-" Tab completion
+" The wildmenu is for command line completion
+" tab completion in command line
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,*.pyc,.svn,vendor/gems/*,*/build/*
-
 " show list instead of just completing
 set wildmenu
 " command <Tab> completion, list matches, then longest common part, then all.
