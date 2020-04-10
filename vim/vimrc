@@ -78,7 +78,6 @@ Plug 'sukima/xmledit', { 'for': 'xml' }
 Plug 'tomtom/tlib_vim'
 
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 " Enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-repeat'
@@ -100,9 +99,19 @@ Plug 'hashivim/vim-terraform'
 " Twig syntax (PHP templates)
 Plug 'nelsyeung/twig.vim'
 
-"""""""""""""""""""""""""""""""""""""""""
+" Simple status line
+Plug 'itchyny/lightline.vim'
+" ALE-status line integration
+Plug 'maximbaz/lightline-ale'
+
+" Git gutter
+Plug 'airblade/vim-gitgutter'
+" Git integration
+Plug 'tpope/vim-fugitive'
+
+" ============================================================
 " Front-end dev
-"""""""""""""""""""""""""""""""""""""""""
+" ============================================================
 
 " Note: do not use 'for'
 Plug 'pangloss/vim-javascript'
@@ -116,9 +125,9 @@ Plug 'Valloric/MatchTagAlways'
 " Auto close HTML tags
 Plug 'alvan/vim-closetag'
 
-"""""""""""""""""""""""""""""""""""""""""
+" ============================================================
 " Other
-"""""""""""""""""""""""""""""""""""""""""
+" ============================================================
 
 " .editorconfig support
 Plug 'editorconfig/editorconfig-vim'
@@ -126,7 +135,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Clojure REPL
 Plug 'tpope/vim-fireplace'
 
-if has("nvim")
+if has('nvim')
     " asynchronous completion framework for neovim/Vim8
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-go', { 'do': 'make'}
@@ -145,7 +154,7 @@ call plug#end()
 " Filetype detection
 " ============================================================
 
-if has("autocmd")
+if has('autocmd')
     " load file type plugins + indentation
     filetype plugin indent on
 
@@ -231,6 +240,9 @@ set backspace=indent,eol,start
 " No bell
 set visualbell
 
+" Refresh every 400ms, instead of every 4 sec (default)
+set updatetime=400
+
 " Leaving buffer goes into normal mode
 autocmd BufEnter * stopinsert
 
@@ -243,6 +255,9 @@ set foldlevelstart=20
 " More natural split opening
 set splitbelow
 set splitright
+
+" Always display status line
+set laststatus=2
 
 " ============================================================
 " Wrapping, textwidth, text formatting

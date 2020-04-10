@@ -24,6 +24,10 @@ let g:ackprg = 'ag --vimgrep'
 " Use JSX syntax highlighting in all files
 let g:jsx_ext_required = 0
 
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
+
 " =======================================================
 " ALE (linting, fixing)
 " =======================================================
