@@ -259,6 +259,9 @@ set splitright
 " Always display status line
 set laststatus=2
 
+" Operations such as yy, D, and P work with the system clipboard. No need to prefix them with \"+ or \"*.
+set clipboard=unnamed
+
 " ============================================================
 " Wrapping, textwidth, text formatting
 " ============================================================
