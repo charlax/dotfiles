@@ -1,0 +1,2 @@
+# zip multiple files, without their directory names
+zip -j build.zip build/*.csv
