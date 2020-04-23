@@ -109,6 +109,9 @@ Plug 'airblade/vim-gitgutter'
 " Git integration
 Plug 'tpope/vim-fugitive'
 
+" Solid language pack
+Plug 'sheerun/vim-polyglot'
+
 " ============================================================
 " Front-end dev
 " ============================================================
