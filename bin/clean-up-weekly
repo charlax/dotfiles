@@ -12,6 +12,26 @@ def listdir_nohidden(path):
     return glob.glob(os.path.join(path, "*"))
 
 
+def run(cmd):
+    print(cmd)
+    subprocess.run(cmd, shell=True, check=True)
+
+
+def run_maintenance_tasks():
+    print("\nRunning maintenance tasks")
+    run("sudo periodic daily weekly monthly")
+
+
+def clean_up_ruby():
+    print("\nCleaning up ruby")
+    run("gem cleanup")
+
+
+def clean_up_docker():
+    print("\nCleaning up Docker")
+    run("docker system prune -af")
+
+
 def main(is_dry_run: bool) -> None:
     directories = map(os.path.expanduser, DIRECTORIES)
 
@@ -30,7 +50,11 @@ def main(is_dry_run: bool) -> None:
         if is_dry_run:
             continue
 
-        subprocess.run(f"rmtrash {d}/*", shell=True, check=True)
+        run(f"rmtrash {d}/*")
+
+    run_maintenance_tasks()
+    clean_up_ruby()
+    clean_up_docker()
 
 
 if __name__ == "__main__":
