@@ -67,7 +67,9 @@ endif
 " =======================================================
 
 " Inserting on enter is a bit annoying because deoplete is async
-let g:deoplete#enable_on_insert_enter = 0
+call deoplete#custom#option({
+    \ 'on_insert_enter': v:true,
+    \ })
 
 " Disable Deoplete when selecting multiple cursors starts
 function! Multiple_cursors_before()
