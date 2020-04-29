@@ -78,7 +78,6 @@ Plug 'sukima/xmledit', { 'for': 'xml' }
 Plug 'tomtom/tlib_vim'
 
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 " Enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
