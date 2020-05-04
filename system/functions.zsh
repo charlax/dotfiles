@@ -88,3 +88,14 @@ function generate_alpha_password {
 function ts {
     date -r "$1"
 }
+
+# Display in a tree, ignoring gitignore files
+function gtree {
+    git_ignore_files=("$(git config --get core.excludesfile)" .gitignore ~/.gitignore)
+    ignore_pattern="$(grep -hvE '^$|^#' "${git_ignore_files[@]}" 2>/dev/null|sed 's:/$::'|tr '\n' '\|')"
+    if git status &> /dev/null && [[ -n "${ignore_pattern}" ]]; then
+      tree -I "${ignore_pattern}" "${@}"
+    else
+      tree "${@}"
+    fi
+}
