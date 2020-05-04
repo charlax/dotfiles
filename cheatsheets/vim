@@ -21,3 +21,6 @@ CTRL-^ (ctrl-shift-6)
 
 # Insert literal tab character
 CTRL-V <tab>
+
+# Re run syntax highlighting
+syn off | syn on
