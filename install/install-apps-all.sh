@@ -25,6 +25,7 @@ packages=(broot   # better tree
     cw            # aws cloudwatch logs
     github/gh/gh  # Github cli
     renameutils   # imv (faster rename) etc.
+    sqlmap        # sql injection tool
     )
 
 brew tap lucagrulla/tap
@@ -40,6 +41,7 @@ pipx install glances || true     # an htop alternative
 pipx install yq || true          # jq for yaml
 pipx install awsebcli || true
 pipx install vim-vint            # vimscript linter
+pipx install wfuzz || true       # the web fuzzer
 
 echo ""
 echo "Running update script to install the rest"

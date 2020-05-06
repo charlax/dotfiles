@@ -1,0 +1,1 @@
+sqlmap -u $URL --data='user=user&password=password&s=ok' --level=5 --risk=3

@@ -1,0 +1,7 @@
+# Encoding with Python
+import urllib
+c = "..."
+urllib.parse.quote(c)
+
+# Common chars
+'   %27
