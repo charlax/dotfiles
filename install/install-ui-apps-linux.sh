@@ -7,6 +7,7 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 
 packages=(libreoffice
     slack-desktop
+    vagrant
     vim-gtk3
     wireshark
 )
