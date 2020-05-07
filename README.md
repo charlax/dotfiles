@@ -166,6 +166,10 @@ zprof
 
 * [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
 
+## Useful services
+
+* [carbon.now.sh](https://carbon.now.sh/): create and share beautiful images of your source code
+
 ## Checklist before reinstall
 
 * Backup SSH keys
