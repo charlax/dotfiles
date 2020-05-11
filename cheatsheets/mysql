@@ -1,3 +1,5 @@
+mysql -h 192.168.99.6 -u root --password=test
+
 # List all databases
 show databases;
 
