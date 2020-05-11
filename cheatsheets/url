@@ -5,3 +5,5 @@ urllib.parse.quote(c)
 
 # Common chars
 '   %27
+=   %3D
+#   %23
