@@ -109,10 +109,18 @@ endfunction
 command! DisableFixers call DisableFixers()
 
 " Deactivate ALE fixes on non-Code repo
-if getcwd()!~#'Code'
-    let g:ale_fix_on_save = 0
-endif
+function! DisableFixersOutsideCode()
+    if match(expand('%'), 'Code\|dotfiles') == -1
+        let g:ale_fix_on_save = 0
+    else
+        let g:ale_fix_on_save = 1
+    endif
+endfunction
 
+" Run this when opening a file
+augroup disablefixers
+    autocmd BufNewFile * :call DisableFixersOutsideCode()
+augroup END
 
 " =======================================================
 " Deoplete (autocomplete)
@@ -120,7 +128,7 @@ endif
 
 " Inserting on enter is a bit annoying because deoplete is async
 call deoplete#custom#option({
-    \ 'on_insert_enter': v:true,
+    \ 'on_insert_enter': v:false,
     \ })
 
 " Disable Deoplete when selecting multiple cursors starts

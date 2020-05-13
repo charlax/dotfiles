@@ -24,3 +24,9 @@ CTRL-V <tab>
 
 # Re run syntax highlighting
 syn off | syn on
+
+# Vimscript
+# =========
+
+# echo a durable message
+echom "message"
