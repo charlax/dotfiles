@@ -1,3 +1,6 @@
+# Other sources:
+# https://devhints.io/vimscript
+
 # Delete all lines matching patterns
 :g/profile/d
 
