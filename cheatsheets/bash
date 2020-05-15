@@ -1,3 +1,7 @@
+# Resources:
+#
+# https://wiki.bash-hackers.org/
+
 # while loop
 while true; do
   echo "yes"
