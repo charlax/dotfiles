@@ -33,14 +33,11 @@ while true; do
     esac
 done
 
-if [[ "$1" == "" ]]
-then
+if [[ "$1" == "" ]]; then
     $APP .
-elif [[ $1 =~ ^https://.*$ ]]
-then
-    # See ZSH Parameter (Variable) Expansion
-    repo_dir=${${1##*/}%.*}
-    git clone "$1" && cd $repo_dir && $APP .
+elif [[ $1 =~ ^(git@|https://).*$ ]]; then
+    repo_dir=$(basename "$1" .git)
+    git clone "$1" && cd "$repo_dir" && $APP .
 else
     $APP "$1"
 fi
