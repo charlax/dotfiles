@@ -1,0 +1,7 @@
+# Processes
+# mds and msd_stores: Spolight activities
+
+# Spolight
+
+# Check what files are being accessed and indexed
+sudo fs_usage -w -f filesys mds_stores
