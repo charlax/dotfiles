@@ -5,3 +5,8 @@
 
 # Check what files are being accessed and indexed
 sudo fs_usage -w -f filesys mds_stores
+
+# Files
+
+# Get file info
+mdls file.pdf
