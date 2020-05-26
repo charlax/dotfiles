@@ -21,7 +21,8 @@ esac
 
 log_info "Installing common brew packages"
 
-packages=(broot   # better tree
+packages=(binwalk # inspect files
+    broot         # better tree
     cw            # aws cloudwatch logs
     github/gh/gh  # Github cli
     renameutils   # imv (faster rename) etc.
