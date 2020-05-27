@@ -23,6 +23,8 @@ alias nv="nvim"
 alias mr="mvim"
 alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
+alias edit-dotfiles='$EDITOR $DOTFILES'
+
 alias tf='tail -f'
 
 alias ka9='killall -9'
