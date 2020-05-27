@@ -23,6 +23,7 @@ alias nv="nvim"
 alias mr="mvim"
 alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
+# single quotes used here to prevent variable expansion at definition time
 alias edit-dotfiles='$EDITOR $DOTFILES'
 
 alias tf='tail -f'
