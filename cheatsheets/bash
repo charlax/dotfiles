@@ -30,3 +30,6 @@ set -o errexit
 ## Regex check
 if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
 fi
+
+# Escape a single quote
+echo 'j'"'"'attends'

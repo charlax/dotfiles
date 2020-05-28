@@ -9,3 +9,6 @@ cat file.txt | xargs -n1 echo
 
 # Create files for each line in clipboard
 pbpaste | xargs -I % touch "1-1 %.md"
+
+# Complex xargs that echoes a multiline template to files
+pbpaste | xargs -I {} bash -c 'printf "# $1 \n\n## Prochain" > "1-1 $1.md"' -- {}
