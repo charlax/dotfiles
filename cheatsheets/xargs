@@ -1,5 +1,11 @@
+# Common options:
+# -I %    # replace occurences of % with input
+
 # Remove files from list
 xargs rm < ../../../../.unused_cassette.log
 
 # Run command once per line of input
 cat file.txt | xargs -n1 echo
+
+# Create files for each line in clipboard
+pbpaste | xargs -I % touch "1-1 %.md"
