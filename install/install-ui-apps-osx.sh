@@ -7,13 +7,15 @@ log_info "Installing UI Apps"
 
 set -v
 
-apps=(adobe-acrobat-reader
+apps=(1password
+    adobe-acrobat-reader
     # adoptopenjdk8  unavailable??
     alfred
     calibre
     cyberduck
     discord
     docker
+    google-chrome
     firefox
     homebrew/cask-versions/google-chrome-canary
     iterm2
@@ -23,6 +25,7 @@ apps=(adobe-acrobat-reader
     sequel-pro
     slack
     spectacle
+    spotify
     transmission
     typora
     visual-studio-code

@@ -118,7 +118,7 @@ Once this is done, follow the instruction above (Installation).
 - Pages (App Store)
 - Pixelmator (App Store)
 - Spectacle (installed by the script)
-- [Spotify](https://www.spotify.com/fr/download/mac)
+- Spotify (installed by the script)
 - Studies (App Store)
 - [TextExpander](https://textexpander.com/download/) (not anymore on the app store)
 - Things (App Store)
@@ -135,12 +135,9 @@ Setup the following apps:
 - Chrome
 - Spectacle (open then run OSX config script to link configuration files)
 - Dropbox
-- Evernote
 - TextExpander
 - Things cloud
 - Printers
-- Notion
-- Set iTerm2's preference file folder (requires full sync)
 
 # Features
 
