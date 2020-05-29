@@ -8,7 +8,7 @@ log_info "Installing UI Apps"
 set -v
 
 apps=(adobe-acrobat-reader
-    adoptopenjdk8
+    # adoptopenjdk8  unavailable??
     alfred
     calibre
     cyberduck
