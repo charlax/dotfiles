@@ -66,9 +66,8 @@ To install all the required software, run:
 
 1. Install any OS upgrade
 2. Start with installing XCode from the App Store - it takes quite a long time. Open it and accept the T&C.
-3. Install [iTerm](https://iterm2.com/downloads.html)
-4. Install [Homebrew](https://brew.sh/) (see above)
-5. Run the steps below
+3. Install [Homebrew](https://brew.sh/) (see above)
+4. Run the steps below
 
 ```bash
 # Install dependencies
