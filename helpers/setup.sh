@@ -9,10 +9,6 @@
 # shellcheck source=./colours.sh
 . "$thisDir"/colours.sh
 
-function log_get() {
-  printf "${CYAN}❯❯❯ Installing:${NC} %s\n" "$@"
-}
-
 function log_info() {
   printf "\n${GREEN}%s${NC}\n" "$@"
 }

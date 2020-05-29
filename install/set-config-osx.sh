@@ -132,7 +132,7 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Setup spectacle config.
 spectacle_config="$HOME/Library/Application Support/Spectacle/Shortcuts.json"
 if [ ! -L "$spectacle_config" ]; then
-  log_get "Overwriting Spectacle shortcuts with link to dotfiles ones."
+  log_info "Overwriting Spectacle shortcuts with link to dotfiles ones."
   mkdir -p "$(dirname "$spectacle_config")"
   [ -e "$spectacle_config" ] && mv "$spectacle_config" "$HOME/Downloads/SpectacleShortcuts.bak.json"
   ln -s "$DOTFILES/spectacle/Shortcuts.json" "$spectacle_config"
