@@ -84,6 +84,9 @@ pbcopy < ~/.ssh/id_rsa.pub  # then add it to Github
 
 # Verify you can connect to github:
 ssh -T git@github.com
+
+# Install local git settings
+cp $DOTFILES/git/gitconfig.local.template $DOTFILES/git/.gitconfig.local
 ```
 
 Once this is done, follow the instruction above (Installation).
@@ -94,13 +97,6 @@ Once this is done, follow the instruction above (Installation).
 - Add French input source
 - Set keyboard shortcuts
   - Set the change input source shortcuts
-
-Other steps:
-
-```bash
-# Install local git settings
-cp gitconfig.local.template ~/.gitconfig.local
-```
 
 ## Apps to install
 
