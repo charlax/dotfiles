@@ -1,5 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table of Contents
 
 - [Installation](#installation)
@@ -64,7 +65,7 @@ To install all the required software, run:
 ## After factory reset
 
 1. Install any OS upgrade
-2. Install XCode from the App Store. Open it and accept the T&C.
+2. Start with installing XCode from the App Store - it takes quite a long time. Open it and accept the T&C.
 3. Install [iTerm](https://iterm2.com/downloads.html)
 4. Install [Homebrew](https://brew.sh/) (see above)
 5. Run the steps below
@@ -81,10 +82,10 @@ ssh -T git@github.com
 
 ## Mac Os X Settings
 
-* Change the computer name
-* Add French input source
-* Set keyboard shortcuts
-  * Set the change input source shortcuts
+- Change the computer name
+- Add French input source
+- Set keyboard shortcuts
+  - Set the change input source shortcuts
 
 Other steps:
 
@@ -95,57 +96,57 @@ cp gitconfig.local.template ~/.gitconfig.local
 
 ## Apps to install
 
-* Annotate (App Store)
-* Be Focused (App Store)
-* Docker (installed via brew cask)
-* [Dropbox](https://www.dropbox.com/install)
-* Evernote (App Store)
-* Firefox (installed by the script)
-* Google Chrome Canary (installed by the script)
-* [Google Chrome](https://www.google.com/chrome/)
-* Grammarly
-* Keynote (App Store)
-* Kindle (App Store)
-* LibreOffice (installed by the script)
-* MindNode (App Store)
-* [Notion](https://www.notion.so/desktop)
-* Numbers (App Store)
-* Pages (App Store)
-* Pixelmator (App Store)
-* Spectacle (installed by the script)
-* [Spotify](https://www.spotify.com/fr/download/mac)
-* Studies (App Store)
-* [TextExpander](https://textexpander.com/download/) (not anymore on the app store)
-* Things (App Store)
-* Time Out (App Store)
-* VLC (installed by the script)
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (better to install manually as it requires Max Os X permissions)
-* Visual Studio Code (installed by the script)
-* iA Writer (App Store)
+- Annotate (App Store)
+- Be Focused (App Store)
+- Docker (installed via brew cask)
+- [Dropbox](https://www.dropbox.com/install)
+- Evernote (App Store)
+- Firefox (installed by the script)
+- Google Chrome Canary (installed by the script)
+- [Google Chrome](https://www.google.com/chrome/)
+- Grammarly
+- Keynote (App Store)
+- Kindle (App Store)
+- LibreOffice (installed by the script)
+- MindNode (App Store)
+- [Notion](https://www.notion.so/desktop)
+- Numbers (App Store)
+- Pages (App Store)
+- Pixelmator (App Store)
+- Spectacle (installed by the script)
+- [Spotify](https://www.spotify.com/fr/download/mac)
+- Studies (App Store)
+- [TextExpander](https://textexpander.com/download/) (not anymore on the app store)
+- Things (App Store)
+- Time Out (App Store)
+- VLC (installed by the script)
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (better to install manually as it requires Max Os X permissions)
+- Visual Studio Code (installed by the script)
+- iA Writer (App Store)
 
 Setup the following apps:
 
-* Password application
-* Backup application
-* Chrome
-* Spectacle (open then run OSX config script to link configuration files)
-* Dropbox
-* Evernote
-* TextExpander
-* Things cloud
-* Printers
-* Notion
-* Set iTerm2's preference file folder (requires full sync)
+- Password application
+- Backup application
+- Chrome
+- Spectacle (open then run OSX config script to link configuration files)
+- Dropbox
+- Evernote
+- TextExpander
+- Things cloud
+- Printers
+- Notion
+- Set iTerm2's preference file folder (requires full sync)
 
 # Features
 
-* [fzf](https://github.com/junegunn/fzf): fuzzy file finder. To use it on the command line, prefix with `**`, then press tab. For instance: `vim **<TAB>`.
-* [autojump](https://github.com/wting/autojump): a cd commands that learns
+- [fzf](https://github.com/junegunn/fzf): fuzzy file finder. To use it on the command line, prefix with `**`, then press tab. For instance: `vim **<TAB>`.
+- [autojump](https://github.com/wting/autojump): a cd commands that learns
   about your favorite directories.
 
 # Misc
 
-* You can copy the dotfiles in the current directory through
+- You can copy the dotfiles in the current directory through
   `copy-dotfiles-here.sh`
 
 ## Profiling ZSH
@@ -164,25 +165,25 @@ zprof
 
 ## Useful software (not installed by default)
 
-* [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
+- [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
 
 ## Useful services
 
-* [carbon.now.sh](https://carbon.now.sh/): create and share beautiful images of your source code
+- [carbon.now.sh](https://carbon.now.sh/): create and share beautiful images of your source code
 
 ## Checklist before reinstall
 
-* Backup SSH keys
-* Check each app for backup
-* Backup hidden files in repo
-* Backup `/Library/`
-* Backup `~/Library/`
-* Make sure branches in repo are pushed
-* Search for "what folders to backup"
-* Search for "checklist before factory reset"
-* Backup photos (too important)
-* Make sure iCloud sync is finished (check status bar in Finder)
-* What's most important? Is it backed up?
+- Backup SSH keys
+- Check each app for backup
+- Backup hidden files in repo
+- Backup `/Library/`
+- Backup `~/Library/`
+- Make sure branches in repo are pushed
+- Search for "what folders to backup"
+- Search for "checklist before factory reset"
+- Backup photos (too important)
+- Make sure iCloud sync is finished (check status bar in Finder)
+- What's most important? Is it backed up?
 
 # Contributing
 
@@ -190,4 +191,4 @@ Checkout [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 # Acknowledgments
 
-* [holman](https://github.com/holman/dotfiles)
+- [holman](https://github.com/holman/dotfiles)
