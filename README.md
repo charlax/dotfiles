@@ -62,22 +62,31 @@ To install all the required software, run:
 
 # Post-install checklist on a fresh installation - Mac Os X
 
-## After factory reset
+## Initialization
 
 1. Install any OS upgrade
 2. Start with installing XCode from the App Store - it takes quite a long time. Open it and accept the T&C.
 3. Install [Homebrew](https://brew.sh/) (see above)
-4. Run the steps below
+4. Run the steps below in the terminal:
 
 ```bash
+# Make sure the account name is correct:
+whoami
+# If it needs to be changed, create a new temporary admin. Follow this guide:
+# https://support.apple.com/en-us/HT201548
+
 # Install dependencies
 brew install git python3
 
-# Install ssh keys and verify you can connect to github:
-ssh -T git@github.com
+# Create an SSH key and add it to Github
+ssh-keygen -t rsa -b 4096 -C "youremail@example.com"
+pbcopy < ~/.ssh/id_rsa.pub  # then add it to Github
 
-# Then, install dotfiles and run install.py
+# Verify you can connect to github:
+ssh -T git@github.com
 ```
+
+Once this is done, follow the instruction above (Installation).
 
 ## Mac Os X Settings
 
