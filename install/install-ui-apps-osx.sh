@@ -21,6 +21,7 @@ apps=(1password
     iterm2
     libreoffice
     mactex
+    openvpn-connect
     postman
     sequel-pro
     slack

@@ -21,7 +21,8 @@ esac
 
 log_info "Installing common brew packages"
 
-packages=(binwalk # inspect files
+packages=(awscli  # AWS command line
+    binwalk       # inspect files
     broot         # better tree
     cw            # aws cloudwatch logs
     github/gh/gh  # Github cli
