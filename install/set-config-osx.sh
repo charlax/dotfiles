@@ -6,6 +6,13 @@
 # https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
 # https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh
 
+# To check what setting change what
+# defaults read > before
+# -- change setting
+# defaults read > after
+# diff before after
+# Google the name
+
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh" # Load helper script from dotfiles/helpers.
 
@@ -124,6 +131,16 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# ==============================================================================
+# Sound
+# ==============================================================================
+
+# Show sound icon in menu bar
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
+
+# Disable all user interface sound effects
+defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
 
 # ==============================================================================
 # Spectacle
