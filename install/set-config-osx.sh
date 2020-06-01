@@ -95,6 +95,18 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
 
 # ==============================================================================
+# Menu Bar
+# ==============================================================================
+
+for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+  defaults write "${domain}" dontAutoLoad -array \
+    "/System/Library/CoreServices/Menu Extras/User.menu"
+done
+
+# Show sound icon in menu bar
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
+
+# ==============================================================================
 # Dock
 # ==============================================================================
 
@@ -135,9 +147,6 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # ==============================================================================
 # Sound
 # ==============================================================================
-
-# Show sound icon in menu bar
-defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
 
 # Disable all user interface sound effects
 defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
