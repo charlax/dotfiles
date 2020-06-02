@@ -10,3 +10,5 @@ log_info "Finishing vim installation"
 set -v
 go get -u github.com/nsf/gocode
 vim +PlugInstall +qall
+
+pip3 install neovim
