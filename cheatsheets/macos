@@ -1,7 +1,7 @@
 # Processes
 # mds and msd_stores: Spolight activities
 
-# Spolight
+# Spotlight
 
 # Check what files are being accessed and indexed
 sudo fs_usage -w -f filesys mds_stores
@@ -10,3 +10,8 @@ sudo fs_usage -w -f filesys mds_stores
 
 # Get file info
 mdls file.pdf
+
+# Network
+
+# Restart DNS responder (e.g. after changes in /etc/hosts)
+sudo killall -HUP mDNSResponder
