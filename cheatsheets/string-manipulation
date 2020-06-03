@@ -16,3 +16,6 @@ cat $FILENAME | sed -n '1!p'
 # Show list of most invited emails in calendar
 # `grep -o` makes grep only show the matching pattern.
 grep -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' file.ics | sort | uniq -c | sort -n | tail -n 100
+
+# Show most common lines
+cat file.txt | sort | uniq -c | sort -n -r | head -n 10
