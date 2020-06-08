@@ -1,0 +1,3 @@
+# Show all index
+curl -X GET $host/_cat/indices?v
+curl -X GET $host/_cat/aliases
