@@ -4,6 +4,9 @@
 # Delete all lines matching patterns
 :g/profile/d
 
+# # Keyboard
+<ctrl-o> Go back to previous location
+
 # Insert tab character when `expandtab` is on
 <ctrl+v><tab>
 
