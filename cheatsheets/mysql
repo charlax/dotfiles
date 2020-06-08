@@ -2,9 +2,11 @@ mysql -h 192.168.99.6 -u root --password=test
 
 # List all databases
 show databases;
+use dbname;
 
 # List all tables
 show tables;
+show create table tablename;
 
 # Backup
 mysqldump -h host.example.com -u username -p dbname > dbbackup.sql
