@@ -144,12 +144,18 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Disable automatic period substitution as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
 # ==============================================================================
 # Sound
 # ==============================================================================
 
 # Disable all user interface sound effects
 defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
+
+# Disable sounds in iMessages
+defaults write com.apple.iChat 'PlaySoundsKey' -bool false
 
 # ==============================================================================
 # Spectacle
