@@ -1,3 +1,14 @@
+# Get info
+curl -X GET "$host"
+
 # Show all index
 curl -X GET $host/_cat/indices?v
 curl -X GET $host/_cat/aliases
+
+# Get nodes info
+curl -X GET "$host/_cat/nodes?v&pretty"
+
+# Search index "sample"
+curl -X GET $host/sample/_search
+# Get "sample" index stats
+curl -X GET $host/sample/_stats | jq .
