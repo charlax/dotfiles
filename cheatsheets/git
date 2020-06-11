@@ -34,3 +34,7 @@ git rev-parse --abbrev-ref HEAD
 # Reword specific commit
 git rebase -i COMMIT_ID
 # then pick "reword" on the relevant commit
+
+# Delete untracked files
+git clean -n  # dry run
+git clean -f  # actually delete the files

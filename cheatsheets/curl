@@ -1,3 +1,6 @@
+# Options
+-s/--silent
+
 # Path
 
 # --path-as-is   # Tell curl to not handle sequences of /../ or /./ in the given URL path
