@@ -39,11 +39,12 @@ log_info "Installing vim"
 
 log_info "Installing Python software with pipx"
 
-pipx install glances || true     # an htop alternative
-pipx install yq || true          # jq for yaml
 pipx install awsebcli || true
+pipx install glances || true     # an htop alternative
+pipx install poetry || true      # package management
 pipx install vim-vint            # vimscript linter
 pipx install wfuzz || true       # the web fuzzer
+pipx install yq || true          # jq for yaml
 
 echo ""
 echo "Running update script to install the rest"
