@@ -1,2 +1,5 @@
 # delete all images, containers, volumes, networks for all stopped containers and unused images
 docker system prune -a
+
+# Start an Ubuntu system
+docker run -it ubuntu:latest /bin/bash
