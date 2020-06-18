@@ -27,6 +27,7 @@ packages=(awscli  # AWS command line
     cw            # aws cloudwatch logs
     github/gh/gh  # Github cli
     renameutils   # imv (faster rename) etc.
+    terraform     # infrastructure management
     sqlmap        # sql injection tool
     )
 
