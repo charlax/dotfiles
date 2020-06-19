@@ -42,6 +42,7 @@ log_info "Installing Python software with pipx"
 
 pipx install awsebcli || true
 pipx install glances || true     # an htop alternative
+pipx install ipython || true     # better python console
 pipx install poetry || true      # package management
 pipx install vim-vint            # vimscript linter
 pipx install wfuzz || true       # the web fuzzer
