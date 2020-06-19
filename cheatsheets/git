@@ -38,3 +38,15 @@ git rebase -i COMMIT_ID
 # Delete untracked files
 git clean -n  # dry run
 git clean -f  # actually delete the files
+
+# Solving git conflicts
+
+Open the file in Vim, then :Gdiffsplit!
+
+Left is target, middle is working copy, right is merge branch
+So when rebasing: left is master, and right is our work.
+
+1. Move to the chunk you want to keep and use the `dp` shortcut ("diff put")
+2. Once if the file is done, `:Gwrite`
+
+http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
