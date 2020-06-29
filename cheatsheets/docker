@@ -3,3 +3,6 @@ docker system prune -a
 
 # Start an Ubuntu system
 docker run -it ubuntu:latest /bin/bash
+
+# Connect on a running container
+docker exec -it $CONTAINER_ID bash
