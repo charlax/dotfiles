@@ -11,6 +11,7 @@ netstat -r
 
 # Which process is listening to port <port>
 netstat -pln | grep <port> | awk '{print $NF}'
+lsof -nP -iTCP:<port> | grep LISTEN
 
 # Example output: 1507/python
 
