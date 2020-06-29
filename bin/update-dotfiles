@@ -9,3 +9,6 @@ log_info "Updating $DOTFILES"
 git -C "$DOTFILES" pull
 
 python3 "$DOTFILES/install.py"
+
+# Update cheatsheet submodule
+git --git-dir="$DOTFILES" submodule update --remote config/cheat
