@@ -33,3 +33,11 @@ fi
 
 # Escape a single quote
 echo 'j'"'"'attends'
+
+# Redirect all output to /dev/null
+do_something > /dev/null 2>&1
+
+# Settings arguments programatically
+args=()
+args+=(--verbose true)
+script "${args[@]}"
