@@ -1,0 +1,4 @@
+# mdfind - query Spotlight
+
+# Find md files with manager in their name
+mdfind "kMDItemFSName == \"*.md\" manager" | head -n10

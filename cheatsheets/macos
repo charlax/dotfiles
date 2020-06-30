@@ -3,6 +3,9 @@
 
 # Spotlight
 
+# Run query
+mdfind [query]  # See mdfind cheats
+
 # Check what files are being accessed and indexed
 sudo fs_usage -w -f filesys mds_stores
 
