@@ -48,7 +48,7 @@ pipx install vim-vint            # vimscript linter
 pipx install wfuzz || true       # the web fuzzer
 pipx install yq || true          # jq for yaml
 
-npm install -g prettier
+# npm install -g prettier
 
 echo ""
 echo "Running update script to install the rest"
