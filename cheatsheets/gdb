@@ -9,3 +9,18 @@
 
 # display registers
 (gdb) layout reg
+
+(gdb) x/16w $esp  # show 16 4-bytes words after ESP
+0xbffff770:	0xb7ff0f50	0xbffff790	0xbffff7e8	0xb7e8c685
+0xbffff780:	0x08048470	0x08048340	0xbffff7e8	0xb7e8c685
+0xbffff790:	0x00000002	0xbffff814	0xbffff820	0xb7fe2b38
+0xbffff7a0:	0x00000001	0x00000001	0x00000000	0x08048249
+
+(gdb) x/1w $ebp   # show content of EBP
+0xbffff778:	0xbffff7e8
+
+(gdb) layout reg  # display registers and their content
+
+(gdb) disass main
+0x0804842f <main+13>:   push   %ecx
+0x08048430 <main+14>:   sub    $0x4,%esp
