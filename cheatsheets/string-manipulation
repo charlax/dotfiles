@@ -19,3 +19,9 @@ grep -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' file.ics | sort | uniq -c | so
 
 # Show most common lines
 cat file.txt | sort | uniq -c | sort -n -r | head -n 10
+
+# Join lines with comma
+cat lines.txt | paste -sd "," -
+
+# Wrap in quotes and join lines with comma, removing trailing comma
+pbpaste | awk '{ printf "\"%s\",", $0 }' | sed 's/,$//'

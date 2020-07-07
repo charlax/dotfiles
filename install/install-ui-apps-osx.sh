@@ -33,6 +33,7 @@ apps=(1password
     vlc
     whatsapp
     wireshark
+    zettlr              # Zettlekasten method
     )
 
 brew cask install "${apps[@]}"

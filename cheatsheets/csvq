@@ -1,0 +1,5 @@
+# csvq: SQL-like query language for csv
+# https://mithrandie.github.io/csvq/
+
+# Get the list of Slack handle from emails in clipboard
+csvq -N -f csv "select @' || slack from team where email in ($(pbpaste | awk '{ printf "\"%s\",", $0 }' | sed 's/,$//'));" | paste -sd ' ' -

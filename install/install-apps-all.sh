@@ -24,6 +24,7 @@ log_info "Installing common brew packages"
 packages=(awscli  # AWS command line
     binwalk       # inspect files
     broot         # better tree
+    csvq          # query csv from command line
     cw            # aws cloudwatch logs
     github/gh/gh  # Github cli
     renameutils   # imv (faster rename) etc.
