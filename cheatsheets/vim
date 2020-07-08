@@ -10,6 +10,10 @@
 # Insert tab character when `expandtab` is on
 <ctrl+v><tab>
 
+# Show all mappings
+:map           # And :imap :vmap :nmap
+:verbose map   # Show mapping and where they were defined
+
 # Delete empty lines
 :g/^$/d
 

@@ -1,4 +1,11 @@
 scriptencoding utf-8
+
+" Show all mappings:
+" :map :nmap :vmap :imap
+
+" Show all mappings including where they were defined:
+" :verbose map
+
 " To check if a key is used:
 " :verbose map <key>
 "
