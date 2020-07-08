@@ -40,3 +40,6 @@ s/\<OS\>/OperatingSystem/g
 
 # Wrap all lines in quotes
 :%s/^\(.*\)$/"\1"/
+
+# Wrap all words in line with backticks
+:'<,'>s/\v([a-z]+)/`\1`/g
