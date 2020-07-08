@@ -1,2 +1,12 @@
 # Pretty print a var
 print_r($var);
+var_dump($var);
+
+# map over an array
+array_map ( callable $callback , array $array1 [, array $... ] ) : array
+# coerce all array items as strings
+$a = array_map('strval', $a);
+
+# filter
+$input = array(1, 2, 3, 4, 5);
+$output = array_filter($input, function ($v) { return $v > 2; });
