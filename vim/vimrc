@@ -209,9 +209,9 @@ set mouse=a
 
 set termguicolors
 if has('gui_running') || has('gui_vimr')
-    set background=dark
+    set background=light
 else
-    set background=dark
+    set background=light
 endif
 " on first startup, this colorscheme is not available
 silent! colorscheme solarized8
