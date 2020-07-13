@@ -47,4 +47,4 @@ if command -v npm >/dev/null 2>&1; then
 fi
 
 log_info "Updating tldr."
-tldr --update
+tldr --update || true
