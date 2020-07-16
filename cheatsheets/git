@@ -53,3 +53,6 @@ So when rebasing: left is master, and right is our work.
 2. Once if the file is done, `:Gwrite`
 
 http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
+
+# Show git tags on remote
+git ls-remote --tags origin
