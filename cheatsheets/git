@@ -23,6 +23,9 @@ git branch --merged  # show merged branches
 # Undo last merge
 git reset --hard ORIG_HEAD
 
+# Remove last commit
+git reset --hard HEAD~1
+
 # Squash and merge
 git checkout master
 git merge --squash name-of-branch
