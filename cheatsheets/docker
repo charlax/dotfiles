@@ -1,8 +1,22 @@
 # delete all images, containers, volumes, networks for all stopped containers and unused images
 docker system prune -a
 
+# Build image
+docker build -t thetest/thename:latest .
+docker run -it --rm --name test thetest/thename:latest
+
+# Override entrypoint
+docker run -it --rm --name test --entrypoint /bin/bash test/top:latest
+
 # Start an Ubuntu system
 docker run -it ubuntu:latest /bin/bash
 
 # Connect on a running container
 docker exec -it $CONTAINER_ID bash
+
+# Check the size of images
+docker image ls
+
+# Check the layers comprising an image
+docker history $IMAGE_ID
+# <missing> means the layer was built on another system

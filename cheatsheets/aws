@@ -1,0 +1,2 @@
+# List all ec2 instances
+AWS_REGION=eu-west-1 AWS_PROFILE=staging aws ec2 describe-instances

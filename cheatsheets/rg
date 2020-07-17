@@ -1,2 +1,5 @@
 # search in a folder
 rg stringtomatch ./folder
+
+# include hidden files (which are excluded by default)
+rg --hidden stringtomatch
