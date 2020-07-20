@@ -1,0 +1,4 @@
+# https://devhints.io/homebrew
+
+# List versions you have
+brew list --version python3

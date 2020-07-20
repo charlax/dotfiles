@@ -49,6 +49,9 @@ pipx install vim-vint            # vimscript linter
 pipx install wfuzz || true       # the web fuzzer
 pipx install yq || true          # jq for yaml
 
+log_info "Installing pipenv"
+pip install --user pipenv
+
 # npm install -g prettier
 
 echo ""
