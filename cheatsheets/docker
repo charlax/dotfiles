@@ -20,3 +20,6 @@ docker image ls
 # Check the layers comprising an image
 docker history $IMAGE_ID
 # <missing> means the layer was built on another system
+
+# Get labels etc. for running container
+docker inspect $CONTAINER_ID
