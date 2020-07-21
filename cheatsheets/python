@@ -5,3 +5,4 @@
 # zsh: /Users/.../.local/bin/poetry: bad interpreter: /Users/.../.local/pipx/venvs/poetry/bin/python: no such file or directory
 echo $PATH  # make sure Python is at latest version
 which python3  # make sure it's brew's Python, otherwise: brew link python3
+pipx reinstall-all
