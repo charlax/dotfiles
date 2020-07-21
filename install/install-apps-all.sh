@@ -45,6 +45,7 @@ pipx install awsebcli || true
 pipx install glances || true     # an htop alternative
 pipx install ipython || true     # better python console
 pipx install poetry || true      # package management
+pipx install pre-commit || true  # pre-commit hooks
 pipx install vim-vint            # vimscript linter
 pipx install wfuzz || true       # the web fuzzer
 pipx install yq || true          # jq for yaml
