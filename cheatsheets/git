@@ -13,8 +13,11 @@ git remote show origin
 # Show commits by author
 git log --author="..."
 
-# Show only staged changes
+# Diff: show only staged changes
 git diff --cached
+
+# Diff: show only file names, using relative path
+git diff --relative --name-only
 
 # Show unmerged branches
 git branch --no-merged master
@@ -56,3 +59,6 @@ http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff
 
 # Show git tags on remote
 git ls-remote --tags origin
+
+# Run prettier on all changed files
+git diff --name-only dev --relative ./ | xargs -n1 ./node_modules/.bin/prettier --write
