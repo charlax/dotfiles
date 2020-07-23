@@ -38,7 +38,7 @@ packages=(arp-scan   # ARP scanner
     jq         # json formatting
     john-jumbo  # john the ripper
     macvim
-    miller
+    miller     # like awk, sed, cut, join, and sort for CSV, TSV, and tabular JSON
     mysql
     ncdu       # ncurses disk usage
     nmap               # port scanner
@@ -49,12 +49,11 @@ packages=(arp-scan   # ARP scanner
     python
     python3
     redis
-    rg         # file searching
+    rg         # ripgrep, fast file searching
     rmtrash
     shellcheck   # static analysis for shell scripts
     shfmt        # A shell parser, formatter, and interpreter
     telnet
-    the_silver_searcher  # file searching ag command
     tldr       # simplified and community-driven man pages
     tmux
     tree      # display file list in tree
