@@ -11,10 +11,10 @@ endfunction
 command! CdToCurrentFile cd %:p:h
 
 " Reload vimrc
-if !exists("*ReloadVimrc")
+if !exists('*ReloadVimrc')
   function ReloadVimrc()
       source $MYVIMRC
-      if has("gui_running")
+      if has('gui_running')
           source ~/.gvimrc
       endif
   endfunction
@@ -43,7 +43,7 @@ nnoremap <leader>V  :call ToggleFocusMode()<cr>
 
 " Remove trailing whitespaces
 function! StripTrailingWhitespaces()
-    let save_cursor = getpos(".")
+    let save_cursor = getpos('.')
     %s/\s\+$//e
     call setpos('.', save_cursor)
 endfunction
@@ -51,7 +51,7 @@ command! -range=% StripTrailingWhitespaces call StripTrailingWhitespaces()
 
 " Trim end lines
 function! TrimEndLines()
-    let save_cursor = getpos(".")
+    let save_cursor = getpos('.')
     :silent! %s#\($\n\s*\)\+\%$##
     call setpos('.', save_cursor)
 endfunction
@@ -97,7 +97,7 @@ command! FormatUUIDS call FormatUUIDS()
 function! InsertUUID()
     let cmd = 'uuidgen | tr "[:upper:]" "[:lower:]"'
     let result = substitute(system(cmd), '[\]\|[[:cntrl:]]', '', 'g')
-    silent exec ":normal i" . result
+    silent exec ':normal i' . result
 endfunction
 command! InsertUUID call InsertUUID()
 
@@ -108,14 +108,14 @@ function! ReplaceWithUUID()
 endfunction
 command! ReplaceWithUUID call ReplaceWithUUID()
 
-" Copy current filename
+" Copy current filename (absolute path)
+function! CopyCurrentFilenameAbs()
+    let @*=expand('%:p')
+endfunction
+command! CopyCurrentFilenameAbs call CopyCurrentFilenameAbs()
+
+" Copy current filename (relative path)
 function! CopyCurrentFilename()
-    let @*=expand("%:p")
+    let @*=expand('%')
 endfunction
 command! CopyCurrentFilename call CopyCurrentFilename()
-
-" Copy current rel filename
-function! CopyCurrentFilenameRel()
-    let @*=expand("%")
-endfunction
-command! CopyCurrentFilenameRel call CopyCurrentFilenameRel()
