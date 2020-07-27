@@ -6,55 +6,81 @@
 set -e
 unset -v
 
-current_dir=$(dirname "$0")
+function install_os_packages {
+    log_info "Installing OS-specifics packages"
 
-case "$OSTYPE" in
-    "linux-gnu")
-        "$current_dir"/install-apps-linux.sh
-        ;;
+    current_dir=$(dirname "$0")
 
-    "darwin19")
-        "$current_dir"/install-apps-osx.sh
-        "$current_dir"/install-ui-apps-osx.sh
-        ;;
-esac
+    case "$OSTYPE" in
+        "linux-gnu")
+            "$current_dir"/install-apps-linux.sh
+            ;;
 
-log_info "Installing common brew packages"
+        "darwin19")
+            "$current_dir"/install-apps-osx.sh
+            "$current_dir"/install-ui-apps-osx.sh
+            ;;
+    esac
+}
 
-packages=(awscli  # AWS command line
-    binwalk       # inspect files
-    broot         # better tree
-    csvq          # query csv from command line
-    cw            # aws cloudwatch logs
-    github/gh/gh  # Github cli
-    renameutils   # imv (faster rename) etc.
-    terraform     # infrastructure management
-    sqlmap        # sql injection tool
-    )
+function install_brew_packages {
+    log_info "Installing common brew packages"
 
-brew tap lucagrulla/tap
-brew update
-brew install "${packages[@]}"
+    packages=(awscli  # AWS command line
+        binwalk       # inspect files
+        broot         # better tree
+        csvq          # query csv from command line
+        cw            # aws cloudwatch logs
+        github/gh/gh  # Github cli
+        renameutils   # imv (faster rename) etc.
+        terraform     # infrastructure management
+        sqlmap        # sql injection tool
+        )
 
-log_info "Installing vim"
-"$current_dir/install-vim.sh"
+    brew tap lucagrulla/tap
+    brew update
+    brew install "${packages[@]}"
+}
 
-log_info "Installing Python software with pipx"
+function install_vim {
+    log_info "Installing vim"
+    "$current_dir/install-vim.sh"
+}
 
-pipx install awsebcli || true
-pipx install glances || true     # an htop alternative
-pipx install ipython || true     # better python console
-pipx install poetry || true      # package management
-pipx install pre-commit || true  # pre-commit hooks
-pipx install vim-vint            # vimscript linter
-pipx install wfuzz || true       # the web fuzzer
-pipx install yq || true          # jq for yaml
+function install_pipx_packages {
+    log_info "Installing Python software with pipx"
 
-log_info "Installing pipenv"
-pip install --user pipenv
+    pipx_packages=(awsebcli
+        glances      # an htop alternative
+        ipython      # better python console
+        poetry       # package management
+        pre-commit   # pre-commit hooks
+        vim-vint     # vimscript linter
+        wfuzz        # the web fuzzer
+        yq           # jq for yaml
+        )
 
-# npm install -g prettier
+    set -o verbose
+    for package in "${pipx_packages[@]}"; do
+        pipx install --force "$package"
+    done
+    set +o verbose
+}
 
-echo ""
-echo "Running update script to install the rest"
-update-everything
+function install_pipenv {
+    log_info "Installing pipenv"
+    pip install --user pipenv
+}
+
+
+function update_all {
+    log_info "Running update script to install the rest"
+    update-everything
+}
+
+install_os_packages
+install_brew_packages
+install_vim
+install_pipx_packages
+install_pipenv
+update_all

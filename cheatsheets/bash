@@ -15,6 +15,12 @@ for toaster in $(cat toasters.txt) ; do
      echo ${toaster}
 done
 
+# Loop over array
+array=(one two three)
+for i in "${array[@]}"; do
+    echo $i
+done
+
 # Download files numbered 1 to 20
 wget http://cloud.com/1/{1..20}.py
 
@@ -22,6 +28,7 @@ wget http://cloud.com/1/{1..20}.py
 # https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 set -v  # display commands before executing, same as:
 set -o verbose
+set +o verbose
 # same as -e, exit on error for multiple cases, see doc
 set -o errexit
 
