@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+
+# NOTE: depends on atomicwrites
+# pip install atomicwrites
+
+import argparse
+import sys
+from typing import TextIO, List
+
+from atomicwrites import atomic_write
+
+Lines = List[str]
+NEXT = "## Next"
+ITEM_PREFIX = "- "
+
+
+def maybe_add_next(lines: Lines) -> Lines:
+    if NEXT in lines:
+        return lines
+
+    return [lines[0]] + ["", NEXT] + lines[1:]
+
+
+def add_next_item(lines: Lines, item: str) -> Lines:
+    next_index = lines.index(NEXT)
+
+    if lines[next_index + 1] != "":
+        # Add blank line
+        lines.insert(next_index, "")
+
+    lines.insert(next_index + 2, f"{ITEM_PREFIX}{item}")
+    return lines
+
+
+def clean_line(line: str) -> str:
+    return line.strip()
+
+
+def add_item(f: TextIO, item: str, is_dry_run: bool = False) -> None:
+    """Add an item to a 1-1 agenda."""
+    lines = [clean_line(line) for line in f.read().splitlines()]
+    lines = maybe_add_next(lines)
+    lines = add_next_item(lines, item)
+    # TODO: add blank line
+    # lines = add_space(lines)
+
+    if is_dry_run:
+        print(f"Would write in {f.name}:")
+        print(lines[:10])
+        return
+
+    with atomic_write(f.name, overwrite=True) as f:
+        f.write("\n".join(lines))
+
+
+def main(infiles: List[TextIO], item: str = "", is_dry_run: bool = False) -> int:
+    for f in infiles:
+        add_item(f, item, is_dry_run)
+
+    return 0
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="add an item to 1-1 agenda")
+    parser.add_argument(
+        "infiles", nargs="+", type=argparse.FileType("r+"),
+    )
+    parser.add_argument("--item", required=True)
+    parser.add_argument("--dry-run", action="store_true")
+    args = parser.parse_args()
+
+    sys.exit(main(args.infiles, item=args.item, is_dry_run=args.dry_run))
