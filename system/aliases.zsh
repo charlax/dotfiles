@@ -103,6 +103,7 @@ alias generate_secret="openssl rand -base64 32"
 
 alias d='cd ~/Downloads'
 alias checkout='cd ~/Downloads && m '
+alias br='broot'
 
 alias ia="iawriter"
 alias iar="iawriter README*"
