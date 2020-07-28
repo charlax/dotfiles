@@ -1,0 +1,2 @@
+# Match files ending with .ts, .tsx, .js
+git diff --name-only | grep "\(.js\|.tsx\|\.ts\)$"
