@@ -3,3 +3,6 @@
 
 # Get the list of Slack handle from emails in clipboard
 csvq -N -f csv "select @' || slack from team where email in ($(pbpaste | awk '{ printf "\"%s\",", $0 }' | sed 's/,$//'));" | paste -sd ' ' -
+
+# Get the list of firstname based on manager
+csvq -N -f csv "select firstname from team where manager = 'charlax'"
