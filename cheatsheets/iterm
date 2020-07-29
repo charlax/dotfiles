@@ -1,2 +1,5 @@
 # Copy last command output
 Cmd+Shift+A
+
+# Show most frequently opened dirs
+Cmd+Option+/
