@@ -29,6 +29,7 @@ function install_brew_packages {
     packages=(awscli  # AWS command line
         binwalk       # inspect files
         broot         # better tree
+        cloc          # count lines of code
         csvq          # query csv from command line
         cw            # aws cloudwatch logs
         github/gh/gh  # Github cli
