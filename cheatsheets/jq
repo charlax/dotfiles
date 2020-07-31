@@ -13,3 +13,6 @@ jq '.[0]'
 jq '.[2:4]'
 jq '.[:3]'
 jq '.[-2:]'
+
+# Show 'url' value for each array item
+jq '.[].url'
