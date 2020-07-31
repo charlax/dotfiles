@@ -133,6 +133,9 @@ map <Leader>n :noh<CR>
 nmap ,cs :let @*=expand("%")<CR>
 nmap ,cl :let @*=expand("%:p")<CR>
 
+" Prettify json
+map <buffer> <leader>js <Esc>:%!jq .<CR>
+
 " =======================================================
 " Completion
 " =======================================================
