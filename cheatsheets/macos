@@ -18,3 +18,6 @@ mdls file.pdf
 
 # Restart DNS responder (e.g. after changes in /etc/hosts)
 sudo killall -HUP mDNSResponder
+
+# Keyboard
+# See https://support.apple.com/en-us/HT201236
