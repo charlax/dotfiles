@@ -4,4 +4,9 @@
 rg stringtomatch ./folder
 
 # include hidden files (which are excluded by default)
-rg --hidden stringtomatch
+rg --hidden $string
+# include more files with -u -uu -uuu
+rg -uuu $string
+
+# Show file names only
+rg -l $string

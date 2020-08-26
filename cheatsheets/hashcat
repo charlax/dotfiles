@@ -1,5 +1,15 @@
+# Rules
+# https://hashcat.net/wiki/doku.php?id=rule_based_attack
+
 # md5
 hashcat -m0 ~/Downloads/hashes $WORDLIST
 
 # md5crypt()
 hashcat -m 500 hashes.hash $WORDLIST
+
+# multiple wordlists are accepted
+# you can also use rules
+hashcat -m4010 $hashes -r OneRuleToRuleThemAll.rule $WORDLIST ./wordlist.txt
+
+# -a 1 to combine words from two wordslists
+hashcat -a 1 $hashes $wordlist1 $wordlist2
