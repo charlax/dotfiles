@@ -29,6 +29,7 @@ apps=(1password
     spotify
     transmission
     typora
+    vagrant             # useful for installing kali
     visual-studio-code
     vlc
     whatsapp
