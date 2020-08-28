@@ -1,11 +1,14 @@
+#!/bin/bash
 # Provision a new machine
 
-sudo apt update
-sudo apt upgrade
-sudo apt install git curl file build-essential
+set -o errexit
+
+sudo apt-get update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+sudo apt-get install -y git curl file build-essential
 
 # Install homebrew
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 DOTFILES="$HOME/.dotfiles"
 git clone https://github.com/charlax/dotfiles.git $DOTFILES

@@ -9,7 +9,7 @@ log_info "Installing apt packages"
 
 set -o verbose
 
-sudo apt update
+sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
 
 # To add:
 # vscode
@@ -46,7 +46,7 @@ packages=(autojump  # cd command that leanrs
     zsh
 )
 
-sudo apt install -y "${packages[@]}"
+sudo apt-get install -y "${packages[@]}"
 
 set +o verbose
 
