@@ -1,18 +1,20 @@
 #!/bin/bash
 # Provision a new machine
 
+APT_GET="apt-get -qq -y"
+
 set -o errexit
 
-sudo apt-get update -y
-sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
-sudo apt-get install -y git curl file build-essential
+sudo $APT_GET update
+sudo DEBIAN_FRONTEND=noninteractive $APT_GET upgrade
+sudo $APT_GET install git curl file build-essential
 
 # Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 DOTFILES="$HOME/.dotfiles"
-git clone https://github.com/charlax/dotfiles.git $DOTFILES
+git clone -q https://github.com/charlax/dotfiles.git $DOTFILES
 
-python3 $DOTFILES/install.py --with-all
+python3 $DOTFILES/install.py --with-all --symlink-force
 
 ~/.dotfiles/install/install-apps-all.sh

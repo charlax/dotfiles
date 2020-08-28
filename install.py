@@ -95,13 +95,13 @@ def clone_or_update(repo, path):
     """Clone or update a repo."""
     if not os.path.exists(path):
         print(color.green("\nCloning dotfiles repo..."))
-        run(["git", "clone", repo, path])
+        run(["git", "clone", "-q", repo, path])
 
     try:
         print(color.green("\nUpdating dotfiles repo..."))
-        run(["git", "pull"], cwd=path)
-        run(["git", "submodule", "init"], cwd=path)
-        run(["git", "submodule", "update"], cwd=path)
+        run(["git", "pull", "-q"], cwd=path)
+        run(["git", "submodule", "-q", "init"], cwd=path)
+        run(["git", "submodule", "-q", "update"], cwd=path)
     except subprocess.CalledProcessError:
         print("WARNING git pull failed, continuing anyway, repo might be outdated")
 

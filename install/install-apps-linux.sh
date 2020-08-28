@@ -3,13 +3,15 @@
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
+APT_GET="apt-get -qq -y"
+
 set -e
 
 log_info "Installing apt packages"
 
 set -o verbose
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
+sudo DEBIAN_FRONTEND=noninteractive $APT_GET update
 
 # To add:
 # vscode
@@ -46,7 +48,7 @@ packages=(autojump  # cd command that leanrs
     zsh
 )
 
-sudo apt-get install -y "${packages[@]}"
+sudo $APT_GET install "${packages[@]}"
 
 set +o verbose
 
