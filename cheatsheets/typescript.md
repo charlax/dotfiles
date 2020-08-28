@@ -13,3 +13,11 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
   isActive: boolean;
 }
 ```
+
+## React Styled
+
+```typescript
+const Title = styled.Text<{isEditable: boolean}>`
+  padding-bottom: ${({isEditable}) => (isEditable ? 14 : 0)}px;
+`;
+```

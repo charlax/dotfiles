@@ -18,6 +18,8 @@ git diff --cached
 
 # Diff: show only file names, using relative path
 git diff --relative --name-only
+# Diff: do not show deleted files
+git diff --name-only --diff-filter=ACMR
 
 # Show unmerged branches
 git branch --no-merged master

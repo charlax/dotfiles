@@ -13,7 +13,7 @@ packages=(libreoffice
 )
 
 
-sudo apt install -y "${packages[@]}"
+sudo apt-get -qq install -y "${packages[@]}" > /dev/null
 
 IS_CHROME_INSTALLED=$(dpkg-query -W --showformat='${Status}\n' google-chrome-stable|grep "install ok installed")
 

@@ -11,7 +11,7 @@ log_info "Installing apt packages"
 
 set -o verbose
 
-sudo DEBIAN_FRONTEND=noninteractive $APT_GET update
+sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
 
 # To add:
 # vscode
@@ -48,7 +48,7 @@ packages=(autojump  # cd command that leanrs
     zsh
 )
 
-sudo $APT_GET install "${packages[@]}"
+sudo $APT_GET install "${packages[@]}" > /dev/null
 
 set +o verbose
 
