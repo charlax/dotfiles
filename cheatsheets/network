@@ -1,0 +1,8 @@
+# Diagnostic for network
+
+# ping: sendto: No route to host
+
+```bash
+$ ping 8.8.8.8
+ping: sendto: No route to host
+```
