@@ -24,7 +24,7 @@ function install_requirements() {
 function install_dotfiles() {
     echo "Installing dotfiles"
     DOTFILES="$HOME/.dotfiles"
-    if ! [[ -s $DOTFILES ]]; then
+    if ! [[ -d $DOTFILES ]]; then
         git clone -q https://github.com/charlax/dotfiles.git "$DOTFILES"
     fi
 
