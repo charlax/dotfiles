@@ -6,3 +6,13 @@
 $ ping 8.8.8.8
 ping: sendto: No route to host
 ```
+
+# Get DHCP client information
+ipconfig getpacket en0
+
+# Traceroute
+
+```bash
+% traceroute 8.8.8.8
+traceroute: findsaddr: write: No such process
+```
