@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Show Python standard lib source
+
+set -e
+
+PROGRAM_NAME=${0##*/}
+
+function usage {
+    echo "Usage: $PROGRAM_NAME [--help/-h] [--editor EDITOR] [path]"
+    exit 1
+}
+
+while true; do
+    case "${1:-}" in
+        -h | --help)
+            usage
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+filename=$(python3 -c "import $1; print($1.__file__)")
+
+$EDITOR "$filename"

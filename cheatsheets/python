@@ -6,3 +6,23 @@
 echo $PATH  # make sure Python is at latest version
 which python3  # make sure it's brew's Python, otherwise: brew link python3
 pipx reinstall-all
+
+## Libs
+
+### Functools
+
+```python
+functools.reduce(function, iterable[, initializer])
+
+# with function:
+def reducer(accumulator, current):
+    pass
+
+```
+
+### Iterator
+
+```python
+itertools.chain
+itertools.chain.from_iterable
+```

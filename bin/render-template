@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+import argparse
+import itertools as it
+import sys
+from datetime import datetime
+from functools import reduce
+from pathlib import Path
+from typing import Dict, Set, Iterator, Any
+from string import Formatter
+
+
+def prompt(name: str) -> str:
+    value = input(f"{name}: ")
+    return value
+
+
+def get_base_context() -> Dict[str, Any]:
+    return {
+        "today": datetime.now(),
+    }
+
+
+def get_context(names: Set[str], base: Dict[str, str]) -> Dict[str, str]:
+    """Get context variables."""
+
+    def reducer(acc: Dict[str, str], name: str) -> Dict[str, str]:
+        value = prompt(name)
+        acc[name] = value
+        return acc
+
+    return reduce(reducer, names, base)
+
+
+def get_required_variables(template: str) -> Iterator[str]:
+    parsed = Formatter().parse(template)
+    return list(filter(None, [fieldname for _, fieldname, _, _ in parsed]))
+
+
+def main(filename_template: str) -> int:
+    with open(filename_template) as f:
+        content_template = f.read(100000)
+
+    base_context = get_base_context()
+
+    required_variables = set(it.chain.from_iterable(map(get_required_variables, [filename_template, content_template]))) - set(base_context.keys())
+
+    context = get_context(required_variables, base_context)
+
+    filename = Path(filename_template.format(**context).replace("template", "").replace("..", "."))
+
+    if filename.exists():
+        raise OSError(f"File {filename} already exists")
+
+    with open(filename, "w") as f:
+        f.write(content_template.format(**context))
+
+    return 0
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="render a template file")
+    parser.add_argument("template", help="template filename")
+    args = parser.parse_args()
+
+    sys.exit(main(args.template))
