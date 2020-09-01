@@ -5,6 +5,20 @@
 * https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
 * https://github.com/piotrwitek/react-redux-typescript-guide
 
+## Typings
+
+### Reduce
+
+```typescript
+const params = {}
+const params2 = Object.entries(params)
+  .filter(([key, value]) => !(value instanceof Array))
+  .reduce<Record<string, string>>((acc, [key, value]) => {
+    acc[key] = value.toString();
+    return acc;
+  }, {});
+```
+
 ## React
 
 ```typescript
@@ -14,7 +28,7 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
 }
 ```
 
-## React Styled
+### React Styled
 
 ```typescript
 const Title = styled.Text<{isEditable: boolean}>`
