@@ -22,6 +22,8 @@ cat file.txt | sort | uniq -c | sort -n -r | head -n 10
 
 # Join lines with comma
 cat lines.txt | paste -sd "," -
+# Join lines
+cat lines.txt | perl -pe 'if(!eof){s/\n//}'
 
 # Wrap in quotes and join lines with comma, removing trailing comma
 pbpaste | awk '{ printf "\"%s\",", $0 }' | sed 's/,$//'

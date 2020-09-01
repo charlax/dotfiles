@@ -38,6 +38,10 @@ set -o errexit
 if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
 fi
 
+## Check if command exists
+if ! command -v $command &> /dev/null; then
+fi
+
 # Escape a single quote
 echo 'j'"'"'attends'
 

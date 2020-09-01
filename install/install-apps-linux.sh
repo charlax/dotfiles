@@ -3,6 +3,17 @@
 # shellcheck source=../helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
+function set_default_shell() {
+    local default_shell
+    default_shell = $(grep ^$(id -un): /etc/passwd | cut -d : -f 7-)
+    if ! [[ "$default_shell" =~ "zsh" ]]; then
+        log_info "Changing default shell"
+        chsh --shell /usr/bin/zsh
+
+        log_info "Default shell changed, this will take effect only after login/logout"
+    fi
+}
+
 APT_GET="apt-get -qq -y"
 
 set -e
@@ -56,13 +67,6 @@ set +o verbose
 # SHOULD BE LAST, requires user action
 #
 
-CURRENT_SHELL=$(perl -e '@x=getpwuid($<); print $x[8]')
-
-if [[ ! "$CURRENT_SHELL" =~ "zsh" ]]; then
-    log_info "Changing default shell"
-    chsh --shell /usr/bin/zsh
-
-    log_info "Default shell changed, this will take effect only after login/logout"
-fi
+set_default_shell
 
 exec zsh --login
