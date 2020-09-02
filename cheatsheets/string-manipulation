@@ -27,3 +27,9 @@ cat lines.txt | perl -pe 'if(!eof){s/\n//}'
 
 # Wrap in quotes and join lines with comma, removing trailing comma
 pbpaste | awk '{ printf "\"%s\",", $0 }' | sed 's/,$//'
+
+# Split file in words
+tr -s '[[:punct:][:space:]]' '\n' < words
+
+# Lowercase everything
+tr [:lower:] [:upper:]

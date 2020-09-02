@@ -16,3 +16,6 @@ ipconfig getpacket en0
 % traceroute 8.8.8.8
 traceroute: findsaddr: write: No such process
 ```
+
+# Display routes
+netstat -nr

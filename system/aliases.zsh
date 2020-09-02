@@ -9,6 +9,9 @@ if command -v "gls" > /dev/null 2>&1; then
     alias cp="gcp"
 else
     alias ls='ls --color=auto -hF'
+    alias l="ls -lAh --color"
+    alias ll="ls -lh --color"
+    alias la='ls -A --color'
 fi
 
 # Find file (defined in functions)
