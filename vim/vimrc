@@ -111,6 +111,9 @@ Plug 'tpope/vim-fugitive'
 " Solid language pack
 Plug 'sheerun/vim-polyglot'
 
+" Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
+Plug 'embear/vim-localvimrc'
+
 " ============================================================
 " Front-end dev
 " ============================================================
