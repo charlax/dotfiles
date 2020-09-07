@@ -19,3 +19,5 @@ traceroute: findsaddr: write: No such process
 
 # Display routes
 netstat -nr
+
+# Renew dhcp lease

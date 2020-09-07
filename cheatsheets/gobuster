@@ -1,5 +1,5 @@
 # gobuster: enumeration tool
 
 # -c cookies string
-# -x extensions
-gobuster dir -u $base_url -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php
+# -e extensions
+gobuster dir -u $base_url -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e php
