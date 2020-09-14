@@ -6,4 +6,5 @@ Turn shell commands into web services: https://github.com/beefsack/webify
 
 ## Security
 
-Scan git repos for secrets using regex and entropy: https://github.com/zricethezav/gitleaks
+- Scan git repos for secrets using regex and entropy: https://github.com/zricethezav/gitleaks
+- Hex editor for Mac Os: https://github.com/ridiculousfish/HexFiend/

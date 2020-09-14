@@ -13,3 +13,5 @@ hashcat -m4010 $hashes -r OneRuleToRuleThemAll.rule $WORDLIST ./wordlist.txt
 
 # -a 1 to combine words from two wordslists
 hashcat -a 1 $hashes $wordlist1 $wordlist2
+
+# --stdout do not crack - only output candidates

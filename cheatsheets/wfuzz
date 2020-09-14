@@ -11,6 +11,12 @@ wfuzz -Z -c -z file,$WORDLIST -d "user_login[username]=admin&user_login[password
 # --hc 404         # hide 404
 # --hs ".*truc.*"  # hide response for which content matches regex
 
+# Fuzzing URL
+wordlist=/usr/share/wordlists/wfuzz/general/big.txt
+wordlist=/usr/share/wordlists/wfuzz/general/medium.txt
+wfuzz -Z -c -z file,$wordlist $url/FUZZ
+wfuzz -Z -c -z file,$wordlist --hc 404 $url/FUZZ.php
+
 # other files:
 # /usr/share/wordlists/wfuzz/Injections/All_attack.txt
 # /usr/share/wordlists/wfuzz/Injections/Traversal.txt
