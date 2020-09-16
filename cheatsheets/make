@@ -1,3 +1,7 @@
+# Resources
+
+# https://tech.davis-hansson.com/p/make/
+
 # use a recent bash (make uses /bin/sh by default)
 SHELL := bash
 

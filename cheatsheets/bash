@@ -1,6 +1,7 @@
 # Resources:
 #
 # https://wiki.bash-hackers.org/
+# https://github.com/jlevy/the-art-of-command-line
 
 # while loop
 while true; do
