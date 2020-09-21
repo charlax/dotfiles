@@ -1,0 +1,7 @@
+---
+tags [ networking ]
+---
+
+# Share a file
+nc -l -p 1234 -q 1 > something.zip < /dev/null  # on the server
+cat something.zip | netcat server.ip.here 1234  # on the client
