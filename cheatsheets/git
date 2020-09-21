@@ -15,7 +15,6 @@ git log --author="..."
 
 # Diff: show only staged changes
 git diff --cached
-
 # Diff: show only file names, using relative path
 git diff --relative --name-only
 # Diff: do not show deleted files
@@ -49,12 +48,12 @@ git clean -f  # actually delete the files
 
 # Solving git conflicts
 
-Open the file in Vim, then :Gdiffsplit!
+Open the file in Vim, then :Gvdiffsplit!
 
 Left is target, middle is working copy, right is merge branch
 So when rebasing: left is master, and right is our work.
 
-1. Move to the chunk you want to keep and use the `dp` shortcut ("diff put")
+1. Move to the chunk (with `]c` next chunk, `[c` previous) you want to keep and use the `dp` shortcut ("diff put")
 2. Once if the file is done, `:Gwrite`
 
 http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
@@ -64,3 +63,6 @@ git ls-remote --tags origin
 
 # Run prettier on all changed files
 git diff --name-only dev --relative ./ | xargs -n1 ./node_modules/.bin/prettier --write
+
+# Show file somewhere else
+git show revision:path/to/file
