@@ -65,10 +65,34 @@ def empty_temp_dirs(is_dry_run: bool = False):
         run(f"rmtrash {d}/*")
 
 
+def check_for_uncommitted_code() -> None:
+    """Make sure all code is committed and pushed."""
+    print_task("Checking for uncommitted or unpushed code")
+    path = os.environ.get("CODE_PATH")
+    if not path:
+        print(color.red("CODE_PATH environment variable not set"))
+
+    for d in [x for x in Path(path).iterdir() if x.is_dir()]:
+        result = subprocess.run(
+            "git status --porcelain", shell=True, check=True, capture_output=True, cwd=d
+        )
+
+        if result.stdout:
+            print(color.red(f"{d} has uncomitted code"))
+
+        result = subprocess.run(
+            "git diff ..@{u}", shell=True, check=True, capture_output=True, cwd=d
+        )
+
+        if result.stdout:
+            print(color.red(f"{d} has unpushed code"))
+
+
 def main(is_dry_run: bool, will_clean_up_docker: bool = False) -> None:
     empty_temp_dirs(is_dry_run)
     run_maintenance_tasks()
     clean_up_ruby()
+    check_for_uncommitted_code()
 
     if will_clean_up_docker:
         clean_up_docker()
