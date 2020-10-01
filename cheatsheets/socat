@@ -1,0 +1,2 @@
+# Expose mysql
+socat TCP-LISTEN:3306,fork,bind=$publicip TCP:127.0.0.1:3306

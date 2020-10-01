@@ -1,5 +1,7 @@
 # wfuzz: the web fuzzer
 
+# See notes for wordlists
+
 # -c color
 # -d data
 # -Z ignore errors
@@ -10,6 +12,7 @@ wfuzz -Z -c -z file,$WORDLIST -d "user_login[username]=admin&user_login[password
 # Display options
 # --hc 404         # hide 404
 # --hs ".*truc.*"  # hide response for which content matches regex
+# --hl 0           # hide empty lines
 
 # Fuzzing URL
 wordlist=/usr/share/wordlists/wfuzz/general/big.txt

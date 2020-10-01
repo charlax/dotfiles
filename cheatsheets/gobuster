@@ -1,5 +1,12 @@
 # gobuster: enumeration tool
 
-# -c cookies string
-# -e extensions
-gobuster dir -u $base_url -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e php
+# See notes for wordlists
+
+wordlist=/vagrant/wordlists/SecLists/Discovery/Web-Content/raft-small-words.txt
+wordlist=wordlist=/vagrant/wordlists/SecLists/Discovery/Web-Content/raft-small-words.txt
+
+# -c --cookies string
+# -x --extensions
+# -t --threads
+# -s --statuscodes status code whitelist
+gobuster dir -u $base_url -w $wordlist -x php,txt -t 50 -s 200
