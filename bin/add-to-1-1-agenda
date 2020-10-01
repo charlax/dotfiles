@@ -49,6 +49,7 @@ def add_item(f: TextIO, item: str, is_dry_run: bool = False) -> None:
         print(lines[:10])
         return
 
+    print(f"Writing {f.name}...")
     with atomic_write(f.name, overwrite=True) as f:
         f.write("\n".join(lines))
 
