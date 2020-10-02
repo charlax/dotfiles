@@ -33,7 +33,7 @@ def add_next_item(lines: Lines, item: str) -> Lines:
 
 
 def clean_line(line: str) -> str:
-    return line.strip()
+    return line.rstrip()
 
 
 def add_item(f: TextIO, item: str, is_dry_run: bool = False) -> None:
