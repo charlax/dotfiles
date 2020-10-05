@@ -7,6 +7,12 @@
 
 ## Typings
 
+### Events
+
+```typescript
+React.ChangeEvent<HTMLInputElement>
+```
+
 ### Reduce
 
 ```typescript

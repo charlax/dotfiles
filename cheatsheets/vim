@@ -4,7 +4,9 @@
 # Delete all lines matching patterns
 :g/profile/d
 
-# # Keyboard
+# Keyboard
+# ========
+
 <ctrl-o> Go back to previous location
 
 # Insert tab character when `expandtab` is on
@@ -43,3 +45,10 @@ syn off | syn on
 
 # echo a durable message
 echom "message"
+
+# Editor config
+# ====== ======
+
+# Set indentation size in spaces
+set tabstop=4
+set shiftwidth=4

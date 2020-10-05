@@ -52,8 +52,8 @@ defaults write -g com.apple.sound.beep.feedback -int 0
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# System Preferences > Desktop & Screen Saver > Start after: Never
-defaults -currentHost write com.apple.screensaver idleTime -int 5
+# System Preferences > Desktop & Screen Saver > Start after:
+defaults -currentHost write com.apple.screensaver idleTime 300
 
 # ==============================================================================
 # Finder
