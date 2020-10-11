@@ -6,6 +6,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+from typing import List
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 import color  # noqa: E402
@@ -27,17 +28,17 @@ def run(cmd):
     subprocess.run(cmd, shell=True, check=True)
 
 
-def run_maintenance_tasks():
+def run_maintenance_tasks(is_dry_run: bool = False):
     print_task("Running maintenance tasks")
     run("sudo periodic daily weekly monthly")
 
 
-def clean_up_ruby():
+def clean_up_ruby(is_dry_run: bool = False):
     print_task("Cleaning up ruby")
     run("gem cleanup")
 
 
-def clean_up_docker():
+def clean_up_docker(is_dry_run: bool = False):
     print_task("Cleaning up Docker")
     run("docker system prune -af")
 
@@ -65,7 +66,7 @@ def empty_temp_dirs(is_dry_run: bool = False):
         run(f"rmtrash {d}/*")
 
 
-def check_for_uncommitted_code() -> None:
+def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
     """Make sure all code is committed and pushed."""
     print_task("Checking for uncommitted or unpushed code")
     path = os.environ.get("CODE_PATH")
@@ -96,21 +97,25 @@ def check_for_uncommitted_code() -> None:
             print(color.magenta(f"{d} has unpushed code"))
 
 
-def main(is_dry_run: bool, will_clean_up_docker: bool = False) -> None:
-    empty_temp_dirs(is_dry_run)
-    run_maintenance_tasks()
-    clean_up_ruby()
-    check_for_uncommitted_code()
+CHECKS = {
+    "empty_temp_dirs": empty_temp_dirs,
+    "run_maintenance_tasks": run_maintenance_tasks,
+    "clean_up_ruby": clean_up_ruby,
+    "check_for_uncommitted_code": check_for_uncommitted_code,
+    # "clean_up_docker": clean_up_docker
+}
 
-    if will_clean_up_docker:
-        clean_up_docker()
+
+def main(is_dry_run: bool, checks: List[str] = None) -> None:
+    to_run = checks if checks else CHECKS.keys()
+
+    for c in to_run:
+        CHECKS[c](is_dry_run)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Delete Downloads and Desktop folders")
-    parser.add_argument(
-        "--checks", nargs="+", help="run only this check"
-    )
+    parser = argparse.ArgumentParser(description="Clean up files and run jobs")
+    parser.add_argument("--checks", nargs="+", help="run only thoses checks")
     parser.add_argument(
         "--dry-run", action="store_true", help="do not actually delete anything"
     )
