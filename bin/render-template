@@ -28,7 +28,7 @@ def get_context(names: Set[str], base: Dict[str, str]) -> Dict[str, str]:
         acc[name] = value
         return acc
 
-    return reduce(reducer, names, base)
+    return reduce(reducer, sorted(names), base)
 
 
 def get_required_variables(template: str) -> Iterator[str]:
@@ -53,6 +53,8 @@ def main(filename_template: str) -> int:
 
     with open(filename, "w") as f:
         f.write(content_template.format(**context))
+
+    print(f"\n./{filename}")
 
     return 0
 

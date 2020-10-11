@@ -3,7 +3,6 @@
 # See notes for wordlists
 
 wordlist=/vagrant/wordlists/SecLists/Discovery/Web-Content/raft-small-words.txt
-wordlist=wordlist=/vagrant/wordlists/SecLists/Discovery/Web-Content/raft-small-words.txt
 
 # -c --cookies string
 # -x --extensions
