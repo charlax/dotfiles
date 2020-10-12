@@ -7,6 +7,9 @@ log_info "Installing UI Apps"
 
 set -v
 
+brew tap homebrew/cask-fonts
+
+
 apps=(1password
     adobe-acrobat-reader
     # adoptopenjdk8  unavailable??
@@ -17,6 +20,7 @@ apps=(1password
     docker
     google-chrome
     firefox
+    font-fira-code-nerd-font
     homebrew/cask-versions/google-chrome-canary
     iterm2
     libreoffice

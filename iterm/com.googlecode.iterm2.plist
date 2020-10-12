@@ -1186,9 +1186,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>410 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1 6 1438 865 0 0 1440 877 </string>
+	<string>897 141 1687 1001 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1 6 1438 865 0 0 1440 877 </string>
+	<string>0 0 2292 1417 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>449 365 570 457 0 0 1440 877 </string>
 	<key>NeverWarnAboutShortLivedSessions_05E9A422-E6A6-486A-A6EE-668D396A1ACF</key>
@@ -1740,11 +1740,11 @@
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>FiraCodeNerdFontComplete-Regular 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 12</string>
+			<string>FiraCodeNerdFontComplete-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -4017,6 +4017,12 @@
 		<string>3.3.11</string>
 		<string>3.3.10</string>
 	</array>
+	<key>NoSyncBFPRecents</key>
+	<array>
+		<string>FiraCode Nerd Font Mono</string>
+		<string>FiraCode Nerd Font</string>
+		<string>Monaco</string>
+	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
 	<key>NoSyncFrame_SharedPreferences</key>
@@ -4024,14 +4030,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3440, 1440}}</string>
 		<key>topLeft</key>
-		<string>{780, 1007}</string>
+		<string>{962, 900}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>1320EAB8-F9B3-4517-A998-5DAD01390C17</string>
 	<key>NoSyncLastTipTime</key>
 	<real>623416981.42285597</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>23</integer>
+	<integer>25</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -5006,7 +5012,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-10-05T07:09:21Z</date>
+	<date>2020-10-12T11:59:45Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
