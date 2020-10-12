@@ -1,0 +1,3 @@
+[python]
+pyenv_version_name = false
+scan_for_pyfiles = false

@@ -16,6 +16,7 @@ DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 CONFIGURATION_FILES = (
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
+    ("config/starship.toml", ".config/starship.toml"),
     ("config/cheat", ".config/cheat"),
     "ctags/ctags",
     "gdb/gdbinit",

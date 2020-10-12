@@ -66,6 +66,7 @@ alias gogo='git-done'
 alias p="ipython"
 alias p2="python2"
 alias p3="python3"
+alias python="python3"
 alias pypi_submit="python setup.py register sdist bdist upload"
 alias aa='source env/bin/activate'
 alias aactivate='source env/bin/activate'
