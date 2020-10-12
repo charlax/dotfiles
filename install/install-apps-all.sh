@@ -35,6 +35,7 @@ function install_brew_packages {
         github/gh/gh  # Github cli
         renameutils   # imv (faster rename) etc.
         terraform     # infrastructure management
+        sd            # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         sqlmap        # sql injection tool
         )
 
