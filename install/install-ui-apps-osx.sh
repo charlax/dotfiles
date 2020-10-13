@@ -20,7 +20,7 @@ apps=(1password
     docker
     google-chrome
     firefox
-    font-fira-code-nerd-font
+    font-roboto-nerd-font
     homebrew/cask-versions/google-chrome-canary
     iterm2
     libreoffice
