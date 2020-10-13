@@ -1,3 +1,12 @@
 [python]
 pyenv_version_name = false
 scan_for_pyfiles = false
+
+[ruby]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[aws]
+disabled = true

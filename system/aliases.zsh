@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
 # grc overides for ls
-if command -v "gls" > /dev/null 2>&1; then
-    alias ls="gls -hF --color"
-    alias l="gls -lAh --color"
-    alias ll="gls -lh --color"
+if command -v "exa" > /dev/null 2>&1; then
+    alias ls='exa'
+    alias l='exa -l'
+    alias ll='exa -lh'
+    alias la='exa -A'
+elif command -v "gls" > /dev/null 2>&1; then
+    alias ls='gls -hF --color'
+    alias l='gls -lAh --color'
+    alias ll='gls -lh --color'
     alias la='gls -A --color'
-    alias cp="gcp"
 else
     alias ls='ls --color=auto -hF'
-    alias l="ls -lAh --color"
-    alias ll="ls -lh --color"
+    alias l='ls -lAh --color'
+    alias ll='ls -lh --color'
     alias la='ls -A --color'
+fi
+
+if command -v "gcp" > /dev/null 2>&1; then
+    alias cp="gcp"
 fi
 
 # Find file (defined in functions)
