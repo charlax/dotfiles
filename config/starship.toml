@@ -10,3 +10,6 @@ disabled = true
 
 [aws]
 disabled = true
+
+[php]
+disabled = true

@@ -10,8 +10,7 @@
 # Grab email only, replacing the whole line
 # File:
 # Charlax <toaster@toasting.org>
-:%s/.*<//g
-:%s/>//g
+:%s/.*<\([a-z.@]\+\)>/\1/g
 
 # Delete everything after a character
 # * Toaster: 1
