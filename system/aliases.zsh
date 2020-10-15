@@ -5,7 +5,7 @@ if command -v "exa" > /dev/null 2>&1; then
     alias ls='exa'
     alias l='exa -l'
     alias ll='exa -lh'
-    alias la='exa -A'
+    alias la='exa -a'
 elif command -v "gls" > /dev/null 2>&1; then
     alias ls='gls -hF --color'
     alias l='gls -lAh --color'
