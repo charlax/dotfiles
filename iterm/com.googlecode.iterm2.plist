@@ -8,6 +8,8 @@
 	<true/>
 	<key>AboutToPasteTabsWithCancel_selection</key>
 	<integer>0</integer>
+	<key>AddNewTabAtEndOfTabs</key>
+	<false/>
 	<key>AdjustWindowForFontSizeChange</key>
 	<true/>
 	<key>AdvancedFontRendering</key>
@@ -1186,7 +1188,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>410 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1 108 1858 1309 0 0 2560 1417 </string>
+	<string>1 90 1513 1327 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1 108 1858 1309 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -4038,7 +4040,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>623416981.42285597</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>27</integer>
+	<integer>28</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -5013,7 +5015,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-10-12T11:59:45Z</date>
+	<date>2020-10-15T11:59:47Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
