@@ -61,6 +61,10 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" Easier resizing
+" nnoremap <Leader>j :exe "vertical resize " . (winheight(0) * 3/2)<CR>
+" nnoremap <Leader>h :exe "vertical resize " . (winheight(0) * 2/3)<CR>
+
 " fzf (mimicking some ctrlp mappings)
 nmap ; :Ag<CR>
 nmap <c-p> :Files<CR>

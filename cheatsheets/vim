@@ -40,6 +40,17 @@ syn off | syn on
 # Show hidden chars
 :set list
 
+`<C-u>`: deletes one line (in insert mode)
+`fa` goes to the next `a` character on the same line (in command mode)
+`"kyy` copies the current line into register `k`
+`"kp` paste the content of the register `k`
+
+# Custom keyboard shortcuts
+
+`<leader>pw`: show the Python documentation for the word under the cursor.
+`<F7>` runs `flake8` on the current file.
+`qgic` rewraps the comment block (thanks to `vim-textobj-comment`)
+
 # Vimscript
 # =========
 
