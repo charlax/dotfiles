@@ -2,8 +2,9 @@
 
 ## Reference
 
-* https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
-* https://github.com/piotrwitek/react-redux-typescript-guide
+- https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
+- https://github.com/piotrwitek/react-redux-typescript-guide
+- https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react
 
 ## Typings
 

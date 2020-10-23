@@ -12,10 +12,6 @@ let g:rtfh_size = '34'
 " Use ag instead of ack
 let g:ackprg = 'ag --vimgrep'
 
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
-
 " See https://github.com/jiangmiao/auto-pairs/issues/88, can't type a with
 " circumflex without this.
 let g:AutoPairsShortcutBackInsert=''
@@ -57,6 +53,26 @@ let g:mta_filetypes = {
 
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'my_snippets']
 
+" =======================================================
+" Status line
+" =======================================================
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+    " Requires vim-fugitive plugins
+    let root = fnamemodify(get(b:, 'git_dir'), ':h')
+    let path = expand('%:p')
+    if path[:len(root)-1] ==# root
+        return path[len(root)+1:]
+    endif
+    return expand('%')
+endfunction
 
 " =======================================================
 " File-specific plugins

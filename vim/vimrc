@@ -56,7 +56,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 
 " A tree explorer plugin
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 
 Plug 'mileszs/ack.vim'
 

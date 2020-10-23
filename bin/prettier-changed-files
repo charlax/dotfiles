@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -o errexit
+
+BASE=dev
+
+FILES=$(git diff $BASE --name-only --relative ./ | xargs)
+
+./node_modules/.bin/prettier --write $FILES
