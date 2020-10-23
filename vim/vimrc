@@ -43,7 +43,6 @@ Plug 'greyblake/vim-preview'
 " Plug 'groenewege/vim-less'
 "
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'nvie/vim-flake8', { 'for': 'python' }
 
 " syntax highlighting to RTF
 Plug 'jdonaldson/rtf-highlight'

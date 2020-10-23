@@ -89,9 +89,6 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " To prefix lines
 noremap <leader>i :s/^/\V
 
-" Prettify Python
-vnoremap <leader>pp <Esc>:'<,'>!pypprint<CR>
-
 " Use :W! to write to a file using sudo if you forgot to 'sudo vim file'
 cmap W! %!sudo tee > /dev/null %
 
@@ -99,7 +96,7 @@ cmap W! %!sudo tee > /dev/null %
 nmap <Leader>P :Preview<CR>
 
 " Open NERDTree
-map <Leader>p :NERDTreeToggle<CR>
+map <Leader>p :NERDTreeFind<CR>
 
 " Underline the current line with '='
 nmap <silent> <leader>u1 :t.<CR>Vr=

@@ -10,3 +10,13 @@ $a = array_map('strval', $a);
 # filter
 $input = array(1, 2, 3, 4, 5);
 $output = array_filter($input, function ($v) { return $v > 2; });
+
+## Exception
+
+```php
+try {
+    echo inverse(0) . "\n";
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+```
