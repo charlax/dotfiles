@@ -18,7 +18,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     brew cleanup
 
     log_info "Updating brew cask packages"
-    brew cask upgrade
+    brew upgrade --cask
 
     log_info "Running brew doctor"
     brew doctor || true
