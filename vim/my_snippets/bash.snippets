@@ -1,0 +1,23 @@
+snippet skeletton_script "Bash script skeletton" b
+function usage() {
+    echo "$(basename "$0") [--help] [--publish]"
+}
+
+while [ $# -gt 0 ]
+do
+    case $1 in
+    --help)
+        usage
+        exit
+        ;;
+    --publish)
+        PUBLISH=true
+        ;;
+    esac
+    shift
+done
+
+if [ "$PUBLISH" = true ]; then
+    publish
+fi
+endsnippet

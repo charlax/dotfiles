@@ -43,6 +43,10 @@ fi
 if ! command -v $command &> /dev/null; then
 fi
 
+## Check command result
+if command; then
+fi
+
 # Escape a single quote
 echo 'j'"'"'attends'
 
