@@ -54,27 +54,6 @@ let g:mta_filetypes = {
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'my_snippets']
 
 " =======================================================
-" Status line
-" =======================================================
-
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ }
-      \ }
-
-function! LightlineFilename()
-    " Requires vim-fugitive plugins
-    let root = fnamemodify(get(b:, 'git_dir'), ':h')
-    let path = expand('%:p')
-    if path[:len(root)-1] ==# root
-        return path[len(root)+1:]
-    endif
-    return expand('%')
-endfunction
-
-" =======================================================
 " File-specific plugins
 " =======================================================
 
@@ -168,10 +147,25 @@ function! Multiple_cursors_after()
 endfunction
 
 " =======================================================
-" Lightline (status line)
+" Status line
 " =======================================================
 
-let g:lightline = {}
+function! LightlineFilename()
+    " Requires vim-fugitive plugins
+    let root = fnamemodify(get(b:, 'git_dir'), ':h')
+    let path = expand('%:p')
+    if path[:len(root)-1] ==# root
+        return path[len(root)+1:]
+    endif
+    return expand('%')
+endfunction
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
 
 " ale integration
 let g:lightline.component_expand = {
