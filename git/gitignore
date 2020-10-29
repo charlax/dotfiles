@@ -1,7 +1,10 @@
 .DS_Store
-*.pyc
+
+# Tags file
 tags
 tags.lock
+tags.files
+tags.temp
 
 # local project vimrc
 .lvimrc

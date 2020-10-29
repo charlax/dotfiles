@@ -103,6 +103,11 @@ function! DisableFixers()
 endfunction
 command! DisableFixers call DisableFixers()
 
+function! EnableFixers()
+    let g:ale_fix_on_save = 1
+endfunction
+command! EnableFixers call EnableFixers()
+
 " Deactivate ALE fixes on non-Code repo
 function! DisableFixersOutsideCode()
     if match(expand('%'), 'Code\|dotfiles') == -1
