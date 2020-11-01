@@ -38,7 +38,7 @@ pip3 install --user --upgrade pip
 
 log_info "Updating all pipx apps"
 set -v
-pipx upgrade-all
+pipx upgrade-all  || true
 set +v
 
 if command -v npm >/dev/null 2>&1; then

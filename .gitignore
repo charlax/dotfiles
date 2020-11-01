@@ -2,3 +2,5 @@
 !*.local.template
 
 .tags.lock
+
+__pycache__
