@@ -11,7 +11,8 @@ _has() {
 # Shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
-#{{{ ZSH Modules
+# ZSH Modules
+# ===========
 
 autoload -U promptinit zcalc zsh-mime-setup colors zmv cdr
 colors
@@ -27,8 +28,6 @@ else
 fi
 
 autoload -Uz history-beginning-search-menu add-zsh-hook
-
-#}}}
 
 # Source every .zsh file in this rep
 for config_file ($ZSH/**/*.zsh) do
@@ -51,7 +50,8 @@ unsetopt NOMATCH
 # Activate bash-style comments
 setopt interactivecomments
 
-#{{{ Completion Stuff
+# Completion Stuff
+# ================
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -140,9 +140,8 @@ zstyle ':completion::approximate*:*' prefix-needed false
 zstyle ':completion:*:processes' command 'ps -au$USER'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;32'
 
-#}}}
-
-#{{{ History Stuff
+# History
+# =======
 
 # Where it gets saved
 HISTFILE=~/.zsh_history
@@ -151,7 +150,8 @@ HISTFILE=~/.zsh_history
 SAVEHIST=10000
 HISTSIZE=10000
 
-# OPTIONS
+# Options
+# =======
 
 # Make it possible to change directories without writing cd
 setopt auto_cd
@@ -187,9 +187,8 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 
-#}}}
-
 # FZF
+# ===
 
 # FZF on Linux
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -227,5 +226,40 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     ulimit -n 20000
 fi
 
-# For profiling
+# Keyboard shortcuts
+# ==================
+#
+# Inspired by:
+# in http://chneukirchen.org/blog/archive/2012/02/10-new-zsh-tricks-you-may-not-know.html
+
+# HELP
+# ^[ is ESC
+# ^  is ctrl
+
+# Bind delete key to something meaningful like... deleting.
+bindkey    "^[[3~"          delete-char
+bindkey    "^[3;5~"         delete-char
+
+# ⌥ + ← or → - move one word backward/forward (like in other OS X apps)
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+
+# c-b (word backward) and c-f (word forward)
+bindkey "^B" backward-word
+bindkey "^F" forward-word
+
+# Use ctrl-z to go back to fg app
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
+# Activate for profiling (should remain at the end)
 # zprof

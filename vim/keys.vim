@@ -96,7 +96,15 @@ cmap W! %!sudo tee > /dev/null %
 nmap <Leader>P :Preview<CR>
 
 " Open NERDTree
-map <Leader>p :NERDTreeFind<CR>
+function! OpenNerdTree()
+    if strlen(expand('%')) == 0
+        exec(':NERDTreeToggle')
+    else
+        exec(':NERDTreeFind')
+    endif
+endfunction
+
+map <Leader>p :call OpenNerdTree()<CR>
 
 " Underline the current line with '='
 nmap <silent> <leader>u1 :t.<CR>Vr=

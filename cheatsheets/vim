@@ -63,3 +63,6 @@ echom "message"
 # Set indentation size in spaces
 set tabstop=4
 set shiftwidth=4
+
+# Disable syntax highlighting
+set syntax=off
