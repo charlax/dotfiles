@@ -69,6 +69,7 @@ alias gpgp'git pull && git push'
 alias gpushcurrent='git push -u origin HEAD'
 # git-done is a script defined in bin/
 alias gogo='git-done'
+alias gg='git-done'
 
 # Python
 alias p="ipython"
