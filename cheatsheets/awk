@@ -16,3 +16,6 @@ seq 9 | sed 'H;g' | awk -v RS='' '{for(i=1;i<=NF;i++)printf("%dx%d=%d%s", i, NR,
 
 # Specify an output separator character:
 printf '1 2 3' | awk 'BEGIN {OFS=":"}; {print $1,$2,$3}'
+
+# Remove double-newlines
+awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2' $1 > $TEMPFILE && mv $TEMPFILE $FILE
