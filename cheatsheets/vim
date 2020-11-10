@@ -1,32 +1,18 @@
-# Other sources:
-# https://devhints.io/vimscript
+# Other sources
 
-# Delete all lines matching patterns
-:g/profile/d
+- https://devhints.io/vimscript
 
-# Keyboard
-# ========
+## Keyboard
 
+```
 <ctrl-o> Go back to previous location
 
-# Insert tab character when `expandtab` is on
+# Insert tab character when expandtab is on
 <ctrl+v><tab>
 
 # Show all mappings
 :map           # And :imap :vmap :nmap
 :verbose map   # Show mapping and where they were defined
-
-# Delete empty lines
-:g/^$/d
-
-# Insert a blank line after each line
-:g/^/norm o
-
-* `:g/^` acts on every line that matches the `^` regex.
-* `norm o` execute the command `o` in normal mode
-
-# Change spellcheck lang
-:setlocal spell spelllang=fr
 
 # Open previously opened file
 CTRL-^ (ctrl-shift-6)
@@ -34,35 +20,69 @@ CTRL-^ (ctrl-shift-6)
 # Insert literal tab character
 CTRL-V <tab>
 
-# Re run syntax highlighting
-syn off | syn on
+<C-u>  deletes one line (in insert mode)
+fa     goes to the next a character on the same line (in command mode)
+"kyy   copies the current line into register k
+"kp    paste the content of the register k
+```
 
-# Show hidden chars
-:set list
+## Custom keyboard shortcuts
 
-`<C-u>`: deletes one line (in insert mode)
-`fa` goes to the next `a` character on the same line (in command mode)
-`"kyy` copies the current line into register `k`
-`"kp` paste the content of the register `k`
+```raw
+<leader>pw   show the Python documentation for the word under the cursor.
+<F7>         runs `flake8` on the current file.
+qgic         rewraps the comment block (thanks to vim-textobj-comment)
+```
 
-# Custom keyboard shortcuts
+## Text handling
 
-`<leader>pw`: show the Python documentation for the word under the cursor.
-`<F7>` runs `flake8` on the current file.
-`qgic` rewraps the comment block (thanks to `vim-textobj-comment`)
+```raw
+# Delete empty lines
+:g/^$/d
 
-# Vimscript
-# =========
+# Insert a blank line after each line
+:g/^/norm o
 
-# echo a durable message
+:g/^   acts on every line that matches the ^ regex.
+norm o execute the command o in normal mode
+
+# Delete all lines matching patterns
+:g/profile/d
+```
+
+## File handling
+
+### netrw
+
+```raw
+%    create file
+:help netrw
+```
+
+## Vimscript
+
+```vimscript
+" Echo a durable message
+
 echom "message"
+```
 
-# Editor config
-# ====== ======
+## Editor config
 
-# Set indentation size in spaces
+```vimscript
+" Set indentation size in spaces
 set tabstop=4
 set shiftwidth=4
 
-# Disable syntax highlighting
+" Disable syntax highlighting
 set syntax=off
+
+" Change spellcheck lang
+:setlocal spell spelllang=fr
+
+" Re run syntax highlighting
+syn off | syn on
+
+" Show hidden chars
+:set list
+```
