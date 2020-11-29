@@ -36,17 +36,17 @@ def get_required_variables(template: str) -> Iterator[str]:
     return list(filter(None, [fieldname for _, fieldname, _, _ in parsed]))
 
 
-def main(filename_template: str) -> int:
-    with open(filename_template) as f:
+def main(template_filename: str) -> int:
+    with open(template_filename) as f:
         content_template = f.read(100000)
 
     base_context = get_base_context()
 
-    required_variables = set(it.chain.from_iterable(map(get_required_variables, [filename_template, content_template]))) - set(base_context.keys())
+    required_variables = set(it.chain.from_iterable(map(get_required_variables, [template_filename, content_template]))) - set(base_context.keys())
 
     context = get_context(required_variables, base_context)
 
-    filename = Path(filename_template.format(**context).replace("template", "").replace("..", "."))
+    filename = Path(template_filename.format(**context).replace("template", "").replace("..", "."))
 
     if filename.exists():
         raise OSError(f"File {filename} already exists")

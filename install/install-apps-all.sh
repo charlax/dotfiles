@@ -26,24 +26,25 @@ function install_os_packages {
 function install_brew_packages {
     log_info "Installing common brew packages"
 
-    packages=(awscli  # AWS command line
-        bandwhich     # bandwith utilization https://github.com/imsnif/bandwhich
-        binwalk       # inspect files
-        broot         # better tree
-        cloc          # count lines of code
-        csvq          # query csv from command line
-        cw            # aws cloudwatch logs
-        dust          # better du https://github.com/bootandy/dust
-        fastmod       # multifile search and replace https://github.com/facebookincubator/fastmod
-        github/gh/gh  # Github cli
-        hyperfine     # benchmark took https://github.com/sharkdp/hyperfine
-        nvim          # neovim
-        procs         # modern ps, experimental support for macos https://github.com/dalance/procs
-        renameutils   # imv (faster rename) etc.
-        terraform     # infrastructure management
-        tokei         # cloc https://github.com/XAMPPRocky/tokei
-        sd            # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
-        sqlmap        # sql injection tool
+    packages=(asciinema # record CLI session
+        awscli          # AWS command line
+        bandwhich       # bandwith utilization https://github.com/imsnif/bandwhich
+        binwalk         # inspect files
+        broot           # better tree
+        cloc            # count lines of code
+        csvq            # query csv from command line
+        cw              # aws cloudwatch logs
+        dust            # better du https://github.com/bootandy/dust
+        fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
+        github/gh/gh    # Github cli
+        hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
+        nvim            # neovim
+        procs           # modern ps, experimental support for macos https://github.com/dalance/procs
+        renameutils     # imv (faster rename) etc.
+        terraform       # infrastructure management
+        tokei           # cloc https://github.com/XAMPPRocky/tokei
+        sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
+        sqlmap          # sql injection tool
         )
 
     brew tap lucagrulla/tap
