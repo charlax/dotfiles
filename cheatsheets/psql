@@ -7,4 +7,7 @@ PGPASSWORD=password psql -h 127.0.0.1 -U username -d dbname
 
 # select database
 /c dbname
+
+# show create table
+/d tablename
 ```
