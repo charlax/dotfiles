@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import color  # noqa: E402
 
 DIRECTORIES = ("~/Downloads", "~/Desktop")
+IGNORE_UNCOMMITED_CODE_DIR = {"golang"}
 
 
 def print_task(msg: str) -> None:
@@ -74,6 +75,9 @@ def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
         print(color.red("CODE_PATH environment variable not set"))
 
     for d in [x for x in Path(path).iterdir() if x.is_dir()]:
+        if d.name in IGNORE_UNCOMMITED_CODE_DIR:
+            continue
+
         result = subprocess.run(
             "git status --porcelain", shell=True, capture_output=True, cwd=d
         )
