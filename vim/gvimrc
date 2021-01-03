@@ -30,8 +30,8 @@ if has("gui_macvim")
     inoremap <D-s> <ESC>:w<CR>
     nnoremap <D-s> :w<CR>
 
-    macm Window.Select\ Previous\ Tab  key=<D-A-Left>
-    macm Window.Select\ Next\ Tab    key=<D-A-Right>
+    macm Window.Show\ Previous\ Tab  key=<D-A-Left>
+    macm Window.Show\ Next\ Tab    key=<D-A-Right>
 
     set guifont=Menlo:h12
 end
