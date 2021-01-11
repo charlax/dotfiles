@@ -11,4 +11,6 @@ PGPASSWORD=password psql -h 127.0.0.1 -U username -d dbname
 # show create table
 /d tablename
 \d+ tablename  # show all table info
+
+\x  # extended display
 ```
