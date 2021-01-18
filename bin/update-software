@@ -22,8 +22,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
     log_info "Running brew doctor"
     brew doctor || true
-    brew cask doctor || true
-
 fi
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
