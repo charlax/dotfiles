@@ -1,5 +1,5 @@
 [python]
-disabled = true
+disabled = false
 pyenv_version_name = false
 scan_for_pyfiles = false
 

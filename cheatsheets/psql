@@ -14,3 +14,7 @@ PGPASSWORD=password psql -h 127.0.0.1 -U username -d dbname
 
 \x  # extended display
 ```
+
+```sql
+DELETE FROM tablename WHERE ...;
+```
