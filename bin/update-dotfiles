@@ -11,4 +11,4 @@ git -C "$DOTFILES" pull
 python3 "$DOTFILES/install.py"
 
 # Update cheatsheet submodule
-(cd "$DOTFILES" && git submodule update --remote config/cheat)
+(cd "$DOTFILES" && git submodule update --remote --merge config/cheat)

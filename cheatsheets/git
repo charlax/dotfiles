@@ -29,6 +29,8 @@ git reset --hard ORIG_HEAD
 
 # Undo changes in submodule
 git submodule update --init
+# Update submodule to latest remote commit
+git submodule update --remote --merge
 
 # Remove last commit
 git reset --hard HEAD~1
