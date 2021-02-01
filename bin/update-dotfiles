@@ -12,3 +12,6 @@ python3 "$DOTFILES/install.py"
 
 # Update cheatsheet submodule
 (cd "$DOTFILES" && git submodule update --remote --merge config/cheat)
+
+# Install pre-commit
+(cd "$DOTFILES" && pre-commit install)
