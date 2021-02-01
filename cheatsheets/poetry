@@ -1,2 +1,3 @@
 # Show current and latest version for all packages
 poetry show -l
+poetry show -lo  # only for outdated packages

@@ -21,3 +21,6 @@ sed -E -e 's/[[:space:]]+/ /g' -i '' $FILE
 
 # Apostrophes
 sed -E -e "s/’/'/g" -i '' $FILE
+
+# Remove code blocks from markdown
+cat $FILE | sed '/^```/,/^```/d'
