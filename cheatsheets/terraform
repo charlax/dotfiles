@@ -1,2 +1,5 @@
 # Debug
 TF_LOG=~/Downloads/tf.log TF_LOG=INFO terraform apply -target=...
+
+# List all modules
+terraform state list
