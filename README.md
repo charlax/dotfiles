@@ -163,6 +163,7 @@ zprof
 ## Useful services
 
 - [carbon.now.sh](https://carbon.now.sh/): create and share beautiful images of your source code
+- [Excalidraw](https://excalidraw.com/)
 
 ## Checklist before reinstall
 
