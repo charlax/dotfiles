@@ -16,3 +16,6 @@ jq '.[-2:]'
 
 # Show 'url' value for each array item
 jq '.[].url'
+
+# Select multiple fields
+jq '.items[] | {title,name}'

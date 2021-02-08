@@ -6,7 +6,7 @@ repos:
     hooks:
       - id: shellcheck
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v3.4.0
     hooks:
     - id: check-yaml
     - id: end-of-file-fixer
@@ -14,14 +14,14 @@ repos:
     - id: detect-private-key
     - id: detect-aws-credentials
   - repo: https://github.com/Vimjas/vint
-    rev: v0.4a4
+    rev: v0.4a3
     hooks:
     - id: vint
   - repo: https://github.com/psf/black
-    rev: 19.3b0
+    rev: 20.8b1
     hooks:
     -   id: black
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.9
+    rev: 3.8.4
     hooks:
     -   id: flake8
