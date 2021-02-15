@@ -1,10 +1,11 @@
 exclude: '^zsh/iterm2_shell_integration\.zsh$'
 
 repos:
-  - repo: https://github.com/syntaqx/git-hooks
-    rev: v0.0.16
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.7.1.1
     hooks:
-      - id: shellcheck
+    - id: shellcheck
+      args: ["-x"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
     hooks:

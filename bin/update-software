@@ -2,7 +2,7 @@
 
 set -e
 
-# shellcheck source=../helpers/setup.sh
+# shellcheck source=helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
 
@@ -11,7 +11,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
     log_info "Updating xcode command line tools"
     # Fails when it's already installed
-    xcode-select --install  || true
+    # xcode-select --install  || true
 
     log_info "Updating brew packages"
     brew update
