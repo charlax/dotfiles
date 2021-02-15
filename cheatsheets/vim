@@ -80,8 +80,8 @@ set shiftwidth=4
 " Disable syntax highlighting
 set syntax=off
 
-" Change spellcheck lang
-:setlocal spell spelllang=fr
+" Change spellcheck lang (might trigger spell files download)
+:setlocal spelllang=fr
 
 " Re run syntax highlighting
 syn off | syn on
