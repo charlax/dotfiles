@@ -13,3 +13,6 @@ mysqldump -h host.example.com -uusername -ppassword -D dbname > dbbackup.sql
 
 # Display vertically
 select * from users\G;
+
+# Show running queries
+show processlist;

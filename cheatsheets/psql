@@ -3,7 +3,8 @@ PGPASSWORD=password psql -h 127.0.0.1 -U username -d dbname
 
 ```psql
 # list databases
-/l
+\l
+\l+  -- include extra info e.g. size
 
 # select database
 /c dbname
@@ -11,10 +12,27 @@ PGPASSWORD=password psql -h 127.0.0.1 -U username -d dbname
 # show create table
 /d tablename
 \d+ tablename  # show all table info
+\dn            # list schemas
 
 \x  # extended display
 ```
 
 ```sql
 DELETE FROM tablename WHERE ...;
+```
+
+## Privileges
+
+```psql
+-- list roles
+\du
+
+-- give rights by default
+ALTER DEFAULT PRIVILEGES IN SCHEMA b2b GRANT SELECT ON TABLES TO username;
+
+-- give select permissions
+grant select on tablename to username;
+
+-- get permissions for a table
+select grantee, privilege_type from information_schema.role_table_grants where table_name='aliases';
 ```
