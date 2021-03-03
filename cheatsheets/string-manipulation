@@ -33,3 +33,15 @@ tr -s '[[:punct:][:space:]]' '\n' < words
 
 # Lowercase everything
 tr [:lower:] [:upper:]
+
+# Multiline cat
+cat << EOF >> /path/to/file
+hello
+world
+EOF
+
+# Multiline cat to file owned by root
+cat << EOF | tee /path/to/file > /dev/null
+hello
+world
+EOF

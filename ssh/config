@@ -1,5 +1,10 @@
 Host *
- AddKeysToAgent yes
- IgnoreUnknown UseKeychain
- UseKeychain yes
- IdentityFile ~/.ssh/id_rsa
+  AddKeysToAgent yes
+  IgnoreUnknown UseKeychain
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+
+# SSH over Session Manager
+host i-* mi-*
+  ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+  ForwardAgent yes
