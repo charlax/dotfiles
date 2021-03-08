@@ -13,7 +13,7 @@
 # diff before after
 # Google the name
 
-# shellcheck source=../helpers/setup.sh
+# shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh" # Load helper script from dotfiles/helpers.
 
 
@@ -158,21 +158,7 @@ defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
 defaults write com.apple.iChat 'PlaySoundsKey' -bool false
 
 # ==============================================================================
-# Spectacle
-# ==============================================================================
-
-# Setup spectacle config.
-spectacle_config="$HOME/Library/Application Support/Spectacle/Shortcuts.json"
-if [ ! -L "$spectacle_config" ]; then
-  log_info "Overwriting Spectacle shortcuts with link to dotfiles ones."
-  mkdir -p "$(dirname "$spectacle_config")"
-  [ -e "$spectacle_config" ] && mv "$spectacle_config" "$HOME/Downloads/SpectacleShortcuts.bak.json"
-  ln -s "$DOTFILES/spectacle/Shortcuts.json" "$spectacle_config"
-fi
-
-
-# ==============================================================================
-# full cleanup
+# Full cleanup
 # ==============================================================================
 
 # Fill keyboard shortcuts GUI with custom defined shortcuts

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../helpers/setup.sh
+# shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
 log_info "Installing UI Apps"
@@ -27,9 +27,8 @@ apps=(1password
     mactex
     openvpn-connect
     postman
+    rectangle           # window management
     sequel-pro
-    slack
-    spectacle
     spotify
     transmission
     typora
@@ -41,9 +40,20 @@ apps=(1password
     zettlr              # Zettlekasten method
     )
 
-brew cask install "${apps[@]}"
+brew install --cask "${apps[@]}"
 
 # Specify the preferences directory
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/iterm"
 # Tell iTerm2 to use the custom preferences in the directory
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+# ==============================================================================
+# Rectangle
+# ==============================================================================
+
+rectangle_config="$HOME/Library/Preferences/com.knollsoft.Rectangle.plist"
+if [ ! -L "$rectangle_config" ]; then
+  log_info "Overwriting Rectangle shortcuts with link to dotfiles ones."
+  [ -e "$rectangle_config" ] && mv "$rectangle_config" "$HOME/Downloads/SpectacleShortcuts.bak.json"
+  ln -s "$DOTFILES/rectangle/com.knollsoft.Rectangle.plist" "$rectangle_config"
+fi

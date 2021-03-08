@@ -109,7 +109,6 @@ Once this is done, follow the instruction above (Installation).
 - Numbers (App Store)
 - Pages (App Store)
 - Pixelmator (App Store)
-- Spectacle (installed by the script)
 - Spotify (installed by the script)
 - Studies (App Store)
 - [TextExpander](https://textexpander.com/download/) (not anymore on the app store)
@@ -125,7 +124,7 @@ Setup the following apps:
 - Password application
 - Backup application
 - Chrome
-- Spectacle (open then run OSX config script to link configuration files)
+- Rectangle (give permissions)
 - Dropbox
 - TextExpander
 - Things cloud
