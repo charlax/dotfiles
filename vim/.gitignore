@@ -6,4 +6,4 @@ temp/
 plugged/
 
 # Spell files
-spell/
+spell/*.spl
