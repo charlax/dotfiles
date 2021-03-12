@@ -51,6 +51,9 @@ norm o execute the command o in normal mode
 
 # Expand all tabs after having changed settings
 :retab
+
+# Add the word under the cursor to spell file
+zg
 ```
 
 ## File handling
