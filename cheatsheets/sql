@@ -1,1 +1,10 @@
-# See Cookbook
+# SQL
+
+See Cookbook
+
+## Postgres
+
+```sql
+-- datetime
+now() - interval '2 days'
+```

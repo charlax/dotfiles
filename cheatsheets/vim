@@ -26,6 +26,12 @@ fa     goes to the next a character on the same line (in command mode)
 "kp    paste the content of the register k
 ```
 
+### Keyboard shortcuts: window
+
+```
+ctrl-v =    # resizes the split panes to become equal
+```
+
 ## Custom keyboard shortcuts
 
 ```raw
