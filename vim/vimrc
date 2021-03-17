@@ -270,7 +270,7 @@ set laststatus=2
 " Wrapping, textwidth, text formatting
 " ============================================================
 
-" Softwrapping
+" Use softwrapping (i.e. make the text appear as wrapped)
 setlocal textwidth=0
 setlocal wrap
 set colorcolumn=79
@@ -288,11 +288,16 @@ set listchars=tab:▸\ ,eol:¬
 setlocal formatoptions=qcn1j
 
 function! s:setup_for_prose()
-    setlocal textwidth=79
+    " Use softwrap as well
+    setlocal textwidth=0
     setlocal linebreak
     setlocal spell
     " For bulleted list to get correct indentation
     setlocal autoindent
+    " Respect indentation when breaking lines
+    set breakindent
+    " Indent broken lines by 2 spaces (not ideal)
+    set breakindentopt=shift:2
 endfunction
 
 " ============================================================
