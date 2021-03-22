@@ -26,6 +26,8 @@ git branch --merged  # show merged branches
 
 # Undo last merge
 git reset --hard ORIG_HEAD
+# Undo last rebase
+git reset --hard ORIG_HEAD
 
 # Undo changes in submodule
 git submodule update --init

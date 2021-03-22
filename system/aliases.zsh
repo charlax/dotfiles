@@ -73,7 +73,6 @@ alias gg='git-done'
 
 # Python
 alias p="ipython"
-alias p2="python2"
 alias p3="python3"
 alias python="python3"
 alias pypi_submit="python setup.py register sdist bdist upload"
@@ -90,7 +89,6 @@ alias cal='python -m calendar'
 # pretty print standard input
 alias pprint='python -c "import pprint, sys, ast; pprint.pprint(ast.literal_eval(sys.stdin.read()))"'
 # pretty print clipboard
-alias pprint_clipboard='pbpaste | pprint'
 alias prp="pipenv run python"
 
 # ctags
@@ -102,14 +100,21 @@ alias tma="if tmux has; then tmux attach; else tmux new; fi"
 
 alias ack="ag"
 
+alias timestamp="date +'%s'"
+alias timestamp_ms="python -c 'import time; print(int(time.time() * 1000))'"
+
 # Mac Os X
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias chrome='open -a "Google Chrome"'
     alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
     alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
-    alias iawriter='open -a "IA Writer"'
+
     alias firefox='open -a "Firefox"'
     alias ff='firefox'
+
+    alias iawriter='open -a "IA Writer"'
+    alias ia="iawriter"
+    alias iar="iawriter README*"
 fi
 
 alias generate_secret="openssl rand -base64 32"
@@ -117,9 +122,6 @@ alias generate_secret="openssl rand -base64 32"
 alias d='cd ~/Downloads'
 alias checkout='cd ~/Downloads && m '
 alias br='broot'
-
-alias ia="iawriter"
-alias iar="iawriter README*"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     function pbcopy() {

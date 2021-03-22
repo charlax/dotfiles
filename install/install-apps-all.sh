@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../helpers/setup.sh
+# shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
 set -e
@@ -67,7 +67,7 @@ function install_pipx_packages {
         pre-commit   # pre-commit hooks
         vim-vint     # vimscript linter
         wfuzz        # the web fuzzer
-        yq           # jq for yaml
+        yq           # jq for YAML, XML, TOML
         )
 
     set -o verbose
