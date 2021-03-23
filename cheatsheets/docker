@@ -1,4 +1,4 @@
-# delete all images, containers, volumes, networks for all stopped containers and unused images
+# Delete all images, containers, volumes, networks for all stopped containers and unused images
 docker system prune -a
 
 # Build image
@@ -21,5 +21,8 @@ docker image ls
 docker history $IMAGE_ID
 # <missing> means the layer was built on another system
 
-# Get labels etc. for running container
+# Get labels, network, etc. for running container
 docker inspect $CONTAINER_ID
+
+# Show all ports
+docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a
