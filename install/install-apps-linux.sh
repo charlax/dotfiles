@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../helpers/setup.sh
+# shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
 function set_default_shell() {
     local default_shell
-    default_shell = $(grep ^$(id -un): /etc/passwd | cut -d : -f 7-)
+    default_shell=$(grep "^$(id -un):" /etc/passwd | cut -d : -f 7-)
     if ! [[ "$default_shell" =~ "zsh" ]]; then
         log_info "Changing default shell"
         chsh --shell /usr/bin/zsh
@@ -22,7 +22,7 @@ log_info "Installing apt packages"
 
 set -o verbose
 
-sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive "$APT_GET" update > /dev/null
 
 # To add:
 # vscode
@@ -38,7 +38,6 @@ packages=(autojump  # cd command that leanrs
     gdb             # GNU debugger
     gobuster        # busting tool
     golang          # the Go programming language
-    hexyl           # A command-line hex viewer
     htop            # process managemenent
     httpie          # http client
     jq              # json query
@@ -59,7 +58,7 @@ packages=(autojump  # cd command that leanrs
     zsh
 )
 
-sudo $APT_GET install "${packages[@]}" > /dev/null
+sudo "$APT_GET" install "${packages[@]}" > /dev/null
 
 set +o verbose
 

@@ -37,6 +37,7 @@ function install_brew_packages {
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
         github/gh/gh    # Github cli
+        hexyl           # A command-line hex viewer
         hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
         nvim            # neovim
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
