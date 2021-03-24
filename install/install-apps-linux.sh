@@ -3,18 +3,45 @@
 # shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
+APT_GET="apt-get -qq -y"
+
 function set_default_shell() {
     local default_shell
     default_shell=$(grep "^$(id -un):" /etc/passwd | cut -d : -f 7-)
     if ! [[ "$default_shell" =~ "zsh" ]]; then
         log_info "Changing default shell"
-        chsh --shell /usr/bin/zsh
+        # Works on AWS Ubuntu
+        sudo chsh -s "$(which zsh)" "$(whoami)"
+        # chsh --shell /usr/bin/zsh
 
         log_info "Default shell changed, this will take effect only after login/logout"
     fi
 }
 
-APT_GET="apt-get -qq -y"
+function install_ui {
+    local tmp_dir
+    local packages
+
+    tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
+    packages=(libreoffice
+        slack-desktop
+        vagrant
+        vim-gtk3
+        wireshark
+    )
+
+    # shellcheck disable=SC2086
+    sudo $APT_GET install "${packages[@]}" > /dev/null
+
+    IS_CHROME_INSTALLED=$(dpkg-query -W --showformat='${Status}\n' google-chrome-stable|grep "install ok installed")
+
+    if [[ "$IS_CHROME_INSTALLED" == "" ]]; then
+        log_info "Installing Google Chrome"
+        chrome_file="$tmp_dir/google-chrome.deb"
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O "$chrome_file"
+        sudo dpkg -i "$chrome_file"
+    fi
+}
 
 set -e
 
@@ -32,7 +59,7 @@ sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
 # peco    # Simplistic interactive filtering tool
 
 packages=(autojump  # cd command that leanrs
-    docker.io
+    # docker.io     # broken as of 03/23/2021
     dsniff          # includes arpspoof
     exuberant-ctags
     fzf             # fuzzy finder
@@ -61,6 +88,7 @@ packages=(autojump  # cd command that leanrs
 
 # shellcheck disable=SC2086
 sudo $APT_GET install "${packages[@]}" > /dev/null
+
 
 set +o verbose
 

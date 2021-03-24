@@ -46,6 +46,7 @@ function install_brew_packages {
         tokei           # cloc https://github.com/XAMPPRocky/tokei
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         sqlmap          # sql injection tool
+        starship        # command line prompt
         )
 
     brew tap lucagrulla/tap

@@ -3,3 +3,6 @@
 
 # true if variable is *not* empty
 [[ -s "" ]]
+
+# and
+[[ -s "" ]] && [[ ... ]]

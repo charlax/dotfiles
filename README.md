@@ -29,9 +29,13 @@ See fresh install below.
 
 ## Linux Debian/Ubuntu
 
+Use this script to fully automate a new machine setup (e.g. with Vagrant):
+
 ```bash
 install/provision.sh
 ```
+
+Otherwise, see Installation section below.
 
 # Installation
 
