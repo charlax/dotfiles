@@ -8,17 +8,14 @@ function install_requirements() {
     APT_GET="apt-get -qq -y"
 
     echo "Updating packages"
+    # shellcheck disable=SC2086
     sudo $APT_GET update > /dev/null
+    # shellcheck disable=SC2086
     sudo DEBIAN_FRONTEND=noninteractive $APT_GET upgrade > /dev/null
 
     echo "Installing base packages"
+    # shellcheck disable=SC2086
     sudo $APT_GET install git curl file build-essential > /dev/null
-
-    # Install homebrew
-    if ! command -v brew &> /dev/null; then
-        echo "Installing homebrew"
-        CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    fi
 }
 
 function install_dotfiles() {
@@ -31,13 +28,7 @@ function install_dotfiles() {
     python3 "$DOTFILES/install.py" --with-all --symlink-force
 }
 
-
-function install_software() {
-    ~/.dotfiles/install/install-apps-all.sh
-}
-
 set -o verbose
 
 install_requirements
 install_dotfiles
-install_software

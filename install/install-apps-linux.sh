@@ -90,5 +90,14 @@ function install_apt_packages {
     sudo $APT_GET install "${packages[@]}" > /dev/null
 }
 
+function install_brew {
+    # Install homebrew
+    if ! command -v brew &> /dev/null; then
+        echo "Installing homebrew"
+        CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    fi
+}
+
 install_apt_packages
+install_brew
 set_default_shell
