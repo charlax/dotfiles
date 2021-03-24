@@ -96,3 +96,5 @@ install_vim
 install_pipx_packages
 install_pipenv
 update_all
+
+log_info "Done. If this is a fresh install, you might want to logout/login"

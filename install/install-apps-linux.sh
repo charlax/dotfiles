@@ -43,59 +43,52 @@ function install_ui {
     fi
 }
 
-set -e
+function install_apt_packages {
+    log_info "Installing apt packages"
 
-log_info "Installing apt packages"
+    # shellcheck disable=SC2086
+    sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
 
-set -o verbose
+    # To add:
+    # vscode
+    # shutter # screenshot tool
+    # peek    # screencast tool
+    # peco    # Simplistic interactive filtering tool
 
-# shellcheck disable=SC2086
-sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
+    # Optional:
+    # neovim          # heavily refactored vim fork
 
-# To add:
-# vscode
-# shutter # screenshot tool
-# peek    # screencast tool
-# peco    # Simplistic interactive filtering tool
-
-packages=(autojump  # cd command that leanrs
-    # docker.io     # broken as of 03/23/2021
-    dsniff          # includes arpspoof
-    exuberant-ctags
-    fzf             # fuzzy finder
-    gdb             # GNU debugger
-    gobuster        # busting tool
-    golang          # the Go programming language
-    htop            # process managemenent
-    httpie          # http client
-    jq              # json query
-    neovim          # heavily refactored vim fork
-    pandoc
-    pipx            # Install and Run Python Applications in Environments
-    python3-pip
-    python3-venv
-    ripgrep         # recursively searches dir for a regex pattern
-    shellcheck      # static analysis for shell scripts
-    ssh
-    strace
-    tldr            # quick summary of CLI commands
-    tmux            # terminal multiplexer
-    tree            # ls in a tree
-    vim-nox         # Vim with scripting support
-    xclip           # Linux command line clipboard grabber
-    zsh
-)
-
-# shellcheck disable=SC2086
-sudo $APT_GET install "${packages[@]}" > /dev/null
+    packages=(autojump  # cd command that leanrs
+        # docker.io     # broken as of 03/23/2021
+        dsniff          # includes arpspoof
+        exuberant-ctags
+        fzf             # fuzzy finder
+        gdb             # GNU debugger
+        gobuster        # busting tool
+        golang          # the Go programming language
+        htop            # process managemenent
+        httpie          # http client
+        jq              # json query
+        pandoc
+        pipx            # Install and Run Python Applications in Environments
+        python3-pip
+        python3-venv
+        ripgrep         # recursively searches dir for a regex pattern
+        shellcheck      # static analysis for shell scripts
+        ssh
+        strace
+        tldr            # quick summary of CLI commands
+        tmux            # terminal multiplexer
+        tree            # ls in a tree
+        vim-nox         # Vim with scripting support
+        xclip           # Linux command line clipboard grabber
+        zsh
+    )
 
 
-set +o verbose
+    # shellcheck disable=SC2086
+    sudo $APT_GET install "${packages[@]}" > /dev/null
+}
 
-#
-# SHOULD BE LAST, requires user action
-#
-
+install_apt_packages
 set_default_shell
-
-exec zsh --login
