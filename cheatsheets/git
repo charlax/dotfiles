@@ -73,3 +73,16 @@ git diff --name-only dev --relative ./ | xargs -n1 ./node_modules/.bin/prettier 
 
 # Show file somewhere else
 git show revision:path/to/file
+
+# Fetch all branches
+git fetch --all
+# Fetch a single branch
+git fetch origin branchname
+# Checkout a remote branch locally
+git checkout --track origin/remotebranch
+
+# Fetch all branches from single-branch clone
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+git remote update
+git fetch --unshallow
+git fetch --depth 10  # fetch the last 10 commits

@@ -53,24 +53,23 @@ function install_apt_packages {
     # vscode
     # shutter # screenshot tool
     # peek    # screencast tool
-    # peco    # Simplistic interactive filtering tool
+    # peco    # simplistic interactive filtering tool
 
     # Optional:
     # neovim          # heavily refactored vim fork
+    # gobuster        # busting tool
+    # httpie          # http client
 
     packages=(autojump  # cd command that leanrs
-        # docker.io     # broken as of 03/23/2021
         dsniff          # includes arpspoof
         exuberant-ctags
         fzf             # fuzzy finder
         gdb             # GNU debugger
-        gobuster        # busting tool
-        golang          # the Go programming language
+        golang          # Go programming language
         htop            # process managemenent
-        httpie          # http client
         jq              # json query
         pandoc
-        pipx            # Install and Run Python Applications in Environments
+        pipx            # install Python applications in environments
         python3-pip
         python3-venv
         ripgrep         # recursively searches dir for a regex pattern
@@ -90,15 +89,5 @@ function install_apt_packages {
     sudo $APT_GET install "${packages[@]}" > /dev/null
 }
 
-function install_brew {
-    # Install homebrew
-    if ! command -v brew &> /dev/null; then
-        echo "Installing homebrew"
-        CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    fi
-}
-
 install_apt_packages
-install_brew
 set_default_shell
