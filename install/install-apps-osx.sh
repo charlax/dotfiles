@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../helpers/setup.sh
+# shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
 set -e
@@ -29,6 +29,7 @@ packages=(arp-scan   # ARP scanner
     fzf
     git
     go
+    gnupg
     hashcat            # advanced pasword recovery
     hexyl     # A command-line hex viewer
     highlight
@@ -45,6 +46,7 @@ packages=(arp-scan   # ARP scanner
     node
     openvpn          # vpn
     pandoc
+    pinentry-mac    # Use Keychain for GPG (Mac-only)
     pipx            # Install and Run Python Applications in Environments
     python
     python3

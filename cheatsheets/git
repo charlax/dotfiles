@@ -86,3 +86,6 @@ git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 git remote update
 git fetch --unshallow
 git fetch --depth 10  # fetch the last 10 commits
+
+# Sign commits again until commithash
+git rebase --exec 'git commit --amend --no-edit -n -S' -i COMMIT_ID

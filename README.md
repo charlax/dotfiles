@@ -171,6 +171,7 @@ zprof
 ## Checklist before reinstall
 
 - Backup SSH keys
+- Backup GPG keys
 - Check each app for backup
 - Backup hidden files in repo
 - Backup `/Library/`

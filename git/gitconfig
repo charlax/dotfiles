@@ -54,7 +54,7 @@
 
 [user]
     name = Charles-Axel Dein
-    email = ca@d3in.org
+	email = 120501+charlax@users.noreply.github.com
 
 [pull]
     rebase = true

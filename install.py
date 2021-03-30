@@ -14,6 +14,7 @@ REPOSITORY = "https://github.com/charlax/dotfiles.git"
 DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 
 CONFIGURATION_FILES = (
+    # src, dst
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
     ("config/starship.toml", ".config/starship.toml"),
@@ -21,6 +22,7 @@ CONFIGURATION_FILES = (
     "ctags/ctags",
     "gdb/gdbinit",
     "ghci/ghci",
+    ("gnupg/gpg-agent.conf", ".gnupg/gpg-agent.conf"),
     "git/gitignore",
     "git/gitconfig",
     "git/gitconfig.local",
