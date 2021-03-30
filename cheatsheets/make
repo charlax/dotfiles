@@ -45,3 +45,5 @@ out/.packed.sentinel: $(shell find src -type f)
 $<  # first input (or dependency)
 $^  # all inputs (or dependency)
 $@  # output (or target)
+VAR = $(OTHER_VAR) foo  # "recursively expanded var": expansion happens when needed
+VAR := $(OTHER_VAR) bar # "simply expanded var": expansion happens at definition
