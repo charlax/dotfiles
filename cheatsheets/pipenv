@@ -1,0 +1,4 @@
+# See installed packages
+pipenv graph
+# or:
+pipenv run pip freeze

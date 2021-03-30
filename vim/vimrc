@@ -294,10 +294,16 @@ function! s:setup_for_prose()
     setlocal spell
     " For bulleted list to get correct indentation
     setlocal autoindent
+
     " Respect indentation when breaking lines
     set breakindent
     " Indent broken lines by 2 spaces (not ideal)
     set breakindentopt=shift:2
+    " See other config in ftplugin/markdown.vim
+
+    " <Tab> indents and <Shift-Tab> dedents
+    inoremap <Tab> <C-T>
+    inoremap <S-Tab> <C-D>
 endfunction
 
 " ============================================================
