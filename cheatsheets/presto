@@ -1,0 +1,4 @@
+```sql
+select * from tablename
+where time > to_iso8601(TIMESTAMP '2021-04-06 00:00:00')
+```
