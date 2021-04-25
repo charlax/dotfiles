@@ -302,8 +302,8 @@ function! s:setup_for_prose()
     " See other config in ftplugin/markdown.vim
 
     " <Tab> indents and <Shift-Tab> dedents
-    inoremap <Tab> <C-T>
-    inoremap <S-Tab> <C-D>
+    inoremap <buffer> <Tab> <C-T>
+    inoremap <buffer> <S-Tab> <C-D>
 endfunction
 
 " ============================================================

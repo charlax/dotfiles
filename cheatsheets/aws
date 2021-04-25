@@ -3,3 +3,11 @@ AWS_REGION=eu-west-1 AWS_PROFILE=staging aws ec2 describe-instances
 
 # Get a CloudFormation template
 aws cloudformation get-template --stack-name STACKNAME
+
+# Set a SSM secret value
+AWS_PROFILE=whatever aws ssm put-parameter --region eu-west-1 --overwrite --cli-input-json '{
+  "Name": "",
+  "Value": "",
+  "Type": "SecureString",
+  "KeyId": "alias/whatever"
+}'

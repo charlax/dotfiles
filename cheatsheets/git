@@ -13,6 +13,9 @@ git remote show origin
 # Show commits by author
 git log --author="..."
 
+# Show diff with a change matching "query"
+git log -p -G query
+
 # Diff: show only staged changes
 git diff --cached
 # Diff: show only file names, using relative path

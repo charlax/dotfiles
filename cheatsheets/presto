@@ -2,3 +2,22 @@
 select * from tablename
 where time > to_iso8601(TIMESTAMP '2021-04-06 00:00:00')
 ```
+
+# WAF logs
+
+```sql
+SELECT date_format(from_unixtime(timestamp/1000), '%Y-%m-%d %H:%i:%s'), httprequest.clientip, httprequest.uri, httprequest.headers  FROM "website_wafv2_web_acl"
+
+where httprequest.uri like '%foo%'
+and timestamp > 1615582953000
+
+order by 1
+
+limit 1000;
+```
+
+# Like
+
+```sql
+where httprequest.uri like '%\_foo' escape '\'
+```

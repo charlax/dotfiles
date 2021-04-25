@@ -1,0 +1,2 @@
+# Run in running container
+docker-compose run $servicename /bin/bash

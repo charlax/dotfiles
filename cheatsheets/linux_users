@@ -1,0 +1,3 @@
+# Get current id
+id -u
+echo $UID
