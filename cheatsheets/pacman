@@ -1,0 +1,4 @@
+# https://wiki.archlinux.org/index.php/Pacman/Rosetta
+
+# apt-get update && apt-get upgrade
+pacman -Syu

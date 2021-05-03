@@ -1,6 +1,10 @@
-# https://wiki.archlinux.org/index.php/installation_guide
+# Install Arch Linux
 
-# Wifi
+https://wiki.archlinux.org/index.php/installation_guide
+
+## Wifi
+
+```bash
 $ iwctl station wlan0 scan
 $ iwctl station wlan0 get-networks
 $ iwctl station wlan0 connect "network name"
@@ -11,8 +15,11 @@ $ iwctl station wlan0 show
 # Clock
 timedatectl set-ntp true
 timedatectl status
+```
 
-# Partition the disk
+## Partition the disk
+
+```bash
 parted -l  # or fdisk -l  : show devices
 parted /dev/nvme0n1
 (parted) mklabel gpt
@@ -32,8 +39,11 @@ mount /dev/nvme0n1p3 /mnt
 mkdir /mnt/efi
 mount /dev/nvme0n1p1 /mnt/efi
 swapon /dev/nvme0n1p2
+```
 
-# Installation
+## Install
+
+```bash
 pacstrap /mnt base linux linux-firmware vim nano base-devel grub efibootmgr intel-ucode dhclient networkmanager
 
 # chroot
@@ -56,15 +66,18 @@ passwd
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 cat /boot/grub/grub.cfg | grep intel  # make sure intel-ucode shows up
+```
 
-# Reboot
+## Reboot
+
+```bash
 exit
 umount -R /mmt
+```
 
-#
-# After boot
-#
+## After reboot
 
+```bash
 pacman -S usbutils bluez bluez-utils
 
 systemctl start NetworkManager
@@ -88,3 +101,22 @@ useradd -m $USERNAME
 passwd $USERNAME
 EDITOR=vim visudo  # uncomment wheel
 gpasswd -a $USERNAME wheel
+```
+
+## SSHD
+
+```bash
+pacman -S openssh
+
+systemctl start sshdgenkeys
+# edit /etc/ssh/sshd_config
+# PermitRootLogin no
+# PasswordAuthentication no
+sshd -t  # configuration is valid if no output
+
+ip addr  # equivalent of ifconfig
+
+ssh-copy-id -i ~/.ssh/mykey user@host
+
+# disable password auth, change port, restart ssh
+```

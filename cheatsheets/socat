@@ -1,2 +1,4 @@
+# https://copyconstruct.medium.com/socat-29453e9fc8a6
+
 # Expose mysql
 socat TCP-LISTEN:3306,fork,bind=$publicip TCP:127.0.0.1:3306
