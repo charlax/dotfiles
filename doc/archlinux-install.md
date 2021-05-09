@@ -1,6 +1,10 @@
 # Install Arch Linux
 
-https://wiki.archlinux.org/index.php/installation_guide
+Links:
+
+- https://wiki.archlinux.org/index.php/installation_guide
+- https://github.com/angristan/arch-linux-install
+- https://gist.github.com/eltonvs/d8977de93466552a3448d9822e265e38
 
 ## Wifi
 
@@ -20,30 +24,46 @@ timedatectl status
 ## Partition the disk
 
 ```bash
-parted -l  # or fdisk -l  : show devices
-parted /dev/nvme0n1
-(parted) mklabel gpt
-mkpart "EFI system partition" fat32 1MiB 261MiB
-set 1 esp on
-mkpart "swap partition" linux-swap 261MiB 8.2GiB
-mkpart "root partition" ext4 8.2GiB 100%
+$ parted -l  # or fdisk -l  : show devices
 
+# clean up the disk
+$ cat /sys/block/nvme0n1/queue/physical_block_size
+512
+$ cat /sys/block/nvme0n1/queue/logical_block_size
+512
+$ dd if=/dev/zero of=/dev/nvme0n1 bs=512 count=10000
+
+$ parted /dev/nvme0n1
+(parted) mklabel gpt
+(parted) mkpart "EFI system partition" fat32 1MiB 261MiB
+(parted) set 1 esp on
+(parted) mkpart "root partition" ext4 261MiB 100%
+
+# Root partition
 # https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system
 
-mkfs.fat -F32 /dev/nvme0n1p1
-mkswap /dev/nvme0n1p2
-mkfs.ext4 /dev/nvme0n1p3
+$ cryptsetup -y -v luksFormat /dev/nvme0n1p2
+$ cryptsetup open /dev/nvme0n1p2 cryptroot
+$ mkfs.ext4 /dev/mapper/cryptroot
+$ mount /dev/mapper/cryptroot /mnt
 
-# Mount
-mount /dev/nvme0n1p3 /mnt
-mkdir /mnt/efi
-mount /dev/nvme0n1p1 /mnt/efi
-swapon /dev/nvme0n1p2
+# Boot partition
+
+$ mkfs.fat -F32 /dev/nvme0n1p1
+$ mkdir /mnt/efi
+$ mount /dev/nvme0n1p1 /mnt/efi
+
+# Swap
+dd if=/dev/zero of=/mnt/swapfile bs=1G count=8 status=progress
+chmod 600 /mnt/swapfile
+mkswap /mnt/swapfile
+swapon /mntswapfile
 ```
 
 ## Install
 
 ```bash
+pacman -Sy
 pacstrap /mnt base linux linux-firmware vim nano base-devel grub efibootmgr intel-ucode dhclient networkmanager
 
 # chroot
@@ -57,22 +77,57 @@ vim /etc/locale.gen  # uncomment en_US.UTF-8 UTF-8
 locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 
-echo "nuc" > /etc/hostname
-vim /etc/hosts  # add localhost
+echo nuc > /etc/hostname
+
+$ vim /etc/hosts  # add localhost
+127.0.0.1	localhost
+::1		localhost
 
 passwd
+```
 
-# bootloader
+### Bootloader
+
+Get the UUID for the partition:
+
+```bash
+blkid /dev/nvme0n1p2 -s UUID -o value > /tmp/cryptuuid
+```
+
+Edit `/etc/mkinitcpio.conf`:
+
+```text
+# Add encrypt to HOOKS (order matter)
+HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)
+```
+
+Edit `/etc/default/grub`:
+
+```text
+# Append options
+# Use vim "read !cat /tmp/cryptuuid" to get the UUID value
+GRUB_CMDLINE_LINUX_DEFAULT="... cryptdevice=UUID=REPLACE-ME-WITH-UUID:cryptroot"
+```
+
+```bash
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 cat /boot/grub/grub.cfg | grep intel  # make sure intel-ucode shows up
+
+mkinitcpio -P
 ```
+
+TODO: "no such device: a58171" "unknown filesystem"
+
 
 ## Reboot
 
 ```bash
 exit
 umount -R /mmt
+
+# if device is busy:
+fuser -mv /mnt
 ```
 
 ## After reboot

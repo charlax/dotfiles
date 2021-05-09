@@ -60,6 +60,9 @@ norm o execute the command o in normal mode
 
 # Add the word under the cursor to spell file
 zg
+
+# Include output of external bash command
+:read !date
 ```
 
 ## File handling

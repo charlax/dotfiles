@@ -302,8 +302,9 @@ function! s:setup_for_prose()
     " See other config in ftplugin/markdown.vim
 
     " <Tab> indents and <Shift-Tab> dedents
-    inoremap <buffer> <Tab> <C-T>
-    inoremap <buffer> <S-Tab> <C-D>
+    " TODO: fix usage outside of list (e.g. to autocomplete filename in img)
+    " inoremap <buffer> <Tab> <C-T>
+    " inoremap <buffer> <S-Tab> <C-D>
 endfunction
 
 " ============================================================
