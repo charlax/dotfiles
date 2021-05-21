@@ -9,8 +9,8 @@ Links:
 ## Wifi
 
 ```bash
-$ iwctl station wlan0 scan
-$ iwctl station wlan0 get-networks
+$ iwctl station wlan0 scan  # optional
+$ iwctl station wlan0 get-networks  # optional
 $ iwctl station wlan0 connect "network name"
 $ iwctl station wlan0 show
 
@@ -42,12 +42,14 @@ $ parted /dev/nvme0n1
 # Root partition
 # https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system
 
-$ cryptsetup -y -v luksFormat /dev/nvme0n1p2
+# grub does not support luks2, see https://wiki.archlinux.org/title/GRUB
+$ cryptsetup -y -v luksFormat --type luks1 /dev/nvme0n1p2
 $ cryptsetup open /dev/nvme0n1p2 cryptroot
 $ mkfs.ext4 /dev/mapper/cryptroot
 $ mount /dev/mapper/cryptroot /mnt
 
 # Boot partition
+# https://wiki.archlinux.org/title/EFI_system_partition
 
 $ mkfs.fat -F32 /dev/nvme0n1p1
 $ mkdir /mnt/efi
@@ -57,7 +59,7 @@ $ mount /dev/nvme0n1p1 /mnt/efi
 dd if=/dev/zero of=/mnt/swapfile bs=1G count=8 status=progress
 chmod 600 /mnt/swapfile
 mkswap /mnt/swapfile
-swapon /mntswapfile
+swapon /mnt/swapfile
 ```
 
 ## Install
@@ -101,29 +103,34 @@ Edit `/etc/mkinitcpio.conf`:
 HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt filesystems fsck)
 ```
 
+Then run:
+
+```bash
+mkinitcpio -P
+```
+
 Edit `/etc/default/grub`:
 
 ```text
 # Append options
 # Use vim "read !cat /tmp/cryptuuid" to get the UUID value
 GRUB_CMDLINE_LINUX_DEFAULT="... cryptdevice=UUID=REPLACE-ME-WITH-UUID:cryptroot"
+
+# Enable this
+GRUB_ENABLE_CRYPTODISK=y
 ```
 
 ```bash
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 cat /boot/grub/grub.cfg | grep intel  # make sure intel-ucode shows up
-
-mkinitcpio -P
 ```
-
-TODO: "no such device: a58171" "unknown filesystem"
-
 
 ## Reboot
 
 ```bash
 exit
+swapoff /mnt/swapfile
 umount -R /mmt
 
 # if device is busy:
@@ -133,14 +140,15 @@ fuser -mv /mnt
 ## After reboot
 
 ```bash
-pacman -S usbutils bluez bluez-utils
-
 systemctl start NetworkManager
 systemctl enable NetworkManager
 
 nmcli device wifi connect BSSID_OR_SSID password THEPASSWORD
+nmcli d  # check connection
 
 # Bluetooth keyboard
+pacman -S usbutils bluez bluez-utils
+
 systemctl start bluetooth
 systemctl enable bluetooth
 bluetoothctl
@@ -164,14 +172,19 @@ gpasswd -a $USERNAME wheel
 pacman -S openssh
 
 systemctl start sshdgenkeys
+systemctl start sshd
+systemctl enable sshd
+
 # edit /etc/ssh/sshd_config
 # PermitRootLogin no
-# PasswordAuthentication no
 sshd -t  # configuration is valid if no output
 
 ip addr  # equivalent of ifconfig
 
 ssh-copy-id -i ~/.ssh/mykey user@host
 
+# edit /etc/ssh/sshd_config
 # disable password auth, change port, restart ssh
+# PasswordAuthentication no
+systemctl restart sshd
 ```

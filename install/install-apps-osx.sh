@@ -51,6 +51,7 @@ packages=(arp-scan   # ARP scanner
     python
     python3
     redis
+    rename     # mass rename
     rg         # ripgrep, fast file searching
     rmtrash
     shellcheck   # static analysis for shell scripts
