@@ -7,15 +7,13 @@ set -o errexit
 function install_requirements() {
     APT_GET="apt-get -qq -y"
 
-    echo "Updating packages"
+    echo "Updating package repository"
     # shellcheck disable=SC2086
-    sudo $APT_GET update > /dev/null
-    # shellcheck disable=SC2086
-    sudo DEBIAN_FRONTEND=noninteractive $APT_GET upgrade > /dev/null
+    sudo $APT_GET update
 
     echo "Installing base packages"
     # shellcheck disable=SC2086
-    sudo $APT_GET install git curl file build-essential > /dev/null
+    sudo $APT_GET install git curl file build-essential
 }
 
 function install_dotfiles() {

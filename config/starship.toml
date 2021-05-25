@@ -1,3 +1,7 @@
+[character]
+success_symbol = "\\$"
+error_symbol = "[\\$](red)"
+
 [python]
 disabled = false
 pyenv_version_name = false
