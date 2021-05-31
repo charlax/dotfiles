@@ -211,7 +211,7 @@ if _has fzf && _has ag; then
 fi
 
 # zoxyde (smarter cd command)
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd j)"
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     # Increase nb of fd soft limit
