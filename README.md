@@ -1,33 +1,33 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
 
-# Table of Contents
-
-- [Installation](#installation)
 - [Prerequisites](#prerequisites)
   - [Mac Os X](#mac-os-x)
-    - [XCode](#xcode)
-    - [Homebrew](#homebrew)
-  - [Linux Debian](#linux-debian)
-- [Post-install checklist on a fresh installation](#post-install-checklist-on-a-fresh-installation)
-  - [Settings](#settings)
+  - [Linux Debian/Ubuntu](#linux-debianubuntu)
+- [Installation](#installation)
+- [Post-install checklist on a fresh installation - Mac Os X](#post-install-checklist-on-a-fresh-installation---mac-os-x)
+  - [Initialization](#initialization)
+  - [Mac Os X Settings](#mac-os-x-settings)
   - [Apps to install](#apps-to-install)
 - [Features](#features)
 - [Misc](#misc)
   - [Profiling ZSH](#profiling-zsh)
-  - [Useful software (not installed by default)](#useful-software-not-installed-by-default)
-  - [Manual backup before reinstall](#manual-backup-before-reinstall)
+- [Useful software (not installed by default)](#useful-software-not-installed-by-default)
+- [Useful services](#useful-services)
+- [Checklist before reinstall](#checklist-before-reinstall)
+- [Contributing](#contributing)
 - [Acknowledgments](#acknowledgments)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Prerequisites
+## Prerequisites
 
-## Mac Os X
+### Mac Os X
 
 See fresh install below.
 
-## Linux Debian/Ubuntu
+### Linux Debian/Ubuntu
 
 Use this script to fully automate a new machine setup (e.g. with Vagrant):
 
@@ -37,7 +37,7 @@ install/provision.sh
 
 Otherwise, see Installation section below.
 
-# Installation
+## Installation
 
 ```bash
 DOTFILES="$HOME/.dotfiles"
@@ -56,9 +56,9 @@ To install all the required software, run:
 ~/.dotfiles/install/install-apps-all.sh
 ```
 
-# Post-install checklist on a fresh installation - Mac Os X
+## Post-install checklist on a fresh installation - Mac Os X
 
-## Initialization
+### Initialization
 
 1. Install any OS upgrade
 2. Start with installing XCode from the App Store - it takes quite a long time. Open it and accept the T&C.
@@ -87,14 +87,14 @@ cp $DOTFILES/git/gitconfig.local.template $DOTFILES/git/.gitconfig.local
 
 Once this is done, follow the instruction above (Installation).
 
-## Mac Os X Settings
+### Mac Os X Settings
 
 - Change the computer name
 - Add French input source
 - Set keyboard shortcuts
   - Set the change input source shortcuts
 
-## Apps to install
+### Apps to install
 
 - Annotate (App Store)
 - Be Focused (App Store)
@@ -134,18 +134,15 @@ Setup the following apps:
 - Things cloud
 - Printers
 
-# Features
+## Features
 
 - [fzf](https://github.com/junegunn/fzf): fuzzy file finder. To use it on the command line, prefix with `**`, then press tab. For instance: `vim **<TAB>`.
-- [autojump](https://github.com/wting/autojump): a cd commands that learns
-  about your favorite directories.
 
-# Misc
+## Misc
 
-- You can copy the dotfiles in the current directory through
-  `copy-dotfiles-here.sh`
+- You can copy the dotfiles in the current directory through `copy-dotfiles-here.sh`
 
-## Profiling ZSH
+### Profiling ZSH
 
 Use `zprof`:
 
@@ -183,10 +180,10 @@ zprof
 - Make sure iCloud sync is finished (check status bar in Finder)
 - What's most important? Is it backed up?
 
-# Contributing
+## Contributing
 
 Checkout [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-# Acknowledgments
+## Acknowledgments
 
 - [holman](https://github.com/holman/dotfiles)

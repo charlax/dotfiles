@@ -5,6 +5,9 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
+setup:
+	pre-commit install
+
 test:
 	pre-commit run --all-files
 .PHONY: test

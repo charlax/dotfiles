@@ -21,8 +21,15 @@ repos:
   - repo: https://github.com/psf/black
     rev: 20.8b1
     hooks:
-    -   id: black
+    - id: black
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.8.4
     hooks:
     -   id: flake8
+  - repo: https://github.com/thlorenz/doctoc
+    rev: v1.4.0
+    hooks:
+    - id: doctoc
+      args:
+        - --title
+        - "## Table of Contents"

@@ -60,8 +60,7 @@ function install_apt_packages {
     # gobuster        # busting tool
     # httpie          # http client
 
-    packages=(autojump  # cd command that leanrs
-        dsniff          # includes arpspoof
+    packages=(dsniff    # includes arpspoof
         exuberant-ctags
         fzf             # fuzzy finder
         gdb             # GNU debugger

@@ -11,7 +11,6 @@ brew update > /dev/null
 log_info "Installing brew packages"
 
 packages=(arp-scan   # ARP scanner
-    autojump
     automake
     bat        # A cat(1) clone with wings.
     cheat      # cheatsheets for commands

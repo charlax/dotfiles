@@ -55,6 +55,7 @@ function install_brew_packages {
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         sqlmap          # sql injection tool
         starship        # command line prompt
+        zoxide          # smarter cd command
         )
 
     brew tap lucagrulla/tap
