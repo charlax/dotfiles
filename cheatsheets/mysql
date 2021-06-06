@@ -16,3 +16,13 @@ select * from users\G;
 
 # Show running queries
 show processlist;
+
+# Show current user
+select user();
+
+# Show permissions for a user
+show grants for username;
+show grants;  # for current user
+
+# Show all created users
+select user from mysql.user;
