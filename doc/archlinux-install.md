@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
+
+- [Install Arch Linux](#install-arch-linux)
+  - [Wifi](#wifi)
+  - [Partition the disk](#partition-the-disk)
+  - [Install](#install)
+    - [Bootloader](#bootloader)
+  - [Reboot](#reboot)
+  - [After reboot](#after-reboot)
+  - [SSHD](#sshd)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Install Arch Linux
 
 Links:
@@ -43,7 +58,7 @@ $ parted /dev/nvme0n1
 # https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system
 
 # grub does not support luks2, see https://wiki.archlinux.org/title/GRUB
-$ cryptsetup -y -v luksFormat --type luks1 /dev/nvme0n1p2
+$ cryptsetup -y -v luksFormat /dev/nvme0n1p2
 $ cryptsetup open /dev/nvme0n1p2 cryptroot
 $ mkfs.ext4 /dev/mapper/cryptroot
 $ mount /dev/mapper/cryptroot /mnt
@@ -52,8 +67,8 @@ $ mount /dev/mapper/cryptroot /mnt
 # https://wiki.archlinux.org/title/EFI_system_partition
 
 $ mkfs.fat -F32 /dev/nvme0n1p1
-$ mkdir /mnt/efi
-$ mount /dev/nvme0n1p1 /mnt/efi
+$ mkdir /mnt/boot
+$ mount /dev/nvme0n1p1 /mnt/boot
 
 # Swap
 dd if=/dev/zero of=/mnt/swapfile bs=1G count=8 status=progress
@@ -107,23 +122,27 @@ Then run:
 
 ```bash
 mkinitcpio -P
+bootctl install
+
+mkdir -p /boot/loader/entries/
 ```
 
-Edit `/etc/default/grub`:
+Edit `/boot/loader/loader.conf`:
 
 ```text
-# Append options
-# Use vim "read !cat /tmp/cryptuuid" to get the UUID value
-GRUB_CMDLINE_LINUX_DEFAULT="... cryptdevice=UUID=REPLACE-ME-WITH-UUID:cryptroot"
-
-# Enable this
-GRUB_ENABLE_CRYPTODISK=y
+default arch.conf
+editor no
+auto-entries 0
 ```
 
-```bash
-grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
-cat /boot/grub/grub.cfg | grep intel  # make sure intel-ucode shows up
+Edit `/boot/loader/entries/arch.conf`:
+
+```text
+title Arch
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux.img
+options cryptdevice=UUID=REPLACE-ME-WITH-UUID:cryptroot root=/dev/mapper/cryptroot rw
 ```
 
 ## Reboot
