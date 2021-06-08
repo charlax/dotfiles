@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # Show most used commands in ZSH
-LC_CTYPE=C && LANG=C && cat ~/.zsh_history | cut -d ';' -f 2- | awk {'print $1'} | sort | uniq -c | sort -r | head -20
+LC_ALL=C cat ~/.zsh_history | cut -d ';' -f 2- | awk {'print $1'} | sort | uniq -c | sort -r | head -20
