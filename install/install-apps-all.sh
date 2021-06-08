@@ -33,32 +33,33 @@ function install_brew_packages {
     fi
 
     # Optional:
+
     # asciinema       # record CLI session
+    # binwalk         # inspect files
+    # cloc            # count lines of code
+    # cw              # AWS cloudwatch logs
     # hexyl           # command-line hex viewer
+    # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
     # nvim            # neovim
+    # sqlmap          # sql injection tool
     # terraform       # infrastructure management
 
     packages=(awscli    # AWS command line
         bandwhich       # bandwith utilization https://github.com/imsnif/bandwhich
-        binwalk         # inspect files
-        broot           # better tree
-        cloc            # count lines of code
+        broot           # better tree https://github.com/Canop/broot
         csvq            # query csv from command line
-        cw              # AWS cloudwatch logs
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
         github/gh/gh    # Github cli
-        hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.
         tokei           # cloc https://github.com/XAMPPRocky/tokei
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
-        sqlmap          # sql injection tool
-        starship        # command line prompt
-        zoxide          # smarter cd command
+        starship        # command line prompt https://starship.rs/
+        zoxide          # smarter cd command https://github.com/ajeetdsouza/zoxide
         )
 
-    brew tap lucagrulla/tap
+    brew tap lucagrulla/tap # for cw
     brew update
     brew install "${packages[@]}"
 }
@@ -71,15 +72,18 @@ function install_vim {
 function install_pipx_packages {
     log_info "Installing Python software with pipx"
 
-    pipx_packages=(awsebcli
-        glances      # an htop alternative
+    # Optional
+
+    # wfuzz        # the web fuzzer
+
+    pipx_packages=(
+        glances      # htop alternative
         ipython      # better python console
         poetry       # package management
         pre-commit   # pre-commit hooks
         vim-vint     # vimscript linter
-        wfuzz        # the web fuzzer
         yq           # jq for YAML, XML, TOML
-        )
+    )
 
     set -o verbose
     for package in "${pipx_packages[@]}"; do
