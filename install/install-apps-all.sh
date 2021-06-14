@@ -37,6 +37,7 @@ function install_brew_packages {
     # asciinema       # record CLI session
     # binwalk         # inspect files
     # cloc            # count lines of code
+    # ctop            # htop for container https://github.com/bcicen/ctop
     # cw              # AWS cloudwatch logs
     # hexyl           # command-line hex viewer
     # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
