@@ -1,9 +1,9 @@
+#!/usr/local/bin/zsh
+
 eval "$(starship init zsh)"
 
 # Prompt
 function precmd() {
-    vcs_info
-
     if [[ -z "$TAB_TITLE" ]]; then
         # Set the tab title to current dir
         echo -ne "\e]1;${PWD##*/}\a"

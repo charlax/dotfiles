@@ -19,27 +19,12 @@ colors
 promptinit
 zsh-mime-setup
 
-autoload -Uz compinit
-if [[ "$OSTYPE" =~ ^darwin ]] && [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
-  compinit
-  touch ${ZDOTDIR:-$HOME}/.zcompdump
-else
-  compinit -C
-fi
-
 autoload -Uz history-beginning-search-menu add-zsh-hook
-
-# Source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh) do
-  source $config_file
-done
 
 export CLICOLOR=1; # ls uses colors if CLICOLOR is set to TRUE
 
 # Colors for ls/gls
 eval `gdircolors $HOME/.dir_colors 2> /dev/null`
-
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # beeps are annoying
 setopt NO_BEEP
@@ -53,9 +38,20 @@ setopt interactivecomments
 # Completion Stuff
 # ================
 
-fpath=(/usr/local/share/zsh-completions $fpath)
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
+autoload -Uz compinit
+if [[ "$OSTYPE" =~ ^darwin ]] && [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+  compinit
+  touch ${ZDOTDIR:-$HOME}/.zcompdump
+else
+  compinit -C
+fi
 
 bindkey -M viins '\C-i' complete-word
+
 # History completion
 # https://coderwall.com/p/jpj_6q
 autoload -U up-line-or-beginning-search
@@ -75,14 +71,10 @@ fi
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
 
-
-# VCS information for prompt
-autoload -Uz vcs_info
-
-# Faster! (?)
+# Faster
 zstyle ':completion::complete:*' use-cache 1
 
-# case insensitive completion
+# Case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 zstyle ':completion:*' verbose yes
@@ -93,7 +85,8 @@ zstyle ':completion:*' group-name ''
 # https://github.com/spicycode/ze-best-zsh-config/blob/master/.zsh/completion.zsh
 zstyle ':completion:*' completer _expand _complete _approximate _ignored
 
-# generate descriptions with magic.
+
+# Generate descriptions with magic.
 zstyle ':completion:*' auto-description 'specify: %d'
 
 # Don't prompt for a huge list, page it!
@@ -105,23 +98,23 @@ zstyle ':completion:*:default' menu 'select=0'
 # Have the newer files last so I see them first
 zstyle ':completion:*' file-sort modification reverse
 
-# color code completion!!!!  Wohoo!
+# Color code completion
 zstyle ':completion:*' list-colors "=(#b) #([0-9]#)*=36=31"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 unsetopt LIST_AMBIGUOUS
 setopt  COMPLETE_IN_WORD
 
-# Separate man page sections.  Neat.
+# Separate man page sections.
 zstyle ':completion:*:manuals' separate-sections true
 
-# Egomaniac!
 zstyle ':completion:*' list-separator 'fREW'
 
-# complete with a menu for xwindow ids
+# Complete with a menu for xwindow ids
 zstyle ':completion:*:windows' menu on=0
 zstyle ':completion:*:expand:*' tag-order all-expansions
 
-# more errors allowed for large words and fewer for small words
+# More errors allowed for large words and fewer for small words
 zstyle ':completion:*:approximate:*' max-errors 'reply=(  $((  ($#PREFIX+$#SUFFIX)/3  ))  )'
 
 # Errors format
@@ -262,6 +255,13 @@ bindkey '^Z' fancy-ctrl-z
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# Load other files
+
+# Source every .zsh file in this rep
+for config_file ($ZSH/**/*.zsh) do
+  source $config_file
+done
 
 
 # Activate for profiling (should remain at the end)
