@@ -92,3 +92,6 @@ git fetch --depth 10  # fetch the last 10 commits
 
 # Sign commits again until commithash
 git rebase --exec 'git commit --amend --no-edit -n -S' -i COMMIT_ID
+
+# Trace execution
+GIT_TRACE=1 git commit -am 'blah'

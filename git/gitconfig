@@ -55,6 +55,7 @@
 [user]
     name = Charles-Axel Dein
 	email = 120501+charlax@users.noreply.github.com
+	signingkey = 8FB355D70B073558BA1EC2F864C00027F3375D70
 
 [pull]
     rebase = true
@@ -65,3 +66,7 @@
 	required = true
 [rebase]
 	autoStash = true
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
