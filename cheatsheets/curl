@@ -1,6 +1,8 @@
 # Resources
 # https://ec.haxx.se/http/http-multipart
 
+curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}'
+
 # Options
 -s/--silent
 -o/--output  # e.g. redirect response body to /dev/null

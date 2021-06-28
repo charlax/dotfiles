@@ -1,0 +1,4 @@
+# Looping over strings
+for i in random string to print; do
+    echo $i
+done
