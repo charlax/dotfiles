@@ -1,4 +1,4 @@
-mysql -h 192.168.99.6 -uusername --ppassword -D dbname
+mysql -h 192.168.99.6 -P 3306 -uusername --ppassword -D dbname
 
 # List all databases
 show databases;

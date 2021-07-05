@@ -264,5 +264,11 @@ for config_file ($ZSH/**/*.zsh) do
 done
 
 
+# asdf (if it's there)
+# this needs to be at the end because it updates $PATH
+if _has asdf; then
+    . $(brew --prefix asdf)/asdf.sh
+fi
+
 # Activate for profiling (should remain at the end)
 # zprof

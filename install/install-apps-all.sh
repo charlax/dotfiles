@@ -35,6 +35,7 @@ function install_brew_packages {
     # Optional:
 
     # asciinema       # record CLI session
+    # asdf            # manage multiple versions of node, etc.
     # binwalk         # inspect files
     # cloc            # count lines of code
     # ctop            # htop for container https://github.com/bcicen/ctop
