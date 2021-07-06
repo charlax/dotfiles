@@ -15,6 +15,7 @@ DOTFILES_PATH = os.path.join(os.environ["HOME"], ".dotfiles")
 
 CONFIGURATION_FILES = (
     # src, dst
+    ("asdf/tool-versions", ".tool-versions"),
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
     ("config/starship.toml", ".config/starship.toml"),
@@ -47,7 +48,7 @@ def run(cmd: List[str], *args, **kwargs) -> int:
     return subprocess.run(cmd, *args, **kwargs)
 
 
-def force_symlink(src, dest):
+def symlink(src: str, dest: str, *, should_force: bool = False) -> None:
     """Force symlink a file."""
     try:
         os.symlink(src, dest)
@@ -55,6 +56,8 @@ def force_symlink(src, dest):
         if e.errno == errno.EEXIST:
             os.remove(dest)
             os.symlink(src, dest)
+            return
+        raise
 
 
 def symlink_configuration_file(
@@ -74,24 +77,23 @@ def symlink_configuration_file(
         dest = os.path.join(dest_base_path, dest)
 
     if dry_run:
-        print("Would symlink %s to %s" % (source, dest))
+        print(f"Would have symlinked {source!r} to {dest!r}")
         return
 
     os.makedirs(os.path.dirname(dest), exist_ok=True)
 
-    if not force and (os.path.islink(dest) or os.path.exists(dest)):
-        print("Not symlinking '%s': already exists." % dest)
-        return
+    if os.path.exists(dest):
+        if os.path.islink(dest) and os.readlink(dest) == source:
+            # All good
+            return
 
-    print("Symlinking '%s' -> '%s'." % (source, dest))
-    if not force:
-        try:
-            os.symlink(source, dest)
-        except OSError as e:
-            print("Could not symlink %s: %r" % (source, e))
-    else:
-        force_symlink(source, dest)
-    logging.info("%s symlinked to %s" % (source, dest))
+        if not force:
+            print(f"Not symlinking {dest!r}: already exists")
+            return
+
+    print(f"Symlinking {source!r} -> {dest!r}")
+    symlink(source, dest, should_force=force)
+    logging.info(f"Symlinked {source!r} -> {dest!r}")
 
 
 def clone_or_update(repo, path):
@@ -109,7 +111,7 @@ def clone_or_update(repo, path):
         print("WARNING git pull failed, continuing anyway, repo might be outdated")
 
 
-def symlink(args):
+def symlink_files(args):
     """Symlink the files."""
     print(color.green("\nSymlinking configuration files..."))
     for f in CONFIGURATION_FILES:
@@ -142,7 +144,7 @@ def install_apps():
 def main(args):
     """Install the dotfiles."""
     clone_or_update(REPOSITORY, DOTFILES_PATH)
-    symlink(args)
+    symlink_files(args)
 
     for d in ("~/.vim/temp/temp", "~/.vim/temp/backup", "~/.config/nvim"):
         os.makedirs(os.path.expanduser(d), exist_ok=True)
@@ -153,7 +155,7 @@ def main(args):
     if args.with_settings:
         run_settings()
 
-    print("Install complete.")
+    print(color.green("\nInstall complete."))
 
 
 if __name__ == "__main__":
