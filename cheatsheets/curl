@@ -1,6 +1,7 @@
 # Resources
 # https://ec.haxx.se/http/http-multipart
 
+# JSON query
 curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}'
 
 # Options
@@ -23,3 +24,6 @@ curl -F 'upload=@./file.png;type=image/png;filename=image.png"
 
 # Request
 -H 'X-foo: value'  # header
+
+# POST with application/x-www-form-urlencoded
+curl -X POST -d 'param1=value1&param2=value2' $host

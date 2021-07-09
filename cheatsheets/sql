@@ -1,6 +1,6 @@
 # SQL
 
-See Cookbook
+See also Cookbook
 
 ## Datetime
 
@@ -18,4 +18,12 @@ order by 1 asc
 ```sql
 -- datetime
 now() - interval '2 days'
+```
+
+## Data modification
+
+### Insert
+
+```sql
+insert into tablename (col1, col2) values (value1, value2);
 ```

@@ -1,3 +1,12 @@
 # Get current id
 id -u
 echo $UID
+
+# Get groups I belong to
+# -G     group ids
+# -Gn    group names
+id -Gn
+groups   # same result
+
+# Add user to group
+usermod -a -G groupname $USER

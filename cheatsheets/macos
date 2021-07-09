@@ -25,3 +25,9 @@ sudo killall -HUP mDNSResponder
 
 # Keyboard
 # See https://support.apple.com/en-us/HT201236
+
+# Audio
+
+# Restart audio
+sudo killall coreaudiod
+sudo launchctl start com.apple.audio.coreaudiod

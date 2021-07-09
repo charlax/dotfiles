@@ -26,3 +26,6 @@ docker inspect $CONTAINER_ID
 
 # Show all ports
 docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a
+
+# Get logs for a running container
+docker logs $CONTAINER_ID
