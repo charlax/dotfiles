@@ -42,6 +42,7 @@ function install_brew_packages {
     # cw              # AWS cloudwatch logs
     # hexyl           # command-line hex viewer
     # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
+    # leiningen       # automate Clojure projects
     # nvim            # neovim
     # sqlmap          # sql injection tool
     # terraform       # infrastructure management

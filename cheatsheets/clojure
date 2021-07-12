@@ -1,0 +1,6 @@
+# https://clojure.org/api/cheatsheet
+
+# Strings
+
+# Concat
+(str "a" "b")
