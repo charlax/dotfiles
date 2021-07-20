@@ -1,6 +1,12 @@
-# https://clojure.org/api/cheatsheet
+;; vi:syntax=clojure
+;; https://clojure.org/api/cheatsheet
 
-# Strings
+;; Maps
+(def my-map {:first-name "Chew" :last-name "Bacca"})
 
-# Concat
+;; Strings
+
+;; Concat
 (str "a" "b")
+;; Join
+(clojure.string/join ", " [1 2 3])

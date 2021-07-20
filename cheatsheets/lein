@@ -1,0 +1,6 @@
+# https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md
+# Start a new project
+lein new app project-name
+
+# Start the REPL
+lein repl
