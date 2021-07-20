@@ -1,2 +1,12 @@
 # Display line number
 cat -n filename
+
+# cat to file requiring root (cat is optional)
+cat << EOF | sudo tee -a /etc/...
+...
+EOF
+
+# Same thing without cat
+sudo tee -a /etc/... << EOF
+...
+EOF

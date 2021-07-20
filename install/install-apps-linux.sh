@@ -46,6 +46,8 @@ function install_ui {
 function install_apt_packages {
     log_info "Installing apt packages"
 
+    # TODO: move most of this to install-apps-all
+
     # shellcheck disable=SC2086
     sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
 
@@ -82,7 +84,6 @@ function install_apt_packages {
         xclip           # Linux command line clipboard grabber
         zsh
     )
-
 
     # shellcheck disable=SC2086
     sudo $APT_GET install "${packages[@]}" > /dev/null

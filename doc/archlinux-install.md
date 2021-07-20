@@ -165,6 +165,9 @@ systemctl enable NetworkManager
 nmcli device wifi connect BSSID_OR_SSID password THEPASSWORD
 nmcli d  # check connection
 
+# Update everything
+pacman -Syu
+
 # Bluetooth keyboard
 pacman -S usbutils bluez bluez-utils
 
@@ -183,6 +186,20 @@ useradd -m $USERNAME
 passwd $USERNAME
 EDITOR=vim visudo  # uncomment wheel
 gpasswd -a $USERNAME wheel
+
+# Update systemd-boot
+sudo mkdir /etc/pacman.d/hooks/
+cat << EOF | sudo tee -a /etc/pacman.d/hooks/100-systemd-boot.hook
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = systemd
+
+[Action]
+Description = Updating systemd-boot
+When = PostTransaction
+Exec = /usr/bin/bootctl update
+EOF
 ```
 
 ## SSHD
@@ -196,11 +213,11 @@ systemctl enable sshd
 
 # edit /etc/ssh/sshd_config
 # PermitRootLogin no
-sshd -t  # configuration is valid if no output
+sudo sshd -t  # configuration is valid if no output
 
 ip addr  # equivalent of ifconfig
 
-ssh-copy-id -i ~/.ssh/mykey user@host
+ssh-copy-id -i ~/.ssh/mykey $USERNAME@host
 
 # edit /etc/ssh/sshd_config
 # disable password auth, change port, restart ssh

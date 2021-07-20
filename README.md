@@ -4,7 +4,7 @@
 
 - [Prerequisites](#prerequisites)
   - [Mac Os X](#mac-os-x)
-  - [Linux Debian/Ubuntu](#linux-debianubuntu)
+  - [Linux Debian/Ubuntu/Arch](#linux-debianubuntuarch)
 - [Installation](#installation)
 - [Post-install checklist on a fresh installation - Mac Os X](#post-install-checklist-on-a-fresh-installation---mac-os-x)
   - [Initialization](#initialization)
@@ -27,7 +27,12 @@
 
 See fresh install below.
 
-### Linux Debian/Ubuntu
+### Linux Debian/Ubuntu/Arch
+
+```bash
+curl https://raw.githubusercontent.com/charlax/dotfiles/master/install/provision.sh -o ./provision.sh
+bash provision.sh
+```
 
 Use this script to fully automate a new machine setup (e.g. with Vagrant):
 

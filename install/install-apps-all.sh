@@ -7,7 +7,7 @@ set -e
 unset -v
 
 function install_os_packages {
-    log_info "Installing OS-specifics packages"
+    log_info "Installing OS-specific packages"
 
     current_dir=$(dirname "$0")
 

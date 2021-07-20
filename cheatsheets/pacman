@@ -1,4 +1,7 @@
 # https://wiki.archlinux.org/index.php/Pacman/Rosetta
 
+# Install a package without asking for a confirmation
+pacman -S --noconfirm packagename
+
 # apt-get update && apt-get upgrade
 pacman -Syu
