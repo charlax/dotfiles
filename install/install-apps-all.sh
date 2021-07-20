@@ -34,35 +34,36 @@ function install_brew_packages {
 
     # Optional:
 
+    # brew tap lucagrulla/tap # for cw
+
     # asciinema       # record CLI session
     # asdf            # manage multiple versions of node, etc.
+    # awscli          # AWS command line
     # binwalk         # inspect files
     # cloc            # count lines of code
     # ctop            # htop for container https://github.com/bcicen/ctop
     # cw              # AWS cloudwatch logs
+    # gh              # Github cli
     # hexyl           # command-line hex viewer
     # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
     # leiningen       # automate Clojure projects
     # nvim            # neovim
     # sqlmap          # sql injection tool
     # terraform       # infrastructure management
+    # tokei           # cloc https://github.com/XAMPPRocky/tokei
 
-    packages=(awscli    # AWS command line
-        bandwhich       # bandwith utilization https://github.com/imsnif/bandwhich
+    packages=(bandwhich # bandwith utilization https://github.com/imsnif/bandwhich
         broot           # better tree https://github.com/Canop/broot
         csvq            # query csv from command line
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
-        github/gh/gh    # Github cli
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.
-        tokei           # cloc https://github.com/XAMPPRocky/tokei
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         starship        # command line prompt https://starship.rs/
         zoxide          # smarter cd command https://github.com/ajeetdsouza/zoxide
         )
 
-    brew tap lucagrulla/tap # for cw
     brew update
     brew install "${packages[@]}"
 }
