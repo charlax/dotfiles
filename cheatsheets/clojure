@@ -4,9 +4,21 @@
 ;; Maps
 (def my-map {:first-name "Chew" :last-name "Bacca"})
 
-;; Strings
+;; Collections
+(cons 1 '(2 3))    ; returns (1 2 3) cons(truct) by prepending
+(cons 1 [2 3])     ; returns (1 2 3) (same)
 
-;; Concat
-(str "a" "b")
-;; Join
+;; (conj coll x & xs)  adds element(s) in the most efficient location possible
+(conj '(2 3) 1)    ; returns (1 2 3) conj(oin) by prepending because concrete type is a list
+(conj '(2 3) 1 0)  ; returns (0 1 2 3)
+(conj [1 2] 3)     ; returns [1 2 3] conj(oin) by appending because concrete type is a vector
+
+;; (concat c1 c2 &colls)  merges existing collections, returns lazy seq
+(concat '(1 2) '(3) '(4 5))  ; returns (1 2 3 4 5)
+
+;; Strings
+(str "a" "b")     ; concat
 (clojure.string/join ", " [1 2 3])
+
+;; Functions
+(map (fn [arg] (inc arg)) [1 2 3])

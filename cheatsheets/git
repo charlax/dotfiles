@@ -1,6 +1,3 @@
-# Get the git authors' email for the last 60 days
-git log --since=60.days --format='%ae' | sort -u
-
 # List committers sorted by number of commits
 git shortlog -ns
 
@@ -10,11 +7,17 @@ git checkout `git rev-list -n 1 --before="2016-03-29 12:00" master`
 # Show which local branch is tracking which remote branch (git)
 git remote show origin
 
+# Get the git authors' email for the last 60 days
+git log --since=60.days --format='%ae' | sort -u
+
 # Show commits by author
 git log --author="..."
 
 # Show diff with a change matching "query"
 git log -p -G query
+
+# Show git log excluding changes in a folder
+git log . ':!subfolder_to_ignore'
 
 # Diff: show only staged changes
 git diff --cached
