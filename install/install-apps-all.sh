@@ -57,6 +57,7 @@ function install_brew_packages {
         csvq            # query csv from command line
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
+        go              # golang
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd

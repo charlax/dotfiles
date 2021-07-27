@@ -4,6 +4,9 @@ AWS_REGION=eu-west-1 AWS_PROFILE=staging aws ec2 describe-instances
 # Get a CloudFormation template
 aws cloudformation get-template --stack-name STACKNAME
 
+# Get SSM parameters
+AWS_PROFILE=prod AWS_REGION=eu-west-1 aws ssm get-parameters-by-path --path /path/ | jq .Parameters[].Name
+
 # Set a SSM secret value
 AWS_PROFILE=whatever aws ssm put-parameter --region eu-west-1 --overwrite --cli-input-json '{
   "Name": "",

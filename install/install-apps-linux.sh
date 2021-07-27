@@ -66,7 +66,6 @@ function install_apt_packages {
         exuberant-ctags
         fzf             # fuzzy finder
         gdb             # GNU debugger
-        golang          # Go programming language
         htop            # process managemenent
         jq              # json query
         pandoc

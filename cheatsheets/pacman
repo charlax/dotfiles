@@ -5,3 +5,6 @@ pacman -S --noconfirm packagename
 
 # apt-get update && apt-get upgrade
 pacman -Syu
+
+# Search for a package
+pacman -Ss query

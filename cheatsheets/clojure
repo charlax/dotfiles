@@ -1,5 +1,6 @@
 ;; vi:syntax=clojure
 ;; https://clojure.org/api/cheatsheet
+;; https://kimh.github.io/clojure-by-example/
 
 ;; Maps
 (def my-map {:first-name "Chew" :last-name "Bacca"})

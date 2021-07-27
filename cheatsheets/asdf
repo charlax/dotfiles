@@ -1,0 +1,5 @@
+# Add plugin
+asdf plugin add terraform
+asdf list all terraform
+asdf install terraform 0.15.5
+asdf local terraform 0.15.5
