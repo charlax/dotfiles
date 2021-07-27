@@ -3,8 +3,206 @@
 # shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
+APT_GET="apt-get -qq -y"
+
 set -e
 unset -v
+
+function set_default_shell() {
+    local default_shell
+    default_shell=$(grep "^$(id -un):" /etc/passwd | cut -d : -f 7-)
+    if ! [[ "$default_shell" =~ "zsh" ]]; then
+        log_info "Changing default shell"
+        # Works on AWS Ubuntu
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        sudo chsh -s "$(which zsh)" "$(whoami)"
+        # chsh --shell /usr/bin/zsh
+
+        log_info "Default shell changed, this will take effect only after login/logout"
+    fi
+}
+
+function install_osx_packages {
+    # Optional
+    # john-jumbo       # john the ripper
+
+    packages=(arp-scan   # ARP scanner
+        automake
+        bat              # A cat(1) clone with wings https://github.com/sharkdp/bat
+        cheat            # cheatsheets for commands
+        coreutils
+        ctags
+        docker-completion
+        docker-compose-completion
+        docker-machine-completion
+        dos2unix
+        editorconfig
+        exa              # modern replacement for ls https://the.exa.website/
+        fd               # alternative to 'find' https://github.com/sharkdp/fd
+        findutils
+        fswatch          # watch for file changes
+        fzf              # fuzzy finder https://github.com/junegunn/fzf
+        git
+        gnupg
+        hashcat          # advanced pasword recovery
+        hexyl            # hex viewer https://github.com/sharkdp/hexyl
+        highlight
+        htop             # process viewer https://htop.dev/
+        httpie           # CLI http client
+        jq               # json formatting
+        macvim
+        miller           # like awk, sed, cut, join, and sort for CSV, TSV, and tabular JSON https://github.com/johnkerl/miller
+        mysql
+        ncdu             # ncurses disk usage https://dev.yorhel.nl/ncdu
+        nmap             # port scanner
+        node
+        openvpn          # vpn
+        pandoc
+        pinentry-mac     # Use Keychain for GPG (Mac-only)
+        python
+        python3
+        redis
+        rename           # mass rename
+        rg               # ripgrep, fast file searching https://github.com/BurntSushi/ripgrep
+        rmtrash
+        shellcheck       # static analysis for shell scripts
+        shfmt            # shell parser, formatter, and interpreter https://github.com/mvdan/sh
+        telnet
+        tldr             # simplified and community-driven man pages
+        tmux
+        tree             # display file list in tree
+        unrar
+        wget
+        yarn
+    )
+
+    log_info "Updating brew"
+
+    brew update > /dev/null
+
+    log_info "Installing brew packages"
+
+    brew update
+    brew install "${packages[@]}"
+
+    printf "\nInstalling fzf shell bindings"
+    /usr/local/opt/fzf/install
+
+    brew tap homebrew/cask-fonts
+
+    apps=(1password
+        adobe-acrobat-reader
+        # adoptopenjdk8  unavailable??
+        alfred
+        calibre
+        cyberduck
+        discord
+        docker
+        google-chrome
+        firefox
+        font-roboto-nerd-font
+        homebrew/cask-versions/google-chrome-canary
+        iterm2
+        libreoffice
+        mactex
+        openvpn-connect
+        postman
+        rectangle           # window management
+        sequel-pro
+        spotify
+        transmission
+        typora
+        vagrant             # useful for installing kali
+        visual-studio-code
+        vlc
+        whatsapp
+        wireshark
+        zettlr              # Zettlekasten method
+        )
+
+    brew install --cask "${apps[@]}"
+
+    # Specify the preferences directory
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/iterm"
+    # Tell iTerm2 to use the custom preferences in the directory
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+    rectangle_config="$HOME/Library/Preferences/com.knollsoft.Rectangle.plist"
+    if [ ! -L "$rectangle_config" ]; then
+      log_info "Overwriting Rectangle shortcuts with link to dotfiles ones."
+      [ -e "$rectangle_config" ] && mv "$rectangle_config" "$HOME/Downloads/SpectacleShortcuts.bak.json"
+      ln -s "$DOTFILES/rectangle/com.knollsoft.Rectangle.plist" "$rectangle_config"
+    fi
+}
+
+function install_apt_packages {
+    local tmp_dir
+    local packages
+
+    log_info "Installing apt packages"
+
+    # TODO: move most of this to install-apps-all
+
+    # shellcheck disable=SC2086
+    sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
+
+    # To add:
+    # vscode
+    # shutter # screenshot tool
+    # peek    # screencast tool
+    # peco    # simplistic interactive filtering tool
+
+    # Optional:
+    # neovim          # heavily refactored vim fork
+    # gobuster        # busting tool
+    # httpie          # http client
+
+    packages=(dsniff    # includes arpspoof
+        exuberant-ctags
+        fzf             # fuzzy finder
+        gdb             # GNU debugger
+        golang          # Go programming language
+        htop            # process managemenent
+        jq              # json query
+        pandoc
+        pipx            # install Python applications in environments
+        python3-pip
+        python3-venv
+        ripgrep         # recursively searches dir for a regex pattern
+        shellcheck      # static analysis for shell scripts
+        ssh
+        strace
+        tldr            # quick summary of CLI commands
+        tmux            # terminal multiplexer
+        tree            # ls in a tree
+        vim-nox         # Vim with scripting support
+        xclip           # Linux command line clipboard grabber
+        zsh
+    )
+
+    # shellcheck disable=SC2086
+    sudo $APT_GET install "${packages[@]}" > /dev/null
+
+    tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
+    packages=(libreoffice
+        slack-desktop
+        vagrant
+        vim-gtk3
+        wireshark
+    )
+
+    # shellcheck disable=SC2086
+    sudo $APT_GET install "${packages[@]}" > /dev/null
+
+    IS_CHROME_INSTALLED=$(dpkg-query -W --showformat='${Status}\n' google-chrome-stable|grep "install ok installed")
+
+    if [[ "$IS_CHROME_INSTALLED" == "" ]]; then
+        log_info "Installing Google Chrome"
+        chrome_file="$tmp_dir/google-chrome.deb"
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O "$chrome_file"
+        sudo dpkg -i "$chrome_file"
+    fi
+}
 
 function install_os_packages {
     log_info "Installing OS-specific packages"
@@ -58,11 +256,14 @@ function install_brew_packages {
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
         go              # golang
+        pipx            # install and run python applications in environments
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         starship        # command line prompt https://starship.rs/
         zoxide          # smarter cd command https://github.com/ajeetdsouza/zoxide
+        zsh
+        zsh-completions
         )
 
     brew update
