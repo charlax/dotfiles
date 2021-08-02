@@ -1,0 +1,2 @@
+# Markdown to docx
+pandoc -s file.md -o file.docx
