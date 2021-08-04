@@ -1,4 +1,8 @@
-# Other sources
+# Vim
+
+<!-- vim: set ft=markdown: -->
+
+## Other sources
 
 - https://devhints.io/vimscript
 
@@ -100,4 +104,10 @@ syn off | syn on
 
 " Show hidden chars
 :set list
+```
+
+## Modeline
+
+```python
+# vim: set ft=python:
 ```

@@ -7,10 +7,10 @@ PGPASSWORD=password psql -h 127.0.0.1 -U username -d dbname -p 5432
 \l+  -- include extra info e.g. size
 
 # select database
-/c dbname
+\c dbname
 
 # show create table
-/d tablename
+\d tablename
 \d+ tablename  # show all table info
 \dn            # list schemas
 

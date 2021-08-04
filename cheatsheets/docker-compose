@@ -1,2 +1,5 @@
 # Run in running container
 docker-compose run $servicename /bin/bash
+
+# Force rebuild of container, start in detached mode
+docker up --build --force-recreate -d
