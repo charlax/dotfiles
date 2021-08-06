@@ -266,6 +266,13 @@ set laststatus=2
 " Operations such as yy, D, and P work with the system clipboard. No need to prefix them with \"+ or \"*.
 " set clipboard=unnamed
 
+" For security reasons, activate modeline only for cheatsheets
+if expand('%:p:h') == expand('$DOTFILES/cheatsheets')
+    set modeline
+    set modelines=1
+    let g:ale_fix_on_save = 0
+endif
+
 " ============================================================
 " Wrapping, textwidth, text formatting
 " ============================================================

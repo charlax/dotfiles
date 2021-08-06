@@ -140,11 +140,19 @@ Types of registers:
 " Echo a durable message
 
 echom "message"
+
+" Current file path
+expand('%')      " relative path
+expand('%:p')    " full path
+expand('%:p:h')  " full directory ('head') path
 ```
 
 ## Editor config
 
 ```vimscript
+" Check config value
+verbose set modeline?
+
 " Set indentation size in spaces
 set tabstop=4
 set shiftwidth=4
@@ -164,8 +172,124 @@ syn off | syn on
 
 ## Modeline
 
+Exercise caution: using modeline has security implications.
+
 ```python
 # vim: set ft=python:
 ```
+
+## Marks
+
+`:help mark-motions`
+
+- `a`-`z`: local to buffer
+- `A`-`Z`: global to multiple buffers
+- `0`-`9`: readonly, used when quitting the file
+- `>`, `<`: search (can be modified)
+- `ma` mark position with 'a'
+- `'a` go to 'a'
+- `:marks` display marks
+- ```[`` move to first character of the previously changed/yanked/deleted content
+- ```]`` move to last character of the previously changed/yanked/deleted content
+
+## Numbers
+
+- `:help CTRL-A`
+- `:help CTRL-X`
+- `:help nrformats`
+
+- `CTRL+a` increase the first digit or number on the line
+- `CTRL+x` decrease the first digit or number on the line
+- `g CTRL+a` increase numbers on the VISUAL selection sequentially
+- `g CTRL+x` decrease numbers on the VISUAL selection sequentially
+
+## Regex
+
+Inspired by [vimtips](http://rayninfo.co.uk/vimtips.html).
+
+- Prefix pattern with `\v` to have all regex metacharacters (`v`ery magic)
+- `:sm` instead of `:s` to have almost all metacharacters (except `(`, `)`, `|`) (`s`ubstitute `m`agic)
+- `:sno` for `no` magic.
+- Prefix pattern with `\V` for none of the metachars.
+
+For instance these are equivalent:
+
+```text
+:%s/\V(/
+:%sm/(/
+:%s/\(/
+```
+
+Other commands:
+
+- `:&&` repeat the last substitute with its flags
+- `:~` repeat the last substitute with the same replacement but the last used *search* pattern
+- `&` (NORMAL): repeat the last substitute without ranges and flags
+- `g&` (NORMAL): same flags, replace pattern with last *search* pattern.
+
+### Commands
+
+- Structure: `:g/pattern/command`
+- E.g. `:g/toaster/d` deletes all lines matching "toaster".
+
+Normal mode commands:
+
+- `:norm <command>` run `<command>` in normal mode, respecting user shortcuts
+- `:norm! <command>` uses default vim behavior (mandatory when writing a plugin)
+- `:norm daw` delete word under cursor
+- `:g/toaster/norm gu$` lower cases all lines matching "toaster"
+
+### Example regexes
+
+```text
+# Replace all date in format `YYYYMMDD` to `MM/DD/YYYY`:
+%s/\(20\d\{2}\)\(\d\{2}\)\(\d\{2}\)/\2\/\3\/\1/g
+
+# Delete everything in parentheses
+:%s/(.*)//g
+
+# Grab email only, replacing the whole line
+# File:
+# Charlax <toaster@toasting.org>
+:%s/.*<\([a-z.@]\+\)>/\1/g
+
+# Delete everything after a character
+# * Toaster: 1
+# * Toaster: 2
+# To delete everything after `:`:
+:%s/:.*//
+
+# Replace newline character "^M" and "^@"
+:%s/<Ctrl-V><Ctrl-M>/\r/g
+
+# Add a unique id to Markdown titles
+#
+# This is a good example of a complex regex which uses `\=` to trigger vim
+# command execution.
+%s%^\(#\+.*\)$%\=submatch(1).' (id::'.substitute(system('LC_ALL=C tr -cd "[:alnum:]" < /dev/urandom | fold -w15 | head -n1'), '\n','','g').')'%g
+# BEFORE:
+# Test
+# AFTER:
+# Test (id::nYgp7segfLWXeWM)
+
+# Convert each NAME_LIKE_THIS to NameLikeThis in the current line.
+:s#_*\(\u\)\(\u*\)#\1\L\2#g
+
+# Match a whole word i.e. OS but not iOS
+s/\<OS\>/OperatingSystem/g
+
+# Wrap all lines in quotes
+:%s/^\(.*\)$/"\1"/
+
+# Wrap all words in line with backticks
+:'<,'>s/\v([a-z]+)/`\1`/g
+```
+
+## Plugins
+
+### Surround
+
+- `ysiw*` add `*` around word
+- `yss'` add `'` around line
 
 <!-- vim: set ft=markdown: -->
