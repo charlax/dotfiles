@@ -23,3 +23,22 @@
 
 ;; Functions
 (map (fn [arg] (inc arg)) [1 2 3])
+
+;; Quoting
+'(+ 1 (inc 1))
+; => '(+ 1 (inc 1))
+;; Syntax quoting and unquoting (~)
+`(+ 1 ~(inc 1))
+; => (clojure.core/+ 1 2)
+
+;; Macros
+(defmacro double-it
+  "Given a function name, define it twice, eg (double-it foot [] ) creates foo and foo*"
+  [fname args & body]
+  `(do (defn ~fname ~args ~@body)
+       (defn ~(symbol (str fname "*")) ~args ~@body)))
+; Usage
+(double-it afunc [str] (println str))
+(afunc "asdf")
+(afunc* "asdf")
+(macroexpand (mymacro :foo))

@@ -1,10 +1,9 @@
 # Vim
 
-<!-- vim: set ft=markdown: -->
-
 ## Other sources
 
 - https://devhints.io/vimscript
+- https://thevaluable.dev/vim-advanced/
 
 ## Keyboard
 
@@ -29,6 +28,18 @@ fa     goes to the next a character on the same line (in command mode)
 "kyy   copies the current line into register k
 "kp    paste the content of the register k
 ```
+
+### `g`
+
+- `gf` edit the file under the cursor
+  - `ctrl-o` to come back
+  - `ctrl+w ctrl+f` to open in a new window
+  - It can also open URL with `netrw`
+- `gi` move to the last insertion you did and switch to INSERT mode
+  - `gv` same thing with visual mode
+- `gn` move to the match of your last search
+- `gI` insert text at beginning of line whatever the first character (!= `I`)
+- `ga` print the `a`scii value of the character under the cursor in decimal, hex and octal
 
 ### Keyboard shortcuts: window
 
@@ -68,6 +79,51 @@ zg
 # Include output of external bash command
 :read !date
 ```
+
+## Ranges
+
+- `<number>` refers to a line number
+- `.+<number>` refers to current number + number
+- `.` current line (usually default range)
+- `$` last line of current buffer
+- `%` entire file (same as `1,$`)
+- `*` last selection with VISUAL mode
+
+E.g. with `d`:
+
+- `:1,40d` delete line 1 to 40 included
+- `:2,$d` keep only first line
+- `:.,$d` delete from this line to end of file
+
+## Quickfix window
+
+Check [A Vim Guide for Advanced Users](https://thevaluable.dev/vim-advanced/) for more info.
+
+- `:cn` or `:cnext` move to next entry
+- `:cdo <cmd>` execute a command on each valid entry of current quickfix
+
+## Registers
+
+- `:reg` get content of register
+- In INSERT mode, `CTRL+R <reg>` put the content of register in the buffer.
+- In INSERT mode, `CTRL+R =` lets you enter vimscript expression and output their result in the current buffer.
+
+Types of registers:
+
+- `"`: unnamed register, contains last deleted/yanked/changed content even if a register was specified
+- `0`, `1`, ... `9`: history of registers
+- `-`: small delete register. Any deleted/changed content smaller than one line.
+- `a` to `z`: named registers, use capital letter e.g. `A` to append
+- Read-only registers:
+  - `.` last inserted text
+  - `%` name of current file
+  - `:` most recent command line executed
+- `#`: alternate buffer for the current window
+- `=`: store the result of an expression
+- `+`: system clipboard
+- `*`: selection clipboard (*nix systems)
+- `_`: equivalent to `/dev/null`
+- `/`: last search pattern
 
 ## File handling
 
@@ -111,3 +167,5 @@ syn off | syn on
 ```python
 # vim: set ft=python:
 ```
+
+<!-- vim: set ft=markdown: -->
