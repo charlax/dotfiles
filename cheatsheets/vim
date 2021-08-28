@@ -29,6 +29,10 @@ fa     goes to the next a character on the same line (in command mode)
 "kp    paste the content of the register k
 ```
 
+### Movement
+
+- `{` and `}` move to beginning/end of paragraph
+
 ### `g`
 
 - `gf` edit the file under the cursor
@@ -124,6 +128,10 @@ Types of registers:
 - `*`: selection clipboard (*nix systems)
 - `_`: equivalent to `/dev/null`
 - `/`: last search pattern
+
+## Macros
+
+- `@:` redo last command (e.g. `:s/foo/bar`)
 
 ## File handling
 
@@ -261,6 +269,9 @@ Normal mode commands:
 
 # Replace newline character "^M" and "^@"
 :%s/<Ctrl-V><Ctrl-M>/\r/g
+
+# Lower case words in markdown frontmatter
+:1,10g/^\w\+/norm gue
 
 # Add a unique id to Markdown titles
 #
