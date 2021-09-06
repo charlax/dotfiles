@@ -44,6 +44,7 @@ nnoremap <leader>V  :call ToggleFocusMode()<cr>
 " Remove trailing whitespaces
 function! StripTrailingWhitespaces()
     let save_cursor = getpos('.')
+    " https://vi.stackexchange.com/questions/5949/substitute-with-pure-vimscript-without-s
     %s/\s\+$//e
     call setpos('.', save_cursor)
 endfunction
@@ -81,6 +82,7 @@ command! SQLListify call SQLListify()
 
 " Format all uuids
 function! FormatUUIDS()
+    let save_cursor = getpos('.')
     %s/\<
       \\([0-9A-Fa-f]\{8\}
       \\)\([0-9A-Fa-f]\{4\}\)
@@ -90,6 +92,7 @@ function! FormatUUIDS()
       \\>
       \/\1-\2-\3-\4-\5
       \/g
+    call setpos('.', save_cursor)
 endfunction
 command! FormatUUIDS call FormatUUIDS()
 
@@ -119,3 +122,11 @@ function! CopyCurrentFilename()
     let @*=expand('%')
 endfunction
 command! CopyCurrentFilename call CopyCurrentFilename()
+
+function Scratch()
+    execute 'tabnew '
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+endfunction
+command! -nargs=0 Scratch call Scratch()

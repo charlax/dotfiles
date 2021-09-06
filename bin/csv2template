@@ -38,7 +38,7 @@ csv2template --template template.md --outfiles-name-pattern "out/{{ Name }}.md" 
 csv2template --template template.md --outfolder out --outfiles-name-use-column __FILENAME__ file.csv
 """
 
-TRUTHY_VALUES = {'True', 'TRUE', '1', 'yes', 'YES'}
+TRUTHY_VALUES = {"True", "TRUE", "1", "yes", "YES"}
 
 
 def get_template(args):
@@ -60,51 +60,50 @@ def format_uuid(value):
 
 
 @contextlib.contextmanager
-def get_outfile(*,
-                outfile,
-                outfiles_name_template,
-                outfiles_name_use_column,
-                outfolder,
-                line):
+def get_outfile(
+    *, outfile, outfiles_name_template, outfiles_name_use_column, outfolder, line
+):
     """Return output file handler."""
-    if len(list(filter(
-            None,
-            (outfile, outfiles_name_template, outfiles_name_use_column)))) != 1:
-        raise ValueError("Contradicting arguments")
-
-    if outfile:
-        yield outfile
+    filename = None
 
     if outfiles_name_template:
         filename = outfiles_name_template.render(**line)
 
-    if outfiles_name_use_column:
+    elif outfiles_name_use_column:
         filename = line[outfiles_name_use_column]
 
-    if outfolder:
+    elif outfolder:
         filename = os.path.join(outfolder, filename)
 
-    sys.stderr.write("Writing to: %s\n" % filename)
+    if not filename:
+        yield outfile
 
-    # TODO: ideally we should close it
-    yield open(filename, "w")
+    else:
+        sys.stderr.write("Writing to: %s\n" % filename)
+
+        try:
+            fh = open(filename, "w")
+            yield fh
+        finally:
+            fh.close()
 
 
 def should_skip_row(line, *, column_name):
     """Return true if the row should be skipped."""
-    return line[column_name].strip() in TRUTHY_VALUES
+    return line.get(column_name, "").strip() in TRUTHY_VALUES
 
 
 def main(args):
     """Render the template."""
-    jinja2.defaults.DEFAULT_FILTERS['format_uuid'] = format_uuid
+    jinja2.defaults.DEFAULT_FILTERS["format_uuid"] = format_uuid
     template = get_template(args)
 
     if args.header:
         args.outfile.write(args.header + "\n")
 
-    filename_template = (args.outfiles_name_pattern
-                         and jinja2.Template(args.outfiles_name_pattern))
+    filename_template = args.outfiles_name_pattern and jinja2.Template(
+        args.outfiles_name_pattern
+    )
     get_output = functools.partial(
         get_outfile,
         outfolder=args.outfolder,
@@ -114,10 +113,9 @@ def main(args):
     )
 
     csv_file = csv.DictReader(args.csv)
-    rows = ({k.strip(): v.strip() for k, v in row.items()}
-            for row in csv_file)
+    rows = ({k.strip(): v.strip() for k, v in row.items()} for row in csv_file)
     for line in rows:
-        line = {k.replace(' ', '_'): v for k, v in line.items()}
+        line = {k.replace(" ", "_"): v for k, v in line.items()}
         if should_skip_row(line, column_name=args.skip_column_name):
             continue
 
@@ -125,54 +123,51 @@ def main(args):
             outfile.write(template.render(**line) + "\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Render the template using CSV data",
         epilog=HELP,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("csv", nargs="?", type=argparse.FileType('rU'),
-                        default=sys.stdin)
-    parser.add_argument("--header",
-                        help="content to put at the top of output")
-    parser.add_argument("--skip-column-name",
-                        type=str,
-                        default=DEFAULT_SKIP_COLUMN_NAME,
-                        help="skip rows that have a truthy value in this column"
-                        )
-    parser.add_argument("--outfolder",
-                        help="where to export the files")
+    parser.add_argument(
+        "csv", nargs="?", type=argparse.FileType("rU"), default=sys.stdin
+    )
+    parser.add_argument("--header", help="content to put at the top of output")
+    parser.add_argument(
+        "--skip-column-name",
+        type=str,
+        default=DEFAULT_SKIP_COLUMN_NAME,
+        help="skip rows that have a truthy value in this column",
+    )
+    parser.add_argument("--outfolder", help="where to export the files")
 
     template_group = parser.add_mutually_exclusive_group(required=True)
     template_group.add_argument(
-        "--template",
-        type=argparse.FileType('r'),
-        help='template filename')
-    template_group.add_argument(
-        "--template-string",
-        help='template string')
+        "--template", type=argparse.FileType("r"), help="template filename"
+    )
+    template_group.add_argument("--template-string", help="template string")
     template_group.add_argument(
         "--template-use-csv-header",
-        action='store_true',
-        dest='use_csv_header_as_template',
-        help="use the CSV's first line as the template")
+        action="store_true",
+        dest="use_csv_header_as_template",
+        help="use the CSV's first line as the template",
+    )
 
     outfile_group = parser.add_mutually_exclusive_group()
-    outfile_group.add_argument('--outfile',
-                               type=argparse.FileType('w'),
-                               help="defaults to standard output")
-    outfile_group.add_argument("--outfiles-name-pattern",
-                               type=str,
-                               help="pattern for output filenames")
-    outfile_group.add_argument("--outfiles-name-use-column",
-                               type=str,
-                               help="use column with this name for filenames")
+    outfile_group.add_argument(
+        "--outfile",
+        type=argparse.FileType("w"),
+        help="defaults to standard output",
+        default=sys.stdout,
+    )
+    outfile_group.add_argument(
+        "--outfiles-name-pattern", type=str, help="pattern for output filenames"
+    )
+    outfile_group.add_argument(
+        "--outfiles-name-use-column",
+        type=str,
+        help="use column with this name for filenames",
+    )
 
     args = parser.parse_args()
-
-    if not (args.outfile
-            or args.outfiles_name_pattern
-            or args.outfiles_name_use_column):
-        args.outfile = sys.stdout
-
     main(args)
