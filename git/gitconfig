@@ -54,21 +54,24 @@
 
 [user]
     name = Charles-Axel Dein
-	email = 120501+charlax@users.noreply.github.com
-	signingkey = 8FB355D70B073558BA1EC2F864C00027F3375D70
+    email = 120501+charlax@users.noreply.github.com
+    signingkey = 8FB355D70B073558BA1EC2F864C00027F3375D70
 
 [pull]
     rebase = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [rebase]
-	autoStash = true
+    autoStash = true
 [gpg]
-	program = gpg
+    program = gpg
 [commit]
-	gpgsign = true
+    gpgsign = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
+
+[includeIf "gitdir:~/Octopize/"]
+    path = ~/.dotfiles/git/gitconfig.octopize.local

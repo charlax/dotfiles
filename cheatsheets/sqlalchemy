@@ -1,0 +1,41 @@
+# SQLAlchemy
+
+## Core
+
+Working with the engine: https://docs.sqlalchemy.org/en/14/core/future.html#sqlalchemy.future.Engine
+
+Manipulating the URL for an engine, dropping/creating a db:
+
+```python
+from sqlalchemy import MetaData, create_engine, Table, Column, String, Integer
+from sqlalchemy.engine import Engine, make_url
+from sqlalchemy.schema import CreateTable, DDL
+
+
+DB_URL = "postgresql+psycopg2://user:pass@127.0.0.1:5432/dbname"
+metadata = MetaData()
+
+t_users = Table(
+    "users",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("firstname", String),
+)
+
+
+def create_db(url: str) -> None:
+    parsed = make_url(DB_URL)
+    dbname = parsed.database
+    raw_engine = create_engine(parsed.set(database=""), future=True)
+    with raw_engine.connect() as conn:
+        # End transaction
+        conn.execute(text("commit;"))
+        conn.execute(DDL(f"drop database if exists {dbname}"))
+        conn.execute(DDL(f"create database {dbname}"))
+
+
+# Display create table
+print(CreateTable(t_users))
+```
+
+<!-- vim: set ft=markdown: -->

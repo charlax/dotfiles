@@ -2,6 +2,11 @@
 
 See also Cookbook
 
+## DDL
+
+```sql
+drop database if exists dbname;
+```
 
 ## Datetime
 

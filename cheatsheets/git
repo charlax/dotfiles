@@ -22,6 +22,9 @@ git log -p -G query
 # Show git log excluding changes in a folder
 git log . ':!subfolder_to_ignore'
 
+# Show signatures
+git log --show-signature
+
 # Diff: show only staged changes
 git diff --cached
 # Diff: show only file names, using relative path
