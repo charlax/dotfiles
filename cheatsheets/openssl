@@ -1,2 +1,16 @@
 # Get certificate information
 openssl x509 -in file.crt -text
+
+# Get certificate without SNI
+openssl s_client -showcerts -connect www.example.com:443 </dev/null
+openssl s_client -connect www.google.com:443 2>/dev/null </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+
+# Verify chain
+openssl verify -CAfile letsencrypt-root-cert/isrgrootx1.pem.txt -untrusted letsencrypt-intermediate-cert/letsencryptauthorityx3.pem.txt /etc/letsencrypt/live/sitename.tld/cert.pem
+# Verify chain on online
+openssl s_client -quiet -connect example.com:443 < /dev/zero
+# Show certificates
+openssl s_client -showcerts -connect example.com:443 < /dev/zero
+
+# DER to PEM
+openssl x509 -inform der -in gsgccr3dvtlsca2020.crt -text -out globalsign.pem
