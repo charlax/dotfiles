@@ -6,3 +6,12 @@ find . -type f -newermt '1/30/2017 0:00:00'
 
 # Find Python files
 find . -type f -name '*.py[co]' -o -type d -name __pycache__ -o -type d -name .mypy_cache
+
+# Find executable files (GNU find)
+gfind . -executable -type f
+
+# Exclude path
+gfind . -not -path '.git/*'
+
+# Unset executable bit for all executable files in git repo
+gfind . -executable -type f -not -iname '*.sh' -not -path './.git/*' -exec chmod a-x {} \;

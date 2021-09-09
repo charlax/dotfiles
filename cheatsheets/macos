@@ -31,3 +31,9 @@ sudo killall -HUP mDNSResponder
 # Restart audio
 sudo killall coreaudiod
 sudo launchctl start com.apple.audio.coreaudiod
+
+# Disk
+
+diskutil apfs list
+diskutil list
+diskutil mountDisk /dev/disk2
