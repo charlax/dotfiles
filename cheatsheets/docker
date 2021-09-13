@@ -2,9 +2,7 @@
 docker system prune -a
 
 # Build image
-docker build -t thetest/thename:latest .
-docker run -it --rm --name test thetest/thename:latest
-
+docker build -t thetest/thename:latest . && docker run -it --rm --name test thetest/thename:latest
 # Override entrypoint
 docker run -it --rm --name test --entrypoint /bin/bash test/top:latest
 
@@ -46,3 +44,9 @@ docker pause  # also: unpause
 docker rm
 # Remove one or more images
 docker rmi
+
+# Verbose and disable cache (the cache part does not seem to work)
+docker compose build --progress=plain --no-cache=true
+
+# Empty build cache and clean up stuff
+docker system prune

@@ -24,3 +24,9 @@ sed -E -e "s/’/'/g" -i '' $FILE
 
 # Remove code blocks from markdown
 cat $FILE | sed '/^```/,/^```/d'
+
+# Remove line in file
+set -i '/TO_MATCH/d' filename.txt
+
+# Show from line $x to line $y
+sed -n -e "$x,$y p" -e "$y q"
