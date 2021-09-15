@@ -1,0 +1,9 @@
+# https://docs.docker.com/engine/reference/builder/
+
+# CMD: defaults for a running container, e.g. default argument to ENTRYPOINT
+CMD ["/usr/bin/wc", "--help"]  # preferred form
+
+# ENTRYPOINT: configure a container that will run as an executable
+FROM ubuntu
+ENTRYPOINT ["top", "-b"]
+CMD ["-c"]
