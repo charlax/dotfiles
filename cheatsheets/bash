@@ -29,11 +29,13 @@ wget http://cloud.com/1/{1..20}.py
 
 # options
 # https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
-set -v  # display commands before executing, same as:
-set -o verbose
-set +o verbose
-# same as -e, exit on error for multiple cases, see doc
-set -o errexit
+
+set -o verbose  # set option
+set +o verbose  # unset option
+
+verbose/-v      # display commands
+errexti/-o      # exit on error
+xtrace/-x       # Print a trace of simple commands
 
 # tests
 

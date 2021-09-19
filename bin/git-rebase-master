@@ -1,9 +1,14 @@
 #!/bin/bash
 
 set -e
-set -x
+# set -x
 
-DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+
+if [[ $DEFAULT_BRANCH = "" ]]; then
+    DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+fi
+
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 MASTER=${1:-$DEFAULT_BRANCH}

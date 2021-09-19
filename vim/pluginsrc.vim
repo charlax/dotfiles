@@ -92,11 +92,13 @@ let g:ale_linters = {
             \ 'typescript': ['eslint', 'tsserver', 'typecheck'],
             \ 'typescriptreact': ['eslint', 'tsserver', 'typecheck'],
             \ 'javascript': ['eslint', 'flow'],
+            \ 'python': ['flake8', 'mypy', 'pydocstyle'],
             \}
 
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_python_auto_pipenv = 1
+let g:ale_python_auto_poetry = 1
 
 function! DisableFixers()
     let g:ale_fix_on_save = 0

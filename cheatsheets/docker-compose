@@ -3,3 +3,23 @@ docker-compose run $servicename /bin/bash
 
 # Force rebuild of container, start in detached mode
 docker up --build --force-recreate -d
+
+```docker-compose.yaml
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+
+  db:
+    image: postgres:latest  # do not use latest, pin to specific version
+    volumes:
+      - "shared:/shared"
+
+  redis:
+    image: "redis:alpine"
+
+volumes:
+  shared:
+```

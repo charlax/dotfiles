@@ -237,11 +237,13 @@ function install_brew_packages {
     # asciinema       # record CLI session
     # asdf            # manage multiple versions of node, etc.
     # awscli          # AWS command line
+    # azure-cli       # Azure command line
     # binwalk         # inspect files
     # cloc            # count lines of code
-    # ctop            # htop for container https://github.com/bcicen/ctop
+    # ctop            # htop for docker container https://github.com/bcicen/ctop
     # cw              # AWS cloudwatch logs
     # gh              # Github cli
+    # gnu-sed         # GNU sed
     # hexyl           # command-line hex viewer
     # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
     # leiningen       # automate Clojure projects

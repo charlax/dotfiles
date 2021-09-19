@@ -1,23 +1,11 @@
-# Fix Python after homebrew install
-# $ pip
-# zsh: /Users/.../Library/Python/3.7/bin/pip: bad interpreter: /usr/local/opt/python/bin/python3.7: no such file or directory
-# $ poetry
-# zsh: /Users/.../.local/bin/poetry: bad interpreter: /Users/.../.local/pipx/venvs/poetry/bin/python: no such file or directory
-echo $PATH  # make sure Python is at latest version
-which python3  # make sure it's brew's Python, otherwise: brew link python3
-pipx reinstall-all
-
-# For vim:
-:pyx import sys; print(sys.version)
-# For upgrade to 3.9, the Python@3.9 was keg only and used in vim, which broke deoplete
-/usr/local/opt/python@3.9/bin/python3 -m pip install --user pynvim
+# Python cheats
 
 ## Libs
 
 ### Functools
 
 ```python
-functools.reduce(function, iterable[, initializer])
+functools.reduce(function, iterable, initializer)
 
 # with function:
 def reducer(accumulator, current):
@@ -30,4 +18,49 @@ def reducer(accumulator, current):
 ```python
 itertools.chain
 itertools.chain.from_iterable
+```
+
+## Types
+
+https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
+
+### Decorators
+
+```python
+from typing import Any, Callable, TypeVar, Tuple, cast
+
+F = TypeVar('F', bound=Callable[..., Any])
+
+
+# A decorator that preserves the signature.
+def my_decorator(func: F) -> F:
+    def wrapper(*args, **kwds):
+        print("Calling", func)
+        return func(*args, **kwds)
+    return cast(F, wrapper)
+
+
+# A decorated function.
+@my_decorator
+def foo(a: int) -> str:
+    return str(a)
+```
+
+## Troubleshooting
+
+### Fix Python after homebrew upgrade
+
+```bash
+$ pip
+zsh: /Users/.../Library/Python/3.7/bin/pip: bad interpreter: /usr/local/opt/python/bin/python3.7: no such file or directory
+$ poetry
+zsh: /Users/.../.local/bin/poetry: bad interpreter: /Users/.../.local/pipx/venvs/poetry/bin/python: no such file or directory
+echo $PATH  # make sure Python is at latest version
+which python3  # make sure it's brew's Python, otherwise: brew link python3
+pipx reinstall-all
+
+# For vim:
+:pyx import sys; print(sys.version)
+# For upgrade to 3.9, the Python@3.9 was keg only and used in vim, which broke deoplete
+/usr/local/opt/python@3.9/bin/python3 -m pip install --user pynvim
 ```

@@ -1,0 +1,13 @@
+---
+tags: [ networking ]
+---
+
+# -l         list listening sockets
+# -u/-t/-x   list UDP/TCP/Unix sockets
+# -p         show process(es) using socket
+
+# install on Ubuntu
+apt install iproute2
+
+# display all TCP listening sockets
+ss -tlp

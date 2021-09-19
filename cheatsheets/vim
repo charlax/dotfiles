@@ -304,3 +304,12 @@ s/\<OS\>/OperatingSystem/g
 - `yss'` add `'` around line
 
 <!-- vim: set ft=markdown: -->
+
+### ALE (linting)
+
+`:ALENext` go to next error. Can also be mapped:
+
+```vimscript
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+```

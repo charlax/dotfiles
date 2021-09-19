@@ -1,8 +1,7 @@
 # linux
-john hashes.txt --wordlist=/Users/ca/Dropbox/Code/pentest-toolkit/wordlists/rockyou.txt
+john hashes.txt --wordlist=$wordlist
 
 # ssh
 /usr/share/john/ssh2john.py id_rsa > ~/Downloads/id_rsa.hash
 
-WORDLIST=wordlists/SecLists/Passwords/darkweb2017-top10000.txt
-john --wordlist=$WORDLIST ~/Downloads/id_rsa.hash
+john --wordlist=$wordlist ~/Downloads/id_rsa.hash
