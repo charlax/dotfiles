@@ -36,9 +36,11 @@ git diff --name-only --diff-filter=ACMR
 git branch --no-merged master
 git branch --merged  # show merged branches
 
-# Undo last merge
+# unstage all files
+git reset
+# undo last merge
 git reset --hard ORIG_HEAD
-# Undo last rebase
+# undo last rebase
 git reset --hard ORIG_HEAD
 
 # Undo changes in submodule

@@ -85,7 +85,6 @@ zstyle ':completion:*' group-name ''
 # https://github.com/spicycode/ze-best-zsh-config/blob/master/.zsh/completion.zsh
 zstyle ':completion:*' completer _expand _complete _approximate _ignored
 
-
 # Generate descriptions with magic.
 zstyle ':completion:*' auto-description 'specify: %d'
 
@@ -203,7 +202,7 @@ if _has fzf && _has ag; then
   '
 fi
 
-# zoxyde (smarter cd command)
+# zoxide (smarter cd command)
 eval "$(zoxide init zsh --cmd j)"
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then

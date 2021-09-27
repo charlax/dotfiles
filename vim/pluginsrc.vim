@@ -80,13 +80,14 @@ let g:LatexBox_latexmk_options = '-pvc'
 " =======================================================
 
 " Linting
+" isort fails as of writing
 let g:ale_fixers = {
             \ 'javascript': ['prettier'],
             \ 'javascript.jsx': ['prettier'],
             \ 'typescript': ['prettier'],
             \ 'typescriptreact': ['prettier'],
             \ 'typescript.tsx': ['prettier'],
-            \ 'python': ['black', 'isort'],
+            \ 'python': ['black'],
             \}
 let g:ale_linters = {
             \ 'typescript': ['eslint', 'tsserver', 'typecheck'],
