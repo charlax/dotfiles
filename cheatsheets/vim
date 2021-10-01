@@ -14,8 +14,9 @@
 <ctrl+v><tab>
 
 # Show all keyboard shortcuts mappings
-:map           # And :imap :vmap :nmap
-:verbose map   # Show mapping and where they were defined
+:map            # and :imap :vmap :nmap
+:verbose map    # show mapping and where they were defined
+:verbose map k  # show mapping for key
 
 # Open previously opened file
 CTRL-^ (ctrl-shift-6)

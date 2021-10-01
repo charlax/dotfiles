@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 " Filter out .pyc files in NERDTree
 let NERDTreeIgnore = ['\.pyc$']
 
@@ -12,9 +14,10 @@ let g:rtfh_size = '34'
 " Use ag instead of ack
 let g:ackprg = 'ag --vimgrep'
 
-" See https://github.com/jiangmiao/auto-pairs/issues/88, can't type a with
+" See https://github.com/jiangmiao/auto-pairs/issues/88, can't type a
 " circumflex without this.
 let g:AutoPairsShortcutBackInsert=''
+let g:AutoPairsShortcutJump=''  " î
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 

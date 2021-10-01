@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
+
+- [Typescript cheatsheet](#typescript-cheatsheet)
+  - [Reference](#reference)
+  - [Typings](#typings)
+    - [Events](#events)
+    - [Reduce](#reduce)
+  - [React](#react)
+    - [React Styled](#react-styled)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Typescript cheatsheet
 
 ## Reference
@@ -32,6 +46,10 @@ const params2 = Object.entries(params)
 // Extend HTML props component
 interface Props extends React.HTMLProps<HTMLInputElement> {
   isActive: boolean;
+}
+
+interface Props {
+  children: React.ReactNode
 }
 ```
 
