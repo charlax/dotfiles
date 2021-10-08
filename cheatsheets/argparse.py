@@ -10,5 +10,5 @@ if __name__ == "__main__":
     parser.add_argument(
         "outfile", nargs="?", type=argparse.FileType("w"), default=sys.stdout
     )
-    parser.add_argument("--release", action="store_true")
+    parser.add_argument("--release", action="store_true", help="store true")
     args = parser.parse_args()
