@@ -27,7 +27,6 @@ CONFIGURATION_FILES = (
     "git/gitignore",
     "git/gitconfig",
     "git/gitconfig.local",
-    "hg/hgrc",
     "latex/latexmkrc",
     ("ssh/rc", ".ssh/rc"),
     ("ssh/config", ".ssh/config"),
