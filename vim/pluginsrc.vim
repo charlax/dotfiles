@@ -54,7 +54,7 @@ let g:mta_filetypes = {
             \ 'jinja' : 1,
             \ }
 
-let g:UltiSnipsSnippetDirectories=['UltiSnips', 'my_snippets']
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippets_my']
 
 " =======================================================
 " File-specific plugins
@@ -85,6 +85,7 @@ let g:LatexBox_latexmk_options = '-pvc'
 " Linting
 " isort fails as of writing
 let g:ale_fixers = {
+            \ 'css': ['prettier'],
             \ 'javascript': ['prettier'],
             \ 'javascript.jsx': ['prettier'],
             \ 'typescript': ['prettier'],
@@ -92,6 +93,7 @@ let g:ale_fixers = {
             \ 'typescript.tsx': ['prettier'],
             \ 'python': ['black'],
             \}
+
 let g:ale_linters = {
             \ 'typescript': ['eslint', 'tsserver', 'typecheck'],
             \ 'typescriptreact': ['eslint', 'tsserver', 'typecheck'],

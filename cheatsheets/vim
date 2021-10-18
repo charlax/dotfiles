@@ -85,6 +85,8 @@ zg
 
 # Include output of external bash command
 :read !date
+# Read file into current buffer
+:read /path/to/file
 ```
 
 ## Ranges
@@ -137,6 +139,8 @@ Types of registers:
 - `@:` redo last command (e.g. `:s/foo/bar`)
 
 ## File handling
+
+- `:new`: create new buffer
 
 ### netrw
 
@@ -301,13 +305,6 @@ s/\<OS\>/OperatingSystem/g
 
 ## Plugins
 
-### Surround
-
-- `ysiw*` add `*` around word
-- `yss'` add `'` around line
-
-<!-- vim: set ft=markdown: -->
-
 ### ALE (linting)
 
 `:ALENext` go to next error. Can also be mapped:
@@ -316,3 +313,16 @@ s/\<OS\>/OperatingSystem/g
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 ```
+
+### Surround
+
+- `ysiw*` add `*` around word
+- `yss'` add `'` around line
+
+### Ultisnips
+
+```vimscript
+:UltiSnipsEdit  " edit snippets for current filetype
+```
+
+<!-- vim: set ft=markdown: -->

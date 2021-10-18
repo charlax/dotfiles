@@ -1,4 +1,6 @@
 snippet skeletton_script "Bash script skeletton" b
+set -euo pipefail
+
 function usage() {
     echo "$(basename "$0") [--help] [--publish]"
 }

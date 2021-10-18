@@ -1,6 +1,15 @@
-# Pretty print a var
+# ## Debugging
+
+```php
+// Pretty print a var
 print_r($var);
 var_dump($var);
+error_log(json_encode($var));
+
+// Show stack trace
+$e = new Exception();
+print_r(str_replace('/path/to/code/', '', $e->getTraceAsString()));
+```
 
 # map over an array
 array_map ( callable $callback , array $array1 [, array $... ] ) : array
