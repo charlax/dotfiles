@@ -40,8 +40,14 @@
     name = Gettext merge driver
     driver = git merge-po %O %A %B
 
-[url "git@github.com:/"]
+[url "ssh://git@gitlab.com:"]
+    insteadOf = https://gitlab.com
+
+[url "ssh://git@github.com:"]
     insteadOf = "gh:/"
+
+[url "ssh://git@github.com:"]
+    insteadOf = https://github.com/
 
 [push]
     default = simple

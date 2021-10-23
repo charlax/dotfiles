@@ -20,4 +20,12 @@ traceroute: findsaddr: write: No such process
 # Display routes
 netstat -nr
 
-# Renew dhcp lease
+# Renew dhcp lease (Windows)
+ifconfig /release
+ifconfig /renew
+
+# Get default gateway (Mac Os)
+route -n get default
+
+# Check DNS
+ns lookup example.com 1.1.1.1

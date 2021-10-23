@@ -68,3 +68,13 @@ args+=(--verbose true)
 script "${args[@]}"
 
 $@  # all args
+
+# Shell Parameter Expansion
+# https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion
+#
+# https://wiki.bash-hackers.org/syntax/pe
+# https://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html
+
+# Remove pattern
+in="content/stuff/img"
+echo "${in%/img}"  # content/stuff

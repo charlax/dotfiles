@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
 # Open a text editor
 
 PROGRAM_NAME=${0##*/}
@@ -33,10 +35,11 @@ while true; do
     esac
 done
 
-if [[ "$1" == "" ]]; then
+if [[ "${1-}" == "" ]]; then
     $APP .
 elif [[ $1 =~ ^(git@|https://).*$ ]]; then
     repo_dir=$(basename "$1" .git)
+    set -o xtrace
     git clone "$1" && cd "$repo_dir" && $APP .
 else
     $APP "$1"
