@@ -29,11 +29,6 @@ def run(cmd):
     subprocess.run(cmd, shell=True, check=True)
 
 
-def run_maintenance_tasks(is_dry_run: bool = False):
-    print_task("Running maintenance tasks")
-    run("sudo periodic daily weekly monthly")
-
-
 def clean_up_ruby(is_dry_run: bool = False):
     print_task("Cleaning up ruby")
     run("gem cleanup")
@@ -103,7 +98,6 @@ def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
 
 CHECKS = {
     "empty_temp_dirs": empty_temp_dirs,
-    "run_maintenance_tasks": run_maintenance_tasks,
     "clean_up_ruby": clean_up_ruby,
     "check_for_uncommitted_code": check_for_uncommitted_code,
     # "clean_up_docker": clean_up_docker
