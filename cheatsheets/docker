@@ -50,3 +50,6 @@ docker compose build --progress=plain --no-cache=true
 
 # Empty build cache and clean up stuff
 docker system prune
+
+# Kill all containers
+docker kill $(docker ps -q)
