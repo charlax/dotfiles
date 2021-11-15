@@ -1,5 +1,5 @@
 # Login with password
-PGPASSWORD=password psql -h 127.0.0.1 -U username -d dbname -p 5432
+PGPASSWORD=password psql -h 127.0.0.1 -p 5432 -U username -d dbname
 
 ```psql
 # list databases

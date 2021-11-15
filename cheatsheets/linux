@@ -1,0 +1,2 @@
+# Get current version
+cat /etc/lsb-release

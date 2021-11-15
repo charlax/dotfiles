@@ -18,6 +18,9 @@ sudo fs_usage -w -f filesys mds_stores
 # Get file info
 mdls file.pdf
 
+# Check file system usage
+sudo fs_usage
+
 # Network
 
 # Restart DNS responder (e.g. after changes in /etc/hosts)
