@@ -24,8 +24,11 @@ netstat -nr
 ifconfig /release
 ifconfig /renew
 
-# Get default gateway (Mac Os)
+# Get default gateway (macOs)
 route -n get default
 
 # Check DNS
 ns lookup example.com 1.1.1.1
+
+# Get networking speed (macOs)
+networkQuality
