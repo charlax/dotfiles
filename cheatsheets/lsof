@@ -1,3 +1,8 @@
+# lsof package e.g. yum install lsof
+
+# Check listening ports
+sudo netstat -tunlp  # see netstat's cheats for more details
+
 # See what port a given process ID has open
 lsof -p PID
 

@@ -10,3 +10,7 @@ groups   # same result
 
 # Add user to group
 usermod -a -G groupname $USER
+# sudo is the sudoers group on Ubuntu
+
+# Add user
+sudo adduser username
