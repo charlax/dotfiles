@@ -14,6 +14,7 @@
 
 # Insert tab character when expandtab is on
 <ctrl+v><tab>
+set noet   # disable example tab (e.g. in Makefile)
 
 # Show all keyboard shortcuts mappings
 :map            # and :imap :vmap :nmap

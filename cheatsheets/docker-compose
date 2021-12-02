@@ -12,11 +12,31 @@ services:
     ports:  # publish ports to host
       - "5000:5000"
     expose:  # expose ports to other services
+      - 3000
+    envfile:
+      - web/.${ENV}.env
     environment:
       - DEBUG=1
+    networks:
+      - internet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-k", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    depends_on:
+      db:
+        condition: service_healthy  # will use healthcheck
+        condition: service_started
+    profiles: # allows to specify a profile for services, e.g. docker compose up --profile development
+      - development
+    logging:
+      driver: "none"
+
 
   db:
     image: postgres:latest  # do not use latest, pin to specific version
+    restart: unless-stopped
     volumes:
       - "shared:/shared"
 
@@ -25,4 +45,9 @@ services:
 
 volumes:
   shared:
+
+networks:
+  internet:
+    name: internet
+    driver: bridge
 ```

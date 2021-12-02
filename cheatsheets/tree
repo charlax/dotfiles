@@ -1,6 +1,9 @@
 # To display a recursive directory tree:
 tree
 
+# Options
+# -I node_modules        # ignore node_modules
+
 # To make tree output contents from <dir>:
 tree <dir>
 

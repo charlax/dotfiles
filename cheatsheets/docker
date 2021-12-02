@@ -40,6 +40,10 @@ docker history postgres
 # Pause all processes within one or more containers
 docker pause  # also: unpause
 
+# Show only names of running containers
+# template context: https://docs.docker.com/engine/reference/commandline/ps/#formatting
+docker ps --format "{{.Names}}"
+
 # Remove one or more containers
 docker rm
 # Remove one or more images
@@ -51,5 +55,18 @@ docker compose build --progress=plain --no-cache=true
 # Empty build cache and clean up stuff
 docker system prune
 
+# Get total size used by Docker (images, containers, volumes)
+docker system df
+
 # Kill all containers
 docker kill $(docker ps -q)
+
+# Update restart policy for all containers
+for cid in $(docker ps -q); do docker update --restart unless-stopped $cid; done
+
+# Delete docker volume
+docker volume rm $volume_name
+# If you get a "volume in use" error, you need to remove any container (even if stopped)
+# associated with this volume:
+docker container rm $containerid
+docker volume rm $volume_name

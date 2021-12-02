@@ -1,0 +1,2 @@
+# Search for directories
+fd --type d query

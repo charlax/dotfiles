@@ -1,12 +1,14 @@
 # https://docs.rs/regex/1.3.9/regex/#syntax
 
 # search in a folder
-rg stringtomatch ./folder
+rg $query ./folder
 
 # include hidden files (which are excluded by default)
-rg --hidden $string
+rg --hidden $query
 # include more files with -u -uu -uuu
-rg -uuu $string
+rg -uuu $query
+# only search *.env file
+rg $query -g *.env
 
 # Show file names only
-rg -l $string
+rg -l $query

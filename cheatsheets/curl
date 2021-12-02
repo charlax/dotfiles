@@ -2,7 +2,8 @@
 # https://ec.haxx.se/http/http-multipart
 
 # JSON query
-curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}'
+curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}' $url
+curl -X POST --header "Content-Type: application/json" -d @body.json $url
 
 # Options
 -s/--silent

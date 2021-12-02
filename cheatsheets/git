@@ -7,6 +7,9 @@ git archive -o ~/Downloads/archive.tar.gz --format=tar HEAD
 # List committers sorted by number of commits
 git shortlog -ns
 
+# Check why file is gitignored
+git check-ignore -v filename
+
 # Checkout commit by date
 git checkout `git rev-list -n 1 --before="2016-03-29 12:00" master`
 

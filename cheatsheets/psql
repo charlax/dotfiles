@@ -36,3 +36,6 @@ grant select on tablename to username;
 -- get permissions for a table
 select grantee, privilege_type from information_schema.role_table_grants where table_name='aliases';
 ```
+
+## Get table size
+SELECT pg_size_pretty( pg_total_relation_size('tablename') );
