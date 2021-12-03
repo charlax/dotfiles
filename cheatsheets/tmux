@@ -1,2 +1,15 @@
+# Sessions
+
+# create new session
+tmux new -s $session_name
+# list session
+tmux ls
+# join sessions
+tmux attach-session -t 0
+
+# default keys
+<c-b> d        # detach from session
+<c-b> arrows   # switch panes
+
 # attach with iterm integration
 tmux -CC attach

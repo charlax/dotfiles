@@ -135,3 +135,6 @@ git rev-list --objects --all |
 
 # Replace accross all git files (needs GNU sed)
 git ls-files -z . | xargs -0 gsed -i -e 's/Arguments :/Arguments:/g'
+
+# List all unversioned files
+git ls-files --others
