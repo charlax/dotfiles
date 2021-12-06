@@ -184,6 +184,9 @@ syn off | syn on
 
 " Show hidden chars
 :set list
+
+" Check where "et" option was last assigned/set
+:4verbose set et?
 ```
 
 ## Modeline
