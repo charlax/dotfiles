@@ -25,6 +25,23 @@ for i in "${array[@]}"; do
     echo $i
 done
 
+# Simple arg handling
+```bash
+display_usage() {
+    echo -e "Usage: $0 filename"
+}
+
+# $# number of arguments
+# -ne    not equal
+
+if [ $# -ne 1 ]; then
+    echo -e "Invalid number of arguments"
+    display_usage
+    exit 1
+fi
+
+```
+
 # Download files numbered 1 to 20
 wget http://cloud.com/1/{1..20}.py
 

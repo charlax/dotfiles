@@ -1,2 +1,18 @@
+# Query Google
+dig @8.8.8.8 jvns.ca
+
 # Get nameserver responsible for domain name
 dig @1.1.1.1 +short NS example.com
+
+# Reverse DNS
+dig -x $ip
+dig ptr $ip
+
+# Only print answer section
+dig +noall +answer ns google.com
+
+# Only show records
+dig +short ns google.com
+
+# Mimic what DNS resolvers do
+dig +trace $domain

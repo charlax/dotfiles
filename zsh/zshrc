@@ -42,6 +42,9 @@ if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 
+# E.g. for poetry completions
+FPATH=~/.zfunc:$FPATH
+
 autoload -Uz compinit
 if [[ "$OSTYPE" =~ ^darwin ]] && [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
   compinit

@@ -311,6 +311,9 @@ function update_all {
     update-everything
 }
 
+# For poetry autocompletions
+mkdir ~/.zfunc
+
 install_os_packages
 install_brew_packages
 install_vim

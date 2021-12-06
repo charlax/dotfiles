@@ -21,3 +21,12 @@ sudo systemctl restart ssh.service
 
 # Force password authentication
 ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no $host
+
+# Forward agent
+ssh -A ...
+
+# Debug Gitlab connection
+ssh -Tvvv git@gitlab.com
+
+# Connect through bastion
+ssh -A -t $user@$bastion $user@$server
