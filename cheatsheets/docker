@@ -1,6 +1,3 @@
-# Delete all images, containers, volumes, networks for all stopped containers and unused images
-docker system prune -a
-
 # Build image
 docker build -t thetest/thename:latest . && docker run -it --rm --name test thetest/thename:latest
 # Override entrypoint
@@ -51,6 +48,12 @@ docker rmi
 
 # Verbose and disable cache (the cache part does not seem to work)
 docker compose build --progress=plain --no-cache=true
+
+# Delete all images, containers, volumes, networks for all stopped containers and unused images
+docker system prune -a
+
+# Empty BUILDKIT mount type=cache
+docker builder prune --filter type=exec.cachemount
 
 # Empty build cache and clean up stuff
 docker system prune
