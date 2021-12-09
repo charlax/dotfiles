@@ -47,9 +47,13 @@ git diff --relative --name-only
 # Diff: do not show deleted files
 git diff --name-only --diff-filter=ACMR
 
+# Show all branches
+git branch -a
 # Show unmerged branches
 git branch --no-merged master
 git branch --merged  # show merged branches
+# Delete remote branch
+git push origin --delete $branch_name
 
 # unstage all files
 git reset
