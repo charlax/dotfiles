@@ -39,6 +39,8 @@ route -n get default
 
 # Check DNS
 ns lookup example.com 1.1.1.1
+dig @8.8.8.8 example.com
+sudo tcpdump -i any port 53  # check DNS requests
 
 # Get networking speed (macOs)
 networkQuality

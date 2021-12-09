@@ -75,6 +75,3 @@
     gpgsign = true
 [init]
     defaultBranch = main
-
-[includeIf "gitdir:~/Octopize/"]
-    path = ~/.dotfiles/git/gitconfig.octopize.local

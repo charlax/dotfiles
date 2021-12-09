@@ -13,6 +13,7 @@ gpg --full-gen-key
 
 # Copy the long public key
 gpg --armor --export | pbcopy
+gpg --armor --export email@truc.com
 
 # List all keys
 gpg --list-keys
