@@ -14,6 +14,9 @@ done
 ARG1=${1:-foo}
 ${LIFE-Happiness}   # defaults to Happiness if $LIFE is unset
 
+# Get current script's directory
+current_dir=$(dirname $0)
+
 # Iterate over a list of things in a text file
 for toaster in $(cat toasters.txt) ; do
      echo ${toaster}
@@ -84,6 +87,7 @@ args=()
 args+=(--verbose true)
 script "${args[@]}"
 
+$0  # current script path
 $@  # all args
 
 # Shell Parameter Expansion
