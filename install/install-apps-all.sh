@@ -33,8 +33,6 @@ function install_osx_packages {
         coreutils
         ctags
         docker-completion
-        docker-compose-completion
-        docker-machine-completion
         dos2unix
         editorconfig
         exa              # modern replacement for ls https://the.exa.website/
