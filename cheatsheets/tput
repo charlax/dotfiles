@@ -1,0 +1,11 @@
+# tput has lots of commands:
+https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux/20983251#20983251
+
+# Get number of terminal columns (shell width)
+tput cols
+
+# Lines
+tput lines
+
+# To get term size, you can also
+stty size
