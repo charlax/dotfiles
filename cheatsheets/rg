@@ -12,3 +12,6 @@ rg $query -g *.env
 
 # Show file names only
 rg -l $query
+
+# Options
+--max-filesize 100K  # exclude large files

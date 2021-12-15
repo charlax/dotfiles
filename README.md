@@ -102,24 +102,16 @@ Once this is done, follow the instruction above (Installation).
 ### Apps to install
 
 - Annotate (App Store)
-- Be Focused (App Store)
 - Docker (installed via brew cask)
-- [Dropbox](https://www.dropbox.com/install)
-- Evernote (App Store)
-- Firefox (installed by the script)
-- Google Chrome Canary (installed by the script)
-- [Google Chrome](https://www.google.com/chrome/)
 - Grammarly
 - Keynote (App Store)
 - Kindle (App Store)
 - LibreOffice (installed by the script)
 - MindNode (App Store)
-- [Notion](https://www.notion.so/desktop)
 - Numbers (App Store)
 - Pages (App Store)
 - Pixelmator (App Store)
 - Spotify (installed by the script)
-- Studies (App Store)
 - [TextExpander](https://textexpander.com/download/) (not anymore on the app store)
 - Things (App Store)
 - Time Out (App Store)
@@ -134,7 +126,6 @@ Setup the following apps:
 - Backup application
 - Chrome
 - Rectangle (give permissions)
-- Dropbox
 - TextExpander
 - Things cloud
 - Printers
