@@ -1,0 +1,2 @@
+# Run for all files
+pre-commit run -a

@@ -40,6 +40,12 @@ git log -p -S "the string" --reverse
 # First first commit adding file
 git log --diff-filter=A -- filename.py
 
+# Other git log options
+# --name-only      # show only filenames
+# --name-status    # show filenames and status
+# --stat           # show # lines changed for files
+# --numstat       # show # lines without charts
+
 # Diff: show only staged changes
 git diff --cached
 # Diff: show only file names, using relative path
@@ -145,3 +151,15 @@ git ls-files -z . | xargs -0 gsed -i -e 's/Arguments :/Arguments:/g'
 
 # List all unversioned files
 git ls-files --others
+
+# Rewrite all commit authors based on a mailmap file
+# Requires install git-filter-repo (brew install git-filter-repo)
+# Docs about .mailmap format: https://git-scm.com/docs/gitmailmap
+git filter-repo --mailmap ./mailmap
+
+# Delete all files matching path glob in history
+git filter-repo --invert-paths --path-glob '*.tiff'
+
+# Get total size of repo
+git gc
+git count-objects -vH
