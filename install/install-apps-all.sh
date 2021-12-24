@@ -244,6 +244,7 @@ function install_brew_packages {
     # gnu-sed         # GNU sed
     # hexyl           # command-line hex viewer
     # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
+    # imagemagick     # convert images
     # leiningen       # automate Clojure projects
     # nvim            # neovim
     # sqlmap          # sql injection tool

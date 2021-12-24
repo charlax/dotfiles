@@ -1,5 +1,16 @@
 # Python cheats
 
+## Core features
+
+### f-strings
+
+https://www.python.org/dev/peps/pep-0498/
+
+```python
+value = 1.11111111
+f"{value:.4}" == "1.1111"
+```
+
 ## Libs
 
 ### Functools
@@ -64,3 +75,5 @@ pipx reinstall-all
 # For upgrade to 3.9, the Python@3.9 was keg only and used in vim, which broke deoplete
 /usr/local/opt/python@3.9/bin/python3 -m pip install --user pynvim
 ```
+
+<!-- vim: set ft=markdown: -->

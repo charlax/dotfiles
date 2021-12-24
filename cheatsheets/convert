@@ -3,3 +3,6 @@ convert -geometry 25x src/image1.png out/image1.png
 
 # resize image to height 25, keeping aspect ratio
 convert -geometry x25 src/image1.png out/image1.png
+
+# convert svg to png
+convert -density 1200 -resize 2000x2000 file.svg file.png
