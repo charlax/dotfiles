@@ -108,6 +108,7 @@ function install_osx_packages {
         rectangle           # window management
         sequel-pro
         spotify
+        stats               # macOS system monitor in your menu bar
         transmission
         typora
         vagrant             # useful for installing kali
