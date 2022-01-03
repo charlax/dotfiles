@@ -7,7 +7,7 @@ set -e
 
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-    ssh-add -A
+    ssh-add --apple-load-keychain
 
     log_info "Updating xcode command line tools"
     # Fails when it's already installed
