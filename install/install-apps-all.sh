@@ -49,6 +49,7 @@ function install_osx_packages {
         httpie           # CLI http client
         jq               # json formatting
         macvim
+        make             # newer Makefile
         miller           # like awk, sed, cut, join, and sort for CSV, TSV, and tabular JSON https://github.com/johnkerl/miller
         mysql
         ncdu             # ncurses disk usage https://dev.yorhel.nl/ncdu

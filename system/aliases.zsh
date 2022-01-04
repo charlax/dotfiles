@@ -22,6 +22,10 @@ if command -v "gcp" > /dev/null 2>&1; then
     alias cp="gcp"
 fi
 
+if command -v "gmake" > /dev/null 2>&1; then
+    alias make="gmake"
+fi
+
 # Find file (defined in functions)
 alias f="findfile"
 
