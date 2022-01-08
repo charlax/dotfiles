@@ -5,3 +5,7 @@ john hashes.txt --wordlist=$wordlist
 /usr/share/john/ssh2john.py id_rsa > ~/Downloads/id_rsa.hash
 
 john --wordlist=$wordlist ~/Downloads/id_rsa.hash
+
+# pdf
+/usr/local/Cellar/john-jumbo/1.9.0/share/john/pdf2john.pl file.pdf > pdf.hash
+# see hashcat as well

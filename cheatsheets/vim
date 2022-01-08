@@ -329,4 +329,19 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 :UltiSnipsEdit  " edit snippets for current filetype
 ```
 
+## Debugging Vim
+
+```vimscript
+:messages       " show latest messages
+```
+
+```bash
+# log verbose to file
+vim -V9runtime.log
+```
+
+### Errors with deoplete
+
+- Make sure you're not within an activated virtualenv where Python packages `pynvim` and `neovim` are not installed.
+
 <!-- vim: set ft=markdown: -->

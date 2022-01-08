@@ -13,6 +13,7 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
 # Copy an SSH key to authorized_keys
 cat ~/.ssh/id_rsa.pub | ssh $user@$host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+chmod 700 ~/.ssh
 # Another option (requires ssh-copy-id)
 ssh-copy-id user@host
 

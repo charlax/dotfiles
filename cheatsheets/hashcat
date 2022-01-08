@@ -15,3 +15,10 @@ hashcat -m4010 $hashes -r OneRuleToRuleThemAll.rule $WORDLIST ./wordlist.txt
 hashcat -a 1 $hashes $wordlist1 $wordlist2
 
 # --stdout do not crack - only output candidates
+
+# pdf
+# see john for how to get pdf.hash
+file file.pdf  # to get pdf version
+
+# custom character set
+hashcat -m 10700 pdf.hash -1 abcd01234 -a 3 ?1?1?1?1?1?1?1?1?1?1 --increment

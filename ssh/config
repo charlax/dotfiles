@@ -8,3 +8,5 @@ Host *
 host i-* mi-*
   ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
   ForwardAgent yes
+
+Include ~/.dotfiles/ssh/config.local
