@@ -1,3 +1,6 @@
+# Get version
+ssh -V
+
 # https://robotmoon.com/ssh-tunnels/
 # Setup an SSH tunnel that tunnel localhost:4479 to remote:4479
 # -f: background

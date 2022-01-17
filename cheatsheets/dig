@@ -16,3 +16,6 @@ dig +short ns google.com
 
 # Mimic what DNS resolvers do
 dig +trace $domain
+
+# Get only certain query type
+dig $domain txt

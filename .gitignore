@@ -1,5 +1,6 @@
 *.local*
 !*.local.template
+!*.local.sample
 
 .tags.lock
 

@@ -6,6 +6,7 @@ curl -X POST --header "Content-Type: application/json" --data '{"username": "tru
 curl -X POST --header "Content-Type: application/json" -d @body.json $url
 
 # Options
+-L              # follow redirections
 -s/--silent
 -o/--output     # e.g. redirect response body to /dev/null
 -k/--insecure   # do not check certificates
