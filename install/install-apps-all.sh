@@ -94,7 +94,6 @@ function install_osx_packages {
         # adoptopenjdk8  unavailable??
         alfred
         calibre
-        cyberduck
         discord
         docker
         google-chrome
@@ -234,24 +233,25 @@ function install_brew_packages {
 
     # brew tap lucagrulla/tap # for cw
 
-    # asciinema       # record CLI session
-    # asdf            # manage multiple versions of node, etc.
-    # awscli          # AWS command line
-    # azure-cli       # Azure command line
-    # binwalk         # inspect files
-    # cloc            # count lines of code
-    # ctop            # htop for docker container https://github.com/bcicen/ctop
-    # cw              # AWS cloudwatch logs
-    # gh              # Github cli
-    # gnu-sed         # GNU sed
-    # hexyl           # command-line hex viewer
-    # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
-    # imagemagick     # convert images
-    # leiningen       # automate Clojure projects
-    # nvim            # neovim
-    # sqlmap          # sql injection tool
-    # terraform       # infrastructure management
-    # tokei           # cloc https://github.com/XAMPPRocky/tokei
+    # asciinema              # record CLI session
+    # asdf                   # manage multiple versions of node, etc.
+    # awscli                 # AWS command line
+    # azure-cli              # Azure command line
+    # binwalk                # inspect files
+    # cloc                   # count lines of code
+    # ctop                   # htop for docker container https://github.com/bcicen/ctop
+    # cw                     # AWS cloudwatch logs
+    # gh                     # Github cli
+    # gnu-sed                # GNU sed
+    # hexyl                  # command-line hex viewer
+    # hyperfine              # benchmark took https://github.com/sharkdp/hyperfine
+    # imagemagick            # convert images
+    # leiningen              # automate Clojure projects
+    # nvim                   # neovim
+    # sqlmap                 # sql injection tool
+    # terraform              # infrastructure management
+    # tokei                  # cloc https://github.com/XAMPPRocky/tokei
+    # veeso/termscp/termscp  # terminal UI file transfer (e.g. sftp) https://veeso.github.io/termscp
 
     packages=(bandwhich # bandwith utilization https://github.com/imsnif/bandwhich
         broot           # better tree https://github.com/Canop/broot

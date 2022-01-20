@@ -1,5 +1,6 @@
 # Ultra fast scan
 nmap -F $ip
+nmap -p22 $ip
 
 # Pretty complete scan
 nmap -sV -sC -oA nmap $ip

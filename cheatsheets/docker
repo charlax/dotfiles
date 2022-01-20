@@ -30,6 +30,7 @@ docker ps --all
 
 # Search for an image from registry
 docker search postgres
+docker image ls myregistry.azurecr.io/image-name
 
 # Show history for an image
 docker history postgres

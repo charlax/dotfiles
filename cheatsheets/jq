@@ -6,6 +6,7 @@ jq "." < filename.json
 
 # To access the value at key "foo":
 jq '.foo'
+jq -r '.foo'  # output raw string (without quotes)
 
 # To access first list item:
 jq '.[0]'
