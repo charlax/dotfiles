@@ -46,6 +46,9 @@ git log --diff-filter=A -- filename.py
 # --stat           # show # lines changed for files
 # --numstat       # show # lines without charts
 
+# In a script, print message if there are unmerged changes
+git diff-index --quiet HEAD -- || log_warning "You have uncommitted code"
+
 # Diff: show only staged changes
 git diff --cached
 # Diff: show only file names, using relative path

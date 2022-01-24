@@ -1,0 +1,4 @@
+# Get the Start of Authority (SOA) record
+nslookup -type=SOA example.com
+
+# Also check: dig, host

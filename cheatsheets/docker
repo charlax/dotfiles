@@ -5,12 +5,16 @@ docker run -it --rm --name test --entrypoint /bin/bash test/top:latest
 
 # Start an Ubuntu system
 docker run -it ubuntu:latest /bin/bash
+# Pass env vars
+docker run -e PYTHONPATH=. -e TRUC=1 ...
 
 # Connect on a running container
 docker exec -it $CONTAINER_ID bash
 
 # Check the size of images
 docker image ls
+docker history $imageid  # get size of layers for image
+# To get even more details: https://github.com/wagoodman/dive
 
 # Check the layers comprising an image
 docker history $IMAGE_ID
@@ -49,6 +53,9 @@ docker rmi
 
 # Verbose and disable cache (the cache part does not seem to work)
 docker compose build --progress=plain --no-cache=true
+
+# Run and delete
+docker compose run --rm api /bin/bash ...
 
 # Delete all images, containers, volumes, networks for all stopped containers and unused images
 docker system prune -a

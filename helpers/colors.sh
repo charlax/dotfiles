@@ -4,7 +4,8 @@
 # Helper vars for printing in colour.
 
 # Setup with:
-# . "$(dirname "$0")/../helpers/setup.sh" # Load helper script from dotfiles/helpers.
+# shellcheck source=./helpers/setup.sh
+# . "$(dirname "$0")/../helpers/setup.sh" # Load helper script
 
 # Use with:
 # printf "${RED}foo${NC}\n" # Echo foo in red, then reset colour.

@@ -1,0 +1,2 @@
+# Extract EXIF info from file
+exiftool file.jpg

@@ -19,3 +19,6 @@ dig +trace $domain
 
 # Get only certain query type
 dig $domain txt
+dig $domain SOA
+
+# Also check: nslookup, host

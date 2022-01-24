@@ -1,0 +1,16 @@
+# To create a symlink:
+# mnemo:
+# "ln is like cp, source needs to come first"
+# "symbolic link to source, and call it location"
+# "like mv and cp, ln takes an existing file as first arg"
+# "ln source target"
+ln -s <source-location> <symlink-location>
+# For instance:
+ln -s ../styles.css styles.css
+
+# To symlink, while overwriting existing destination files
+ln -sf <source-location> <symlink-location>
+
+# Watch out for existing target directory
+# Without -n, this will create /target/target -> source
+ln -sfn source /target

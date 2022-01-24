@@ -6,9 +6,13 @@
 [ -z "$thisDir" ] && thisDir="./helpers"
 
 # Get colour aliases.
-# shellcheck source=./colours.sh
-. "$thisDir"/colours.sh
+# shellcheck source=./helpers/colors.sh
+. "$thisDir"/colors.sh
 
 function log_info() {
   printf "\n${GREEN}%s${NC}\n" "$@"
+}
+
+function log_warning() {
+  printf "\n${YELLOW}%s${NC}\n" "$@"
 }
