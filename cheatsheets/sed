@@ -1,3 +1,9 @@
+# See string-manipulation as well
+# Other tools: tr, awk, grep, perl
+
+# Tester:
+# https://sed.js.org/index.html
+
 # Add newlines
 sed -E -e '/.*/G' -i '' $FILE
 
@@ -13,13 +19,13 @@ sed -E -e '/^#+/{x;p;x;G;}' -i '' $FILE
 # Lists
 sed -E -e 's/^-[[:space:]]+/* /g' -i '' $FILE
 
-# Trailing whitespace
+# Remove trailing whitespace
 sed -E -e 's/ *$//' -i '' $FILE
 
-# Too many spaces
+# Remove multiple spaces
 sed -E -e 's/[[:space:]]+/ /g' -i '' $FILE
 
-# Apostrophes
+# Fix apostrophes
 sed -E -e "s/’/'/g" -i '' $FILE
 
 # Remove code blocks from markdown
@@ -30,3 +36,6 @@ set -i '/TO_MATCH/d' filename.txt
 
 # Show from line $x to line $y
 sed -n -e "$x,$y p" -e "$y q"
+
+# Remove ## suffix and what follows
+sed "s/##.*//"

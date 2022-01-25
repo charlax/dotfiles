@@ -1,3 +1,5 @@
+# See: awk, grep, perl, sed, tr
+
 # Remove line matching pattern
 cat file | sed '/^-\+/d'
 
@@ -32,7 +34,7 @@ pbpaste | awk '{ printf "\"%s\",", $0 }' | sed 's/,$//'
 tr -s '[[:punct:][:space:]]' '\n' < words
 
 # Lowercase everything
-tr [:lower:] [:upper:]
+tr [:upper:] [:lower:]
 
 # Multiline cat
 cat << EOF >> /path/to/file
