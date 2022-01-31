@@ -1,23 +1,24 @@
 ---
 tags [ ssh ]
 ---
-# To generate an SSH key:
+
+# Generate an SSH key
 ssh-keygen -t rsa
 
-# To generate a 4096-bit SSH key:
+# Generate a 4096-bit SSH key
 ssh-keygen -t rsa -b 4096
 
-# To update a passphrase on a key:
+# Update a passphrase on a key
 ssh-keygen -p -P <old-passphrase> -N <new-passphrase> -f <keyfile>
 
-# To remove a passphrase on a key:
+# Remove a passphrase on a key
 ssh-keygen -p -P <old-passphrase> -N '' -f <keyfile>
 
-# To print the fingerprint of a public key:
+# Print the fingerprint of a public key and get its length
 ssh-keygen -lf <keyfile>
 
-# To print the Github-style (MD5) fingerprint of a public key:
+# Print the Github-style (MD5) fingerprint of a public key
 ssh-keygen -E md5 -lf <keyfile>
 
-# To view the public key associated with a private key:
+# View the public key associated with a private key:
 ssh-keygen -y -f <private-key-file>

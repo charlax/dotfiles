@@ -1,0 +1,9 @@
+# Some more help on the topic: https://mywiki.wooledge.org/BashFAQ/030
+
+# You can also use
+for f in *.js; do
+    mv -- "$f" "${f%.js}.ts"
+done
+
+# Change extension
+rename 's/.js/.ts' path/*.js
