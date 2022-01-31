@@ -10,14 +10,13 @@
   - [Initialization](#initialization)
   - [Mac Os X Settings](#mac-os-x-settings)
   - [Apps to install](#apps-to-install)
-- [Features](#features)
 - [Misc](#misc)
   - [Profiling ZSH](#profiling-zsh)
 - [Useful software (not installed by default)](#useful-software-not-installed-by-default)
 - [Useful services](#useful-services)
 - [Checklist before reinstall](#checklist-before-reinstall)
 - [Contributing](#contributing)
-- [Acknowledgments](#acknowledgments)
+- [Inspiration](#inspiration)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -31,7 +30,11 @@ See fresh install below.
 
 ```bash
 curl https://raw.githubusercontent.com/charlax/dotfiles/master/install/provision.sh -o ./provision.sh
-bash provision.sh
+chmod a+x provision.sh
+
+./provision.sh
+# full install:
+./provision.sh --full
 ```
 
 Use this script to fully automate a new machine setup (e.g. with Vagrant):
@@ -107,7 +110,6 @@ Once this is done, follow the instruction above (Installation).
 - Keynote (App Store)
 - Kindle (App Store)
 - LibreOffice (installed by the script)
-- MindNode (App Store)
 - Numbers (App Store)
 - Pages (App Store)
 - Pixelmator (App Store)
@@ -129,10 +131,6 @@ Setup the following apps:
 - TextExpander
 - Things cloud
 - Printers
-
-## Features
-
-- [fzf](https://github.com/junegunn/fzf): fuzzy file finder. To use it on the command line, prefix with `**`, then press tab. For instance: `vim **<TAB>`.
 
 ## Misc
 
@@ -180,6 +178,6 @@ zprof
 
 Checkout [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-## Acknowledgments
+## Inspiration
 
 - [holman](https://github.com/holman/dotfiles)

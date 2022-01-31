@@ -1,0 +1,2 @@
+# SSH into machine with key forwarding
+az ssh vm -n $machine_name -g $resource_group_name -- -A

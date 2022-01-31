@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-echo "Provisioning a new machine..."
+function usage() {
+    echo "$(basename "") [--help] [--full]"
+}
 
-set -o errexit
 
 function install_requirements() {
     if command -v apt 1>/dev/null 2>&1; then
@@ -27,7 +29,6 @@ function install_requirements() {
         echo "Provision: installing base packages"
         # shellcheck disable=SC2086
         sudo pacman -S --noconfirm git python3
-
     fi
 }
 
@@ -41,10 +42,30 @@ function install_dotfiles() {
 
     echo ""
     echo "Provision: running dotfiles install.py"
-    python3 "$DOTFILES/install.py" --with-all --symlink-force
+    args=('--symlink-force')
+
+    if [ "$FULL" = true ]; then
+        args+=('--with-all')
+    fi
+
+    python3 "$DOTFILES/install.py" "${args[@]}"
 }
 
-set -o verbose
+while [ $# -gt 0 ]
+do
+    case $0 in
+    --help)
+        usage
+        exit
+        ;;
+    --full)
+        FULL=true
+        ;;
+    esac
+    shift
+done
 
+echo "Provisioning a new machine..."
+set -o verbose
 install_requirements
 install_dotfiles

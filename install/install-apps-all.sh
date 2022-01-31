@@ -4,6 +4,7 @@
 . "$(dirname "$0")/../helpers/setup.sh"
 
 APT_GET="apt-get -qq -y"
+current_dir=$(dirname "$0")
 
 set -e
 unset -v
@@ -203,23 +204,6 @@ function install_apt_packages {
     fi
 }
 
-function install_os_packages {
-    log_info "Installing OS-specific packages"
-
-    current_dir=$(dirname "$0")
-
-    case "$OSTYPE" in
-        "linux-gnu")
-            "$current_dir"/install-apps-linux.sh
-            ;;
-
-        "darwin19")
-            "$current_dir"/install-apps-osx.sh
-            "$current_dir"/install-ui-apps-osx.sh
-            ;;
-    esac
-}
-
 function install_brew_packages {
     log_info "Installing common brew packages"
 
@@ -315,7 +299,6 @@ function update_all {
 # For poetry autocompletions
 mkdir ~/.zfunc
 
-install_os_packages
 install_brew_packages
 install_vim
 install_pipx_packages
