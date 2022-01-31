@@ -1,0 +1,5 @@
+# To compute things in the command line:
+zcal     # (zsh, might require autoload zcalc)
+bc
+python
+gmetric  # for conversions

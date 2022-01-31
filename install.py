@@ -19,7 +19,6 @@ CONFIGURATION_FILES = (
     "gdb/gdbinit",
     "ghci/ghci",
     "git/gitconfig",
-    "git/gitconfig.local",
     "git/gitignore",
     "latex/latexmkrc",
     "system/colors/dir_colors",

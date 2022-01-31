@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Defaults
+FULL=0
+
 function usage() {
     echo "$(basename "") [--help] [--full]"
 }

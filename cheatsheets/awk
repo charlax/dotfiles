@@ -1,6 +1,7 @@
 # Resources
 
 # https://ferd.ca/awk-in-20-minutes.html
+# https://two-wrongs.com/awk-state-machine-parser-pattern.html
 
 # Show third column of CSV
 cat file | awk -F ',' '{print $3}'
