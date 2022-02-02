@@ -1,2 +1,20 @@
+---
+tags: ['azure']
+---
+
 # SSH into machine with key forwarding
 az ssh vm -n $machine_name -g $resource_group_name -- -A
+
+# Give SSH access
+username=$(az account show --query user.name --output tsv)
+vm=$(az vm show --resource-group $resource_group_name --name $machine_name --query id -o tsv)
+az role assignment create --role "Virtual Machine Administrator Login" --assignee $username --scope $vm
+
+# Get ssh config
+az ssh config --ip \* --file ./tmp/ssh_azure
+ssh -F ./tmp/ssh_azure $ip
+
+---
+
+# Get public ip for Virtual Machine
+az vm show -d -g $resource_group_name -n $name --query publicIps -o tsv

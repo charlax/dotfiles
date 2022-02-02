@@ -13,6 +13,9 @@ git check-ignore -v filename
 # Checkout commit by date
 git checkout `git rev-list -n 1 --before="2016-03-29 12:00" master`
 
+# Clone only up to n commits
+git clone --depth $n git@github.com:charlax/dotfiles
+
 # Show which local branch is tracking which remote branch (git)
 git remote show origin
 
