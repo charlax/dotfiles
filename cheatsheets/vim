@@ -12,6 +12,8 @@
 ```
 <ctrl-o> Go back to previous location
 
+<ctrl-g> Get cursor current row and column number
+
 # Insert tab character when expandtab is on
 <ctrl+v><tab>
 set noet   # disable example tab (e.g. in Makefile)
