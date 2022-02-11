@@ -26,7 +26,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs', {'for': ['javascript', 'typescript', 'typescriptreact', 'typescript.tsx']}
+" Note that LunarWatcher is a (maintained) fork of jiangmiao/auto-pairs
+Plug 'LunarWatcher/auto-pairs', {'for': ['javascript', 'typescript', 'typescriptreact', 'typescript.tsx']}
 
 " Optimized solarized color schemes
 Plug 'lifepillar/vim-solarized8'
