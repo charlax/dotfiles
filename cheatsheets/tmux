@@ -1,3 +1,4 @@
+# https://tmuxcheatsheet.com/
 # Sessions
 
 # create new session
@@ -5,7 +6,7 @@ tmux new -s $session_name
 # list session
 tmux ls
 # join sessions
-tmux attach-session -t 0
+tmux attach-session -t $session_name
 
 # default keys
 <c-b> d        # detach from session

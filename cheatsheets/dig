@@ -1,3 +1,6 @@
+# Install:
+# apt-get install dnsutils
+
 # Query Google
 dig @8.8.8.8 jvns.ca
 

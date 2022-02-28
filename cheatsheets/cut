@@ -3,3 +3,6 @@ cut -d# -f3
 
 # Do not apply encodings and keep only first column of CSV
 cat filename | LC_ALL=C cut -d, -f1
+
+# Skip first line (header)
+cat filename.csv | tail -n +2

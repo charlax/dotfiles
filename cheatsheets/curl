@@ -5,6 +5,9 @@
 curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}' $url
 curl -X POST --header "Content-Type: application/json" -d @body.json $url
 
+# Change Host
+curl -H 'Host: truc.com' ...
+
 # Options
 -L              # follow redirections
 -s/--silent

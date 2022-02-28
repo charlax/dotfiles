@@ -1,0 +1,2 @@
+# Skip first line
+cat filename.csv | tail -n +2
