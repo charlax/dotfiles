@@ -3,3 +3,8 @@ cat /etc/lsb-release
 
 # Set modified time to 48h in the past
 touch -m -A '-480000' file.txt
+
+# Get absolute path
+readlink -f ../relative  # does not work on macOs
+realpath ../relative
+dirname ../folder-name   # only for folder

@@ -51,6 +51,12 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
 interface Props {
   children: React.ReactNode
 }
+
+// Context
+interface StateContextInterface {
+  isActive: boolean;
+}
+const StateContext = React.createContext<StateContextInterface | null>(null);
 ```
 
 ### React Styled

@@ -1,0 +1,11 @@
+---
+tags: [ packaging ]
+---
+
+# To set the `authToken` using env variable `NPM_TOKEN`:
+npm config set //npm.intra/:_authToken=\${NPM_TOKEN}
+
+# Get tarball URL
+npm view $package dist.tarball
+# Download tarball
+npm pack $package

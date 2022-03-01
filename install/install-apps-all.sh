@@ -69,11 +69,9 @@ function install_osx_packages {
         shfmt            # shell parser, formatter, and interpreter https://github.com/mvdan/sh
         telnet
         tldr             # simplified and community-driven man pages
-        tmux
+        tmux             # terminal multiplexer
         tree             # display file list in tree
-        unrar
         wget
-        yarn
     )
 
     log_info "Updating brew"
@@ -109,7 +107,6 @@ function install_osx_packages {
         rectangle           # window management
         sequel-pro
         spotify
-        stats               # macOS system monitor in your menu bar
         transmission
         typora
         vagrant             # useful for installing kali
