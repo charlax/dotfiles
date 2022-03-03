@@ -14,3 +14,6 @@ AWS_PROFILE=whatever aws ssm put-parameter --region eu-west-1 --overwrite --cli-
   "Type": "SecureString",
   "KeyId": "alias/whatever"
 }'
+
+# Get current account details
+aws --profile $profile_name sts get-caller-identity

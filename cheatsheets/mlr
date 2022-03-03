@@ -1,0 +1,11 @@
+# marketed as miller
+# https://miller.readthedocs.io/en/latest/10min/
+
+# Options
+mlr --headerless-csv-output    # hide CSV header
+
+# Show only column "Proxy addresses"
+mlr --opprint -i csv cut -f "Proxy addresses" users.csv
+
+# Show only column "Proxy addresses" for "Principal user names" not matching 'EXT' regex
+mlr --opprint -i csv filter '!(${User principal name} =~ "EXT")' then cut -f "Proxy addresses","User principal name" users.csv

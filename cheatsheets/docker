@@ -63,6 +63,9 @@ docker system prune -a
 # Empty BUILDKIT mount type=cache
 docker builder prune --filter type=exec.cachemount
 
+# Backup a volume mounted in api at /mnt
+docker run --rm --volumes-from api -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /mnt
+
 # Empty build cache and clean up stuff
 docker system prune
 
