@@ -34,3 +34,10 @@ gpg --output filename.csv.enc --encrypt --recipient alice@cyb.org filename.csv
 # For the recipient:
 gpg --output filename.csv --decrypt filename.csv.env
 ```
+
+## Symetric
+
+```bash
+# -a: use ASCII encoding armor
+gpg -a --symmetric --cipher-algo AES256 my_file.txt
+```
