@@ -2,3 +2,7 @@
 
 mlr  # miller
 csvq # sql for csv files
+
+# Other tools
+# SQL-like for CSV - https://rbql.org/
+# For Vim https://github.com/mechatroner/rainbow_csv

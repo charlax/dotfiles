@@ -18,6 +18,9 @@ export TERM=xterm-256color
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# For bat (improved cat)
+export BAT_THEME="Solarized (light)"
+
 # OpenJDK 64-Bit Server VM warning: Options -Xverify:none and -noverify
 # were deprecated in JDK 13 and will likely be removed in a future release.
 # https://github.com/technomancy/leiningen/issues/2611
