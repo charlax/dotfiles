@@ -3,3 +3,7 @@ TF_LOG=~/Downloads/tf.log TF_LOG=INFO terraform apply -target=...
 
 # List all modules
 terraform state list
+
+# Output an exported var
+# (requires an export block)
+terraform output -raw public_ip

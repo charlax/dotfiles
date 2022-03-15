@@ -1,0 +1,7 @@
+# https://linux-audit.com/the-ultimate-strace-cheat-sheet/
+
+# Show only open calls
+strace -e trace=open $command
+
+# Trace only file-related calls
+strace -e trace=file $command

@@ -1,0 +1,8 @@
+# On EC2 Ubuntu, user-data are in:
+/var/lib/cloud/instance/user-data.txt
+
+# Logs can also be found in:
+cat /var/log/syslog
+
+# Rerun user-data script
+sudo cloud-init single --name scripts_user --frequency=always

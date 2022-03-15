@@ -20,6 +20,11 @@ gpg --list-keys
 
 # Set the signing key for a repo
 git config user.signingkey XXXXXXXXXXXX
+
+# Get a key's id from public key
+cat filename.pub | gpg --show-keys
+# or
+gpg --show-keys filename.pub
 ```
 
 ## Encryption flow

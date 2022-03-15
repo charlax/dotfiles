@@ -1,19 +1,33 @@
-# List all ec2 instances
-AWS_REGION=eu-west-1 AWS_PROFILE=staging aws ec2 describe-instances
+# Env var
+AWS_PROFILE=...  # or --profile ...
+AWS_REGION=...
 
 # Get a CloudFormation template
 aws cloudformation get-template --stack-name STACKNAME
 
+# Get current account details
+aws sts get-caller-identity
+
+# EC2
+
+# Start instances
+aws ec2 start-instances --instance-ids i-...
+#
+# List all ec2 instances
+aws ec2 describe-instances
+
+# Get state and instances ids
+aws ec2 describe-instances | jq '.Reservations[].Instances[] | {State,InstanceId}'
+
+# SSM
+
 # Get SSM parameters
-AWS_PROFILE=prod AWS_REGION=eu-west-1 aws ssm get-parameters-by-path --path /path/ | jq .Parameters[].Name
+aws ssm get-parameters-by-path --path /path/ | jq .Parameters[].Name
 
 # Set a SSM secret value
-AWS_PROFILE=whatever aws ssm put-parameter --region eu-west-1 --overwrite --cli-input-json '{
+aws ssm put-parameter --overwrite --cli-input-json '{
   "Name": "",
   "Value": "",
   "Type": "SecureString",
   "KeyId": "alias/whatever"
 }'
-
-# Get current account details
-aws --profile $profile_name sts get-caller-identity
