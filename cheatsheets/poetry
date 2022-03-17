@@ -2,5 +2,8 @@
 poetry show -l
 poetry show -lo  # only for outdated packages
 
+# Add dev dependency
+poetry add -D $dependency
+
 # Delete the virtualenv
 rm -rf `poetry env info -p`

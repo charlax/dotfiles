@@ -51,7 +51,8 @@ alias grep='grep --color=auto'
 # Git
 alias ga='git add'
 alias gp='git push'
-alias gl='git log'
+# git l is defined in git/gitconfig
+alias gl='git l'
 alias gs='git status'
 alias gd='git diff'
 alias gdca='git diff --cached'

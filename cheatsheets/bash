@@ -22,6 +22,15 @@ for toaster in $(cat toasters.txt) ; do
      echo ${toaster}
 done
 
+# if... elif... else
+if [ test ]; then
+  echo "foo"
+elif [ test ]; then
+  echo "bar"
+else
+  echo "else"
+fi
+
 # Loop over array
 array=(one two three)
 for i in "${array[@]}"; do

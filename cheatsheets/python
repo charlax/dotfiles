@@ -6,6 +6,10 @@
 
 https://www.python.org/dev/peps/pep-0498/
 
+```
+[[fill]align][sign][#][0][width][grouping_option][.precision][type]
+```
+
 ```python
 value = 1.11111111
 f"{value:.4}" == "1.1111"
