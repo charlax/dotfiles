@@ -1,8 +1,10 @@
-# Tools you can use:
+# Tools you can use (they might also have their cheats):
 
-mlr  # miller
-csvq # sql for csv files
+mlr     # miller
+csvq    # sql for csv files https://mithrandie.github.io/csvq/
+q       # sql for csv files https://harelba.github.io/q/
+csvsql  # part of csvkit https://csvkit.readthedocs.io/
+rbql    # https://rbql.org/
 
 # Other tools
-# SQL-like for CSV - https://rbql.org/
 # For Vim https://github.com/mechatroner/rainbow_csv

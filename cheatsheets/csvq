@@ -1,8 +1,14 @@
 # csvq: SQL-like query language for csv
 # https://mithrandie.github.io/csvq/
 
+# Options
+# -n    no header line, columns are c1, c2...
+
 # Get the list of Slack handle from emails in clipboard
 csvq -N -f csv "select @' || slack from team where email in ($(pbpaste | awk '{ printf "\"%s\",", $0 }' | sed 's/,$//'));" | paste -sd ' ' -
 
 # Get the list of firstname based on manager
 csvq -N -f csv "select firstname from team where manager = 'charlax'"
+
+# Group by and show aggregated list
+csvq -n -N -f csv "select c2, listagg(c1, ', ') from thefile group by c2;"
