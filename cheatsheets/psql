@@ -38,4 +38,11 @@ select grantee, privilege_type from information_schema.role_table_grants where t
 ```
 
 ## Get table size
+
 SELECT pg_size_pretty( pg_total_relation_size('tablename') );
+
+## Export
+
+```sql
+copy (select * from users) to '/tmp/stuff.csv' with csv;
+```

@@ -1,2 +1,5 @@
 # Markdown to docx
 pandoc -s file.md -o file.docx
+
+# Show default latex template
+pandoc -D latex

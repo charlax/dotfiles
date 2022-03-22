@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-~/.pyenvs/matplotlib/bin/python ~/.dotfiles/scripts/plot-git-commits.py

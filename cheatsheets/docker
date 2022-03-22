@@ -85,8 +85,11 @@ docker volume rm $volume_name
 docker container rm $containerid
 docker volume rm $volume_name
 
-# Get macOs logs about Docker
+# Get macOS logs about Docker
 pred='process matches ".*(ocker|vpnkit).*" || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
 /usr/bin/log stream --style syslog --level=debug --color=always --predicate "$pred"
 # last 1 day
 /usr/bin/log show --debug --info --style syslog --last 1d --predicate "$pred"
+
+# Get image size
+curl -s https://hub.docker.com/v2/repositories/library/caddy/tags | jq '.results[] | select(.name=="latest") | .full_size' | numfmt --to=iec-i
