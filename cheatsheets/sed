@@ -1,6 +1,11 @@
 # See string-manipulation as well
 # Other tools: tr, awk, grep, perl
 
+# Options
+-E         # extended (modern) regex
+-e         # append the editing command to the list
+-i '.bak'  # edit files in-place with an extension '.bak'
+
 # Tester:
 # https://sed.js.org/index.html
 
