@@ -1,0 +1,8 @@
+# Get all resource
+kubectl get all -n $namespace
+
+# Describe a service
+kubectl -n $namespace describe service $service_name
+
+# Get a shell
+kubectl exec -it eks-sample-linux-deployment-65b7669776-m6qxz -n eks-sample-app -- /bin/bash

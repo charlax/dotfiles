@@ -9,6 +9,7 @@ aws cloudformation get-template --stack-name STACKNAME
 aws sts get-caller-identity
 
 # EC2
+# ===
 
 # Start instances
 aws ec2 start-instances --instance-ids i-...
@@ -19,7 +20,14 @@ aws ec2 describe-instances
 # Get state and instances ids
 aws ec2 describe-instances | jq '.Reservations[].Instances[] | {State,InstanceId}'
 
+# IAM
+# ===
+
+# List roles
+aws iam list-roles
+
 # SSM
+# ===
 
 # Get SSM parameters
 aws ssm get-parameters-by-path --path /path/ | jq .Parameters[].Name
