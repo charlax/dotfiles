@@ -5,7 +5,9 @@ See also Cookbook
 ## DDL
 
 ```sql
-drop database if exists dbname;
+DROP DATABASE IF EXISTS dbname;
+ALTER TABLE users ADD PRIMARY KEY (id);
+ALTER TABLE contacts ADD CONSTRAINT contacts_user_id FOREIGN KEY (user_id) REFERENCES users (id);
 ```
 
 ## Datetime

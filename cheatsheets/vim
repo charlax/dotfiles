@@ -10,12 +10,16 @@
 ## Keyboard
 
 ```
-<ctrl-o> Go back to previous location
+<c-o> Go back to previous location
 
-<ctrl-g> Get cursor current row and column number
+<c-g> Get cursor current row and column number
+
+# Indent/unindent current line (insert mode)
+# mnemo: c-tab c-detab
+<c-t> <c-d>
 
 # Insert tab character when expandtab is on
-<ctrl+v><tab>
+<c+v><tab>
 set noet   # disable example tab (e.g. in Makefile)
 
 # Show all keyboard shortcuts mappings
@@ -24,15 +28,18 @@ set noet   # disable example tab (e.g. in Makefile)
 :verbose map k  # show mapping for key
 
 # Open previously opened file
-CTRL-^ (ctrl-shift-6)
+<c-^> (ctrl-shift-6)
 
 # Insert literal tab character
-CTRL-V <tab>
+<c-v> <tab>
 
-<C-u>  deletes one line (in insert mode)
+<c-u>  deletes one line (in insert mode)
 fa     goes to the next a character on the same line (in command mode)
 "kyy   copies the current line into register k
 "kp    paste the content of the register k
+
+# Add the word under the cursor to spell file
+zg
 ```
 
 ### Movement
@@ -42,8 +49,8 @@ fa     goes to the next a character on the same line (in command mode)
 ### `g`
 
 - `gf` edit the file under the cursor
-  - `ctrl-o` to come back
-  - `ctrl+w ctrl+f` to open in a new window
+  - `<c-o>` to come back
+  - `<c+w> <c+f>` to open in a new window
   - It can also open URL with `netrw`
 - `gi` move to the last insertion you did and switch to INSERT mode
   - `gv` same thing with visual mode
@@ -82,9 +89,6 @@ norm o execute the command o in normal mode
 
 # Expand all tabs after having changed settings
 :retab
-
-# Add the word under the cursor to spell file
-zg
 
 # Include output of external bash command
 :read !date

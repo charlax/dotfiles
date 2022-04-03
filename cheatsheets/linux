@@ -8,3 +8,31 @@ touch -m -A '-480000' file.txt
 readlink -f ../relative  # does not work on macOs
 realpath ../relative
 dirname ../folder-name   # only for folder
+
+# Get computer specs
+#
+# -a all, -m hardward
+uname -a
+lscpu  # no options
+sudo lshw –short
+hwinfo --short
+# list PCI buses and devices connected
+lspci
+lsusb
+# List SCSI/SATA buses and devices connected
+lsscsi
+# Get information about hard disks
+hdparm
+# List block devices
+lsblk
+# Get info by reading SMBIOS data structures
+sudo dmidecode -t processor
+
+# /proc filesystem
+cat /proc/cpuinfo
+cat /proc/meminfo
+cat /proc/scsi/scsi
+cat /proc/partitions
+
+# A 10k bash script to get hardware details
+inxi –Fx

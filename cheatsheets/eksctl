@@ -1,2 +1,8 @@
 # Get list of clusters
-eksctl get cluster
+AWS_PROFILE=... eksctl get cluster
+
+# Delete cluster
+eksctl delete cluster --name $clustername
+# NOTE: before deleting, you need to manually delete services with external IPs because they use an ELB
+kubectl get svc --all-namespaces
+kubectl delete svc $servicename

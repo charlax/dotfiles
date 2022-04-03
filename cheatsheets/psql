@@ -19,6 +19,9 @@ PGPASSWORD=password psql -h 127.0.0.1 -p 5432 -U username -d dbname
 
 ```sql
 DELETE FROM tablename WHERE ...;
+
+# Drop db
+drop database dbname;
 ```
 
 ## Privileges

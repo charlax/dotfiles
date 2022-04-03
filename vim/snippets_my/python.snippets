@@ -24,3 +24,22 @@ if __name__ == "__main__":
 
     sys.exit(main(args.infile, args.outfile))
 endsnippet
+
+snippet skeletton_script_typer "Python script skeletton with Typer" b
+#!/usr/bin/env python3
+from pathlib import Path
+from typing import Optional
+
+import typer
+
+# argument are required, options are optional
+
+
+def main(config: Optional[Path] = typer.Argument(None, dir_okay=True), config_as_file: typer.FileText = typer.Option(...)):
+    """${0:Do something}"""
+    typer.echo(f"Hello {name}")
+
+
+if __name__ == "__main__":
+    typer.run(main)
+endsnippet
