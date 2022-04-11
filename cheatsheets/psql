@@ -49,3 +49,14 @@ SELECT pg_size_pretty( pg_total_relation_size('tablename') );
 ```sql
 copy (select * from users) to '/tmp/stuff.csv' with csv;
 ```
+
+## Select
+
+### Select `distinct`
+
+```sql
+-- https://www.postgresql.org/docs/current/sql-select.html#SQL-DISTINCT
+SELECT DISTINCT ON (location) location, time, report
+    FROM weather_reports
+    ORDER BY location, time DESC;
+```

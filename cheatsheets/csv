@@ -1,5 +1,9 @@
 # Tools you can use (they might also have their cheats):
 
+cut     # cut out selected portions of each line of a file
+
+# Require install:
+
 mlr     # miller
 csvq    # sql for csv files https://mithrandie.github.io/csvq/
 q       # sql for csv files https://harelba.github.io/q/
