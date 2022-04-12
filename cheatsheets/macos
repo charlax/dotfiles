@@ -2,6 +2,12 @@
 
 # https://github.com/drduh/macOS-Security-and-Privacy-Guide
 
+# Network
+
+# List all bonjour devices
+dns-sd -B _services._dns-sd._udp
+# or use Discovery - DNS-SD Browser https://apps.apple.com/us/app/discovery-dns-sd-browser/id1381004916?mt=12
+
 # Processes
 # mds and msd_stores: Spolight activities
 
