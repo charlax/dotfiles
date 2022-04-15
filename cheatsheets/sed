@@ -1,5 +1,6 @@
 # See string-manipulation as well
 # Other tools: tr, awk, grep, perl
+# See string-manipulation
 
 # Options
 -E         # extended (modern) regex

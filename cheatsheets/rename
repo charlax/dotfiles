@@ -1,4 +1,6 @@
 # Some more help on the topic: https://mywiki.wooledge.org/BashFAQ/030
+# Other tools:
+# - https://github.com/marcusbuffett/pipe-rename
 
 # You can also use
 for f in *.js; do

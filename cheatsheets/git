@@ -26,7 +26,7 @@ git push -u origin HEAD
 # Get the git authors' email for the last 60 days
 git log --since=60.days --format='%ae' | sort -u
 
-# Show commits by author
+# Show commits by author (partial match)
 git log --author="..."
 
 # Show diff with a change matching "query"

@@ -1,0 +1,2 @@
+# Display /var directories and their size, sorted
+du -sch /var/* .[!.]* | sort -rh
