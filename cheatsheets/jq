@@ -1,5 +1,8 @@
 # https://stedolan.github.io/jq/manual/
 # https://codefaster.substack.com/p/mastering-jq-part-1-59c
+#
+# Also check:
+# - zq https://www.brimdata.io/blog/introducing-zq/
 
 # To pretty print the json:
 jq "." < filename.json

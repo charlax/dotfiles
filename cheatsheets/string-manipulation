@@ -48,3 +48,9 @@ cat << EOF | tee /path/to/file > /dev/null
 hello
 world
 EOF
+
+# Sum a column of numbers (number of commits)
+# paste -sd+ - on macOs, without the "-" otherwise
+git shortlog -sn | cut -f1 | paste -sd+ - | bc
+# another way:
+awk '{s+=$1} END {print s}' filename

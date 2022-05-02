@@ -2,6 +2,11 @@
 
 # https://github.com/drduh/macOS-Security-and-Privacy-Guide
 
+# Reboot in recovery mode
+Reboot then Command+R
+If M1: shut down, then press and hold On button
+If it does not work: press shortly, then press and hold On button until it says it's loading other options.
+
 # Network
 
 # List all bonjour devices
@@ -47,3 +52,6 @@ sudo launchctl start com.apple.audio.coreaudiod
 diskutil apfs list
 diskutil list
 diskutil mountDisk /dev/disk2
+
+# Check if there is a T2 security chip
+Click Apple menu, hold option, click System information, then Controller or iBridge

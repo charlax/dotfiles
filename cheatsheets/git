@@ -44,6 +44,9 @@ git log -p -S "the string" --reverse
 # First first commit adding file
 git log --diff-filter=A -- filename.py
 
+# Exclude files ending with extension
+git log -p -- ':!*.ipynb'
+
 # Other git log options
 # --name-only      # show only filenames
 # --name-status    # show filenames and status

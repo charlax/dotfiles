@@ -17,6 +17,9 @@ aws ec2 start-instances --instance-ids i-...
 # List all ec2 instances
 aws ec2 describe-instances
 
+# List ec2 instance ids matching tag "environment=prod:demo"
+aws ec2 describe-instances --filters "Name=tag:environment,Values=prod:demo" --query "Reservations[*].Instances[*].InstanceId" --output text
+
 # Get state and instances ids
 aws ec2 describe-instances | jq '.Reservations[].Instances[] | {State,InstanceId}'
 

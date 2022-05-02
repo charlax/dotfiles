@@ -30,6 +30,7 @@
     excludesfile = ~/.gitignore
     quotepath = false
     editor = vim
+    # pager = delta
 
 [merge]
     tool = vimdiff
@@ -75,3 +76,13 @@
     gpgsign = true
 [init]
     defaultBranch = main
+
+# Below added for https://github.com/dandavison/delta
+# [interactive]
+#     diffFilter = delta --color-only
+#
+# [delta]
+#     navigate = true
+#
+# [diff]
+#     colorMoved = default

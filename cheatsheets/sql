@@ -16,10 +16,17 @@ ALTER TABLE users ADD COLUMN has_stuff BOOLEAN DEFAULT false;
 Group by hour and minute:
 
 ```sql
+-- MySQL
 select date_format(created_at, "%Y-%m-%d %H:%i")
 from table
 group 1
 order by 1 asc
+
+-- Postgres
+select date_trunc('day', created_at), user_id, count(*)
+from event_logs
+group by 1, 2
+order by 1 asc;
 ```
 
 ## Postgres

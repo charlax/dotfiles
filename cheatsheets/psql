@@ -52,6 +52,8 @@ copy (select * from users) to '/tmp/stuff.csv' with csv;
 
 ## Select
 
+See also `sql` cheats
+
 ### Select `distinct`
 
 ```sql

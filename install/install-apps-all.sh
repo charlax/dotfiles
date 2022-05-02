@@ -239,6 +239,7 @@ function install_brew_packages {
         csvq            # query csv from command line
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
+        git-delta       # better diff viewer https://github.com/dandavison/delta
         go              # golang
         pipx            # install and run python applications in environments
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs

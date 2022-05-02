@@ -337,6 +337,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 ## Debugging Vim
 
+Check [../doc/vim](../doc/vim.md).
+
 ```vimscript
 :messages       " show latest messages
 ```
