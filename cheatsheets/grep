@@ -3,3 +3,6 @@ git diff --name-only | grep "\(.js\|.tsx\|\.ts\)$"
 
 # Grep from list of words
 cat .. | grep 'truc\|test'
+
+# Graph Github personal token from .npmrc
+cat ~/.npmrc | grep -o "ghp_.*"

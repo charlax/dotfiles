@@ -1,0 +1,6 @@
+# Greedy
+>>> re.match('<(.*)>', '<a> b <c>').group(1)
+'aa> b <c'
+
+>>> re.match('<(.*?)>', '<aa> b <c>').group(1)
+'aa'
