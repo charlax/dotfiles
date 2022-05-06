@@ -29,9 +29,6 @@ docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a
 # Get logs for a running container
 docker logs $CONTAINER_ID
 
-# List all containers ever created
-docker ps --all
-
 # Search for an image from registry
 docker search postgres
 docker image ls myregistry.azurecr.io/image-name
@@ -42,9 +39,17 @@ docker history postgres
 # Pause all processes within one or more containers
 docker pause  # also: unpause
 
+# List all containers ever created
+docker ps --all
+
 # Show only names of running containers
 # template context: https://docs.docker.com/engine/reference/commandline/ps/#formatting
 docker ps --format "{{.Names}}"
+
+# Get container id by name
+docker ps -qf "name=caddy"
+# -q     quiet, output only the ids
+# -f     filter
 
 # Remove one or more containers
 docker rm
@@ -93,3 +98,5 @@ pred='process matches ".*(ocker|vpnkit).*" || (process in {"taskgated-helper", "
 
 # Get image size
 curl -s https://hub.docker.com/v2/repositories/library/caddy/tags | jq '.results[] | select(.name=="latest") | .full_size' | numfmt --to=iec-i
+# Get local image size
+docker image ls octopize/api:latest --format "{{.Size}}"

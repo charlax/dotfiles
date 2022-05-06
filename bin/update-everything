@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091
+
+BIN_DIR="$(dirname "$0")"
 
 # shellcheck source=../helpers/setup.sh
-. "$(dirname "$0")/../helpers/setup.sh"
+. "$BIN_DIR/../helpers/setup.sh"
 
 set -e
 
+
 # We first update the dotfiles to ensure we use the latest version of the update script
-update-dotfiles
-update-software
-update-vim-plugins
+. "$BIN_DIR/update-dotfiles"
+. "$BIN_DIR/update-software"
+. "$BIN_DIR/update-vim-plugins"
 
 log_info "Everything is up to date."

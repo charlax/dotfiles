@@ -2,6 +2,7 @@
 #
 # https://wiki.bash-hackers.org/
 # https://github.com/jlevy/the-art-of-command-line
+# https://github.com/onceupon/Bash-Oneliner
 
 # https://betterdev.blog/minimal-safe-bash-script-template/
 
@@ -84,6 +85,8 @@ fi
 ## Check command result
 if command; then
 fi
+
+# -f "filename"             # file exists and is regular file
 
 # Escape a single quote
 echo 'j'"'"'attends'

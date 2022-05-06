@@ -1,2 +1,11 @@
+# Options
+-c      display a grand total
+-h      human-readable output
+-s      display an entry for each file
+
+# sort options
+# -h    sort by numerical values, taking into account SI prefix if present
+# -r    reverse order
+
 # Display /var directories and their size, sorted
 du -sch /var/* .[!.]* | sort -rh
