@@ -5,3 +5,5 @@ brew list --version python3
 
 # List all installed packages and their dependencies
 brew deps --tree --installed
+# List of directly installed packages
+brew leaves --installed-on-request
