@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../helpers/setup.sh
+# shellcheck source=./helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
-log_info "Updating $DOTFILES"
+log_info "➡️  Updating $DOTFILES"
 
 # We first pull the dotfiles repo to get the updated install.py
 git -C "$DOTFILES" pull
@@ -15,3 +15,5 @@ python3 "$DOTFILES/install.py"
 
 # Install pre-commit
 (cd "$DOTFILES" && pre-commit install)
+
+log_info "✅ Updated $DOTFILES"
