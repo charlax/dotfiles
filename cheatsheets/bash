@@ -70,6 +70,7 @@ xtrace/-x       # print a trace of simple commands
 nounset/-u      # exit if any variable is unset
 
 # tests
+# See `test` for more.
 
 ## Regex check
 if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
@@ -87,6 +88,7 @@ if command; then
 fi
 
 # -f "filename"             # file exists and is regular file
+# See `test` for more
 
 # Escape a single quote
 echo 'j'"'"'attends'

@@ -6,3 +6,7 @@
 
 # and
 [[ -s "" ]] && [[ ... ]]
+
+# Tests
+
+# -z "$string"          True if length of string is *z*ero
