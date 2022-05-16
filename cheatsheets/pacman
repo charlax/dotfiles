@@ -8,3 +8,6 @@ pacman -Syu
 
 # Search for a package
 pacman -Ss query
+
+# **R**emove
+pacman -R package

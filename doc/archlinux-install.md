@@ -10,6 +10,7 @@
   - [Reboot](#reboot)
   - [After reboot](#after-reboot)
   - [SSHD](#sshd)
+  - [Window manager](#window-manager)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -223,4 +224,11 @@ ssh-copy-id -i ~/.ssh/mykey $USERNAME@host
 # disable password auth, change port, restart ssh
 # PasswordAuthentication no
 systemctl restart sshd
+```
+
+## Window manager
+
+```bash
+pacman -S xfce4 lightdm lightdm-gtk-greeter
+systemctl enable lightdm
 ```

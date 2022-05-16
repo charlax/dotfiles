@@ -19,3 +19,7 @@ gfind . -executable -type f -not -iname '*.sh' -not -path './.git/*' -exec chmod
 # cd and create a tar of heavy CSV files
 # note the use of `sh -c '...'` to use '&&'. Single quotes to avoid string interpolation.
 find . -iname "*.csv" -size +1M  -exec sh -c 'cd $(dirname {}) && tar -cvjf $(basename {}).tar.bz2 $(basename {})' {} \;
+
+# Find large data files
+# -E extended regex
+find -E / -iregex ".*\.(csv|parquet|xls|xlsx)" -size +1M 2> /dev/null

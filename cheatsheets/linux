@@ -36,3 +36,12 @@ cat /proc/partitions
 
 # A 10k bash script to get hardware details
 inxi –Fx
+
+# Query systemd logs
+# See journalctl
+# -e jump to end
+# -x augment log lines with explanation
+journalctl -xe
+
+# Get a terminal
+Ctrl Alt F1 through F12
