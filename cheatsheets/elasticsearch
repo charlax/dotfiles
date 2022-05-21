@@ -5,6 +5,13 @@ curl -X GET "$host"
 curl -X GET $host/_cat/indices?v
 curl -X GET $host/_cat/aliases
 
+# Delete index
+curl -X DELETE $host/$index_name
+
+# Create JSON document in index
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html
+curl -XPOST -u "username:password" https://.../$index_name/_doc -d '{"foo": "bar"}' -H 'Content-Type: application/json'
+
 # Get nodes info
 curl -X GET "$host/_cat/nodes?v&pretty"
 
@@ -12,3 +19,7 @@ curl -X GET "$host/_cat/nodes?v&pretty"
 curl -X GET $host/sample/_search
 # Get "sample" index stats
 curl -X GET $host/sample/_stats | jq .
+
+# Other
+# https://lzone.de/cheat-sheet/ElasticSearch
+# https://elasticsearch-cheatsheet.jolicode.com

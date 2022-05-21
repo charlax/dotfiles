@@ -1,0 +1,4 @@
+# Show process tree
+pstree
+ps axjf           # on linux
+ps -aef --forest  # on linux
