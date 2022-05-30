@@ -39,13 +39,10 @@ Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja2' }
 
 Plug 'greyblake/vim-preview'
-
-" Syntax for LESS (dynamic CSS)
-" Plug 'groenewege/vim-less'
 "
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 
-" syntax highlighting to RTF
+" Syntax highlighting to RTF
 Plug 'jdonaldson/rtf-highlight'
 
 " Fuzzy finder. This will also install fzf
@@ -61,19 +58,7 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 
 Plug 'mileszs/ack.vim'
 
-" Develop Cocoa/Objective-C
-Plug 'msanders/cocoa.vim', { 'for': 'cocoa' }
-
-Plug 'sinisterstuf/vim-arduino', { 'for': 'arduino' }
-
-Plug 'solarnz/thrift.vim', { 'for': 'thrift' }
-
-Plug 'sophacles/vim-bundle-mako', { 'for': 'mako' }
-
 Plug 'sukima/xmledit', { 'for': 'xml' }
-
-" True Sublime Text style multiple selections for Vim
-" Plug 'terryma/vim-multiple-cursors'
 
 Plug 'tomtom/tlib_vim'
 
@@ -95,9 +80,6 @@ Plug 'ludovicchabant/vim-gutentags'
 " Terraform files
 Plug 'hashivim/vim-terraform'
 
-" Twig syntax (PHP templates)
-Plug 'nelsyeung/twig.vim'
-
 " Simple status line
 Plug 'itchyny/lightline.vim'
 " ALE-status line integration
@@ -114,14 +96,9 @@ Plug 'sheerun/vim-polyglot'
 " Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
 Plug 'embear/vim-localvimrc'
 
-" ============================================================
-" Front-end dev
-" ============================================================
-
 " Note: do not use 'for'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'leafgarland/typescript-vim'  " does not work since typescriptreact
 Plug 'HerringtonDarkholme/yats.vim'
 
 " Match HTML tags
@@ -129,10 +106,6 @@ Plug 'Valloric/MatchTagAlways'
 
 " Auto close HTML tags
 Plug 'alvan/vim-closetag'
-
-" ============================================================
-" Other
-" ============================================================
 
 " .editorconfig support
 Plug 'editorconfig/editorconfig-vim'
@@ -183,7 +156,7 @@ if has('autocmd')
     " Use tabs in Applescript
     au FileType applescript set noexpandtab smartindent
 
-    " Yaml
+    " YAML
     au FileType yaml set softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent
 
     " HTML, XML, etc.
