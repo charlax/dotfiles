@@ -1,0 +1,16 @@
+# dd just read and writes file
+
+# Useless use of dd: https://www.vidarholen.net/contents/blog/?p=479
+
+# Write myfile.iso to a USB drive
+dd if=myfile.iso of=/dev/sdb bs=1M
+cp myfile.iso /dev/sdb
+
+# Rip a cdrom to a .iso file
+cat /dev/cdrom > myfile.iso
+
+# Create a gzipped image
+gzip -9 < /dev/sdb > /tmp/myimage.gz
+
+# This won't work - use dd which allows you to specify block size
+cat myfile.iso > /dev/cdrom

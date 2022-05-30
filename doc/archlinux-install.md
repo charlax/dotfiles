@@ -10,7 +10,9 @@
   - [Reboot](#reboot)
   - [After reboot](#after-reboot)
   - [SSHD](#sshd)
+  - [Time NTP](#time-ntp)
   - [Window manager](#window-manager)
+  - [Install Chrome](#install-chrome)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -226,9 +228,28 @@ ssh-copy-id -i ~/.ssh/mykey $USERNAME@host
 systemctl restart sshd
 ```
 
+## Time NTP
+
+```bash
+pacman -S ntp
+systemctl enable ntpd
+systemctl start ntp
+
+# Check status
+ntpq -p
+```
+
 ## Window manager
 
 ```bash
-pacman -S xfce4 lightdm lightdm-gtk-greeter
+pacman -S xfce4 lightdm lightdm-gtk-greeter xfce4-screensaver
 systemctl enable lightdm
+```
+
+## Install Chrome
+
+```bash
+git clone https://aur.archlinux.org/google-chrome.git
+cd google-chrome
+makepkg -is
 ```
