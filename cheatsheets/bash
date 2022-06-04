@@ -53,6 +53,16 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+# Checking if PATH already includes something
+case ":${PATH}:" in
+    *:"$HOME/.cargo/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="$HOME/.cargo/bin:$PATH"
+        ;;
+esac
+
 ```
 
 # Download files numbered 1 to 20

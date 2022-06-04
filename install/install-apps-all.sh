@@ -87,6 +87,7 @@ function install_osx_packages {
     /usr/local/opt/fzf/install
 
     brew tap homebrew/cask-fonts
+    brew tap espanso/espanso
 
     apps=(1password
         adobe-acrobat-reader
@@ -95,6 +96,7 @@ function install_osx_packages {
         calibre
         discord
         docker
+        expanso             # text expander
         google-chrome
         firefox
         font-roboto-nerd-font
@@ -229,6 +231,7 @@ function install_brew_packages {
     # imagemagick            # convert images
     # leiningen              # automate Clojure projects
     # nvim                   # neovim
+    # rustup                 # rust toolchain, then run rustup-init
     # sqlmap                 # sql injection tool
     # terraform              # infrastructure management
     # tokei                  # cloc https://github.com/XAMPPRocky/tokei

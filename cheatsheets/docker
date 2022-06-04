@@ -5,6 +5,8 @@ docker run -it --rm --name test --entrypoint /bin/bash test/top:latest
 
 # Start an Ubuntu system
 docker run -it ubuntu:latest /bin/bash
+# With volume:
+docker run -v $(pwd):/pwd -it ubuntu:latest /bin/bash
 # Pass env vars
 docker run -e PYTHONPATH=. -e TRUC=1 ...
 
