@@ -25,7 +25,7 @@ curl "$url" --request-target "../" -v --path-as-is
 # > GET ../ HTTP/1.1
 
 # Upload
-curl -F 'upload=@./file.png;type=image/png;filename=image.png"
+curl -F 'upload=@./file.png;type=image/png;filename=image.png'
 
 # Request
 -H 'X-foo: value'  # header

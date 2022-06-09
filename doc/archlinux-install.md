@@ -13,6 +13,7 @@
   - [Time NTP](#time-ntp)
   - [Window manager](#window-manager)
   - [Install Chrome](#install-chrome)
+  - [Dotfiles](#dotfiles)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -252,4 +253,10 @@ systemctl enable lightdm
 git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome
 makepkg -is
+```
+
+## Dotfiles
+
+```bash
+pacman -S zsh zsh-completions
 ```

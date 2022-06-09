@@ -1,0 +1,14 @@
+# Tool to tail AWS CloudWatch logs
+# https://github.com/lucagrulla/cw
+
+# Install
+brew tap lucagrulla/tap
+brew install cw
+
+# Tail
+cw --region us-east-1 tail /aws/lambda/$lambda_name -f
+# For Lambda@Edge
+cw --region eu-west-2 tail /aws/lambda/us-east-1.$lambda_name -f
+
+# options
+# -b 2h       # since 2 hours ago

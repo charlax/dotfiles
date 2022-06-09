@@ -29,6 +29,17 @@ aws ec2 describe-instances | jq '.Reservations[].Instances[] | {State,InstanceId
 # List roles
 aws iam list-roles
 
+# Lambda
+# ======
+
+aws --region us-east-1 lambda invoke --cli-binary-format raw-in-base64-out --function-name $name --payload file://test-payload.json --log-type Tail /dev/stdout
+
+# Logs (CloudWatch)
+# =================
+
+# Create log group for lambda
+aws --region eu-west-1 logs create-log-group --log-group-name /aws/lambda/$lambda_name
+
 # SSM
 # ===
 
