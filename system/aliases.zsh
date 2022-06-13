@@ -18,6 +18,10 @@ else
     alias la='ls -A --color'
 fi
 
+if command -v kubectl > /dev/null 2>&1; then
+    alias k="kubectl"
+fi
+
 if command -v "gcp" > /dev/null 2>&1; then
     alias cp="gcp"
 fi

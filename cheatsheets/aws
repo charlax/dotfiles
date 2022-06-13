@@ -40,6 +40,10 @@ aws --region us-east-1 lambda invoke --cli-binary-format raw-in-base64-out --fun
 # Create log group for lambda
 aws --region eu-west-1 logs create-log-group --log-group-name /aws/lambda/$lambda_name
 
+# S3
+
+aws s3 sync build s3://$bucket_name/ --exclude ".DS_Store" --delete
+
 # SSM
 # ===
 

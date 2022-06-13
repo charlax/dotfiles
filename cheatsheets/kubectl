@@ -4,5 +4,23 @@ kubectl get all -n $namespace
 # Describe a service
 kubectl -n $namespace describe service $service_name
 
+# Apply
+kubectl apply -f deployment.yaml
+
 # Get a shell
 kubectl exec -it eks-sample-linux-deployment-65b7669776-m6qxz -n eks-sample-app -- /bin/bash
+
+# Delete
+kubectl delete -f deployment.yaml
+kubectl delete pod $podname -n $namespace
+# Hard delete PersistentVolume
+k delete -f persistent-volume.yml --grace-period=0 --force
+
+# Debugging
+kubectl describe pods -n $namespace
+
+# Set default namespace
+kubectl config set-context --current --namespace=<insert-namespace-name-here>
+
+# Other resources
+# https://kubernetes.io/docs/reference/kubectl/cheatsheet/

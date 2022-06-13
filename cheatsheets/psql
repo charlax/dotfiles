@@ -1,6 +1,9 @@
 # Login with password
 PGPASSWORD=password psql -h 127.0.0.1 -p 5432 -U username -d dbname
 
+# Default folder for postgres data
+/var/lib/postgresql/data/
+
 ```psql
 # list databases
 \l

@@ -1,0 +1,2 @@
+# List services
+minikube service list

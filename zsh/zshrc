@@ -258,6 +258,10 @@ bindkey '^Z' fancy-ctrl-z
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
+if _has kubectl; then
+    source <(kubectl completion zsh)
+fi
+
 # Load other files
 
 # Source every .zsh file in this rep
