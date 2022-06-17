@@ -1,5 +1,13 @@
 # Python cheats
 
+## One liner
+
+### Create a secret and encode with base64
+
+```bash
+python -c "import secrets; print(secrets.token_hex(), end='')" | base64
+```
+
 ## Core features
 
 ### f-strings

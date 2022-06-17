@@ -1,2 +1,9 @@
 # list open files
 ls -l /proc/$processid/fd
+
+# get command line arg
+cat /proc/$pid/cmdline
+
+# get memory used by process
+apt-get install procps  # about 3 MB at time of writing
+pmap $pid

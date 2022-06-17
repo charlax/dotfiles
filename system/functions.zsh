@@ -4,9 +4,11 @@
 function code  {
     cd "$CODE_PATH" || exit
 }
+
 function forks {
     cd "$FORK_PATH" || exit
 }
+
 function dotfiles {
     cd "$DOTFILES" || exit
 }
@@ -94,4 +96,44 @@ function gtree {
     else
       tree "${@}"
     fi
+}
+
+# Simple calculator
+function calc() {
+        local result=""
+        result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')"
+        #                       └─ default (when `--mathlib` is used) is 20
+        #
+        if [[ "$result" == *.* ]]; then
+                # improve the output for decimal numbers
+                printf "$result" |
+                sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
+                    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
+                    -e 's/0*$//;s/\.$//'   # remove trailing zeros
+        else
+                printf "$result"
+        fi
+        printf "\n"
+}
+
+# Create a new directory and enter it
+function md() {
+	mkdir -p "$@" && cd "$@"
+}
+
+# All the dig info
+function digga() {
+	dig +nocmd "$1" any +multiline +noall +answer
+}
+
+# Escape UTF-8 characters into their 3-byte format
+function escape() {
+	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u)
+	echo # newline
+}
+
+# Decode \x{ABCD}-style Unicode escape sequences
+function unidecode() {
+	perl -e "binmode(STDOUT, ':utf8'); print \"$@\""
+	echo # newline
 }

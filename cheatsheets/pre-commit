@@ -1,2 +1,25 @@
 # Run for all files
 pre-commit run -a
+
+Some useful options:
+
+```yaml
+fail_fast: true
+default_stages: [commit]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: check-added-large-files
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: detect-private-key
+      - id: end-of-file-fixer
+        exclude: (\.svg|\.json|VERSION)$
+```

@@ -30,7 +30,7 @@ sudo dmidecode -t processor
 
 # /proc filesystem
 cat /proc/cpuinfo
-cat /proc/meminfo
+cat /proc/meminfo  # get memory information
 cat /proc/scsi/scsi
 cat /proc/partitions
 

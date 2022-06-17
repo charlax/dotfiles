@@ -15,6 +15,7 @@ kubectl delete -f deployment.yaml
 kubectl delete pod $podname -n $namespace
 # Hard delete PersistentVolume
 k delete -f persistent-volume.yml --grace-period=0 --force
+kubectl delete all --all -n $namespace
 
 # Debugging
 kubectl describe pods -n $namespace

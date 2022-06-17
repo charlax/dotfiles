@@ -113,6 +113,9 @@ Plug 'editorconfig/editorconfig-vim'
 " Clojure REPL
 Plug 'tpope/vim-fireplace'
 
+" Vim for prose
+Plug 'junegunn/goyo.vim'
+
 if has('nvim')
     " asynchronous completion framework for neovim/Vim8
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -287,15 +290,20 @@ function! s:setup_for_prose()
     setlocal autoindent
 
     " Respect indentation when breaking lines
-    set breakindent
-    " Indent broken lines by 2 spaces (not ideal)
-    set breakindentopt=shift:2
+    setlocal breakindent
+    " Indent only list items
+    setlocal breakindentopt=list:2
     " See other config in ftplugin/markdown.vim
 
     " <Tab> indents and <Shift-Tab> dedents
     " TODO: fix usage outside of list (e.g. to autocomplete filename in img)
     " inoremap <buffer> <Tab> <C-T>
     " inoremap <buffer> <S-Tab> <C-D>
+
+    " Spell lang
+    nnoremap <Leader>sf <Esc>:setlocal spelllang=fr<CR><Esc>:setlocal spell<CR>
+
+    Goyo
 endfunction
 
 " ============================================================

@@ -1,2 +1,5 @@
 # List services
 minikube service list
+
+# Pause
+minikube pause && minikube unpause

@@ -3,3 +3,8 @@ Cmd+Shift+A
 
 # Show most frequently opened dirs
 Cmd+Option+/
+
+# Maximize/revert current pane
+Cmd+Shift+Enter
+
+# https://iterm2.com/documentation/2.1/documentation-one-page.html
