@@ -113,9 +113,6 @@ Plug 'editorconfig/editorconfig-vim'
 " Clojure REPL
 Plug 'tpope/vim-fireplace'
 
-" Vim for prose
-Plug 'junegunn/goyo.vim'
-
 if has('nvim')
     " asynchronous completion framework for neovim/Vim8
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -302,8 +299,6 @@ function! s:setup_for_prose()
 
     " Spell lang
     nnoremap <Leader>sf <Esc>:setlocal spelllang=fr<CR><Esc>:setlocal spell<CR>
-
-    Goyo
 endfunction
 
 " ============================================================
