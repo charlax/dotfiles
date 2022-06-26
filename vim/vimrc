@@ -147,7 +147,7 @@ if has('autocmd')
     au BufRead,BufNewFile *.vcl setf c
 
     " Prose
-    au FileType {md,markdown,tex,txt,rst} call s:setup_for_prose()
+    au FileType {md,markdown,mdx,tex,txt,rst} call s:setup_for_prose()
 
     " In Makefiles, use real tabs, not tabs expanded to spaces
     au FileType make set noexpandtab ts=4
@@ -298,7 +298,9 @@ function! s:setup_for_prose()
     " inoremap <buffer> <S-Tab> <C-D>
 
     " Spell lang
-    nnoremap <Leader>sf <Esc>:setlocal spelllang=fr<CR><Esc>:setlocal spell<CR>
+    nnoremap <Leader>f <Esc>:setlocal spelllang=fr<CR><Esc>:setlocal spell<CR>
+
+    setlocal foldcolumn=12 nonumber
 endfunction
 
 " ============================================================

@@ -1,0 +1,6 @@
+# Get statistics about DNS cache
+sudo systemd-resolve --statistics
+
+# Empty DNS cache
+sudo resolvectl flush-caches  # or:
+sudo systemd-resolve --flush-caches

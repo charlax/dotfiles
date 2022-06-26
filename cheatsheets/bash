@@ -123,3 +123,7 @@ $@  # all args
 # Remove pattern
 in="content/stuff/img"
 echo "${in%/img}"  # content/stuff
+
+# Set var for command
+env who=world bash -c 'echo "Hello $who"'
+(export who=world; echo "Hello $who")

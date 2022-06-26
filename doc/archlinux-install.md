@@ -3,6 +3,8 @@
 ## Table of Contents
 
 - [Install Arch Linux](#install-arch-linux)
+  - [Setup BIOS](#setup-bios)
+  - [Boot](#boot)
   - [Wifi](#wifi)
   - [Partition the disk](#partition-the-disk)
   - [Install](#install)
@@ -24,6 +26,16 @@ Links:
 - https://wiki.archlinux.org/index.php/installation_guide
 - https://github.com/angristan/arch-linux-install
 - https://gist.github.com/eltonvs/d8977de93466552a3448d9822e265e38
+
+## Setup BIOS
+
+For NUC, checkout notes (Linux suspend can brick the NUC), "Setting Intel NUC".
+
+Upgrade to latest BIOS version.
+
+## Boot
+
+Get into bios with F2.
 
 ## Wifi
 

@@ -5,14 +5,19 @@
 curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}' $url
 curl -X POST --header "Content-Type: application/json" -d @body.json $url
 
+# Body
+curl $url -d key=value1 -d key2=value2
+curl $url -d "key=value1&key2=value2"
+
 # Change Host
 curl -H 'Host: truc.com' ...
 
 # Options
--L              # follow redirections
+-L                 # follow redirections
 -s/--silent
--o/--output     # e.g. redirect response body to /dev/null
--k/--insecure   # do not check certificates
+-o/--output        # e.g. redirect response body to /dev/null
+-k/--insecure      # do not check certificates
+--remote-name-all  # issue multiple query (see below)
 
 # Path
 
@@ -35,3 +40,6 @@ curl -X POST -d 'param1=value1&param2=value2' $host
 
 # Custom CA certificate
 curl --cacert ./tmp/caddy-cert.crt $url
+
+# Multiple url
+curl --remote-name-all https://example.com/a.html https://example.com/b.html

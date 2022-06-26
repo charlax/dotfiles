@@ -25,6 +25,8 @@ git config user.signingkey XXXXXXXXXXXX
 cat filename.pub | gpg --show-keys
 # or
 gpg --show-keys filename.pub
+
+gpg --export-secret-keys $id > secret.key
 ```
 
 ## Encryption flow

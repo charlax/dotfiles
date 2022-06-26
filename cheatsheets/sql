@@ -9,6 +9,8 @@ DROP DATABASE IF EXISTS dbname;
 ALTER TABLE users ADD PRIMARY KEY (id);
 ALTER TABLE contacts ADD CONSTRAINT contacts_user_id FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE users ADD COLUMN has_stuff BOOLEAN DEFAULT false;
+
+create table toaster (id int primary key, color varchar);
 ```
 
 ## Datetime

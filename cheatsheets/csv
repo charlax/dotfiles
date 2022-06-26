@@ -2,6 +2,10 @@
 
 cut     # cut out selected portions of each line of a file
 
+# sqlite3
+sqlite3 :memory: -cmd '.mode csv' -cmd '.import taxi.csv taxi' \
+  'SELECT passenger_count, COUNT(*), AVG(total_amount) FROM taxi GROUP BY passenger_count'
+
 # Require install:
 
 mlr     # miller
@@ -11,6 +15,7 @@ csvsql  # part of csvkit https://csvkit.readthedocs.io/
 rbql    # https://rbql.org/
 xsv     # https://github.com/BurntSushi/xsv
 vd      # https://www.visidata.org/ pipx install visidata
+dsq     # https://github.com/multiprocessio/dsq
 
 # Other tools
 # For Vim https://github.com/mechatroner/rainbow_csv
