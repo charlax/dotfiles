@@ -1,5 +1,5 @@
-# See string-manipulation as well
 # Other tools: tr, awk, grep, perl
+# sd https://github.com/chmln/sd
 # See string-manipulation
 
 # Options
@@ -45,3 +45,6 @@ sed -n -e "$x,$y p" -e "$y q"
 
 # Remove ## suffix and what follows
 sed "s/##.*//"
+
+# See also:
+# https://learnbyexample.github.io/learn_gnused/

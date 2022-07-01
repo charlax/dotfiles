@@ -45,3 +45,7 @@ journalctl -xe
 
 # Get a terminal
 Ctrl Alt F1 through F12
+
+# Other cheats
+#
+# https://learnbyexample.github.io/cli-computing/

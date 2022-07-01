@@ -34,3 +34,9 @@ nmap -sS 192.168.0.1-255 -oA scanoutput
 # --script=nfs-ls
 # --script=nfs-ls -d           # debug the script
 # --script-args=nfs.version=2  # provide arguments
+
+# Other scripts
+
+# Get list of ciphers supported by the server
+# Download: https://svn.nmap.org/nmap/scripts/ssl-enum-ciphers.nse
+nmap --script ssl-enum-ciphers -p 443 www.example.com

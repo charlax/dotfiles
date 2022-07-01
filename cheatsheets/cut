@@ -1,7 +1,9 @@
 # See alternatives
-# - awk
-# - choose https://github.com/theryangeary/choose
-# - See string-manipulation
+#
+# awk
+# choose https://github.com/theryangeary/choose
+# hck https://github.com/sstadick/hck
+# See string-manipulation
 
 # To cut out the third field of text or stdoutput that is delimited by a #:
 cut -d# -f3

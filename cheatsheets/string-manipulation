@@ -1,5 +1,7 @@
 # See: awk, grep, perl, sed, tr
-# - choose https://github.com/theryangeary/choose - simpler alternative to cut
+#
+# choose https://github.com/theryangeary/choose - simpler alternative to cut
+# sd https://github.com/chmln/sd
 
 # Remove line matching pattern
 cat file | sed '/^-\+/d'

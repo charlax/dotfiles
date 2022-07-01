@@ -1,9 +1,15 @@
 # Debug
-TF_LOG=~/Downloads/tf.log TF_LOG=INFO terraform apply -target=...
+TF_LOG=~/Downloads/tf.log TF_LOG=INFO terraform apply
+TF_LOG=INFO terraform apply
 
 # List all modules
 terraform state list
+# Delete from state
+terraform state rm $resource_name
 
 # Output an exported var
 # (requires an export block)
 terraform output -raw public_ip
+
+# Target
+terraform apply -target=modules.$module_name

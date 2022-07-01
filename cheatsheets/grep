@@ -6,3 +6,6 @@ cat .. | grep 'truc\|test'
 
 # Graph Github personal token from .npmrc
 cat ~/.npmrc | grep -o "ghp_.*"
+
+# See also:
+# https://learnbyexample.github.io/learn_gnugrep_ripgrep/

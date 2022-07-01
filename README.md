@@ -158,6 +158,7 @@ zprof
 
 - [carbon.now.sh](https://carbon.now.sh/): create and share beautiful images of your source code
 - [Excalidraw](https://excalidraw.com/)
+- [cheat.sh/](http://cht.sh/): e.g. `curl cht.sh/ls`
 
 ## Checklist before reinstall
 

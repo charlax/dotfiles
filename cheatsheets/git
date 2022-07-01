@@ -1,6 +1,3 @@
-# Sources:
-# https://github.com/git-tips/tips
-
 # Archive (without the .git history)
 git archive -o ~/Downloads/archive.tar.gz --format=tar HEAD
 
@@ -162,5 +159,13 @@ git filter-repo --invert-paths --path-glob '*.tiff'
 git gc
 git count-objects -vH
 
+# Best practice for tagging
+# -s signing
+git tag -s $COMPONENT-v$VERSION -m "Release $COMPONENT version $VERSION"
+
 # Conflicts markers when rebasing (diff3)
 # (see doc/git.md)
+
+# See too:
+# https://ohshitgit.com/
+# https://github.com/git-tips/tips

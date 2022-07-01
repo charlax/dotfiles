@@ -42,7 +42,7 @@ aws --region eu-west-1 logs create-log-group --log-group-name /aws/lambda/$lambd
 
 # S3
 
-aws s3 sync build s3://$bucket_name/ --exclude ".DS_Store" --delete
+aws s3 sync build s3://$bucket_name/ --exclude "*.DS_Store" --delete
 
 # SSM
 # ===

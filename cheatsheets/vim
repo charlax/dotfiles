@@ -328,6 +328,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 - `ysiw*` add `*` around word
 - `yss'` add `'` around line
+- Select in visual mode then `S"` to add double quotes around visual selection
 
 ### Ultisnips
 
