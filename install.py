@@ -27,6 +27,7 @@ CONFIGURATION_FILES = (
     "zsh/zshrc",
     ("asdf/tool-versions", ".tool-versions"),
     ("config/cheat", ".config/cheat"),
+    ("config/kitty", ".config/kitty"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/starship.toml", ".config/starship.toml"),
