@@ -6,11 +6,13 @@
   - [Setup BIOS](#setup-bios)
   - [Boot](#boot)
   - [Wifi](#wifi)
-  - [Partition the disk](#partition-the-disk)
-  - [Install](#install)
-    - [Bootloader](#bootloader)
-  - [Reboot](#reboot)
-  - [After reboot](#after-reboot)
+  - [Option 1: guided setup](#option-1-guided-setup)
+  - [Option 2: manual setup](#option-2-manual-setup)
+    - [Partition the disk](#partition-the-disk)
+    - [Install](#install)
+      - [Bootloader](#bootloader)
+  - [Reboot after install](#reboot-after-install)
+  - [After install](#after-install)
   - [SSHD](#sshd)
   - [Time NTP](#time-ntp)
   - [Window manager](#window-manager)
@@ -35,7 +37,8 @@ Upgrade to latest BIOS version.
 
 ## Boot
 
-Get into bios with F2.
+- Get into bios with F2.
+- Choose boot device with F10 (when Intel logo shows up).
 
 ## Wifi
 
@@ -52,16 +55,29 @@ timedatectl set-ntp true
 timedatectl status
 ```
 
-## Partition the disk
+## Option 1: guided setup
+
+Use `archinstall`
+
+See [archinstall documentation](https://archinstall.readthedocs.io/installing/guided.html)
+
+## Option 2: manual setup
+
+### Partition the disk
+
+Layout:
+
+- EFI system partition 260 MiB, FAT32
+- `/`, the rest, ext4
 
 ```bash
 $ parted -l  # or fdisk -l  : show devices
 
-# clean up the disk
 $ cat /sys/block/nvme0n1/queue/physical_block_size
 512
 $ cat /sys/block/nvme0n1/queue/logical_block_size
 512
+# clean up the disk
 $ dd if=/dev/zero of=/dev/nvme0n1 bs=512 count=10000
 
 $ parted /dev/nvme0n1
@@ -93,7 +109,7 @@ mkswap /mnt/swapfile
 swapon /mnt/swapfile
 ```
 
-## Install
+### Install
 
 ```bash
 pacman -Sy
@@ -119,7 +135,7 @@ $ vim /etc/hosts  # add localhost
 passwd
 ```
 
-### Bootloader
+#### Bootloader
 
 Get the UUID for the partition:
 
@@ -161,10 +177,10 @@ initrd /initramfs-linux.img
 options cryptdevice=UUID=REPLACE-ME-WITH-UUID:cryptroot root=/dev/mapper/cryptroot rw
 ```
 
-## Reboot
+## Reboot after install
 
 ```bash
-exit
+exit  # exit chroot
 swapoff /mnt/swapfile
 umount -R /mmt
 
@@ -172,7 +188,7 @@ umount -R /mmt
 fuser -mv /mnt
 ```
 
-## After reboot
+## After install
 
 ```bash
 systemctl start NetworkManager

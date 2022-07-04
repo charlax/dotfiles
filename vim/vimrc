@@ -29,8 +29,9 @@ Plug 'honza/vim-snippets'
 " Note that LunarWatcher is a (maintained) fork of jiangmiao/auto-pairs
 Plug 'LunarWatcher/auto-pairs', {'for': ['javascript', 'typescript', 'typescriptreact', 'typescript.tsx']}
 
-" Optimized solarized color schemes
-Plug 'lifepillar/vim-solarized8'
+" Color schemes
+" Plug 'lifepillar/vim-solarized8'
+Plug 'sainnhe/everforest'
 
 Plug 'elzr/vim-json', { 'for': 'json' }
 
@@ -187,14 +188,24 @@ endif
 
 set mouse=a
 
-set termguicolors
+" Necessary for color schemes
+if has('termguicolors')
+  set termguicolors
+endif
+
 if has('gui_running') || has('gui_vimr')
     set background=light
 else
-    set background=light
+    set background=dark
 endif
-" on first startup, this colorscheme is not available
-silent! colorscheme solarized8
+
+let g:everforest_better_performance = 1
+let g:everforest_disable_italic_comment = 1
+
+" To find color schemes:
+" https://colorswat.ch/vim/list?bg=dark&cat=all&o=star
+" fails on first startup because this colorscheme is not available
+silent! colorscheme everforest
 
 " Change cursor shape in insert mode (works in iTerm)
 " Might not work as is in tmux

@@ -1,3 +1,5 @@
 # Keyboard shortcuts
-Cmd+,         Edit config
-Ctrl+Cmd+,    Reload config
+cmd+,           Edit config
+ctrl+cmd+,      Reload config
+ctrl+alt+,      Display current config
+ctrl+shift+h    Open scrollback buffer in pager

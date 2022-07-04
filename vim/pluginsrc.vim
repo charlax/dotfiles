@@ -174,7 +174,7 @@ function! LightlineFilename()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'everforest',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \ }
