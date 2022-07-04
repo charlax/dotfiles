@@ -33,7 +33,7 @@ if has("gui_macvim")
     macm Window.Show\ Previous\ Tab  key=<D-A-Left>
     macm Window.Show\ Next\ Tab    key=<D-A-Right>
 
-    set guifont=Menlo:h12
+    set guifont=Menlo:h14
 end
 
 if has("gui_gtk3")

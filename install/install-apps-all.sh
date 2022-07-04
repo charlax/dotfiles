@@ -92,7 +92,6 @@ function install_osx_packages {
     apps=(1password
         adobe-acrobat-reader
         # adoptopenjdk8  unavailable??
-        alfred
         calibre
         discord
         docker
