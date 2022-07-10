@@ -1,5 +1,21 @@
 # Keyboard shortcuts
+
 cmd+,           Edit config
 ctrl+cmd+,      Reload config
 ctrl+alt+,      Display current config
 ctrl+shift+h    Open scrollback buffer in pager
+ctrl+shift+esc  Open kitty shell
+cmd+r           Enter resize mode
+cmd+k           Clear terminal
+
+# Tab
+ctrl+shift+.    Move tab forward
+ctrl+shift+,    Move tab backward
+cmd+shift+i     Set table title 
+
+# Scroll
+cmd+up          Scroll line up 
+cmd+page_up     Scroll page up 
+
+# Check what bytes are sent
+kitty +kitten show_key

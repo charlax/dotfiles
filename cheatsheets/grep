@@ -1,3 +1,6 @@
+# Count number of columns - 1 in CSV file
+cat file.csv | grep -o , | wc -l  # need to add 1 to have the number of columns
+
 # Match files ending with .ts, .tsx, .js
 git diff --name-only | grep "\(.js\|.tsx\|\.ts\)$"
 

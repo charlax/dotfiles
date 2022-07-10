@@ -5,6 +5,11 @@
 # hck https://github.com/sstadick/hck
 # See string-manipulation
 
+# Delete first two columns of CSV file
+cut -d, -f2 --complement file.csv
+# To delete the last column, count the number of columns first
+grep -o , file.csv | wc -l  # add 1 to this result
+
 # To cut out the third field of text or stdoutput that is delimited by a #:
 cut -d# -f3
 

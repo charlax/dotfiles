@@ -1,0 +1,4 @@
+# See also: athenacli
+
+drop table $table_name
+msck repair table $table_name;
