@@ -238,6 +238,9 @@ bindkey "[C" forward-word
 bindkey "^B" backward-word
 bindkey "^F" forward-word
 
+# Define words boundaries (removed "/")
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 # Use ctrl-z to go back to fg app
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then

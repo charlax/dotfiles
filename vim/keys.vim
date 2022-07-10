@@ -17,6 +17,7 @@ inoremap jj <esc>
 inoremap jk <esc>
 
 " Fast saving
+nmap <c-s> :w<cr>
 nmap <leader>w :w<cr>
 nmap <leader>s :w<cr>
 nmap <leader>. :w<cr>
@@ -141,6 +142,9 @@ map <Leader>n :noh<CR>
 " Copy filename to clipboard
 nmap ,cs :let @*=expand("%")<CR>
 nmap ,cl :let @*=expand("%:p")<CR>
+
+" Copy into system clipboard
+noremap <Leader>y "+y
 
 " Prettify json
 map <buffer> <leader>js <Esc>:%!jq .<CR>

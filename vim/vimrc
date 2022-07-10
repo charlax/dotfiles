@@ -258,7 +258,11 @@ set splitright
 " Always display status line
 set laststatus=2
 
-" Operations such as yy, D, and P work with the system clipboard. No need to prefix them with \"+ or \"*.
+" This would make the default clipboard the system one. Operations such as yy,
+" D, and P work with the system clipboard. No need to prefix them with \"+ or
+" \"*.  It is *deactivated* right now because it prevents replacing `cw` with
+" the content of the system clipboard.
+"
 " set clipboard=unnamed
 
 " For security reasons, activate modeline only for cheatsheets
