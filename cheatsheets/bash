@@ -38,6 +38,9 @@ for i in "${array[@]}"; do
     echo $i
 done
 
+# Do something x times
+for _ in $(seq 1000); do ...; done
+
 # Simple arg handling
 ```bash
 display_usage() {

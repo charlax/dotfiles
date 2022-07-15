@@ -1,0 +1,3 @@
+# Exclude column #32
+xsv headers $filename         # To get column numbers
+xsv select '!32' $filename

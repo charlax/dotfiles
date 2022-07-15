@@ -1,21 +1,44 @@
-# Tools you can use (they might also have their cheats):
+# For most usage: xsv
 
-cut     # cut out selected portions of each line of a file
+# Display CSV file
+xsv table $filename | less -S
+
+# Get list of columns
+xsv headers $filename
 
 # sqlite3
 sqlite3 :memory: -cmd '.mode csv' -cmd '.import taxi.csv taxi' \
   'SELECT passenger_count, COUNT(*), AVG(total_amount) FROM taxi GROUP BY passenger_count'
 
+# dsq example
+cat testdata.csv | dsq -s csv "SELECT * FROM {} LIMIT 1"
+
+# csvq example
+csvq 'SELECT id, name FROM users'
+
+# csvsql (csvkit) example
+csvsql --query  "select m.usda_id, avg(i.sepal_length) as mean_sepal_length from iris as i join irismeta as m on (i.species = m.species) group by m.species" examples/iris.csv examples/irismeta.csv
+
+# =====================================================
+# Tools you can use (they might also have their cheats)
+# =====================================================
+
+cut     # cut out selected portions of each line of a file
+
+
 # Require install:
 
 mlr     # miller
-csvq    # sql for csv files https://mithrandie.github.io/csvq/
+rbql    # https://rbql.org/
+xsv     # https://github.com/BurntSushi/xsv written in rust, `brew install xsv`
+vd      # https://www.visidata.org/ pipx install visidata
+
+# SQL for CSV:
+
+csvq    # sql for csv files https://mithrandie.github.io/csvq/ written in go
 q       # sql for csv files https://harelba.github.io/q/
 csvsql  # part of csvkit https://csvkit.readthedocs.io/
-rbql    # https://rbql.org/
-xsv     # https://github.com/BurntSushi/xsv
-vd      # https://www.visidata.org/ pipx install visidata
-dsq     # https://github.com/multiprocessio/dsq
+dsq     # https://github.com/multiprocessio/dsq written in go
 
 # Other tools
 # For Vim https://github.com/mechatroner/rainbow_csv

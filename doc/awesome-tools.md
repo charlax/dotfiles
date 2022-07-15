@@ -12,13 +12,16 @@
     - [Docker](#docker)
     - [File sharing](#file-sharing)
     - [Filesystem watchers](#filesystem-watchers)
+    - [Git](#git)
     - [HTTP client](#http-client)
     - [JSON](#json)
     - [Logs (reading)](#logs-reading)
     - [Markdown](#markdown)
     - [Process managers](#process-managers)
+    - [Python](#python)
     - [Rename files](#rename-files)
     - [Search](#search)
+    - [Static analysis](#static-analysis)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -61,6 +64,10 @@ See [cheatsheets](../cheatsheets/csv)
 - [Watchexec](https://watchexec.github.io/)
 - `inotify`
 
+### Git
+
+- [tig(1) · Tig - Text-mode interface for Git](https://jonas.github.io/tig/doc/tig.1.html)
+
 ### HTTP client
 
 - [rs/curlie: The power of curl, the ease of use of httpie.](https://github.com/rs/curlie)
@@ -85,6 +92,10 @@ See [cheatsheets](../cheatsheets/csv)
 
 - [Nukesor/pueue](https://github.com/nukesor/pueue): manage your shell commands
 
+### Python
+
+- [davidhalter/jedi](https://github.com/davidhalter/jedi): autocompletion, static analysis and refactoring library for python
+
 ### Rename files
 
 - [marcusbuffett/pipe-rename: Rename your files using your favorite text editor](https://github.com/marcusbuffett/pipe-rename)
@@ -92,3 +103,7 @@ See [cheatsheets](../cheatsheets/csv)
 ### Search
 
 - [phiresky/ripgrep-all: rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.](https://github.com/phiresky/ripgrep-all)
+
+### Static analysis
+
+- [returntocorp/semgrep: Lightweight static analysis for many languages. Find bug variants with patterns that look like source code.](https://github.com/returntocorp/semgrep)
