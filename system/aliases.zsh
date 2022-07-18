@@ -65,7 +65,6 @@ alias gca='git commit -a'
 alias gcm='git commit -m'
 alias gcma='git commit -am'
 alias gcam='git commit -am'
-alias gb='git branch'
 alias gc='git checkout'
 alias gr='git commit --amend' # git recommit
 alias gra='git add . && git commit --amend'
@@ -79,6 +78,10 @@ alias gpushcurrent='git push -u origin HEAD'
 # git-done is a script defined in bin/
 alias gogo='git-done'
 alias gg='git-done'
+
+gb () {
+    git checkout "$(git branch -v --sort=-committerdate | grep -v '* .*' | fzf | tr -s ' ' | cut -d ' ' -f 2)"
+}
 
 # Python
 alias p="ipython"
