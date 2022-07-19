@@ -124,8 +124,11 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias firefox='open -a "Firefox"'
     alias ff='firefox'
 
+    ia () {
+        touch "$1" && open -a "IA Writer" $1
+    }
+
     alias iawriter='open -a "IA Writer"'
-    alias ia="iawriter"
     alias iar="iawriter README*"
 fi
 

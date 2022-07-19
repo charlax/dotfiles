@@ -1,0 +1,2 @@
+# Convert from decimal to hexadecimal
+printf "%x\n" 8000

@@ -3,3 +3,15 @@ pandoc -s file.md -o file.docx
 
 # Show default latex template
 pandoc -D latex
+
+# Frontmatter
+```yaml
+---
+geometry:
+- margin=3cm
+- a4paper
+fontfamily: merriweather
+fontsize: 14pt
+output: pdf_document
+---
+```

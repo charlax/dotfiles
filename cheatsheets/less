@@ -3,3 +3,4 @@ less +F -p pattern /path/to/log
 tail -f /var/log/foo.log | fzf +s
 
 -S     # Chop rather than wrap long lines
+-R     # Interpret color codes

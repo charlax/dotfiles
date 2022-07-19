@@ -1,2 +1,13 @@
 # Diff the n first lines of two files
 diff <(head -n 1 file1) <(head -n 1 file2)
+
+# Diff between two binary files
+# The insight is to first export as hex with: xxd file.bin > file.hex
+vimdiff <(xxd -c1 -p first.bin) <(xxd -c1 -p second.bin)
+# Also:
+binwalk -W file1 file2 | less - R  # -R: interpret color codes
+
+# See also:
+# vimdiff
+# opendiff (macOS)
+# colordiff
