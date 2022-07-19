@@ -11,3 +11,9 @@ pacman -Ss query
 
 # **R**emove
 pacman -R package
+
+# List all installed packages
+pacman -Q
+
+# Get info for a package
+pacman -Qi $packagename

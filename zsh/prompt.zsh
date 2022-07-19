@@ -1,8 +1,10 @@
 #!/usr/local/bin/zsh
 
-eval "$(starship init zsh)"
+if $(whence starship > /dev/null); then
+    eval "$(starship init zsh)"
+fi
 
-# Prompt
+# Set tab title for iTerm
 function precmd() {
     if [[ -z "$TAB_TITLE" ]]; then
         # Set the tab title to current dir

@@ -15,7 +15,7 @@
   - [After install](#after-install)
   - [SSHD](#sshd)
   - [Time NTP](#time-ntp)
-  - [Window manager](#window-manager)
+  - [Window manager (XFCE4)](#window-manager-xfce4)
   - [Install Chrome](#install-chrome)
   - [Dotfiles](#dotfiles)
 
@@ -60,6 +60,8 @@ timedatectl status
 Use `archinstall`
 
 See [archinstall documentation](https://archinstall.readthedocs.io/installing/guided.html)
+
+Then continue at [After install](#after-install)
 
 ## Option 2: manual setup
 
@@ -194,12 +196,16 @@ fuser -mv /mnt
 systemctl start NetworkManager
 systemctl enable NetworkManager
 
-nmcli device wifi connect BSSID_OR_SSID password THEPASSWORD
+sudo nmcli device wifi connect "BSSID_OR_SSID" password THEPASSWORD
 nmcli d  # check connection
 
 # Update everything
 pacman -Syu
+```
 
+For the bluetooth keyboard (optional):
+
+```bash
 # Bluetooth keyboard
 pacman -S usbutils bluez bluez-utils
 
@@ -212,7 +218,11 @@ power on
 scan on
 pair ADDRESS
 connect ADDRESS
+```
 
+Create the user (not necessary if you used `archinstall`):
+
+```bash
 # User
 useradd -m $USERNAME
 passwd $USERNAME
@@ -260,19 +270,27 @@ systemctl restart sshd
 ## Time NTP
 
 ```bash
+# get current date
+date
+# see above for timezone (/etc/localtime symlink)
+
 pacman -S ntp
 systemctl enable ntpd
-systemctl start ntp
+systemctl start ntpd
 
 # Check status
 ntpq -p
 ```
 
-## Window manager
+## Window manager (XFCE4)
 
 ```bash
-pacman -S xfce4 lightdm lightdm-gtk-greeter xfce4-screensaver
+pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xfce4-screensaver
 systemctl enable lightdm
+systemctl start lightdm
+
+# TODO: script
+# Then Settings -> Mouse -> Invert scrolling
 ```
 
 ## Install Chrome
@@ -280,11 +298,13 @@ systemctl enable lightdm
 ```bash
 git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome
-makepkg -is
+makepkg -is  # part of pacman
 ```
 
 ## Dotfiles
 
 ```bash
-pacman -S zsh zsh-completions
+pacman -S zsh zsh-completions kitty
+
+# See https://github.com/charlax/dotfiles for the command to provision
 ```
