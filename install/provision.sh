@@ -31,7 +31,7 @@ function install_requirements() {
         echo ""
         echo "Provision: installing base packages"
         # shellcheck disable=SC2086
-        sudo pacman -S --noconfirm git python3
+        sudo pacman -S --noconfirm git python3 openssh
     fi
 }
 
