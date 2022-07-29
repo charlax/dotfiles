@@ -36,3 +36,6 @@ ssh -Tvvv git@gitlab.com
 
 # Connect through bastion
 ssh -A -t $user@$bastion $user@$server
+
+# Get fingerprint for key (-l list -f filename)
+ssh-keygen -lf

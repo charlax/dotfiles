@@ -1,6 +1,3 @@
-# Resources
-# https://ec.haxx.se/http/http-multipart
-
 # JSON query
 curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}' $url
 curl -X POST --header "Content-Type: application/json" -d @body.json $url
@@ -43,3 +40,11 @@ curl --cacert ./tmp/caddy-cert.crt $url
 
 # Multiple url
 curl --remote-name-all https://example.com/a.html https://example.com/b.html
+
+# Resources
+# https://ec.haxx.se/http/http-multipart
+
+# See also:
+# xh      https://github.com/ducaale/xh (written in rust)
+# httpie  https://httpie.io/ (Python)
+# curlie  https://github.com/rs/curlie (Golang, tries to mimic curl)
