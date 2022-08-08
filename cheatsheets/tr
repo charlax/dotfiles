@@ -1,0 +1,5 @@
+# -c complement
+# -s squeeze (merge same replacements)
+
+# Replace all non-alnum with underscore
+gh issue view 552 --json title,number -t "{{.number}}--{{.title}}" | tr -cs "[:alnum:]" "_"

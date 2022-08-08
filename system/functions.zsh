@@ -38,6 +38,11 @@ function git-amend-last-commit-set-date-to-now {
     GIT_COMMITTER_DATE="$(date)" git commit --amend --date "$(date)"
 }
 
+function gh-start-branch-from-issue {
+    issue=$(gh issue view "$1" --json title,number -t "{{.number}}--{{.title}}" | tr -cs "[:alnum:]" "_")
+    git switch -c "ca/$issue"
+}
+
 # Gather data from the output, but starting with a particular line, and ending
 # with another.
 # http://howardabrams.com/projects/dot-files/sh-functions.html

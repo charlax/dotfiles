@@ -7,3 +7,6 @@ poetry add -D $dependency
 
 # Delete the virtualenv
 rm -rf `poetry env info -p`
+
+# Show env
+poetry env info -p
