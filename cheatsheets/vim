@@ -313,6 +313,13 @@ s/\<OS\>/OperatingSystem/g
 :'<,'>s/\v([a-z]+)/`\1`/g
 ```
 
+## Tags
+
+```
+<C-}>       open tag
+<leader>]   open tag in new tab (custom, see keys.vim)
+```
+
 ## Plugins
 
 ### ALE (linting)

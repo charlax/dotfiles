@@ -1,0 +1,2 @@
+# List keys in ssh agent
+ssh-add -l

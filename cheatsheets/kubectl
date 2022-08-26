@@ -23,5 +23,8 @@ kubectl describe pods -n $namespace
 # Set default namespace
 kubectl config set-context --current --namespace=<insert-namespace-name-here>
 
+# Follow events
+kubectl get events --watch
+
 # Other resources
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/

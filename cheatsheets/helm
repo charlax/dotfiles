@@ -1,0 +1,2 @@
+# Dry run
+helm install --debug --dry-run goodly-guppy ./mychart

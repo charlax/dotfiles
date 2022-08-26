@@ -64,6 +64,9 @@ docker compose build --progress=plain --no-cache=true
 # Run and delete
 docker compose run --rm api /bin/bash ...
 
+# Exec https://docs.docker.com/engine/reference/commandline/compose_exec/
+docker compose exec db /bin/sh  # note that -i and -t are default
+
 # Delete all images, containers, volumes, networks for all stopped containers and unused images
 docker system prune -a
 

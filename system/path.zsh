@@ -6,6 +6,9 @@ if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
   eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 
+# Google Cloud
+[[ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]] && source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+
 export CODE_PATH="$HOME/CodePerso"
 export FORK_PATH="$HOME/Forks"
 
