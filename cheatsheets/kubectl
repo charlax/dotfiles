@@ -26,5 +26,9 @@ kubectl config set-context --current --namespace=<insert-namespace-name-here>
 # Follow events
 kubectl get events --watch
 
+# Restart
+kubectl scale deployment $name --replicas=0
+kubectl scale deployment $name --replicas=1
+
 # Other resources
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/

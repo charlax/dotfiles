@@ -1,2 +1,5 @@
 # Dry run
 helm install --debug --dry-run goodly-guppy ./mychart
+
+# Only render
+helm template truc ./helm-chart --set ingress.use_gcp=true --set ingress.gcp.staticIpName=toaster

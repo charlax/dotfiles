@@ -4,6 +4,8 @@ TF_LOG=INFO terraform apply
 
 # List all modules
 terraform state list
+# Display a resource from state
+terraform state show 'google_service_account.app'
 # Delete from state
 terraform state rm $resource_name
 
@@ -13,3 +15,6 @@ terraform output -raw public_ip
 
 # Target
 terraform apply -target=modules.$module_name
+
+# Destroy a specific instance
+terraform destroy -target=helm_release.stuff

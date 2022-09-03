@@ -5,6 +5,7 @@ error_symbol = "[\\$](red)"
 [python]
 disabled = false
 pyenv_version_name = false
+format = '[(\($virtualenv\) )]($style)'
 
 [ruby]
 disabled = true
@@ -16,4 +17,7 @@ disabled = true
 disabled = true
 
 [php]
+disabled = true
+
+[gcloud]
 disabled = true
