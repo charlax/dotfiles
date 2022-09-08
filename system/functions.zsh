@@ -14,9 +14,9 @@ function dotfiles {
 }
 
 # cd into whatever is the forefront Finder window.
-cdf() {  # short for cdfinder
-    path=$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')
-    cd "$path" || exit
+function cdf {  # short for cdfinder
+    thepath=$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')
+    cd "$thepath" || exit
 }
 
 function remove-orig-files {
