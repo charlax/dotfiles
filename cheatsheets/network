@@ -46,3 +46,6 @@ sudo tcpdump -i any port 53  # check DNS requests
 
 # Get networking speed (macOs)
 networkQuality
+
+# Get current IP for k8s pod (from container)
+hostname -i

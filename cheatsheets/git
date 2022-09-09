@@ -1,6 +1,11 @@
 # Archive (without the .git history)
 git archive -o ~/Downloads/archive.tar.gz --format=tar HEAD
 
+# bisect
+git bisect start  # (from root folder)
+git bisect good $commitid
+git bisect bad $commitid
+
 # List authors sorted by number of commits
 git shortlog -ns
 git shortlog -sn --all

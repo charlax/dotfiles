@@ -6,6 +6,7 @@ kubectl -n $namespace describe service $service_name
 
 # Apply
 kubectl apply -f deployment.yaml
+cat stuff.yaml | kubectl apply -f -
 
 # Get a shell
 kubectl exec -it eks-sample-linux-deployment-65b7669776-m6qxz -n eks-sample-app -- /bin/bash
@@ -25,6 +26,8 @@ kubectl config set-context --current --namespace=<insert-namespace-name-here>
 
 # Follow events
 kubectl get events --watch
+# Filter by object
+kubectl get events --all-namespaces --field-selector involvedObject.kind=Ingress
 
 # Restart
 kubectl scale deployment $name --replicas=0

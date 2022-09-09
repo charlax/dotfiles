@@ -1,0 +1,5 @@
+# Set default project
+gcloud config set project $project_name
+
+# Retrieve kubernetes credentials
+gcloud container clusters get-credentials $cluster_name --region=europe-west1

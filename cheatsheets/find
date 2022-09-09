@@ -6,6 +6,8 @@ find . -type f -newermt '1/30/2017 0:00:00'
 
 # Find Python files
 find . -type f -name '*.py[co]' -o -type d -name __pycache__ -o -type d -name .mypy_cache
+# Or with GNU find:
+gfind . -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
 
 # Find executable files (GNU find)
 gfind . -executable -type f

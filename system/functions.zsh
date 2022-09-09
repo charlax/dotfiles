@@ -13,6 +13,29 @@ function dotfiles {
     cd "$DOTFILES" || exit
 }
 
+function create-note {
+    ts=$(date +"%Y-%m-%d")
+    date_value=$(gdate --iso-8601=seconds)
+    echo "Filename? (without .md)"
+    read title
+    filename="$title $ts.md"
+
+    [[ -s $filename ]] && echo -e "Error: file already exists" && return -1
+
+    echo "---" > $filename
+    echo "title: $title" >> $filename
+    echo "date: $date_value" >> $filename
+    echo "---" >> $filename
+    echo "" >> "$filename"
+    echo "# $title" >> "$filename"
+    echo "" >> "$filename"
+    echo "" >> "$filename"
+
+    echo "$filename"
+    vim "+normal G$" +startinsert "$filename"
+}
+alias n=create-note
+
 # cd into whatever is the forefront Finder window.
 function cdf {  # short for cdfinder
     thepath=$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')
