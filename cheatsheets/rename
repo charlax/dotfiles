@@ -9,3 +9,6 @@ done
 
 # Change extension
 rename 's/.js/.ts' path/*.js
+
+# Prepend
+rename -A "Coffee machine " IMG_*

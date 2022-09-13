@@ -264,6 +264,10 @@ Normal mode commands:
 - `:norm daw` delete word under cursor
 - `:g/toaster/norm gu$` lower cases all lines matching "toaster"
 
+Command with shell:
+
+- `!rm %` deletes current file
+
 ### Example regexes
 
 ```text
