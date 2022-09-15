@@ -49,3 +49,6 @@ networkQuality
 
 # Get current IP for k8s pod (from container)
 hostname -i
+
+# Get current external IP
+curl ifconfig.me

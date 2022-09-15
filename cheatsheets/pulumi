@@ -1,0 +1,9 @@
+# Refresh state before applying
+pulumi up -r
+
+# Export state
+pulumi stack export -f state.tmp.json
+
+# Delete resource
+# Put the resource in single quotes as it sometimes include `$`
+pulumi state detete $resource_urn
