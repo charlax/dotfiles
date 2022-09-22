@@ -13,7 +13,6 @@
 - [Misc](#misc)
   - [Profiling ZSH](#profiling-zsh)
 - [Useful software (not installed by default)](#useful-software-not-installed-by-default)
-- [Useful services](#useful-services)
 - [Checklist before reinstall](#checklist-before-reinstall)
 - [Contributing](#contributing)
 - [Inspiration](#inspiration)
@@ -104,22 +103,18 @@ Once this is done, follow the instruction above (Installation).
 
 ### Apps to install
 
+Manually (see the script in `install/` for automatically installed apps):
+
 - Annotate (App Store)
-- Docker (installed via brew cask)
 - Grammarly
 - Keynote (App Store)
 - Kindle (App Store)
-- LibreOffice (installed by the script)
 - Numbers (App Store)
 - Pages (App Store)
 - Pixelmator (App Store)
-- Spotify (installed by the script)
-- [TextExpander](https://textexpander.com/download/) (not anymore on the app store)
 - Things (App Store)
 - Time Out (App Store)
-- VLC (installed by the script)
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (better to install manually as it requires Max Os X permissions)
-- Visual Studio Code (installed by the script)
 - iA Writer (App Store)
 
 Setup the following apps:
@@ -128,7 +123,6 @@ Setup the following apps:
 - Backup application
 - Chrome
 - Rectangle (give permissions)
-- TextExpander
 - Things cloud
 - Printers
 
@@ -152,20 +146,16 @@ zprof
 
 ## Useful software (not installed by default)
 
-- [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
-
-## Useful services
-
-- [carbon.now.sh](https://carbon.now.sh/): create and share beautiful images of your source code
-- [Excalidraw](https://excalidraw.com/)
-- [cheat.sh/](http://cht.sh/): e.g. `curl cht.sh/ls`
+See [Awesome tools](./doc/awesome-tools.md)
 
 ## Checklist before reinstall
 
 - Backup SSH keys
 - Backup GPG keys
-- Check each app for backup
+- Check each app for backup, go through list in `Applications/`
+  - Anki
 - Backup hidden files in repo
+  - Check `git status --ignored` in dotfiles
 - Backup `/Library/`
 - Backup `~/Library/`
 - Make sure branches in repo are pushed
@@ -174,6 +164,16 @@ zprof
 - Backup photos (too important)
 - Make sure iCloud sync is finished (check status bar in Finder)
 - What's most important? Is it backed up?
+  - Pictures
+- Empty Bin
+- Check VirtualMachines
+
+Folders to check:
+
+```text
+~
+~/CodePerso
+```
 
 ## Contributing
 

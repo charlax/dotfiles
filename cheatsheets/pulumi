@@ -1,8 +1,12 @@
 # Refresh state before applying
 pulumi up -r
 
+# Target
+pulumi up --target $target_urn,$target_urn2
+
 # Export state
 pulumi stack export -f state.tmp.json
+pulumi stack --show-urns
 
 # Delete resource
 # Put the resource in single quotes as it sometimes include `$`
