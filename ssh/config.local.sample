@@ -2,3 +2,7 @@ Host shortname
     User foo
     HostName 1.1.1.1
     IdentityFile ~/.ssh/id_rsa_foo
+
+# Linux 1Password integration
+Host *
+  IdentityAgent ~/.1password/agent.sock

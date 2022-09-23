@@ -4,6 +4,7 @@ cmd+,           Edit config
 ctrl+cmd+,      Reload config
 ctrl+alt+,      Display current config
 ctrl+shift+h    Open scrollback buffer in pager
+ctrl+shift+g    Open last command output in pager
 ctrl+shift+esc  Open kitty shell
 cmd+r           Enter resize mode
 cmd+k           Clear terminal

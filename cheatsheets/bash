@@ -130,3 +130,10 @@ echo "${in%/img}"  # content/stuff
 # Set var for command
 env who=world bash -c 'echo "Hello $who"'
 (export who=world; echo "Hello $who")
+
+# Multiline echo to file with vars
+cat >"$filename" <<EOF
+---
+title: ${title}
+---
+EOF

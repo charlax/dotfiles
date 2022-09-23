@@ -27,6 +27,7 @@
     - [Screenshots](#screenshots)
     - [Search](#search)
     - [Static analysis](#static-analysis)
+    - [System monitor](#system-monitor)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -136,3 +137,7 @@ See [cheatsheets](../cheatsheets/csv)
 ### Static analysis
 
 - [returntocorp/semgrep: Lightweight static analysis for many languages. Find bug variants with patterns that look like source code.](https://github.com/returntocorp/semgrep)
+
+### System monitor
+
+- [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop)

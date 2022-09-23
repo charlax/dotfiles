@@ -17,7 +17,10 @@
   - [Time NTP](#time-ntp)
   - [Window manager (XFCE4)](#window-manager-xfce4)
   - [Install Chrome](#install-chrome)
+  - [Install 1password](#install-1password)
   - [Dotfiles](#dotfiles)
+  - [Troubleshooting](#troubleshooting)
+    - [Can't login (password failed)](#cant-login-password-failed)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -301,10 +304,34 @@ cd google-chrome
 makepkg -is  # part of pacman
 ```
 
+## Install 1password
+
+See [Get the 1Password for Linux app](https://support.1password.com/install-linux/#arch-linux)
+
+```bash
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+git clone https://aur.archlinux.org/1password.git
+cd 1password
+makepkg -si
+```
+
+- Setup 1Password SSH agent
+- Setup 1Password git commit signing
+
 ## Dotfiles
 
 ```bash
 pacman -S zsh zsh-completions kitty
 
 # See https://github.com/charlax/dotfiles for the command to provision
+```
+
+## Troubleshooting
+
+### Can't login (password failed)
+
+Can happen when too many failures:
+
+```bash
+faillock --reset
 ```

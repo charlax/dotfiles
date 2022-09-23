@@ -1,2 +1,6 @@
+# -r recursive
+zip -r filename.zip folder/
+
+# -j (junk)
 # zip multiple files, without their directory names
 zip -j build.zip build/*.csv
