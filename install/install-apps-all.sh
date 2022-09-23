@@ -205,6 +205,8 @@ function install_apt_packages {
 function install_brew_packages {
     log_info "Installing common brew packages"
 
+    echo "You might need to run a command with sudo first, like sudo ls"
+
     if [ "$OSTYPE" = "linux-gnu" ] && ! command -v brew &> /dev/null; then
         echo "Installing homebrew"
         CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -268,14 +270,14 @@ function install_pipx_packages {
     # Optional
 
     # wfuzz        # the web fuzzer
+    # glances      # htop alternative
+    # yq           # jq for YAML, XML, TOML
 
     pipx_packages=(
-        glances      # htop alternative
         ipython      # better python console
         poetry       # package management
         pre-commit   # pre-commit hooks
         vim-vint     # vimscript linter
-        yq           # jq for YAML, XML, TOML
     )
 
     set -o verbose
@@ -285,24 +287,17 @@ function install_pipx_packages {
     set +o verbose
 }
 
-function install_pipenv {
-    log_info "Installing pipenv"
-    pip install --user pipenv
-}
-
-
 function update_all {
     log_info "Running update script to install the rest"
     update-everything
 }
 
 # For poetry autocompletions
-mkdir ~/.zfunc
+mkdir -p ~/.zfunc
 
 install_brew_packages
 install_vim
 install_pipx_packages
-install_pipenv
 update_all
 
 log_info "Done. If this is a fresh install, you might want to logout/login"

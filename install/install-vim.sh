@@ -9,6 +9,6 @@ set -e
 log_info "Finishing vim installation"
 
 set -v
-go get -u github.com/nsf/gocode
+go install github.com/nsf/gocode@latest
 
 "$current_dir/../bin/update-vim-plugins"
