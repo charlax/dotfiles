@@ -137,9 +137,12 @@ augroup END
 " =======================================================
 
 " Inserting on enter is a bit annoying because deoplete is async
-call deoplete#custom#option({
-    \ 'on_insert_enter': v:false,
-    \ })
+" Does not work?
+if exists('*deoplete#custom#option')
+    call deoplete#custom#option({
+        \ 'on_insert_enter': v:false,
+        \ })
+endif
 
 " Disable Deoplete when selecting multiple cursors starts
 function! Multiple_cursors_before()
