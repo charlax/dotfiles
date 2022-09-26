@@ -76,6 +76,7 @@ qgic         rewraps the comment block (thanks to vim-textobj-comment)
 
 ```raw
 # Delete empty lines
+# g selects for action, d deletes
 :g/^$/d
 
 # Insert a blank line after each line
