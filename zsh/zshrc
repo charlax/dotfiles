@@ -285,5 +285,8 @@ if _has asdf; then
     . $(brew --prefix asdf)/asdf.sh
 fi
 
+# Can be removed after 2023?
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 # Activate for profiling (should remain at the end)
 # zprof
