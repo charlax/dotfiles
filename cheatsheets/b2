@@ -1,0 +1,10 @@
+# B2 (Backblaze) storage
+
+# Setup
+b2 authorize_account
+
+# Upload a file
+b2 upload_file $bucket_name $local_file prefix/$filename
+
+# Sync
+b2 sync --excludeRegex '(.*\.DS_Store)|(.*\.Spotlight-V100)' ./ b2://$bucket_name/prefix/
