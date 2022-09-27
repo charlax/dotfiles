@@ -82,8 +82,9 @@ whoami
 brew install git python3
 
 # Create an SSH key and add it to Github
-ssh-keygen -t rsa -b 4096 -C "youremail@example.com"
-pbcopy < ~/.ssh/id_rsa.pub  # then add it to Github
+ssh-keygen -t ed25519 -C "youremail@example.com"
+pbcopy < ~/.ssh/id_rsa.pub  
+# Then add it to Github
 
 # Verify you can connect to github:
 ssh -T git@github.com
