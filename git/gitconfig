@@ -44,6 +44,10 @@
 # [url "ssh://git@gitlab.com:"]
 #     insteadOf = https://gitlab.com
 
+[user]
+    name = Charles-Axel Dein
+    email = 120501+charlax@users.noreply.github.com
+
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
 
