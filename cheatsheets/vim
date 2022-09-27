@@ -359,6 +359,9 @@ Check [../doc/vim](../doc/vim.md).
 ```bash
 # log verbose to file
 vim -V9runtime.log
+
+# start vim without vimrc
+vim -u NONE
 ```
 
 ### Errors with deoplete

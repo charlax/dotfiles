@@ -49,6 +49,8 @@ Otherwise, see Installation section below.
 ```bash
 DOTFILES="$HOME/.dotfiles"
 git clone https://github.com/charlax/dotfiles.git $DOTFILES
+# or
+git clone git@github.com:charlax/dotfiles.git $DOTFILES
 
 # If you want only dotfiles
 python3 $DOTFILES/install.py
@@ -83,7 +85,7 @@ brew install git python3
 
 # Create an SSH key and add it to Github
 ssh-keygen -t ed25519 -C "youremail@example.com"
-pbcopy < ~/.ssh/id_rsa.pub  
+pbcopy < ~/.ssh/id_rsa.pub
 # Then add it to Github
 
 # Verify you can connect to github:

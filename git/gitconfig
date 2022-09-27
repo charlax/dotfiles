@@ -41,8 +41,8 @@
     name = Gettext merge driver
     driver = git merge-po %O %A %B
 
-[url "ssh://git@gitlab.com:"]
-    insteadOf = https://gitlab.com
+# [url "ssh://git@gitlab.com:"]
+#     insteadOf = https://gitlab.com
 
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
@@ -59,7 +59,6 @@
 [user]
     name = Charles-Axel Dein
     email = 120501+charlax@users.noreply.github.com
-    signingkey = 8FB355D70B073558BA1EC2F864C00027F3375D70
 
 [pull]
     rebase = true
@@ -70,10 +69,13 @@
     required = true
 [rebase]
     autoStash = true
-[gpg]
-    program = gpg
-[commit]
-    gpgsign = true
+
+; [gpg]
+;     program = gpg
+
+; [commit]
+;     gpgsign = true
+
 [init]
     defaultBranch = main
 

@@ -24,8 +24,12 @@ function set_default_shell() {
 }
 
 function install_osx_packages {
+    log_info "install_osx_packages"
+
     # Optional
     # john-jumbo       # john the ripper
+    # mysql
+    # redis
 
     packages=(arp-scan   # ARP scanner
         automake
@@ -43,16 +47,14 @@ function install_osx_packages {
         fzf              # fuzzy finder https://github.com/junegunn/fzf
         git
         gnupg
-        hashcat          # advanced pasword recovery
+        hashcat          # advanced password recovery
         hexyl            # hex viewer https://github.com/sharkdp/hexyl
         highlight
         htop             # process viewer https://htop.dev/
         httpie           # CLI http client
         jq               # json formatting
-        macvim
         make             # newer Makefile
         miller           # like awk, sed, cut, join, and sort for CSV, TSV, and tabular JSON https://github.com/johnkerl/miller
-        mysql
         ncdu             # ncurses disk usage https://dev.yorhel.nl/ncdu
         nmap             # port scanner
         node
@@ -61,10 +63,8 @@ function install_osx_packages {
         pinentry-mac     # Use Keychain for GPG (Mac-only)
         python
         python3
-        redis
         rename           # mass rename
         rg               # ripgrep, fast file searching https://github.com/BurntSushi/ripgrep
-        rmtrash
         shellcheck       # static analysis for shell scripts
         shfmt            # shell parser, formatter, and interpreter https://github.com/mvdan/sh
         telnet
@@ -78,39 +78,41 @@ function install_osx_packages {
 
     brew update > /dev/null
 
-    log_info "Installing brew packages"
+    log_info "Installing brew packages for macOS"
 
     brew update
     brew install "${packages[@]}"
 
     printf "\nInstalling fzf shell bindings"
-    /usr/local/opt/fzf/install
+    [[ -e /usr/local/opt/fzf/install ]] && /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
+    [[ -e /opt/homebrew/opt/fzf/install ]] && /opt/homebrew/opt/fzf/install --key-bindings --completion --no-update-rc
 
     brew tap homebrew/cask-fonts
     brew tap espanso/espanso
 
-    apps=(1password
-        adobe-acrobat-reader
-        # adoptopenjdk8  unavailable??
-        calibre
-        discord
-        docker
-        expanso             # text expander
-        google-chrome
+    # 1password
+    # adobe-acrobat-reader (requires Rosetta 2)
+    # adoptopenjdk8  unavailable??
+    # calibre
+    # discord
+    # docker check if installed first
+    # google-chrome (check if installed)
+    # homebrew/cask-versions/google-chrome-canary
+    # libreoffice
+    # mactex
+    # openvpn-connect
+    # postman
+    # sequel-pro
+    # typora
+    # vagrant             # useful for installing kali - requires Rosetta 2
+
+    apps=(espanso             # text expander
         firefox
-        font-roboto-nerd-font
-        homebrew/cask-versions/google-chrome-canary
-        iterm2
-        libreoffice
-        mactex
-        openvpn-connect
-        postman
+        font-roboto-mono-nerd-font
+        kitty
+        macvim
         rectangle           # window management
-        sequel-pro
         spotify
-        transmission
-        typora
-        vagrant             # useful for installing kali
         visual-studio-code
         vlc
         whatsapp
@@ -118,12 +120,8 @@ function install_osx_packages {
         zettlr              # Zettlekasten method
         )
 
+    log_info "Installing brew cask packages for macOS"
     brew install --cask "${apps[@]}"
-
-    # Specify the preferences directory
-    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/iterm"
-    # Tell iTerm2 to use the custom preferences in the directory
-    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
     rectangle_config="$HOME/Library/Preferences/com.knollsoft.Rectangle.plist"
     if [ ! -L "$rectangle_config" ]; then
@@ -138,8 +136,6 @@ function install_apt_packages {
     local packages
 
     log_info "Installing apt packages"
-
-    # TODO: move most of this to install-apps-all
 
     # shellcheck disable=SC2086
     sudo DEBIAN_FRONTEND=noninteractive $APT_GET update > /dev/null
@@ -294,6 +290,10 @@ function update_all {
 
 # For poetry autocompletions
 mkdir -p ~/.zfunc
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    install_osx_packages
+fi
 
 install_brew_packages
 install_vim

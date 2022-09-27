@@ -1,5 +1,8 @@
 # https://devhints.io/homebrew
 
+# Add brew to PATH etc.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # List versions you have
 brew list --version python3
 

@@ -5,7 +5,7 @@ Host *
   AddKeysToAgent yes
   IgnoreUnknown UseKeychain
   UseKeychain yes
-  IdentityFile ~/.ssh/id_rsa
+  # IdentityFile ~/.ssh/id_rsa
 
 # SSH over Session Manager
 host i-* mi-*

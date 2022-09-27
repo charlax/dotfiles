@@ -1,11 +1,10 @@
 exclude: '^zsh/iterm2_shell_integration\.zsh$'
 
 repos:
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.8.0.4
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
     hooks:
     - id: shellcheck
-      args: ["-x"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.3.0
     hooks:
@@ -21,7 +20,7 @@ repos:
     hooks:
     - id: vint
   - repo: https://github.com/psf/black
-    rev: 22.6.0
+    rev: 22.8.0
     hooks:
     - id: black
   - repo: https://gitlab.com/pycqa/flake8
