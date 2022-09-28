@@ -153,29 +153,40 @@ See [Awesome tools](./doc/awesome-tools.md)
 
 ## Checklist before reinstall
 
-- Backup SSH keys
+- Run `ncdu`
+- Backup SSH keys (`ls ~/.ssh`)
 - Backup GPG keys
+  - Check keys: `gpg --list-secret-keys --keyid-format LONG`
+  - Export: `gpg -o ~/Downloads/private.gpg --export-options backup --export-secret-keys 120501+charlax@users.noreply.github.com`
 - Check each app for backup, go through list in `Applications/`
   - Anki
 - Backup hidden files in repo
   - Check `git status --ignored` in dotfiles
-- Backup `/Library/`
-- Backup `~/Library/`
-- Make sure branches in repo are pushed
-- Search for "what folders to backup"
-- Search for "checklist before factory reset"
+- Check folders listed below
+- Make sure branches in repo are pushed (use `clean-up-weekly`)
+- Search the Internet for "what folders to backup"
+- Search the Internet for "checklist before factory reset"
 - Backup photos (too important)
 - Make sure iCloud sync is finished (check status bar in Finder)
 - What's most important? Is it backed up?
   - Pictures
 - Empty Bin
 - Check VirtualMachines
+- [Check Apple's advices](https://support.apple.com/en-us/HT201065)
+
+Before factory reset:
+
+- [ ] Sign out of iCloud account
+- [ ] Disconnect Bluetooth devices
+- [ ] Sign out of iMessages
 
 Folders to check:
 
 ```text
+/Library
 ~
 ~/CodePerso
+~/Library
 ```
 
 ## Contributing

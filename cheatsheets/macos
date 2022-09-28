@@ -7,6 +7,9 @@ Reboot then Command+R
 If M1: shut down, then press and hold On button
 If it does not work: press shortly, then press and hold On button until it says it's loading other options.
 
+# Reset NVRAM
+Turn on your Mac and immediately press and hold these four keys together: Option, Command, P, and R
+
 # Network
 
 # List all bonjour devices

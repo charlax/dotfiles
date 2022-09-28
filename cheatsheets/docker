@@ -1,5 +1,17 @@
-# Build image
+# Build
+docker build -f Dockerfile.dev -t image/tag .
+
+# --platform linux/arm64
+
+# Build and run image
 docker build -t thetest/thename:latest . && docker run -it --rm --name test thetest/thename:latest
+
+# Empty BUILDKIT mount type=cache
+docker builder prune --filter type=exec.cachemount
+
+# List supported platform
+docker buildx ls
+
 # Override entrypoint
 docker run -it --rm --name test --entrypoint /bin/bash test/top:latest
 
@@ -24,6 +36,9 @@ docker history $IMAGE_ID
 
 # Get labels, network, etc. for running container
 docker inspect $CONTAINER_ID
+
+# Get all arch and OS
+for i in `docker ps --format "{{.Image}}"` ; do docker image inspect $i --format "$i -> {{.Architecture}} : {{.Os}}" ;done
 
 # Show all ports
 docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a
@@ -69,9 +84,6 @@ docker compose exec db /bin/sh  # note that -i and -t are default
 
 # Delete all images, containers, volumes, networks for all stopped containers and unused images
 docker system prune -a
-
-# Empty BUILDKIT mount type=cache
-docker builder prune --filter type=exec.cachemount
 
 # Backup a volume mounted in api at /mnt
 docker run --rm --volumes-from api -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /mnt
