@@ -1,0 +1,5 @@
+# Get app id
+osascript -e 'id of app "iA Writer"'
+
+# Use iA Writer for all markdown files
+duti -s pro.writer.mac .md all
