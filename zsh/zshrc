@@ -11,6 +11,9 @@ _has() {
 # Shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
+# We source the path first (needed for zoxide etc.)
+source $ZSH/system/path.zsh
+
 # ZSH Modules
 # ===========
 

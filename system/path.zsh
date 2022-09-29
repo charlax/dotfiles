@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [[ "$_PATH_SOURCED" = 1 ]]; then
+    return 0
+fi
+export _PATH_SOURCED=1
+
 # Brew on Linux
 if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
   # shellcheck disable=SC2046

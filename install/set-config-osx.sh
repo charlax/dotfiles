@@ -11,6 +11,7 @@
 # -- change setting
 # defaults read > after
 # diff before after
+# vimdiff before after
 # Google the name
 
 # shellcheck source=./helpers/setup.sh
@@ -36,7 +37,7 @@ sudo nvram SystemAudioVolume=" "
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Use Dark mode.
-defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
+# defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
 
 # Sound > Play user interface sound effects = false
 defaults write com.apple.systemsound 'com.apple.sound.uiaudio.enabled' -int 0
@@ -75,8 +76,7 @@ chflags nohidden ~/Library
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 # Use list view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-defaults write com.apple.Finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Do not spawn tabs
 defaults write com.apple.Finder FinderSpawnTab -bool false
