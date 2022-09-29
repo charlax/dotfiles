@@ -5,6 +5,7 @@ import errno
 import logging
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -21,6 +22,14 @@ CODE_PERSO = Path("~/CodePerso").expanduser()
 ESPANSO_REPO = "git@github.com:charlax/config-espanso.git"
 ESPANSO_DEST = CODE_PERSO / "espanso-config"
 ESPANSO_DEFAULT_CONFIG = Path("~/Library/Application Support/espanso").expanduser()
+
+REPOS: List[str] = [
+    "git@github.com:charlax/notes.git",
+    "git@github.com:charlax/professional-programming.git",
+    "git@github.com:charlax/engineering-management.git",
+    "git@github.com:charlax/entrepreneurship-resources.git",
+    "git@github.com:charlax/python-education.git",
+]
 
 CONFIGURATION_FILES = (
     # src, dst
@@ -191,6 +200,12 @@ def setup_espanso() -> None:
     ln(ESPANSO_DEST, path, force=True)
 
 
+def clone_repos() -> None:
+    for r in REPOS:
+        dest = re.search(r"/([\w-]+).git$", r).group(1)
+        clone_or_update(r, CODE_PERSO / dest)
+
+
 def main(args) -> int:
     """Install the dotfiles."""
     if not args.skip_common:
@@ -209,6 +224,9 @@ def main(args) -> int:
     if args.with_espanso:
         setup_espanso()
 
+    if args.with_clones:
+        clone_repos()
+
     print(color.green("\nInstall complete."))
 
     return 0
@@ -220,6 +238,7 @@ if __name__ == "__main__":
     parser.add_argument("--with-apps", action="store_true", help="Install apps")
     parser.add_argument("--with-espanso", action="store_true", help="Setup Espanso")
     parser.add_argument("--with-settings", action="store_true", help="Run settings")
+    parser.add_argument("--with-clones", action="store_true", help="Clone repos")
     parser.add_argument("--skip-common", action="store_true", help="Skip common steps")
 
     parser.add_argument(
@@ -238,6 +257,7 @@ if __name__ == "__main__":
         args.with_apps = True
         args.with_settings = True
         args.with_espanso = True
+        args.with_clones = True
 
     os.environ["DOTFILES"] = str(DOTFILES_PATH)
 
