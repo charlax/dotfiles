@@ -43,6 +43,7 @@ CONFIGURATION_FILES = (
     "tmux/tmux.conf",
     "zsh/zshenv",
     "zsh/zshrc",
+    "pandoc",
     ("asdf/tool-versions", ".tool-versions"),
     ("config/cheat", ".config/cheat"),
     ("config/kitty", ".config/kitty"),
@@ -83,24 +84,32 @@ def ln(
 
     Same order as ln: dest is where the link will be created, src must exists
     """
-    if dry_run:
-        print(f"Would have symlinked '{src!s}' to '{dest!s}'")
-        return
 
     os.makedirs(os.path.dirname(dest), exist_ok=True)
 
     if os.path.exists(dest):
-        if os.path.islink(dest) and os.readlink(dest) == src:
-            # All good
+        try:
+            actual = Path(os.readlink(dest))
+        except OSError:
+            actual = None
+
+        if actual == src:
+            # All good, destination matches
             return
 
         if not force:
             print(
-                color.red(f"Not symlinking {dest!r}: already exists and not matching")
+                color.red(
+                    f"Not symlinking {src!s}->{dest!s}: "
+                    "already exists and not matching: "
+                    f"dest={actual}"
+                )
             )
             return
 
-    print(f"Symlinking '{src!s}' -> '{dest!s}'")
+    print(f"Symlinking '{src!s}' -> '{dest!s}' {'DRY_RUN' if dry_run else ''}")
+    if dry_run:
+        return
     try:
         os.symlink(src, dest)
     except OSError as e:
