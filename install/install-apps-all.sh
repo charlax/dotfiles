@@ -24,6 +24,9 @@ function set_default_shell() {
 }
 
 function install_osx_packages {
+    local packages
+    local apps
+
     log_info "install_osx_packages"
 
     # Optional
@@ -107,17 +110,18 @@ function install_osx_packages {
     # typora
     # vagrant             # useful for installing kali - requires Rosetta 2
 
-    apps=(espanso             # text expander
-        firefox
+    apps=(anki              # flash cards
+        espanso             # text expander
+        firefox             # browser
         font-roboto-mono-nerd-font
-        kitty
-        macvim
+        kitty               # terminal
+        macvim              # text editor
         rectangle           # window management
-        spotify
-        visual-studio-code
-        vlc
+        spotify             # music
+        visual-studio-code  # text editor
+        vlc                 # video player
         whatsapp
-        wireshark
+        wireshark           # network sniffer
         zettlr              # Zettlekasten method
         )
 
@@ -214,34 +218,35 @@ function install_brew_packages {
 
     # brew tap lucagrulla/tap # for cw
 
-    # asciinema              # record CLI session
-    # asdf                   # manage multiple versions of node, etc.
-    # awscli                 # AWS command line
-    # azure-cli              # Azure command line
-    # binwalk                # inspect files
-    # cloc                   # count lines of code
-    # ctop                   # htop for docker container https://github.com/bcicen/ctop
-    # cw                     # AWS cloudwatch logs
-    # gh                     # Github cli
-    # gnu-sed                # GNU sed
-    # hexyl                  # command-line hex viewer
-    # hyperfine              # benchmark took https://github.com/sharkdp/hyperfine
-    # imagemagick            # convert images
-    # leiningen              # automate Clojure projects
-    # nvim                   # neovim
-    # rustup                 # rust toolchain, then run rustup-init
-    # sqlmap                 # sql injection tool
-    # terraform              # infrastructure management
-    # tokei                  # cloc https://github.com/XAMPPRocky/tokei
+    # asciinema       # record CLI session
+    # asdf            # manage multiple versions of node, etc.
+    # awscli          # AWS command line
+    # azure-cli       # Azure command line
+    # clojure         # the programming language
+    # ctop            # htop for docker container https://github.com/bcicen/ctop
+    # cw              # AWS cloudwatch logs
+    # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
+    # leiningen       # automate Clojure projects
+    # nvim            # neovim
+    # rustup          # rust toolchain, then run rustup-init
+    # sqlmap          # sql injection tool
+    # terraform       # infrastructure management
+    # tokei           # cloc https://github.com/XAMPPRocky/tokei
     # veeso/termscp/termscp  # terminal UI file transfer (e.g. sftp) https://veeso.github.io/termscp
 
     packages=(bandwhich # bandwith utilization https://github.com/imsnif/bandwhich
+        binwalk         # inspect files
         broot           # better tree https://github.com/Canop/broot
+        cloc            # count lines of code
         csvq            # query csv from command line
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
         git-delta       # better diff viewer https://github.com/dandavison/delta
+        gnu-sed         # GNU sed
+        gh              # Github cli
         go              # golang
+        hexyl           # command-line hex viewer
+        imagemagick     # convert images
         pipx            # install and run python applications in environments
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.

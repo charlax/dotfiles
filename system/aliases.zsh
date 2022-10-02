@@ -18,6 +18,10 @@ else
     alias la='ls -A --color'
 fi
 
+c () {
+    cd "$CODE_PATH/$1" || return
+}
+
 if command -v kubectl > /dev/null 2>&1; then
     alias k="kubectl"
 fi
@@ -125,7 +129,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias ff='firefox'
 
     ia () {
-        touch "$1" && open -a "IA Writer" $1
+        touch "$1" && open -a "IA Writer" "$1"
     }
 
     alias iawriter='open -a "IA Writer"'

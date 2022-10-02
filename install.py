@@ -25,6 +25,7 @@ ESPANSO_DEFAULT_CONFIG = Path("~/Library/Application Support/espanso").expanduse
 
 REPOS: List[str] = [
     "git@github.com:charlax/notes.git",
+    "git@github.com:charlax/website.git",
     "git@github.com:charlax/professional-programming.git",
     "git@github.com:charlax/engineering-management.git",
     "git@github.com:charlax/entrepreneurship-resources.git",
@@ -215,8 +216,20 @@ def clone_repos() -> None:
         clone_or_update(r, CODE_PERSO / dest)
 
 
+def install_minimal(os_: str) -> None:
+    """Install a minimal environment to streamline debugging install."""
+    if os_ == "Darwin":
+        packages = ["zsh", "zsh-completions", "rg", "make", "cheat", "fzf"]
+        apps = ["macvim"]
+        # Check brew exists and is installed
+        run(["brew", "-v"])
+        run(["brew", "install", *packages])
+        run(["brew", "install", "--cash", *apps])
+
+
 def main(args) -> int:
     """Install the dotfiles."""
+    os_ = platform.system()
     if not args.skip_common:
         clone_or_update(REPOSITORY, DOTFILES_PATH)
         symlink_files(args)
@@ -225,6 +238,7 @@ def main(args) -> int:
             os.makedirs(os.path.expanduser(d), exist_ok=True)
 
     if args.with_apps:
+        install_minimal(os_)  # should be first
         install_apps()
 
     if args.with_settings:
