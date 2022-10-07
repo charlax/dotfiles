@@ -105,6 +105,7 @@ done
 
 # Show sound icon in menu bar
 defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
+defaults write com.apple.controlcenter "NSStatusItem Visible Sound" 1
 
 # ==============================================================================
 # Dock

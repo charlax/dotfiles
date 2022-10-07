@@ -40,7 +40,6 @@ function install_osx_packages {
         cheat            # cheatsheets for commands
         coreutils
         ctags
-        docker-completion
         dos2unix
         duti             # define default app on macOS https://github.com/moretension/duti
         editorconfig
@@ -99,7 +98,7 @@ function install_osx_packages {
     # adoptopenjdk8  unavailable??
     # calibre
     # discord
-    # docker check if installed first
+    # docker (check if installed, not for large companies)
     # google-chrome (check if installed)
     # homebrew/cask-versions/google-chrome-canary
     # libreoffice
@@ -116,7 +115,9 @@ function install_osx_packages {
         font-roboto-mono-nerd-font
         kitty               # terminal
         macvim              # text editor
+        pritunl             # open source VPN client
         rectangle           # window management
+        shottr              # screenshot tool
         spotify             # music
         visual-studio-code  # text editor
         vlc                 # video player
