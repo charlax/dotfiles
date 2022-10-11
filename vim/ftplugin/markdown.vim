@@ -17,3 +17,10 @@ setl comments=b:*,b:-,b:+,b:1.,n:>
 " inoremap <expr> <s-tab> getline('.') =~# '^\s*-' ? '<c-d>' : '<tab>'
 nnoremap <S-Tab> <<
 nnoremap <Tab> >>
+
+" Do not conceal code blocks
+let g:vim_markdown_conceal_code_blocks = 0
+" See conceallevel for help
+setl conceallevel=2
+
+let g:vim_markdown_new_list_item_indent = 2

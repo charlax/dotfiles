@@ -127,6 +127,11 @@ endif
 
 Plug 'deoplete-plugins/deoplete-jedi'
 
+" Tabular needs to be loaded first
+Plug 'godlygeek/tabular'
+" See help at https://github.com/preservim/vim-markdown
+Plug 'preservim/vim-markdown'
+
 let g:deoplete#enable_at_startup = 1
 
 " Initialize plugin system
