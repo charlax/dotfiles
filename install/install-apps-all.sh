@@ -248,6 +248,7 @@ function install_brew_packages {
         go              # golang
         hexyl           # command-line hex viewer
         imagemagick     # convert images
+        k9s             # monitor kubernetes
         pipx            # install and run python applications in environments
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.

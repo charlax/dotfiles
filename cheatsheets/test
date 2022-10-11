@@ -1,8 +1,12 @@
+[    # traditional test command
+[[   # upgraded test
+
 # true if file exists and has size greater than zero.
 [[ -s /toaster.conf ]]
 
 # true if variable is *not* empty
-[[ -s "" ]]
+[[ -s "$var" ]]
+[ -n "$var" ]]
 
 # and
 [[ -s "" ]] && [[ ... ]]

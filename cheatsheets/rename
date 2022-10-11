@@ -2,6 +2,9 @@
 # Other tools:
 # - https://github.com/marcusbuffett/pipe-rename
 
+# rename options
+# -n     dry run
+
 # You can also use
 for f in *.js; do
     mv -- "$f" "${f%.js}.ts"
