@@ -1,6 +1,8 @@
 # dd just read and writes file
 
 # Useless use of dd: https://www.vidarholen.net/contents/blog/?p=479
+# Another one:
+# https://eklitzke.org/the-cult-of-dd
 
 # Write myfile.iso to a USB drive
 dd if=myfile.iso of=/dev/sdb bs=1M

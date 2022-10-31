@@ -1,0 +1,4 @@
+# Match multiple terms
+"uuid" and "stuff"
+
+# https://www.elastic.co/guide/en/kibana/current/kuery-query.html

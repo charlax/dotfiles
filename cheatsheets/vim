@@ -79,6 +79,10 @@ qgic         rewraps the comment block (thanks to vim-textobj-comment)
 # g selects for action, d deletes
 :g/^$/d
 
+# Delete multiple empty lines
+# e ignores non matching
+:%s/\n\{3,}/\r\r/e
+
 # Insert a blank line after each line
 :g/^/norm o
 

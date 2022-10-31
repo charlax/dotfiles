@@ -14,4 +14,11 @@ rg $query -g *.env
 rg -l $query
 
 # Options
---max-filesize 100K  # exclude large files
+--max-filesize 100K    # exclude large files
+-w                     # only show word match (eq. to "\b$word\b")
+-t java                # only search java files
+-T java                # exclude java files
+--sort path            # sort by file path (ascending)
+--sortr modified       # sort by modified time (descending)
+-M/--max-columns $num  # don't print lines longer than $num
+-g '!**test**'         # glob: ignore path that this *test* glob

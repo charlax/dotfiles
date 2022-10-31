@@ -94,7 +94,6 @@ function install_osx_packages {
     brew tap espanso/espanso
 
     # 1password
-    # adobe-acrobat-reader (requires Rosetta 2)
     # adoptopenjdk8  unavailable??
     # calibre
     # discord
@@ -106,24 +105,24 @@ function install_osx_packages {
     # openvpn-connect
     # postman
     # sequel-pro
-    # typora
     # vagrant             # useful for installing kali - requires Rosetta 2
 
-    apps=(anki              # flash cards
-        espanso             # text expander
-        firefox             # browser
+    apps=(anki               # flash cards
+        adobe-acrobat-reader # necessary for some docs
+        espanso              # text expander
+        firefox              # browser
         font-roboto-mono-nerd-font
-        kitty               # terminal
-        macvim              # text editor
-        pritunl             # open source VPN client
-        rectangle           # window management
-        shottr              # screenshot tool
-        spotify             # music
-        visual-studio-code  # text editor
-        vlc                 # video player
+        kitty                # terminal
+        macvim               # text editor
+        pritunl              # open source VPN client
+        rectangle            # window management
+        shottr               # screenshot tool
+        spotify              # music
+        visual-studio-code   # text editor
+        vlc                  # video player
         whatsapp
-        wireshark           # network sniffer
-        zettlr              # Zettlekasten method
+        wireshark            # network sniffer
+        zettlr               # Zettlekasten method
         )
 
     log_info "Installing brew cask packages for macOS"
