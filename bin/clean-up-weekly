@@ -59,7 +59,7 @@ def empty_temp_dirs(is_dry_run: bool = False):
         if is_dry_run:
             continue
 
-        run(f"rmtrash {d}/*")
+        run(f"trash {d}/*")
 
 
 def check_for_uncommitted_code(is_dry_run: bool = False) -> None:

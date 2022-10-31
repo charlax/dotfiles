@@ -73,6 +73,7 @@ function install_osx_packages {
         telnet
         tldr             # simplified and community-driven man pages
         tmux             # terminal multiplexer
+        trash            # move files to the trash
         tree             # display file list in tree
         wget
     )
