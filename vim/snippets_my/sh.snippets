@@ -1,6 +1,12 @@
 snippet skeletton_script "Bash script skeletton" b
 #!/usr/bin/env bash
-set -euo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
+
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
 
 function usage() {
     echo "$(basename "$0") [--help] [--publish]"

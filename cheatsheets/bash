@@ -5,6 +5,7 @@
 # https://github.com/onceupon/Bash-Oneliner
 
 # https://betterdev.blog/minimal-safe-bash-script-template/
+# https://sharats.me/posts/shell-script-best-practices/
 
 # while loop
 while true; do
