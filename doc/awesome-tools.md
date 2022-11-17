@@ -5,6 +5,7 @@
 - [Awesome tools](#awesome-tools)
   - [List of tools](#list-of-tools)
   - [By topic](#by-topic)
+    - [Analytics](#analytics)
     - [Binary](#binary)
     - [Calculator](#calculator)
     - [CSV](#csv)
@@ -39,6 +40,10 @@
 
 ## By topic
 
+### Analytics
+
+- [dcmoura/spyql: Query data on the command line with SQL-like SELECTs powered by Python expressions](https://github.com/dcmoura/spyql)
+
 ### Binary
 
 - [wader/fq: jq for binary formats](https://github.com/wader/fq)
@@ -49,7 +54,7 @@
 
 ### CSV
 
-See [cheatsheets](../cheatsheets/csv)
+See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 ### Datetimes
 

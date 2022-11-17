@@ -57,8 +57,6 @@ Plug 'majutsushi/tagbar'
 " A tree explorer plugin
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 
-Plug 'mileszs/ack.vim'
-
 Plug 'sukima/xmledit', { 'for': 'xml' }
 
 Plug 'tomtom/tlib_vim'
