@@ -285,7 +285,7 @@ done
 # asdf (if it's there)
 # this needs to be at the end because it updates $PATH
 if _has asdf; then
-    . $(brew --prefix asdf)/asdf.sh
+    . $(brew --prefix asdf)/libexec/asdf.sh
 fi
 
 # Can be removed after 2023?

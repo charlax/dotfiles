@@ -5,6 +5,7 @@
 - [Reveal.js](#revealjs)
   - [Images & videos](#images--videos)
   - [Background](#background)
+  - [Instal](#instal)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -22,4 +23,10 @@
 
 ```markdown
 <!-- .slide: data-background-image="./img/foo.jpg" data-background-opacity="0.4" -->
+```
+
+## Instal
+
+```bash
+npm install -g reveal-md
 ```
