@@ -104,8 +104,6 @@ alias jcat='python -m json.tool'
 alias cal='python -m calendar'
 # pretty print standard input
 alias pprint='python -c "import pprint, sys, ast; pprint.pprint(ast.literal_eval(sys.stdin.read()))"'
-# pretty print clipboard
-alias prp="pipenv run python"
 
 # ctags
 alias ctg='g -l --python . | ctags -L - -f tags'

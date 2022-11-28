@@ -165,7 +165,6 @@ function install_apt_packages {
         htop            # process managemenent
         jq              # json query
         pandoc
-        pipx            # install Python applications in environments
         python3-pip
         python3-venv
         ripgrep         # recursively searches dir for a regex pattern
