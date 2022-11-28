@@ -1,2 +1,6 @@
 # Create gif from video
-gifify screencast.mkv -o screencast.gif --resize 800:-1
+# prereq: brew install gifify
+# screencast will become screencast.gif
+gifify -o screencast --resize 800:-1 screencast.mkv
+
+# See also: ffmpeg, gifify

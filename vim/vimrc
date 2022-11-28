@@ -70,8 +70,8 @@ Plug 'vim-scripts/LaTeX-Box', { 'for': 'latex' }
 
 Plug 'vim-scripts/applescript.vim', { 'for': 'applescript' }
 
-" Asynchronous Lint Engine
-Plug 'w0rp/ale'
+" Asynchronous Lint Engine with LSP support
+Plug 'dense-analysis/ale'
 
 " Automatically discover and properly update ctags files on save
 Plug 'ludovicchabant/vim-gutentags'

@@ -357,7 +357,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 Check [../doc/vim](../doc/vim.md).
 
 ```vimscript
-:messages       " show latest messages
+:messages                       " show latest messages
+:let @* = execute('messages')   " copy messages to clipboard
 ```
 
 ```bash
@@ -369,6 +370,8 @@ vim -u NONE
 ```
 
 ### Errors with deoplete
+
+Check [../doc/vim](../doc/vim.md).
 
 - Make sure you're not within an activated virtualenv where Python packages `pynvim` and `neovim` are not installed.
 
