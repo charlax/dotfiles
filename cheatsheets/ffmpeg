@@ -19,3 +19,6 @@ ffmpeg -t 3 -i input.webm -vf "crop=334:720,fps=10,scale=1024:-1:flags=lanczos,s
 
 # See also:
 # gifify
+
+# Resources:
+# https://img.ly/blog/ultimate-guide-to-ffmpeg/

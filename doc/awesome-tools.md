@@ -17,6 +17,7 @@
     - [File sharing](#file-sharing)
     - [Filesystem watchers](#filesystem-watchers)
     - [Git](#git)
+    - [HTML](#html)
     - [HTTP client](#http-client)
     - [JSON](#json)
     - [Logs (reading)](#logs-reading)
@@ -63,6 +64,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Diagram
 
 - [Excalidraw](https://excalidraw.com/)
+- [Text to diagram](https://text-to-diagram.com/)
 
 ### Disk usage
 
@@ -93,6 +95,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Git
 
 - [tig(1) · Tig - Text-mode interface for Git](https://jonas.github.io/tig/doc/tig.1.html)
+
+### HTML
+
+- [ericchiang/pup: Parsing HTML at the command line](https://github.com/ericchiang/pup)
 
 ### HTTP client
 

@@ -6,3 +6,7 @@ convert -geometry x25 src/image1.png out/image1.png
 
 # convert svg to png
 convert -density 1200 -resize 2000x2000 file.svg file.png
+
+# mass convert .heic to jpg
+mogrify -format jpg *.HEIC
+find . -type f -iname '*.heic' -exec sh -c 'mogrify -format jpg "{}"' \;
