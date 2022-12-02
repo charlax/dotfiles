@@ -271,7 +271,10 @@ bindkey '^Z' fancy-ctrl-z
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
 if _has kubectl; then
-    source <(kubectl completion zsh)
+    # source <(kubectl completion zsh)
+    # kubectl tries to contact the current cluster which might be super slow
+    # with this impossible proxy, it won't!
+    source <(eval HTTPS_PROXY=1:1 kubectl completion zsh)
 fi
 
 # Load other files
