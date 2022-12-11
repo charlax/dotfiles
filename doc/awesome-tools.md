@@ -30,6 +30,7 @@
     - [Search](#search)
     - [Static analysis](#static-analysis)
     - [System monitor](#system-monitor)
+    - [Web/HTTP](#webhttp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -152,3 +153,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### System monitor
 
 - [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop)
+
+### Web/HTTP
+
+- [cloudentity/oauth2c: User-friendly CLI for OAuth2](https://github.com/cloudentity/oauth2c)
