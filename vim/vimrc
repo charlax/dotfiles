@@ -100,8 +100,10 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'HerringtonDarkholme/yats.vim'
 
-" Match HTML tags
-Plug 'Valloric/MatchTagAlways'
+if has('python')
+  " Match HTML tags
+  Plug 'Valloric/MatchTagAlways'
+endif
 
 " Auto close HTML tags
 Plug 'alvan/vim-closetag'
@@ -116,7 +118,7 @@ if has('nvim')
     " asynchronous completion framework for neovim/Vim8
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-go', { 'do': 'make'}
-else
+elseif has('python')
     " asynchronous completion framework for neovim/Vim8
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'

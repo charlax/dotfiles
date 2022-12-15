@@ -56,6 +56,7 @@ function install_osx_packages {
         htop             # process viewer https://htop.dev/
         httpie           # CLI http client
         jq               # json formatting
+        macvim           # text editor
         make             # newer Makefile
         miller           # like awk, sed, cut, join, and sort for CSV, TSV, and tabular JSON https://github.com/johnkerl/miller
         ncdu             # ncurses disk usage https://dev.yorhel.nl/ncdu
@@ -94,6 +95,8 @@ function install_osx_packages {
     brew tap homebrew/cask-fonts
     brew tap espanso/espanso
 
+    # Do not install macvim as a cask (to automatically install Python3)
+
     # 1password
     # adoptopenjdk8  unavailable??
     # calibre
@@ -114,7 +117,6 @@ function install_osx_packages {
         firefox              # browser
         font-roboto-mono-nerd-font
         kitty                # terminal
-        macvim               # text editor
         pritunl              # open source VPN client
         rectangle            # window management
         shottr               # screenshot tool

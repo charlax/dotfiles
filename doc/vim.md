@@ -8,6 +8,7 @@
     - [jedi: jedi module is not found](#jedi-jedi-module-is-not-found)
     - [Deoplete yarp failed establishing channel for python3](#deoplete-yarp-failed-establishing-channel-for-python3)
     - [[vim-hug-neovim-rpc] requires one of `:pythonx import [pynvim|neovim]` command to work Deoplete Vim](#vim-hug-neovim-rpc-requires-one-of-pythonx-import-pynvimneovim-command-to-work-deoplete-vim)
+    - [E370: Could not load library Python](#e370-could-not-load-library-python)
   - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -74,6 +75,16 @@ Then use it to reinstall `pynvim`:
 ```bash
 /usr/local/Cellar/python@3.10/3.10.2/bin/pip3 install pynvim
 ```
+
+### E370: Could not load library Python
+
+Full message:
+
+```text
+/usr/local/Frameworks/Python.framework/Versions/3.10/Python: dlopen(/usr/local/Frameworks/Python.framework/Versions/3.10/Python, 0x0009): tried: '/usr/local/Frameworks/Python.framework/Versions/3.10/Python' (no such file)
+```
+
+Check if the folder pointed at `:set pythonthreedll` exists. If not, this might be because of a mismatch between the Python version MacVim was compiled with, and the installed one. Installing the Homebrew formula (as opposed to installing the Cask) fixed this.
 
 ## References
 

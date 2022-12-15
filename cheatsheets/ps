@@ -2,3 +2,8 @@
 pstree
 ps axjf           # on linux
 ps -aef --forest  # on linux
+
+# Get env var for process on macOs
+ps eww $process_id
+# Pretty print
+ps eww -o command $process_id  | tr ' ' '\n'
