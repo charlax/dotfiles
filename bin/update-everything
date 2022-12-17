@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091
 
+# Make sure all keys were added to the agent
+ssh-add
+
 BIN_DIR="$(dirname "$0")"
 
 # shellcheck source=../helpers/setup.sh
