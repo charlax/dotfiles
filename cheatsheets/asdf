@@ -3,3 +3,9 @@ asdf plugin add terraform
 asdf list all terraform
 asdf install terraform 0.15.5
 asdf local terraform 0.15.5
+
+# After brew upgrade
+# /Users/ca/.asdf/shims/python3: line 3: /opt/homebrew/Cellar/asdf/0.10.2/libexec/bin/asdf: No such file or directory
+# Solution https://github.com/asdf-vm/asdf/issues/1115
+rm -f ~/.asdf/shims/*
+asdf reshim
