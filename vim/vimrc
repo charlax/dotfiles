@@ -118,7 +118,7 @@ if has('nvim')
     " asynchronous completion framework for neovim/Vim8
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-go', { 'do': 'make'}
-elseif has('python')
+else " if has('python')
     " asynchronous completion framework for neovim/Vim8
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'

@@ -70,6 +70,12 @@ Identify Python version used by vim by:
 :pythonx import sys; print(sys.path)
 ```
 
+To execute from the command line:
+
+```bash
+vim -c ':set t_ti= t_te= nomore' "+pythonx import sys; print(sys.path)" +qall
+```
+
 Then use it to reinstall `pynvim`:
 
 ```bash
