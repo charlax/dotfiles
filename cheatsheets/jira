@@ -1,0 +1,5 @@
+# Example JQL
+updated <= -25w AND project = $PROJECTNAME AND status in ("To Do", "TO DO", Testing, "In Progress", "In progress", "IN PROGRESS", "in progress") AND (labels != Stale OR labels is EMPTY) ORDER BY created ASC
+
+# Marked as stale, assigned or created by me
+(assignee in (currentUser()) OR creator in (currentUser())) AND project = $PROJECTNAME AND status in ("To Do", "TO DO", Testing, "In Progress", "In progress", "IN PROGRESS", "in progress") AND labels = Stale ORDER BY created ASC

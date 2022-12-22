@@ -1,0 +1,8 @@
+# Prometheus querying language
+# https://prometheus.io/docs/prometheus/latest/querying/basics/
+
+# Compare with last week
+node_cpu_seconds_total offset 1w
+
+# See also
+# https://promlabs.com/promql-cheat-sheet/

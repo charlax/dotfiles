@@ -24,12 +24,14 @@
     - [Markdown](#markdown)
     - [Network](#network)
     - [Process managers](#process-managers)
+    - [Proxy](#proxy)
     - [Python](#python)
     - [Rename files](#rename-files)
     - [Screenshots](#screenshots)
     - [Search](#search)
     - [Static analysis](#static-analysis)
     - [System monitor](#system-monitor)
+    - [Text](#text)
     - [Web/HTTP](#webhttp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -130,6 +132,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [Nukesor/pueue](https://github.com/nukesor/pueue): manage your shell commands
 
+### Proxy
+
+- [Charles Web Debugging Proxy • HTTP Monitor / HTTP Proxy / HTTPS & SSL Proxy / Reverse Proxy](https://www.charlesproxy.com/)
+
 ### Python
 
 - [davidhalter/jedi](https://github.com/davidhalter/jedi): autocompletion, static analysis and refactoring library for python
@@ -153,6 +159,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### System monitor
 
 - [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop)
+
+### Text
+
+- [birchb1024/frangipanni: Program to convert lines of text into a tree structure.](https://github.com/birchb1024/frangipanni)
 
 ### Web/HTTP
 
