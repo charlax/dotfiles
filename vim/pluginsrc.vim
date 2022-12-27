@@ -162,6 +162,9 @@ function! Multiple_cursors_after()
     endif
 endfunction
 
+" Fuzzy match on files completion (useful for zettlekasten filename format)
+call deoplete#custom#source('file', 'matchers', ['matcher_full_fuzzy'])
+
 " =======================================================
 " Status line
 " =======================================================

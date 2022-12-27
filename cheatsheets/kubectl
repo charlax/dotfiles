@@ -1,6 +1,11 @@
 # Get all resource
 kubectl get all -n $namespace
 
+# Get a pod
+kubectl get pods -n $namespace --selector="app=app-name"
+# Output only name
+kubectl get pods -o jsonpath='{.items[0].metadata.name}'
+
 # Describe a service
 kubectl -n $namespace describe service $service_name
 

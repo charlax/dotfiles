@@ -76,6 +76,7 @@ function install_osx_packages {
         tmux             # terminal multiplexer
         trash            # move files to the trash
         tree             # display file list in tree
+        vimr             # neovim-based editor, useful if macvim is broken
         wget
     )
 

@@ -14,6 +14,7 @@
     - [Disk usage](#disk-usage)
     - [Docker](#docker)
     - [Docs](#docs)
+    - [Download](#download)
     - [File sharing](#file-sharing)
     - [Filesystem watchers](#filesystem-watchers)
     - [Git](#git)
@@ -84,6 +85,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [carbon.now.sh](https://carbon.now.sh/): create and share beautiful images of your source code
 - [DevDocs](https://devdocs.io/)
 - [denisidoro/navi: An interactive cheatsheet tool for the command-line](https://github.com/denisidoro/navi#installation)
+
+### Download
+
+- [ytdl-org/youtube-dl: Command-line program to download videos from YouTube.com and other video sites](https://github.com/ytdl-org/youtube-dl/): tool to download .`.ts`, `.m3u8` files
 
 ### File sharing
 
