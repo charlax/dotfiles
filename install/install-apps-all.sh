@@ -37,7 +37,7 @@ function install_osx_packages {
     packages=(arp-scan   # ARP scanner
         automake
         bat              # A cat(1) clone with wings https://github.com/sharkdp/bat
-        cheat            # cheatsheets for commands
+        cheat            # cheatsheets for commands https://github.com/cheat/cheat
         coreutils
         ctags
         dos2unix

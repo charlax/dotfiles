@@ -1,0 +1,2 @@
+# shuffle line order
+cat $filename | shuf

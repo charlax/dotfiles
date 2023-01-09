@@ -1,2 +1,5 @@
 # Search for directories
 fd --type d query
+
+# Search for files modified within a certain timeframe and exec rmdir
+fd --changed-after 2023-01-02 --changed-before 2023-01-03 --exec rmdir {}
