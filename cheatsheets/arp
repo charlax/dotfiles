@@ -1,2 +1,4 @@
 # List all computers in the network
 arp -a
+# Can also do:
+nmap -sn 192.168.1.0/24
