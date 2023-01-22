@@ -20,6 +20,18 @@ ffmpeg -t 3 -i input.webm -vf "crop=334:720,fps=10,scale=1024:-1:flags=lanczos,s
 # mp3 to wav
 ffmpeg -i song.mp3 -acodec pcm_u8 -ar 22050 song.wav
 
+# Record screen on macOS
+# See https://ffmpeg.org/ffmpeg-devices.html#avfoundation
+# 1. List devices
+ffmpeg -f avfoundation -list_devices true -i ""
+# 2. Record
+ffmpeg -f avfoundation -i "<screen device index>:<audio device index>" output.mkv
+# Example:
+ffmpeg -f avfoundation -i "4" output.mkv
+
+# Create timelapse with setpts (change the PTS - presentation timestamp - of the input frames)
+-filter:v "setpts=0.0625*PTS"
+
 # See also:
 # gifify
 

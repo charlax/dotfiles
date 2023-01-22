@@ -29,3 +29,11 @@ jq '.items[] | .title, .truc.name}'
 
 # Select based on key presence
 jq ".items[] | select(.truc.name == null) | ."
+
+# Show keys
+jq keys
+
+# See also:
+# zq https://www.brimdata.io/blog/introducing-zq/
+# jless https://github.com/PaulJuliusMartinez/jless (rust)
+# fx https://github.com/antonmedv/fx (go)

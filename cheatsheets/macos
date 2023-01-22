@@ -57,6 +57,9 @@ diskutil mountDisk /dev/disk2
 # Check if there is a T2 security chip
 Click Apple menu, hold option, click System information, then Controller or iBridge
 
+# Prevent from going to sleep
+caffeinate -disu
+
 # Other links
 # https://git.herrbischoff.com/awesome-macos-command-line/about/
 # https://github.com/drduh/macOS-Security-and-Privacy-Guide
