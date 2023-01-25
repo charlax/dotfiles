@@ -57,6 +57,7 @@ zg
 - `gn` move to the match of your last search
 - `gI` insert text at beginning of line whatever the first character (!= `I`)
 - `ga` print the `a`scii value of the character under the cursor in decimal, hex and octal
+- `gx` open the url link under cursor in the browser
 
 ### Keyboard shortcuts: window
 
@@ -249,6 +250,8 @@ For instance these are equivalent:
 :%sm/(/
 :%s/\(/
 ```
+
+- `\>` and `\<` are for word boudaries, start and end. With very magic: `\v<word>` suffices.
 
 Other commands:
 

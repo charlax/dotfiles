@@ -3,7 +3,8 @@ ffmpeg -y -i recording.mov -vf fps=10,palettegen palette.png
 ffmpeg -i recording.mov -i palette.png -filter_complex "fps=10,paletteuse" out.gif
 
 # More complicated gif creation
-# -t         create a 3 seconds output
+# -ss        start at timestamp
+# -t         read only x seconds
 # fps        frames per second
 # scale      scale with lanczos algo
 # palette*   create palette
@@ -16,6 +17,7 @@ ffplay -i input.webm -vf "crop=334:720"
 
 # Crop then generate gif
 ffmpeg -t 3 -i input.webm -vf "crop=334:720,fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
+
 
 # mp3 to wav
 ffmpeg -i song.mp3 -acodec pcm_u8 -ar 22050 song.wav
@@ -33,6 +35,8 @@ ffmpeg -f avfoundation -i "4" output.mkv
 -filter:v "setpts=0.0625*PTS"
 
 # See also:
+# man ffmpeg
+# man ffmpeg-filters
 # gifify
 
 # Resources:
