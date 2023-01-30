@@ -1,5 +1,10 @@
 # Python cheats
 
+```bash
+# Get help about topic
+pydoc sys.exit
+```
+
 ## One liner
 
 ### Create a secret and encode with base64

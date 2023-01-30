@@ -182,8 +182,8 @@ expand('%:p:h')  " full directory ('head') path
 verbose set modeline?
 
 " Set indentation size in spaces
-set tabstop=4
-set shiftwidth=4
+set shiftwidth=4  " number of spaces for each step of (auto)indent
+set tabstop=4     " number of spaces that a <Tab> counts for
 
 " Disable syntax highlighting
 set syntax=off

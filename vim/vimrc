@@ -193,6 +193,9 @@ endif
 
 set mouse=a
 
+" Don't beep
+autocmd! GUIEnter * set vb t_vb=
+
 " Necessary for color schemes
 if has('termguicolors')
   set termguicolors

@@ -18,6 +18,7 @@
   - [Window manager (XFCE4)](#window-manager-xfce4)
   - [Install Chrome](#install-chrome)
   - [Install 1password](#install-1password)
+  - [Docker](#docker)
   - [Dotfiles](#dotfiles)
   - [Troubleshooting](#troubleshooting)
     - [Can't login (password failed)](#cant-login-password-failed)
@@ -317,6 +318,15 @@ makepkg -si
 
 - Setup 1Password SSH agent
 - Setup 1Password git commit signing
+
+## Docker
+
+```bash
+usermod -a -G docker $USER
+pacman -S docker
+systemctl enable docker
+systemctl start docker
+```
 
 ## Dotfiles
 
