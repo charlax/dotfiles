@@ -5,6 +5,11 @@ nmap -p22 $ip
 # Pretty complete scan
 nmap -sV -sC -oA nmap $ip
 
+# Identify a device on the network
+nmap -sV --allports -T4 $ip
+
+# -T4   fast
+
 # Aggressive scan
 nmap -A $ip
 

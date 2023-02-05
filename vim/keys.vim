@@ -24,16 +24,6 @@ nmap <leader>. :w<cr>
 nmap zz :w<cr>
 nmap <leader>m :wq<cr>
 
-" To do things right
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
 " Movement by screen line instead of file line
 nnoremap j gj
 nnoremap k gk

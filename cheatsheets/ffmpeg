@@ -10,7 +10,7 @@ ffmpeg -i recording.mov -i palette.png -filter_complex "fps=10,paletteuse" out.g
 # palette*   create palette
 # split      do everything in one command
 # loop       0 infinite looping (confusing), -1 no looping, 1 run twice (loop once)
-ffmpeg -ss 30 -t 3 -i input.mp4 -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
+ffmpeg -ss 30 -t 3 -i input.mp4 -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
 
 # Crop video (see result)
 ffplay -i input.webm -vf "crop=334:720"
@@ -33,6 +33,19 @@ ffmpeg -f avfoundation -i "4" output.mkv
 
 # Create timelapse with setpts (change the PTS - presentation timestamp - of the input frames)
 -filter:v "setpts=0.0625*PTS"
+
+# Extract segments from video
+# http://ffmpeg.org/ffmpeg-filters.html#trim
+# Extract segment 1:01 to 1:10 and 1:30-end, concat them
+# Gotchas:
+# - setpts is required because trim does not modify picture display time
+# - '[out]' probably better in zsh
+# Inspiration: https://superuser.com/questions/681885/how-can-i-remove-multiple-segments-from-a-video-using-ffmpeg
+ffmpeg -i scheduling.mov -filter_complex \
+"[0]trim=61:70,setpts=PTS-STARTPTS[a]; \
+ [0]trim=start=90,setpts=PTS-STARTPTS[b]; \
+ [a][b]concat[out]" \
+ -map '[out]' out.mov
 
 # See also:
 # man ffmpeg
