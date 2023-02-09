@@ -4,3 +4,6 @@ lein new app project-name
 
 # Start the REPL
 lein repl
+
+# Run a single test
+lein test :only namespace-test/test-name

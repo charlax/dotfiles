@@ -18,6 +18,8 @@ ffplay -i input.webm -vf "crop=334:720"
 # Crop then generate gif
 ffmpeg -t 3 -i input.webm -vf "crop=334:720,fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
 
+# Remove sound
+ffmpeg -i $input -c copy -an $output
 
 # mp3 to wav
 ffmpeg -i song.mp3 -acodec pcm_u8 -ar 22050 song.wav
