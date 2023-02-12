@@ -20,6 +20,7 @@
   - [Install 1password](#install-1password)
   - [Docker](#docker)
   - [Dotfiles](#dotfiles)
+  - [Disable suspend](#disable-suspend)
   - [Troubleshooting](#troubleshooting)
     - [Can't login (password failed)](#cant-login-password-failed)
 
@@ -335,6 +336,22 @@ pacman -S zsh zsh-completions kitty
 
 # See https://github.com/charlax/dotfiles for the command to provision
 ```
+
+## Disable suspend
+
+https://wiki.archlinux.org/title/Power_management#Power_management_with_systemd
+
+`/etc/systemd/sleep.conf`:
+
+```
+[Sleep]
+AllowSuspend=no
+AllowHibernation=no
+AllowSuspendThenHibernate=no
+AllowHybridSleep=no
+```
+
+See also in notes repo (Intel NUC)
 
 ## Troubleshooting
 
