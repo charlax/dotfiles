@@ -30,13 +30,11 @@ Plug 'honza/vim-snippets'
 Plug 'LunarWatcher/auto-pairs', {'for': ['javascript', 'typescript', 'typescriptreact', 'typescript.tsx']}
 
 " Color schemes
-" Plug 'lifepillar/vim-solarized8'
 Plug 'sainnhe/everforest'
-
-Plug 'elzr/vim-json', { 'for': 'json' }
 
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
+" Not included in vim-polyglot
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja2' }
 
 Plug 'greyblake/vim-preview'
@@ -76,9 +74,6 @@ Plug 'dense-analysis/ale'
 " Automatically discover and properly update ctags files on save
 Plug 'ludovicchabant/vim-gutentags'
 
-" Terraform files
-Plug 'hashivim/vim-terraform'
-
 " Simple status line
 Plug 'itchyny/lightline.vim'
 " ALE-status line integration
@@ -95,11 +90,6 @@ Plug 'sheerun/vim-polyglot'
 " Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
 Plug 'embear/vim-localvimrc'
 
-" Note: do not use 'for'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'HerringtonDarkholme/yats.vim'
-
 if has('python')
   " Match HTML tags
   Plug 'Valloric/MatchTagAlways'
@@ -114,25 +104,13 @@ Plug 'editorconfig/editorconfig-vim'
 " Clojure REPL
 Plug 'tpope/vim-fireplace'
 
-if has('nvim')
-    " asynchronous completion framework for neovim/Vim8
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
-else " if has('python')
-    " asynchronous completion framework for neovim/Vim8
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-Plug 'deoplete-plugins/deoplete-jedi'
-
 " Tabular needs to be loaded first
 Plug 'godlygeek/tabular'
 " See help at https://github.com/preservim/vim-markdown
 Plug 'preservim/vim-markdown'
 
-let g:deoplete#enable_at_startup = 1
+" LSP support and autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
@@ -315,15 +293,8 @@ function! s:setup_for_prose()
     setlocal breakindentopt=list:2
     " See other config in ftplugin/markdown.vim
 
-    " <Tab> indents and <Shift-Tab> dedents
-    " TODO: fix usage outside of list (e.g. to autocomplete filename in img)
-    " inoremap <buffer> <Tab> <C-T>
-    " inoremap <buffer> <S-Tab> <C-D>
-
     " Spell lang
     nnoremap <Leader>f <Esc>:setlocal spelllang=fr<CR><Esc>:setlocal spell<CR>
-
-    setlocal foldcolumn=12 nonumber
 endfunction
 
 " ============================================================

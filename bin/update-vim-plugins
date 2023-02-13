@@ -5,10 +5,6 @@
 
 log_info "Updating vim plugins"
 
-# Required for deoplete
-# https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
-python3 -m pip install --user --upgrade pynvim
-
 vim +PlugInstall +qall
 vim +PlugUpdate +qall
 vim +PlugUpgrade +qall

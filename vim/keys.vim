@@ -157,11 +157,14 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 " use enter to select an option
 inoremap <silent><expr><CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" UltiSnips (for snippet, not for autocompletion)
+" =======================================================
+" /Completion
+" =======================================================
 
-" It is compatible with deoplete, but they solve a different thing.
-" Just like for deoplete, tab/shift-tab can be used to select the snippet
-" key. Then, c-y will trigger expand the snippet
+" UltiSnips (for snippets, not for autocompletion)
+
+" Tab/shift-tab can be used to select the snippet key.
+" Then, c-y will trigger expand the snippet
 
 " Do not use tab - we use for autocompletion
 " Do not use leader - messes up with insertion mode

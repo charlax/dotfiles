@@ -372,10 +372,4 @@ vim -V9runtime.log
 vim -u NONE
 ```
 
-### Errors with deoplete
-
-Check [../doc/vim](../doc/vim.md).
-
-- Make sure you're not within an activated virtualenv where Python packages `pynvim` and `neovim` are not installed.
-
 <!-- vim: set ft=markdown: -->

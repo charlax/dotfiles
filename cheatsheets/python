@@ -99,11 +99,6 @@ zsh: /Users/.../.local/bin/poetry: bad interpreter: /Users/.../.local/pipx/venvs
 echo $PATH  # make sure Python is at latest version
 which python3  # make sure it's brew's Python, otherwise: brew link python3
 pipx reinstall-all
-
-# For vim: check ../doc/vim.md as well
-:pyx import sys; print(sys.version)
-# For upgrade to 3.9, the Python@3.9 was keg only and used in vim, which broke deoplete
-/usr/local/opt/python@3.9/bin/python3 -m pip install --user pynvim
 ```
 
 <!-- vim: set ft=markdown: -->

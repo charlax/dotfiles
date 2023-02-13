@@ -133,37 +133,13 @@ augroup disablefixers
 augroup END
 
 " =======================================================
-" Deoplete (autocomplete)
+" Autocomplete
 " =======================================================
 
-" Inserting on enter is a bit annoying because deoplete is async
-" Does not work?
-if exists('*deoplete#custom#option')
-    call deoplete#custom#option({
-        \ 'on_insert_enter': v:false,
-        \ })
-endif
-
-" Disable Deoplete when selecting multiple cursors starts
-function! Multiple_cursors_before()
-    if exists('*deoplete#disable')
-        exe 'call deoplete#disable()'
-    elseif exists(':NeoCompleteLock') == 2
-        exe 'NeoCompleteLock'
-    endif
-endfunction
-
-" Enable Deoplete when selecting multiple cursors ends
-function! Multiple_cursors_after()
-    if exists('*deoplete#toggle')
-        exe 'call deoplete#toggle()'
-    elseif exists(':NeoCompleteUnlock') == 2
-        exe 'NeoCompleteUnlock'
-    endif
-endfunction
-
-" Fuzzy match on files completion (useful for zettlekasten filename format)
-call deoplete#custom#source('file', 'matchers', ['matcher_full_fuzzy'])
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " =======================================================
 " Status line
