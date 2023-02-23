@@ -234,7 +234,6 @@ function install_brew_packages {
     # rustup          # rust toolchain, then run rustup-init
     # sqlmap          # sql injection tool
     # terraform       # infrastructure management
-    # tokei           # cloc https://github.com/XAMPPRocky/tokei
     # veeso/termscp/termscp  # terminal UI file transfer (e.g. sftp) https://veeso.github.io/termscp
 
     packages=(bandwhich # bandwith utilization https://github.com/imsnif/bandwhich
@@ -256,6 +255,7 @@ function install_brew_packages {
         renameutils     # imv (faster rename) etc.
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         starship        # command line prompt https://starship.rs/
+        tokei           # cloc https://github.com/XAMPPRocky/tokei
         zoxide          # smarter cd command https://github.com/ajeetdsouza/zoxide
         zsh
         zsh-completions

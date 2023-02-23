@@ -1,6 +1,9 @@
 # Markdown to docx
 pandoc -s file.md -o file.docx
 
+# docx to md, output to stdout
+pandoc file.docx -t markdown
+
 # Show default latex template
 pandoc -D latex
 

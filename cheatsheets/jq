@@ -30,6 +30,16 @@ jq '.items[] | .title, .truc.name}'
 # Select based on key presence
 jq ".items[] | select(.truc.name == null) | ."
 
+# Select with multiple conditions
+jq '.items[] | select(.truc == "toaster" and .machin == "bidule")'
+
+# Output as json (needs array as input, and raw output)
+jq -r '.items[] | [.foo,.bar] | @csv'
+
+# Parsing datetime
+now | strftime("%Y-%m-%d")
+jq '[.[] | select(.date_field > (now | strftime("%Y-%m-%d")))]'
+
 # Show keys
 jq keys
 

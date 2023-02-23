@@ -22,6 +22,7 @@
     - [HTTP client](#http-client)
     - [JSON](#json)
     - [Logs (reading)](#logs-reading)
+    - [macOS](#macos)
     - [Markdown](#markdown)
     - [Network](#network)
     - [Process managers](#process-managers)
@@ -125,6 +126,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [rcoh/angle-grinder: Slice and dice logs on the command line](https://github.com/rcoh/angle-grinder)
 - [tstack/lnav: Log file navigator](https://github.com/tstack/lnav)
 
+### macOS
+
+- [sveinbjornt/Sloth: Mac app that shows all open files, directories, sockets, pipes and devices in use by all running processes. Nice GUI for lsof.](https://github.com/sveinbjornt/Sloth)
+
 ### Markdown
 
 - [charmbracelet/glow: Render markdown on the CLI, with pizzazz! 💅🏻](https://github.com/charmbracelet/glow)
@@ -132,6 +137,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Network
 
 - [Tildesoft's Discovery](https://www.tildesoft.com/): Bonjour services browser
+- [tshark](https://www.wireshark.org/docs/man-pages/tshark.html): dump and analyze network traffic
 
 ### Process managers
 

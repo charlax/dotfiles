@@ -42,3 +42,19 @@
 (afunc "asdf")
 (afunc* "asdf")
 (macroexpand (mymacro :foo))
+
+;; sum
+(defn sum [numbers] (reduce + numbers))
+
+;; zip equivalent
+(map vector '(1 2 3) '(1 2 3))
+; ([1 1] [2 2] [3 3])
+
+;; Anonymous function syntax
+#(println %1 %2 %&)
+; equivalent to: (fn [x y & zs] (println x y zs))
+
+;; Rotate a list
+(defn rotate [xs] (cons (last xs) (drop-last xs)))
+(rotate '(1 2 3))
+; (3 1 2)
