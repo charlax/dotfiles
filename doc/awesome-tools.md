@@ -33,6 +33,7 @@
     - [Search](#search)
     - [Static analysis](#static-analysis)
     - [System monitor](#system-monitor)
+    - [Task runner (a la Make)](#task-runner-a-la-make)
     - [Text](#text)
     - [Web/HTTP](#webhttp)
 
@@ -170,6 +171,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### System monitor
 
 - [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop)
+
+### Task runner (a la Make)
+
+- [joerdav/xc: Create executable documentation.](https://github.com/joerdav/xc)
 
 ### Text
 
