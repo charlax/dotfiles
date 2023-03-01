@@ -1,6 +1,8 @@
 ;; vi:syntax=clojure
-;; https://clojure.org/api/cheatsheet
-;; https://kimh.github.io/clojure-by-example/
+
+;; Imports
+(require '[clojure.string :as str])
+(str/split "toaster toaster" #" ")
 
 ;; Maps
 (def my-map {:first-name "Chew" :last-name "Bacca"})
@@ -58,3 +60,8 @@
 (defn rotate [xs] (cons (last xs) (drop-last xs)))
 (rotate '(1 2 3))
 ; (3 1 2)
+
+;; See also
+;; all on one page: https://cljs.info/cheatsheet/
+;; https://clojure.org/api/cheatsheet
+;; https://kimh.github.io/clojure-by-example/

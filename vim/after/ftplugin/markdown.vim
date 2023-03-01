@@ -5,3 +5,6 @@
 vmap <D-b> c**<C-R>"**<ESC>
 " Italic
 vmap <D-i> c*<C-R>"*<ESC>
+
+" Indent lines by two spaces
+setl shiftwidth=2

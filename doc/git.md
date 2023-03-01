@@ -5,6 +5,8 @@
 - [git](#git)
   - [Solving git conflicts](#solving-git-conflicts)
     - [Conflict markers (while rebasing)](#conflict-markers-while-rebasing)
+  - [Troubleshooting](#troubleshooting)
+    - ["There are too many unreachable loose objects"](#there-are-too-many-unreachable-loose-objects)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -38,4 +40,26 @@ http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff
 ```bash
 # show changes they made to a file
 git diff REBASE_HEAD...origin/main $filename
+```
+
+## Troubleshooting
+
+### "There are too many unreachable loose objects"
+
+```text
+remote: error: The last gc run reported the following. Please correct the root cause
+remote: and remove gc.log.
+remote: Automatic cleanup will not be performed until the file is removed.
+remote:
+remote: warning: There are too many unreachable loose objects; run 'git prune' to remove them.
+```
+
+Try:
+
+```bash
+# verify connectivity
+git fsck
+
+# dangerous
+git gc --prune=now
 ```

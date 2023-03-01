@@ -230,7 +230,7 @@ function install_brew_packages {
     # cw              # AWS cloudwatch logs
     # hyperfine       # benchmark took https://github.com/sharkdp/hyperfine
     # leiningen       # automate Clojure projects
-    # nvim            # neovim
+    # neovim          # neovim
     # rustup          # rust toolchain, then run rustup-init
     # sqlmap          # sql injection tool
     # terraform       # infrastructure management
