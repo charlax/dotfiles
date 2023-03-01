@@ -88,3 +88,7 @@
 #
 # [diff]
 #     colorMoved = default
+
+# includeIf only works within gitconfig, not within included files
+[includeIf "gitdir:~/Work/"]
+    path = ~/.dotfiles/git/gitconfig.work.local

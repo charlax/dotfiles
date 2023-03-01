@@ -7,3 +7,7 @@
   # get it with:
   # pbcopy < ~/.ssh/id_ed25519.pub
   signingkey = ssh-ed25519 AAA...
+  email = "..."
+  # Verify with: git config --get user.email
+
+# Note: includeIf directives don't work in included files
