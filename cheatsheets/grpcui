@@ -1,0 +1,3 @@
+# brew install grpcui
+
+grpcui --plaintest localhost:50050

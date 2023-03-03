@@ -1,0 +1,2 @@
+# query for reverse dependencies
+bazel query "rdeps(//..., set(//foo/bar:stuff //bar/foo:truc))"

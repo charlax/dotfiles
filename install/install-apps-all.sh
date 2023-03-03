@@ -131,6 +131,7 @@ function install_osx_packages {
 
     log_info "Installing brew cask packages for macOS"
     brew install --cask "${apps[@]}"
+    brew install --cask chromium --no-quarantine
 
     rectangle_config="$HOME/Library/Preferences/com.knollsoft.Rectangle.plist"
     if [ ! -L "$rectangle_config" ]; then
