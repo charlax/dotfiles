@@ -138,9 +138,6 @@ zstyle ':completion::approximate*:*' prefix-needed false
 zstyle ':completion:*:processes' command 'ps -au$USER'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;32'
 
-# Google Cloud
-[[ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]] && source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-
 # History
 # =======
 
@@ -235,13 +232,10 @@ fi
 # ^[ is esc
 # ^  is ctrl
 
-# Bind delete key to something meaningful like... deleting.
-bindkey    "^[[3~"          delete-char
-bindkey    "^[3;5~"         delete-char
-
-# ⌥ + ← or → - move one word backward/forward (like in other OS X apps)
-bindkey "[D" backward-word
-bindkey "[C" forward-word
+# # ⌥ + ← or → - move one word backward/forward (like in other OS X apps)
+# NOTE: deactivated, this makes zsh pause after "[" insertion, and kitty supports it
+# bindkey "[D" backward-word
+# bindkey "[C" forward-word
 
 # c-b (word backward) and c-f (word forward)
 bindkey "^B" backward-word
@@ -263,13 +257,6 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
 if _has kubectl; then
     # source <(kubectl completion zsh)
     # kubectl tries to contact the current cluster which might be super slow
@@ -284,15 +271,11 @@ for config_file ($ZSH/**/*.zsh) do
   source $config_file
 done
 
-
 # asdf (if it's there)
 # this needs to be at the end because it updates $PATH
 if _has asdf; then
     . $(brew --prefix asdf)/libexec/asdf.sh
 fi
-
-# Can be removed after 2023?
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Activate for profiling (should remain at the end)
 # zprof

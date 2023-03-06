@@ -23,6 +23,10 @@
 (str "a" "b")     ; concat
 (clojure.string/join ", " [1 2 3])
 
+;; Regex
+(second (re-find #"^\[(\w+)\]:" "[WARNING]: Decreased performance"))
+; == "WARNING"
+
 ;; Functions
 (map (fn [arg] (inc arg)) [1 2 3])
 
