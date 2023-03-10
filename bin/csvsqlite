@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "the table is named 't': 'select * from t;"
+sqlite3 ":memory:" -cmd '.mode csv' -cmd ".import $1 t" -cmd ".mode list"

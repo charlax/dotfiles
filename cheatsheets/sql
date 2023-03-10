@@ -72,3 +72,7 @@ SET has_email = subquery.has_email
 FROM subquery
 WHERE users.user_id = subquery.user_id;
 ```
+
+### See also
+
+- `./presto`

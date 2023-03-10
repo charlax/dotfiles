@@ -1,0 +1,7 @@
+# Jira Query Language
+
+# Fields
+https://support.atlassian.com/jira-service-management-cloud/docs/advanced-search-reference-jql-fields/
+
+# Match in title
+summary ~ text_to_match and summary ~ other_text_to_match

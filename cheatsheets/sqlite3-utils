@@ -1,0 +1,2 @@
+# The only remaining column will be created_at, though
+sqlite-utils insert stuff.db tablename stuff.csv --csv --detect-types --convert 'return {"created_at": datetime.datetime.fromisoformat(row["created_at"])}' --import "datetime"

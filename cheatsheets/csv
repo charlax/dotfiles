@@ -9,6 +9,7 @@ xsv headers $filename
 # sqlite3
 sqlite3 :memory: -cmd '.mode csv' -cmd '.import taxi.csv taxi' \
   'SELECT passenger_count, COUNT(*), AVG(total_amount) FROM taxi GROUP BY passenger_count'
+# see also sqlite-utils
 
 # dsq example
 cat testdata.csv | dsq -s csv "SELECT * FROM {} LIMIT 1"
@@ -25,7 +26,6 @@ csvsql --query  "select m.usda_id, avg(i.sepal_length) as mean_sepal_length from
 
 cut     # cut out selected portions of each line of a file
 
-
 # Require install:
 
 mlr     # miller
@@ -35,10 +35,11 @@ vd      # https://www.visidata.org/ pipx install visidata
 
 # SQL for CSV:
 
-csvq    # sql for csv files https://mithrandie.github.io/csvq/ written in go
-q       # sql for csv files https://harelba.github.io/q/
-csvsql  # part of csvkit https://csvkit.readthedocs.io/
-dsq     # https://github.com/multiprocessio/dsq written in go
+sqlite-utils  # can be used to import csv into sqlitedb
+csvq          # sql for csv files https://mithrandie.github.io/csvq/ written in go
+q             # sql for csv files https://harelba.github.io/q/
+csvsql        # part of csvkit https://csvkit.readthedocs.io/
+dsq           # https://github.com/multiprocessio/dsq written in go
 
 # Other tools
 # For Vim https://github.com/mechatroner/rainbow_csv

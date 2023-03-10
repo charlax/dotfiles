@@ -1,3 +1,8 @@
+# Kibana Query Language
+
+# Exact Match
+kubernetes.container_name:"container-name"
+
 # Match multiple terms
 "uuid" and "stuff"
 

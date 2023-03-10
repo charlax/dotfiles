@@ -1,0 +1,9 @@
+{
+	"diagnostic.displayByAle": true,
+	"python.formatting.provider": "black",
+	"python.formatting.blackPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/black",
+	"coc.preferences.formatOnSaveFiletypes": [
+		"python",
+		"json"
+	]
+}

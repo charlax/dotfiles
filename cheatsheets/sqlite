@@ -1,3 +1,17 @@
 # list tables
 .tables
 .schema
+
+# One-liner CSV import
+sqlite3 :memory: -cmd '.mode csv' -cmd '.import data.csv taxi'
+# See also: sqlite-utils (pipx install sqlite-utils)
+# sqlite-utils insert dogs.db dogs dogs.csv --csv --detect-types
+# (advantage compared to sqlite3 .import: will guess the right column types
+
+# CSV export
+.mode csv
+.output stuff.csv
+.headers on
+select * from tablename;
+.output stdout
+.mode list # back to normal

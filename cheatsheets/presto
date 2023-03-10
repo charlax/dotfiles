@@ -1,9 +1,27 @@
+# Presto SQL
+
+## Useful functions
+
+- `coalesce`: `coalesce(true, NULL, NULL) == coalesce(NULL, NULL, true) == true`
+
+## Dates
+
+https://prestodb.io/docs/current/functions/datetime.html
+
 ```sql
 select * from tablename
-where time > to_iso8601(TIMESTAMP '2021-04-06 00:00:00')
+where time > to_iso8601(TIMESTAMP '2021-04-06 00:00:00');
+
+-- ms since epoch column
+select
+from_unixtime(t.created_at / 1000),
+from_unixtime(t.created_at / 1000) at timezone "America/Los_Angeles",
+from tablename
+-- between comparison with timezone
+where from_unixtime(t.created_at / 1000) between timestamp '2022-01-01 11:00:00 America/New_York' and timestamp '2022-01-01 12:00:00 America/New_York';
 ```
 
-# WAF logs
+## WAF logs (AWS)
 
 ```sql
 SELECT date_format(from_unixtime(timestamp/1000), '%Y-%m-%d %H:%i:%s'), httprequest.clientip, httprequest.uri, httprequest.headers  FROM "website_wafv2_web_acl"
@@ -16,8 +34,10 @@ order by 1
 limit 1000;
 ```
 
-# Like
+## Text
 
 ```sql
 where httprequest.uri like '%\_foo' escape '\'
 ```
+
+<!-- vim: set ft=markdown: -->

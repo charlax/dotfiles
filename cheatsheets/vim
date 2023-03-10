@@ -209,6 +209,10 @@ Exercise caution: using modeline has security implications.
 # vim: set ft=python:
 ```
 
+```markdown
+<!-- vim: set ft=python: -->
+```
+
 ## Marks
 
 `:help mark-motions`
