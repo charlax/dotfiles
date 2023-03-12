@@ -45,7 +45,8 @@ Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'jdonaldson/rtf-highlight'
 
 " Fuzzy finder. This will also install fzf
-" https://github.com/junegunn/fzf#using-linux-package-managers
+" It exposes functions such as :Rg (same as :Ack) :Files :Tabs etc.
+" https://github.com/junegunn/fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 
@@ -89,6 +90,11 @@ Plug 'sheerun/vim-polyglot'
 
 " Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
 Plug 'embear/vim-localvimrc'
+
+" Search with rg/ack/...
+" https://github.com/wincent/ferret
+" Provides :Ack :Back :Lack etc.
+Plug 'wincent/ferret'
 
 if has('python')
   " Match HTML tags

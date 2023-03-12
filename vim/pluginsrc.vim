@@ -11,9 +11,6 @@ let g:rtfh_theme = 'moe'
 let g:rtfh_font = 'Consolas'
 let g:rtfh_size = '34'
 
-" Use ag instead of ack
-let g:ackprg = 'ag --vimgrep'
-
 " See https://github.com/jiangmiao/auto-pairs/issues/88, can't type a
 " circumflex without this.
 let g:AutoPairsShortcutBackInsert=''
@@ -29,12 +26,7 @@ let g:gutentags_file_list_command = {
      \ },
  \ }
 
-" fzf
-" Make :Ag not match file names, only the file content
-" https://github.com/junegunn/fzf.vim/issues/346
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
-
-" auto close HTML tags
+" Auto close HTML tags
 let g:closetag_filenames = '*.html,*.jsx,*.tsx,*.js'
 let g:closetag_regions =  {
 \ 'typescript.tsx': 'jsxRegion,tsxRegion',
@@ -42,7 +34,7 @@ let g:closetag_regions =  {
 \ 'javascript.jsx': 'jsxRegion',
 \ }
 
-" highlight matching HTML tags
+" Highlight matching HTML tags
 let g:mta_filetypes = {
             \ 'javascript.jsx': 1,
             \ 'typescript.tsx': 1,

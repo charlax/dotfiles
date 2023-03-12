@@ -35,6 +35,7 @@ vd      # https://www.visidata.org/ pipx install visidata
 
 # SQL for CSV:
 
+csvsqlite     # simple sqlite import script I created, see in bin/
 sqlite-utils  # can be used to import csv into sqlitedb
 csvq          # sql for csv files https://mithrandie.github.io/csvq/ written in go
 q             # sql for csv files https://harelba.github.io/q/
