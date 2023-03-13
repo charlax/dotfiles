@@ -120,7 +120,7 @@ swapon /mnt/swapfile
 
 ```bash
 pacman -Sy
-pacstrap /mnt base linux linux-firmware vim nano base-devel grub efibootmgr intel-ucode dhclient networkmanager
+pacstrap /mnt base linux linux-firmware vim nano base-devel grub efibootmgr intel-ucode dhclient networkmanager xclip
 
 # chroot
 genfstab -U /mnt >> /mnt/etc/fstab
