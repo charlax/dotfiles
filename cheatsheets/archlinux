@@ -1,0 +1,12 @@
+# Change timezone https://wiki.archlinux.org/title/System_time#Time_zone
+timedatectl list-timezones
+timedatectl set-timezone America/New_York
+
+# Install AUR
+makepkg -si  # -s = syncdeps, -i = install
+
+# Reconnect to wifi
+nmcli device wifi connect $accesspointname password $password
+# Try also
+iwctl
+iw

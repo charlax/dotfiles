@@ -17,3 +17,11 @@ pacman -Q
 
 # Get info for a package
 pacman -Qi $packagename
+
+# Error:
+# error: key "..." could not be imported
+# error: required key missing from keyring
+sudo rm -rf /etc/pacman.d/gnupg
+sudo pacman-key --init
+sudo pacman-key --populate
+sudo pacman -S archlinux-keyring
