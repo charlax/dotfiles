@@ -10,3 +10,6 @@ nmcli device wifi connect $accesspointname password $password
 # Try also
 iwctl
 iw
+
+# Get current ip
+ip address
