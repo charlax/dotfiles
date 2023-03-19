@@ -91,14 +91,21 @@ sys.path.insert(0, os.path.abspath('.'))
 
 ### Fix Python after homebrew upgrade
 
+tldr:
+
+```bash
+pipx reinstall-all
+```
+
 ```bash
 $ pip
 zsh: /Users/.../Library/Python/3.7/bin/pip: bad interpreter: /usr/local/opt/python/bin/python3.7: no such file or directory
 $ poetry
 zsh: /Users/.../.local/bin/poetry: bad interpreter: /Users/.../.local/pipx/venvs/poetry/bin/python: no such file or directory
-echo $PATH  # make sure Python is at latest version
-which python3  # make sure it's brew's Python, otherwise: brew link python3
-pipx reinstall-all
+
+$ echo $PATH  # make sure Python is at latest version
+$ which python3  # make sure it's brew's Python, otherwise: brew link python3
+$ pipx reinstall-all
 ```
 
 <!-- vim: set ft=markdown: -->

@@ -14,9 +14,23 @@ df.dropna(subset=["latitude"], inplace=True)
 df.loc[(df["created_at"] >= "2023-02-22") & (df["created_at"] <= "2023-02-22")]
 df.query("object_id == '1' and ts == 0")
 
+# Query by date
+df[df["Created UTC"].dt.strftime("%Y-%m-%d") == "2023-01-29"]
+
 # Groupby iteration
 for group_name, grouped in df.groupby("object_id"):
     print(group_name)  # first object's object_id
     for pos, row in grouped.iterrows():  # iterrows yield tuples of (index, row)
         print(row)
         print(row["name"])
+
+# groupby then get size as dataframe
+df.groupby("name").size().reset_index(name="counts")
+
+# groupby day
+df.groupby(by=df["Created UTC"].dt.date).size().reset_index(name="counts")
+# gropuby day-hour
+df.groupby(by=df["Created UTC"].dt.floor("H")).size().reset_index(name="counts")
+
+# groupby then sum
+df.groupby("Date").sum()

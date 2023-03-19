@@ -1,0 +1,15 @@
+# Return cell content by row #, col # inside range
+# https://support.google.com/docs/answer/3098242?hl=en
+# INDEX(reference, [row], [column])
+INDEX(A2:D6, 2, 1)
+
+# Return relative position of item in one-dimensional range
+# https://support.google.com/docs/answer/3093378
+# MATCH(search_key, range, [search_type])
+# search_type is 1 (sorted in asc order), 0 (unsorted), -1 (desc)
+MATCH("Sunday",A2:A9,0)
+
+# Returns a range reference shifted a specified number of rows and columns from a starting cell reference.
+# https://support.google.com/docs/answer/3093379?hl=en
+OFFSET(A2,3,4,2,2)
+OFFSET(cell_reference, offset_rows, offset_columns, [height], [width])

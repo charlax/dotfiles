@@ -51,5 +51,5 @@ fi
 log_info "Updating tldr."
 tldr --update || true
 
-# Potentially update poetry autocompletions
+log_info "Updating poetry completions."
 poetry completions zsh > ~/.zfunc/_poetry

@@ -72,7 +72,6 @@ function install_osx_packages {
         shellcheck       # static analysis for shell scripts
         shfmt            # shell parser, formatter, and interpreter https://github.com/mvdan/sh
         telnet
-        tldr             # simplified and community-driven man pages
         tmux             # terminal multiplexer
         trash            # move files to the trash
         tree             # display file list in tree
@@ -175,7 +174,6 @@ function install_apt_packages {
         shellcheck      # static analysis for shell scripts
         ssh
         strace
-        tldr            # quick summary of CLI commands
         tmux            # terminal multiplexer
         tree            # ls in a tree
         vim-nox         # Vim with scripting support
@@ -256,6 +254,7 @@ function install_brew_packages {
         renameutils     # imv (faster rename) etc.
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         starship        # command line prompt https://starship.rs/
+        tldr            # simplified and community-driven man pages
         tokei           # cloc https://github.com/XAMPPRocky/tokei
         zoxide          # smarter cd command https://github.com/ajeetdsouza/zoxide
         zsh
