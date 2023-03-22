@@ -8,6 +8,7 @@
     - [Analytics](#analytics)
     - [Binary](#binary)
     - [Calculator](#calculator)
+    - [Clipboard](#clipboard)
     - [CSV](#csv)
     - [Datetimes](#datetimes)
     - [Diagram](#diagram)
@@ -58,6 +59,10 @@
 ### Calculator
 
 - [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
+
+### Clipboard
+
+- [Maccy - macOS clipboard manager](https://maccy.app/)
 
 ### CSV
 
