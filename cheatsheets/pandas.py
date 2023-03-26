@@ -17,6 +17,9 @@ df.query("object_id == '1' and ts == 0")
 # Query by date
 df[df["Created UTC"].dt.strftime("%Y-%m-%d") == "2023-01-29"]
 
+# Query null
+df.query("column_name.isnull()", engine="python")
+
 # Groupby iteration
 for group_name, grouped in df.groupby("object_id"):
     print(group_name)  # first object's object_id
@@ -34,3 +37,10 @@ df.groupby(by=df["Created UTC"].dt.floor("H")).size().reset_index(name="counts")
 
 # groupby then sum
 df.groupby("Date").sum()
+
+# Check if value is empty
+pd.isnull(v)
+
+# See also:
+"https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf"
+"https://www.webpages.uidaho.edu/~stevel/cheatsheets/Pandas%20DataFrame%20Notes_12pages.pdf"

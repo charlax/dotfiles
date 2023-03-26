@@ -15,3 +15,5 @@ sqlite3 :memory: -cmd '.mode csv' -cmd '.import data.csv taxi'
 select * from tablename;
 .output stdout
 .mode list # back to normal
+
+# See also: sql, sqlite-utils

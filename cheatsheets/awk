@@ -27,3 +27,4 @@ awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2' $1 > $TEMPFILE && mv $TEMPFIL
 # https://learnbyexample.github.io/learn_gnuawk/
 # https://ferd.ca/awk-in-20-minutes.html
 # https://two-wrongs.com/awk-state-machine-parser-pattern.html
+# https://pmitev.github.io/to-awk-or-not/

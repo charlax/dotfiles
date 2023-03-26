@@ -13,7 +13,29 @@ ALTER TABLE users ADD COLUMN has_stuff BOOLEAN DEFAULT false;
 create table toaster (id int primary key, color varchar);
 ```
 
+### Index
+
+```sql
+create index index_name on table_name (column_name);
+```
+
 ## Datetime
+
+sqlite: https://www.sqlite.org/lang_datefunc.html
+
+```sql
+-- Parse created_at as unix timestamp
+select datetime(created_at, "unixepoch") from table;
+select date(created_at, "unixepoch") from table;
+select time(created_at, "unixepoch") from table;
+
+-- With modifiers (useful for timezone):
+select time(created_at, "unixepoch", "5 hours") from table;
+
+-- Difference between two datetime columns in seconds
+SELECT strftime('%s', column1) - strftime('%s', column2) AS delta_seconds
+FROM your_table;
+```
 
 Group by hour and minute:
 

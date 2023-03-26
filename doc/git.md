@@ -7,6 +7,7 @@
     - [Conflict markers (while rebasing)](#conflict-markers-while-rebasing)
   - [Troubleshooting](#troubleshooting)
     - ["There are too many unreachable loose objects"](#there-are-too-many-unreachable-loose-objects)
+    - [Code signing: load key invalid format](#code-signing-load-key-invalid-format)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -62,4 +63,16 @@ git fsck
 
 # dangerous
 git gc --prune=now
+```
+
+### Code signing: load key invalid format
+
+```text
+error: Load key "/var/folders/rx/[redacted]/T//.git_signing_key_tmp": invalid format?
+```
+
+Run:
+
+```bash
+ssh-add
 ```
