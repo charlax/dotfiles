@@ -49,6 +49,9 @@ ffmpeg -i scheduling.mov -filter_complex \
  [a][b]concat[out]" \
  -map '[out]' out.mov
 
+# Create gif from images, watch out for the single quotes for the glob pattern_type# You can set the order of images with IMG_%04d.jpeg
+ffmpeg -framerate 1.5 -pattern_type glob -i './IMG_9*.jpeg' -vf "scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 ./output.gif
+
 # See also:
 # man ffmpeg
 # man ffmpeg-filters

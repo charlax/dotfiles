@@ -13,3 +13,11 @@ iw
 
 # Get current ip
 ip address
+
+# Unlock a user who's been locked out because of too many failed login attempts
+faillock --user username --reset
+
+# Mount an usb flashdrive
+lsblk -f                      # check devices
+lsbusb                        # pacman -S usbutils
+udisksctl mount -b /dev/sdc1  # pacman -S udisks2

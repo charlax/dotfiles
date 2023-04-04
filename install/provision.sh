@@ -31,7 +31,10 @@ function install_requirements() {
         echo ""
         echo "Provision: installing base packages"
         # shellcheck disable=SC2086
-        sudo pacman -S --noconfirm git python3 openssh
+        # TODO: add list
+        # udisks2              # automount usb flash drives
+        # usbutils             # lsusb etc.
+        sudo pacman -S --noconfirm git python3 openssh udisks2 usbutils
     fi
 }
 

@@ -13,3 +13,6 @@ MATCH("Sunday",A2:A9,0)
 # https://support.google.com/docs/answer/3093379?hl=en
 OFFSET(A2,3,4,2,2)
 OFFSET(cell_reference, offset_rows, offset_columns, [height], [width])
+
+# Query with dates
+=query(A2:K3, "select I where J <= date '" & TEXT(F8, "yyyy-mm-dd") & "' and K >= date '" & TEXT(F8, "yyyy-mm-dd") & "'")
