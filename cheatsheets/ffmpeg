@@ -2,14 +2,17 @@
 ffmpeg -y -i recording.mov -vf fps=10,palettegen palette.png
 ffmpeg -i recording.mov -i palette.png -filter_complex "fps=10,paletteuse" out.gif
 
+# Simple video to giv
+# split      do everything in one command
+# loop       0 infinite looping (confusing), -1 no looping, 1 run twice (loop once)
+ffmpeg -i input.mp4 -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
+
 # More complicated gif creation
 # -ss        start at timestamp
 # -t         read only x seconds
 # fps        frames per second
 # scale      scale with lanczos algo
 # palette*   create palette
-# split      do everything in one command
-# loop       0 infinite looping (confusing), -1 no looping, 1 run twice (loop once)
 ffmpeg -ss 30 -t 3 -i input.mp4 -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
 
 # Crop video (see result)
