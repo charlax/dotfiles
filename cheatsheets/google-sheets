@@ -15,4 +15,8 @@ OFFSET(A2,3,4,2,2)
 OFFSET(cell_reference, offset_rows, offset_columns, [height], [width])
 
 # Query with dates
-=query(A2:K3, "select I where J <= date '" & TEXT(F8, "yyyy-mm-dd") & "' and K >= date '" & TEXT(F8, "yyyy-mm-dd") & "'")
+QUERY(A2:K3, "select I where J <= date '" & TEXT(F8, "yyyy-mm-dd") & "' and K >= date '" & TEXT(F8, "yyyy-mm-dd") & "'")
+
+# Return the value of a cell in the result range in the same position as the
+# matching value in the search range
+LOOKUP("name", search_range, [result_range])

@@ -15,6 +15,7 @@ curl -H 'Host: truc.com' ...
 -o/--output        # e.g. redirect response body to /dev/null
 -k/--insecure      # do not check certificates
 --remote-name-all  # issue multiple query (see below)
+--resolve example.com:444:127.0.0.1  # Provide a host without changing /etc/hosts
 
 # Path
 

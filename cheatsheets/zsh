@@ -9,6 +9,9 @@ done
 # Show all keyboard shortcuts
 bindkey
 
+# Provide content as a temp file argument (zsh) with =(...)
+cat =(echo 'e')
+
 # Keyboard shortcuts
 
 # Note: it is better to learn those ones than to come up with custom ones that
