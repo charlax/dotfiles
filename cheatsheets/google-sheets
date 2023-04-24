@@ -20,3 +20,5 @@ QUERY(A2:K3, "select I where J <= date '" & TEXT(F8, "yyyy-mm-dd") & "' and K >=
 # Return the value of a cell in the result range in the same position as the
 # matching value in the search range
 LOOKUP("name", search_range, [result_range])
+
+SPARKLINE(A1:B1, {"charttype","bar"; "max",40})

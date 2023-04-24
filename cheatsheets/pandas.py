@@ -1,4 +1,23 @@
+# % pip install pandas numpy matplotlib seaborn
+
+from collections import defaultdict
+
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+# Dtypes
+# ======
+
+# See https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes
+
+# CSV
+# https://pandas.pydata.org/docs/user_guide/cookbook.html#cookbook-csv
+pd.read_csv(path, skiprows=1, dtype=defaultdict(lambda: str))
+# Int64 is nullable int
+pd.read_csv(path, skiprows=1, dtype={"a": "Int64"})
 
 # Change number of displayed columns or rows
 pd.options.display.max_columns = 6
@@ -7,7 +26,7 @@ pd.options.display.max_rows = 1000
 # Remove empty strings (does not work with NaN)
 df = df[df["latitude"].astype(bool)]
 
-# Drop NaN
+# Drop rows for which latitude is NaN
 df.dropna(subset=["latitude"], inplace=True)
 
 # Filter rows (multiple conditions)
@@ -32,15 +51,34 @@ df.groupby("name").size().reset_index(name="counts")
 
 # groupby day
 df.groupby(by=df["Created UTC"].dt.date).size().reset_index(name="counts")
-# gropuby day-hour
+# groupby day-hour
 df.groupby(by=df["Created UTC"].dt.floor("H")).size().reset_index(name="counts")
+# groupby then value counts
+df.groupby("column_name")["column_to_count"].value_counts()
 
 # groupby then sum
 df.groupby("Date").sum()
 
+# groupby then get means, median, etc.
+df.groupby("date")[["revenue"]].describe()
+
 # Check if value is empty
 pd.isnull(v)
 
-# See also:
+# Describe
+# ========
+
+# Use a gradient on a per column basis
+# https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.background_gradient.html
+df.style.background_gradient(axis=0)
+
+# Graph and visualization
+# =======================
+
+# Display a grid of distribution plot for revenue by owner
+sns.displot(df, x="revenue", col="owner")
+
+# See also
+# ========
 "https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf"
 "https://www.webpages.uidaho.edu/~stevel/cheatsheets/Pandas%20DataFrame%20Notes_12pages.pdf"

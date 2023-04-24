@@ -4,3 +4,6 @@ sudo systemd-resolve --statistics
 # Empty DNS cache
 sudo resolvectl flush-caches  # or:
 sudo systemd-resolve --flush-caches
+
+# Get DNS config
+scutil --dns

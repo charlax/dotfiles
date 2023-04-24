@@ -282,8 +282,11 @@ Command with shell:
 
 ### Example regexes
 
-```text
-# Replace all date in format `YYYYMMDD` to `MM/DD/YYYY`:
+```vim
+" Add empty line before each number
+:%s/\(\d\+\)/\r\1/g
+
+" Replace all date in format `YYYYMMDD` to `MM/DD/YYYY`:
 %s/\(20\d\{2}\)\(\d\{2}\)\(\d\{2}\)/\2\/\3\/\1/g
 
 # Delete everything in parentheses

@@ -62,6 +62,16 @@ Click Apple menu, hold option, click System information, then Controller or iBri
 # Prevent from going to sleep
 caffeinate -disu
 
+# Clipboard
+pbpaste -Prefer rtf  # does not work
+$ pbpaste -Prefer rtf | textutil -stdin -info
+File:  stdin
+  Type:  plain text
+  Length:  19 characters
+  Contents:  "Hi, I'm rich text"
+# can use pbv for this (or bin/pbpaste-as-html.swift)
+# https://github.com/chbrown/macos-pasteboard
+
 # Other links
 # https://git.herrbischoff.com/awesome-macos-command-line/about/
 # https://github.com/drduh/macOS-Security-and-Privacy-Guide

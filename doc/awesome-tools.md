@@ -113,7 +113,8 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 ### HTML
 
-- [ericchiang/pup: Parsing HTML at the command line](https://github.com/ericchiang/pup)
+- [ericchiang/pup: Parsing HTML at the command line](https://github.com/ericchiang/pup): can also be used to beautify
+- tidy: HTML formatter/beautifier, installed by default on macOS, `brew install tidy-html5` to support html5
 
 ### HTTP client
 
