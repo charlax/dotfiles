@@ -160,13 +160,13 @@ if has('autocmd')
     au FileType zsh set expandtab
 
     " Json
-    au FileType json set softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent
+    au FileType json,jsonc set softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent
 
     " Remember last location in file, except in Git commit message
     au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
           \| exe "normal! g`\"" | endif
 
-    autocmd FileType arduino,c,cpp,java,php,python,javascript,html,css,mako,sql,json,rst,cucumber,yaml,zsh autocmd BufWritePre <buffer> :call TrimEndLines()
+    autocmd FileType arduino,c,cpp,java,php,python,javascript,html,css,mako,sql,json,jsonc,rst,cucumber,yaml,zsh autocmd BufWritePre <buffer> :call TrimEndLines()
 
 endif
 

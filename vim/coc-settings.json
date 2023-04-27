@@ -5,5 +5,7 @@
 	"coc.preferences.formatOnSaveFiletypes": [
 		"python",
 		"json"
-	]
+	],
+	// do not select the first completion item by default
+	"suggest.noselect": true
 }
