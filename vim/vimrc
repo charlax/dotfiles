@@ -117,6 +117,9 @@ Plug 'preservim/vim-markdown'
 
 " LSP support and autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Extensions
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 
 " Initialize plugin system
 call plug#end()

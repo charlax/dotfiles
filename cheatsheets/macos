@@ -1,6 +1,7 @@
 # Keyboard shortcuts
-cmd+h     # hide front window
-alt+cmd+h # hide all other windows
+cmd+h         # hide front window
+alt+cmd+h     # hide all other windows
+cmd+shift+.   # show/hide hidden files
 
 # Reboot in recovery mode
 Reboot then Command+R
