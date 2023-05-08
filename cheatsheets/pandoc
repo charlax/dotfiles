@@ -1,6 +1,9 @@
 # Markdown to docx
 pandoc -s file.md -o file.docx
 
+# Format clipboard
+pbpaste | pandoc -f markdown -t html
+
 # docx to md, output to stdout
 pandoc file.docx -t markdown
 
