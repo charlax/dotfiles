@@ -12,12 +12,21 @@ If it does not work: press shortly, then press and hold On button until it says 
 Turn on your Mac and immediately press and hold these four keys together: Option, Command, P, and R
 
 # Network
+# =======
 
 # List all bonjour devices
 dns-sd -B _services._dns-sd._udp
 # or use Discovery - DNS-SD Browser https://apps.apple.com/us/app/discovery-dns-sd-browser/id1381004916?mt=12
 
+# Restart DNS responder (e.g. after changes in /etc/hosts)
+sudo killall -HUP mDNSResponder
+
+# Get stats about connection
+networkQuality -v
+
 # Processes
+# =========
+
 # mds and msd_stores: Spolight activities
 
 # Spotlight
@@ -29,6 +38,7 @@ mdfind [query]  # See mdfind cheats
 sudo fs_usage -w -f filesys mds_stores
 
 # Files
+# =====
 
 # Get file info
 mdls file.pdf
@@ -36,15 +46,11 @@ mdls file.pdf
 # Check file system usage
 sudo fs_usage
 
-# Network
-
-# Restart DNS responder (e.g. after changes in /etc/hosts)
-sudo killall -HUP mDNSResponder
-
 # Keyboard
 # See https://support.apple.com/en-us/HT201236
 
 # Audio
+# =====
 
 # Restart audio
 sudo killall coreaudiod

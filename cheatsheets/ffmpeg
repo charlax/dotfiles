@@ -2,7 +2,7 @@
 ffmpeg -y -i recording.mov -vf fps=10,palettegen palette.png
 ffmpeg -i recording.mov -i palette.png -filter_complex "fps=10,paletteuse" out.gif
 
-# Simple video to giv
+# Simple video to gif
 # split      do everything in one command
 # loop       0 infinite looping (confusing), -1 no looping, 1 run twice (loop once)
 ffmpeg -i input.mp4 -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
@@ -41,7 +41,15 @@ ffmpeg -f avfoundation -i "4" output.mkv
 # Create timelapse with setpts (change the PTS - presentation timestamp - of the input frames)
 -filter:v "setpts=0.0625*PTS"
 
-# Extract segments from video
+# Extract one segment from video
+# from minute 15:00 to minute 18:00
+# -c copy    uses stream copy
+# the order of options matters!
+# There's also the copyts option
+# https://trac.ffmpeg.org/wiki/Seeking
+ffmpeg -ss "00:15:00" -i $input.mp4 -to "00:03:00" -c copy output.mp4
+
+# Extract multiple segments from video
 # http://ffmpeg.org/ffmpeg-filters.html#trim
 # Extract segment 1:01 to 1:10 and 1:30-end, concat them
 # Gotchas:
