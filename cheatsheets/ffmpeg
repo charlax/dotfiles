@@ -5,7 +5,7 @@ ffmpeg -i recording.mov -i palette.png -filter_complex "fps=10,paletteuse" out.g
 # Simple video to gif
 # split      do everything in one command
 # loop       0 infinite looping (confusing), -1 no looping, 1 run twice (loop once)
-ffmpeg -i input.mp4 -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
+ffmpeg -i input.mp4 -vf "setpts=0.4*PTS,fps=10,scale=768:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
 
 # More complicated gif creation
 # -ss        start at timestamp
@@ -17,7 +17,8 @@ ffmpeg -ss 30 -t 3 -i input.mp4 -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0
 # with -filter:v and setpts
 ffmpeg -i file.mov -filter:v "setpts=0.4*PTS,fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
 
-# Crop video (see result)
+# Crop video and see result (man ffmpeg-filters)
+# Supports automatically removing black area from
 ffplay -i input.webm -vf "crop=334:720"
 
 # Crop then generate gif
