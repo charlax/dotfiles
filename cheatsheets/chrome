@@ -3,3 +3,6 @@
 # 2. Press Alt+Shift+I to open DevTools in DevTools
 # 3. Run this in console:
 copy(UI.panels.network.networkLogView.dataGrid.rootNode().flatNodes.map(n => n.request().url()).join('\n'))
+
+# Search in tabs
+cmd+shift+a

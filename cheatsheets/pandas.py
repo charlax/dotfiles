@@ -7,6 +7,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Create
+# ======
+
+# Create from a list of dict
+list_of_dicts = [{"a": 1}]
+df = pd.DataFrame(list_of_dicts)
+
 
 # Dtypes
 # ======
@@ -38,6 +45,14 @@ df[df["Created UTC"].dt.strftime("%Y-%m-%d") == "2023-01-29"]
 
 # Query null
 df.query("column_name.isnull()", engine="python")
+
+# Iterate over rows as dict
+for k, row in df.iterrows():
+    print(dict(**row))
+# or:
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_dict.html
+for row in df.to_dict("records"):
+    print(dict(**row))
 
 # Groupby iteration
 for group_name, grouped in df.groupby("object_id"):

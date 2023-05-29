@@ -128,6 +128,8 @@ Setup the following apps:
 - Rectangle (give permissions)
 - Things cloud
 - Printers
+- Open [UTC Time](https://apps.apple.com/us/app/utc-time/id1538245904?mt=12) at login
+- Setup [MeetingBar](https://github.com/leits/MeetingBar) (`brew install meetingbar`)
 
 ## Misc
 

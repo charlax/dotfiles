@@ -65,3 +65,19 @@ SELECT DISTINCT ON (location) location, time, report
     FROM weather_reports
     ORDER BY location, time DESC;
 ```
+
+### Aggregations functions
+
+https://www.postgresql.org/docs/9.5/functions-aggregate.html
+
+`array_agg`
+
+```sql
+SELECT
+    department,
+    ARRAY_AGG(name) AS employees
+FROM
+    employee
+GROUP BY
+    department;
+```
