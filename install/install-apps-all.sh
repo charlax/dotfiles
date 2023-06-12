@@ -56,6 +56,7 @@ function install_osx_packages {
         htop             # process viewer https://htop.dev/
         httpie           # CLI http client
         jq               # json formatting
+        maccy            # clipboard history https://github.com/p0deje/Maccy
         macvim           # text editor
         make             # newer Makefile
         miller           # like awk, sed, cut, join, and sort for CSV, TSV, and tabular JSON https://github.com/johnkerl/miller

@@ -27,8 +27,8 @@ set noet   # disable example tab (e.g. in Makefile)
 :verbose map    # show mapping and where they were defined
 :verbose map k  # show mapping for key
 
-# Open previously opened file
-<c-^> (ctrl-shift-6)
+<c-^> (ctrl-shift-6)  open previously opened file
+<c-w><c-f>            open file under cursor
 
 # Insert literal tab character
 <c-v> <tab>
