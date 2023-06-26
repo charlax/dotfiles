@@ -1,21 +1,51 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
+PROGRAM_NAME=${0##*/}
+APP=$EDITOR_GUI
+
+function usage {
+    echo "Usage: $PROGRAM_NAME [--help/-h] [dir]"
+    exit 1
+}
+
+while true; do
+    case "${1:-}" in
+        -h | --help)
+            usage
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
 ts=$(date +"%Y-%m-%d")
 date_value=$(gdate --iso-8601=seconds)
 echo "Filename? (without .md)"
 read title
-filename="$title $ts.md"
 
-[[ -s $filename ]] && echo -e "Error: file already exists" && return -1
+# Handle folder
+if [[ "${1-}" == "" ]]; then
+    FOLDER="."
+else
+    FOLDER=$1
+fi
 
-echo "---" > $filename
-echo "title: $title" >> $filename
-echo "date: $date_value" >> $filename
-echo "---" >> $filename
+filename="$FOLDER/$title $ts.md"
+
+[[ -s $filename ]] && echo -e "Error: file already exists" && return 1
+
+echo "---" > "$filename"
+echo "title: $title" >> "$filename"
+echo "date: $date_value" >> "$filename"
+echo "keywords:" >> "$filename"
+echo "---" >> "$filename"
 echo "" >> "$filename"
 echo "# $title" >> "$filename"
 echo "" >> "$filename"
 echo "" >> "$filename"
 
 echo "$filename"
-vim "+normal G$" +startinsert "$filename"
+$APP "+normal G$" +startinsert "$filename"
