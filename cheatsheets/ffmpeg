@@ -21,6 +21,13 @@ ffmpeg -i file.mov -filter:v "setpts=0.4*PTS,fps=10,scale=1024:-1:flags=lanczos,
 # Supports automatically removing black area from
 ffplay -i input.webm -vf "crop=334:720"
 
+# Detect crop area (-vframes = process only 10 frames)
+ffmpeg -i $input -vframes 10 -vf cropdetect -f null -
+# Then grab the crop=... at the end of each line, and check the result with ffplay
+ffplay -vf crop=496:1072:712:0 $input
+# Then crop:
+ffmpeg -i input.mp4 -vf crop=1280:720:0:0 -c:a copy output.mp4
+
 # Crop then generate gif
 ffmpeg -t 3 -i input.webm -vf "crop=334:720,fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
 
@@ -41,6 +48,9 @@ ffmpeg -f avfoundation -i "4" output.mkv
 
 # Create timelapse with setpts (change the PTS - presentation timestamp - of the input frames)
 -filter:v "setpts=0.0625*PTS"
+
+# Speed up video with copy codec
+ffmpeg -itsscale 0.07 -i input.mp4 -vcodec copy timelapse.mp4
 
 # Extract one segment from video
 # from minute 15:00 to minute 18:00
@@ -63,8 +73,14 @@ ffmpeg -i scheduling.mov -filter_complex \
  [a][b]concat[out]" \
  -map '[out]' out.mov
 
+# Concat files
+ffmpeg -safe 0 -f concat -i <(gfind . -type f -name '*.MP4' -printf "file '$PWD/%p'\n" | sort) -c copy concat.mp4
+
 # Create gif from images, watch out for the single quotes for the glob pattern_type# You can set the order of images with IMG_%04d.jpeg
 ffmpeg -framerate 1.5 -pattern_type glob -i './IMG_9*.jpeg' -vf "scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 ./output.gif
+
+# Remove audio
+ffmpeg -i $input_file -c copy -an $output_file
 
 # See also:
 # man ffmpeg

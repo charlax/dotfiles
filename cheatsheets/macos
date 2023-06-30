@@ -79,6 +79,21 @@ File:  stdin
 # can use pbv for this (or bin/pbpaste-as-html.swift)
 # https://github.com/chbrown/macos-pasteboard
 
+# Other commands
+# ==============
+
+# Take screenshots
+screencapture
+
+# List processes that are preventing sleep
+pmset -g assertions
+
+# Resize image
+sips -z <height> <width> <image>
+
+# Execute in background (on M1, efficiency core)
+taskpolicy -b <command>
+
 # Other links
 # https://git.herrbischoff.com/awesome-macos-command-line/about/
 # https://github.com/drduh/macOS-Security-and-Privacy-Guide

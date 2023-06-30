@@ -33,6 +33,7 @@
     - [Rename files](#rename-files)
     - [Screenshots](#screenshots)
     - [Search](#search)
+    - [Shell](#shell)
     - [Static analysis](#static-analysis)
     - [System monitor](#system-monitor)
     - [Task runner (a la Make)](#task-runner-a-la-make)
@@ -174,6 +175,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Search
 
 - [phiresky/ripgrep-all: rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.](https://github.com/phiresky/ripgrep-all)
+
+### Shell
+
+- [moreutils](https://joeyh.name/code/moreutils/)
 
 ### Static analysis
 
