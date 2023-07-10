@@ -13,7 +13,7 @@
     co = checkout
     d = diff
     go = checkout -b
-    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    l = log --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit
     pr = !git commit -av && git push -f && hub pull-request
     recommit = !git commit --amend
     repush = !git recommit && git push -f
