@@ -24,3 +24,6 @@ let g:vim_markdown_conceal_code_blocks = 0
 setl conceallevel=2
 
 let g:vim_markdown_new_list_item_indent = 2
+
+" https://github.com/preservim/vim-markdown support folding
+" see cheats for keyboard shortcuts

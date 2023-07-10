@@ -24,6 +24,9 @@ for toaster in $(cat toasters.txt) ; do
      echo ${toaster}
 done
 
+# Simple iteration
+for i in *matching*; echo $i
+
 # if... elif... else
 if [ test ]; then
   echo "foo"
