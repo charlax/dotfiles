@@ -147,6 +147,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [Tildesoft's Discovery](https://www.tildesoft.com/): Bonjour services browser
 - [tshark](https://www.wireshark.org/docs/man-pages/tshark.html): dump and analyze network traffic
+- [iperf](https://iperf.fr/
 
 ### Presentation
 

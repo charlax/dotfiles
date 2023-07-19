@@ -11,6 +11,12 @@ fi
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
+function finish {
+    echo "Errored out, checking out $CURRENT_BRANCH branch"
+    git checkout "$CURRENT_BRANCH"
+}
+trap finish EXIT
+
 MASTER=${1:-$DEFAULT_BRANCH}
 
 echo "Pulling and rebasing on $MASTER"

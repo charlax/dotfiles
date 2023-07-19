@@ -49,6 +49,7 @@ CONFIGURATION_FILES = (
     ("config/cheat", ".config/cheat"),
     ("config/kitty", ".config/kitty"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
+    ("config/tig/config", ".config/tig/config"),
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),
     ("config/starship.toml", ".config/starship.toml"),
     ("ctop/ctop", ".ctop"),

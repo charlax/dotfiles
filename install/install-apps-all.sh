@@ -243,6 +243,7 @@ function install_brew_packages {
         csvq            # query csv from command line
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
+        gawk            # GNU awk
         git-delta       # better diff viewer https://github.com/dandavison/delta
         gnu-sed         # GNU sed
         gh              # Github cli
