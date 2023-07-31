@@ -89,3 +89,4 @@ ffmpeg -i $input_file -c copy -an $output_file
 
 # Resources:
 # https://img.ly/blog/ultimate-guide-to-ffmpeg/
+# https://amiaopensource.github.io/ffmprovisr/
