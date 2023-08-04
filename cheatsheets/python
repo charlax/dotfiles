@@ -108,4 +108,8 @@ $ which python3  # make sure it's brew's Python, otherwise: brew link python3
 $ pipx reinstall-all
 ```
 
+## References
+
+- [Comprehensive Python Cheatsheet](https://gto76.github.io/python-cheatsheet/)
+
 <!-- vim: set ft=markdown: -->

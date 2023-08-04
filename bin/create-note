@@ -5,8 +5,10 @@ set -Eeuo pipefail
 PROGRAM_NAME=${0##*/}
 APP=$EDITOR_GUI
 
+USE_ZETTELKASTEN_FORMAT=${USE_ZETTELKASTEN_FORMAT:-0}
+
 function usage {
-    echo "Usage: $PROGRAM_NAME [--help/-h] [dir]"
+    echo "Usage: $PROGRAM_NAME [-z/--zettelkasten] [--help/-h] [directory]"
     exit 1
 }
 
@@ -15,13 +17,16 @@ while true; do
         -h | --help)
             usage
             ;;
+        -z | --zettelkasten)
+            USE_ZETTELKASTEN_FORMAT=1
+            shift 1
+            ;;
         *)
             break
             ;;
     esac
 done
 
-ts=$(date +"%Y-%m-%d")
 date_value=$(gdate --iso-8601=seconds)
 echo "Filename? (without .md)"
 read title
@@ -33,19 +38,26 @@ else
     FOLDER=$1
 fi
 
-filename="$FOLDER/$title $ts.md"
+if [[ $USE_ZETTELKASTEN_FORMAT -gt 0 ]]; then
+    id=$(date +"%Y%m%d%H%M%S")
+    filename="$FOLDER/$id $title.md"
+else
+    id=$(date +"%Y-%m-%d")
+    filename="$FOLDER/$title $id.md"
+fi
 
 [[ -s $filename ]] && echo -e "Error: file already exists" && return 1
 
-echo "---" > "$filename"
-echo "title: $title" >> "$filename"
-echo "date: $date_value" >> "$filename"
-echo "keywords:" >> "$filename"
-echo "---" >> "$filename"
-echo "" >> "$filename"
-echo "# $title" >> "$filename"
-echo "" >> "$filename"
-echo "" >> "$filename"
+cat >"$filename" <<EOF
+---
+title: ${title}
+date: ${date_value}
+keywords:
+---
+
+# ${title}
+
+EOF
 
 echo "$filename"
 $APP "+normal G$" +startinsert "$filename"
