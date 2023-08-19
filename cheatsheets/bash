@@ -1,12 +1,3 @@
-# Resources:
-#
-# https://wiki.bash-hackers.org/
-# https://github.com/jlevy/the-art-of-command-line
-# https://github.com/onceupon/Bash-Oneliner
-
-# https://betterdev.blog/minimal-safe-bash-script-template/
-# https://sharats.me/posts/shell-script-best-practices/
-
 # while loop
 while true; do
   echo "yes"
@@ -141,3 +132,13 @@ cat >"$filename" <<EOF
 title: ${title}
 ---
 EOF
+
+# Resources:
+#
+# https://wiki.bash-hackers.org/
+# https://github.com/jlevy/the-art-of-command-line
+# https://github.com/onceupon/Bash-Oneliner
+# https://github.com/dylanaraps/pure-bash-bible
+
+# https://betterdev.blog/minimal-safe-bash-script-template/
+# https://sharats.me/posts/shell-script-best-practices/

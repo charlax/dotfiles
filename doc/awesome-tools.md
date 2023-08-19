@@ -16,6 +16,7 @@
     - [Docker](#docker)
     - [Docs](#docs)
     - [Download](#download)
+    - [File manager](#file-manager)
     - [File sharing](#file-sharing)
     - [Filesystem watchers](#filesystem-watchers)
     - [Git](#git)
@@ -98,6 +99,11 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Download
 
 - [ytdl-org/youtube-dl: Command-line program to download videos from YouTube.com and other video sites](https://github.com/ytdl-org/youtube-dl/): tool to download .`.ts`, `.m3u8` files
+
+### File manager
+
+- [ranger/ranger: A VIM-inspired filemanager for the console](https://github.com/ranger/ranger)
+- [jarun/nnn: n³ The unorthodox terminal file manager](https://github.com/jarun/nnn)
 
 ### File sharing
 
