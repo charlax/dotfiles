@@ -1,4 +1,4 @@
-$pdf_previewer = "open -a /Applications/Preview.app";
+$pdf_previewer = "open -a /System/Applications/Preview.app";
 $clean_ext = "paux lox pdfsync out";
 
 # $pdflatex = 'pdflatex -interaction=nonstopmode';
