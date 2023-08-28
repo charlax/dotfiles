@@ -54,3 +54,4 @@ ld -di /  # if != 2, in chroot
 # Other cheats
 #
 # https://learnbyexample.github.io/cli-computing/
+# https://www.brendangregg.com/Perf/linux_observability_tools.png - https://www.brendangregg.com/linuxperf.html
