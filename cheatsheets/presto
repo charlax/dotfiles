@@ -1,8 +1,17 @@
 # Presto SQL
 
+(now Trino)
+
 ## Useful functions
 
+Links:
+
+- [Aggregate Functions — Presto 0.283 Documentation](https://prestodb.io/docs/current/functions/aggregate.html)
+
+Functions:
+
 - `coalesce`: `coalesce(true, NULL, NULL) == coalesce(NULL, NULL, true) == true`
+- `arbitrary(x)`: returns an arbitrary non-null value of `x` if one exists
 
 ## Dates
 
@@ -19,6 +28,18 @@ from_unixtime(t.created_at / 1000) at timezone "America/Los_Angeles",
 from tablename
 -- between comparison with timezone
 where from_unixtime(t.created_at / 1000) between timestamp '2022-01-01 11:00:00 America/New_York' and timestamp '2022-01-01 12:00:00 America/New_York';
+```
+
+## Grouping
+
+[SELECT — Presto 0.283 Documentation](https://prestodb.io/docs/current/sql/select.html)
+
+The `ROLLUP` operator generates all possible subtotals for a given set of columns.
+
+```sql
+SELECT origin_state, origin_zip, sum(package_weight)
+FROM shipping
+GROUP BY ROLLUP (origin_state, origin_zip);
 ```
 
 ## WAF logs (AWS)
