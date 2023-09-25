@@ -12,6 +12,7 @@ Functions:
 
 - `coalesce`: `coalesce(true, NULL, NULL) == coalesce(NULL, NULL, true) == true`
 - `arbitrary(x)`: returns an arbitrary non-null value of `x` if one exists
+- `approx_percentile(price, 0.50)`: get the median
 
 ## Dates
 
@@ -28,6 +29,11 @@ from_unixtime(t.created_at / 1000) at timezone "America/Los_Angeles",
 from tablename
 -- between comparison with timezone
 where from_unixtime(t.created_at / 1000) between timestamp '2022-01-01 11:00:00 America/New_York' and timestamp '2022-01-01 12:00:00 America/New_York';
+
+-- extract first day of week
+date_trunc('week', created_at)
+-- date difference
+date_diff('minute', created_at, updated_at)
 ```
 
 ## Grouping

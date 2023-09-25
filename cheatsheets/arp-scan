@@ -1,1 +1,2 @@
 arp-scan --interface=vboxnet0 --localnet
+# see also: arp, nmap

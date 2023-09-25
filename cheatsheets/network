@@ -53,3 +53,8 @@ hostname -i
 
 # Get current external IP
 curl ifconfig.me
+
+# Find other devices on the network
+arp-scan
+arp -a
+nmap -sn 192.168.0.0/24

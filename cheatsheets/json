@@ -1,2 +1,5 @@
 # Tools:
-# https://github.com/PaulJuliusMartinez/jless
+# jless https://github.com/PaulJuliusMartinez/jless
+
+# fx https://fx.wtf/ - JSON viewer in Go for terminal
+brew install fx

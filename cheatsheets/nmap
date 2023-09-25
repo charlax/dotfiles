@@ -5,6 +5,17 @@ nmap -p22 $ip
 # Pretty complete scan
 nmap -sV -sC -oA nmap $ip
 
+# Find all devices on network
+nmap -oG - -sn 192.168.0.0/24
+nmap -p22 192.168.0.0/24  # with 22 open
+# -sn    ping scan (no port scan)
+# -oG -  greppable output
+# -O     OS detection (requires root)
+# -A     all detections
+# - see also (and their respective cheatsheet):
+arp -a
+arp-scan --interface=en0 --localnet
+
 # Identify a device on the network
 nmap -sV --allports -T4 $ip
 

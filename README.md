@@ -156,6 +156,7 @@ See [Awesome tools](./doc/awesome-tools.md)
 ## Checklist before reinstall
 
 - Run `ncdu`
+- Backup local configuration (`find $DOTFILES -iname "*.local.*"`)
 - Backup SSH keys (`ls ~/.ssh`)
 - Backup GPG keys
   - Check keys: `gpg --list-secret-keys --keyid-format LONG`

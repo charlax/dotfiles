@@ -1,0 +1,4 @@
+# See notes
+
+# Get temperature (divide by 1000) (in C)
+cat /sys/class/thermal/thermal_zone0/temp
