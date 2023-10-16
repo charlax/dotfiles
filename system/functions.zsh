@@ -70,8 +70,8 @@ ssh-reagent () {
 }
 
 function findfile {
-    # -s case insensitive
-    fd -s --type f "$@"
+    # (case insensitive by default)
+    fd --type f "$@"
     # grep is for coloring in the output
     # find . -path ./node_modules -prune -o -iname "*$1*" -print | grep "$1"
 }
