@@ -8,6 +8,9 @@
 [[ -s "$var" ]]
 [ -n "$var" ]]
 
+# true if equal
+[[ "$var" = "value" ]]
+
 # and
 [[ -s "" ]] && [[ ... ]]
 

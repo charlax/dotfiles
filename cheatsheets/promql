@@ -4,6 +4,9 @@
 # Compare with last week
 node_cpu_seconds_total offset 1w
 
+# negative regex
+api_request{result!~"OK"}
+
 # sum by
 sum by (grpc_server_status) (rate(grpc_io_server_completed_rpcs{k8s_environment="production",kubernetes_namespace="$namespace", grpc_server_method=~"$method"}[7d]))
 

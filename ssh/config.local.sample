@@ -4,5 +4,6 @@ Host shortname
     IdentityFile ~/.ssh/id_rsa_foo
 
 # Linux 1Password integration
-Host *
+Host *.local
   IdentityAgent ~/.1password/agent.sock
+  ForwardAgent yes
