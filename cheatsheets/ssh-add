@@ -1,2 +1,8 @@
 # List keys in ssh agent
 ssh-add -l
+
+# Add a specific key
+ssh-add ~/.ssh/id_rsa
+
+# Add default key
+ssh-add

@@ -65,6 +65,9 @@ limit 1000;
 
 ```sql
 where httprequest.uri like '%\_foo' escape '\'
+
+-- conversion between uuid and varchar
+select cast(uuid() as varchar);
 ```
 
 <!-- vim: set ft=markdown: -->

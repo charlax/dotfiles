@@ -61,6 +61,13 @@ for group_name, grouped in df.groupby("object_id"):
         print(row)
         print(row["name"])
 
+# Unique string column that might contain whitespace, sorted alphabetically,
+# returned as Python list
+np.sort(df[df["istrue"] == True]["city"].str.strip().unique()).tolist()
+
+# Sort by column value
+df.sort_values("counts", ascending=False)
+
 # groupby then get size as dataframe
 df.groupby("name").size().reset_index(name="counts")
 
@@ -80,6 +87,10 @@ df.groupby("date")[["revenue"]].describe()
 # Check if value is empty
 pd.isnull(v)
 
+# Dates
+# =====
+df["week"] = df["Date"].dt.isocalendar().week
+
 # Describe
 # ========
 
@@ -92,6 +103,13 @@ df.style.background_gradient(axis=0)
 
 # Display a grid of distribution plot for revenue by owner
 sns.displot(df, x="revenue", col="owner")
+
+# Querying (indexing and selecting)
+# =================================
+
+# https://pandas.pydata.org/pandas-docs/dev/user_guide/indexing.html#boolean-indexing
+# Multiple conditions
+df = df[(df["is_test"] != True) & (df["is_cancelled"] == False)]
 
 # See also
 # ========
