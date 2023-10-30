@@ -1,6 +1,32 @@
 #!/usr/bin/env python3
+
+"""
+
+Dependencies:
+
+- fd
+- fzf
+
+Example template:
+
+Filename: "Template Interview {name}.md"
+
+```markdown
+# Interview with
+
+Name: {name}
+```
+
+Variables:
+
+- `today` replaced with date, e.g. '2023-01-01'
+- `now` replace with date and time, e.g. '2023-01-01 15:35'
+
+"""
+
 import argparse
 import itertools as it
+import subprocess
 import sys
 from datetime import datetime
 from functools import reduce
@@ -19,7 +45,8 @@ def prompt(name: str) -> str:
 
 def get_base_context() -> Dict[str, Any]:
     return {
-        "today": datetime.now(),
+        "today": datetime.now().strftime("%Y-%m-%d"),
+        "now": datetime.now().strftime("%Y-%m-%d %H:%M"),
     }
 
 
@@ -39,8 +66,21 @@ def get_required_variables(template: str) -> Iterator[str]:
     return list(filter(None, [fieldname for _, fieldname, _, _ in parsed]))
 
 
-def main(template_filename: str) -> int:
-    with open(template_filename) as f:
+def choose_template(dir: Path) -> Path:
+    """Let the user choose from one template from folder."""
+    ls = subprocess.Popen(["fd", ".", str(dir)], stdout=subprocess.PIPE)
+    r = subprocess.check_output(["fzf"], stdin=ls.stdout).decode("utf-8").strip()
+    returned = Path(r)
+    if not returned.exists():
+        raise OSError(f"File {returned} does not exist")
+    return returned
+
+
+def main(template: Path) -> int:
+    template_path = choose_template(template) if template.is_dir() else template
+    template_filename = str(template_path.name)
+
+    with open(template_path) as f:
         content_template = f.read(100000)
 
     base_context = get_base_context()
@@ -54,7 +94,11 @@ def main(template_filename: str) -> int:
     context = get_context(required_variables, base_context)
 
     filename = Path(
-        template_filename.format(**context).replace("template", "").replace("..", ".")
+        template_filename.format(**context)
+        .replace("template", "")
+        .replace("Template", "")
+        .replace("..", ".")
+        .strip()
     )
 
     if filename.exists():
@@ -70,7 +114,7 @@ def main(template_filename: str) -> int:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="render a template file")
-    parser.add_argument("template", help="template filename")
+    parser.add_argument("template", help="template filename or folder")
     args = parser.parse_args()
 
-    sys.exit(main(args.template))
+    sys.exit(main(template=Path(args.template)))
