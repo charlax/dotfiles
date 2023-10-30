@@ -31,6 +31,9 @@ git log --since=60.days --format='%ae' | sort -u
 # Show commits by author (partial match)
 git log --author="..."
 
+# Filter by multiple authors
+git log --perl-regexp --author='^.*(Pierre|Peter)'
+
 # Show diff with a change matching "query"
 git log -p -G query
 

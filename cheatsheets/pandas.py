@@ -14,6 +14,8 @@ import seaborn as sns
 list_of_dicts = [{"a": 1}]
 df = pd.DataFrame(list_of_dicts)
 
+# numpy.ndarray to DataFrame
+pd.DataFrame(filtered_emails, columns=["email"])
 
 # Dtypes
 # ======
@@ -25,6 +27,8 @@ df = pd.DataFrame(list_of_dicts)
 pd.read_csv(path, skiprows=1, dtype=defaultdict(lambda: str))
 # Int64 is nullable int
 pd.read_csv(path, skiprows=1, dtype={"a": "Int64"})
+# Parse dates
+pd.read_csv(path, skiprows=1, parse_dates=["created_at"])
 
 # Change number of displayed columns or rows
 pd.options.display.max_columns = 6
@@ -68,6 +72,29 @@ np.sort(df[df["istrue"] == True]["city"].str.strip().unique()).tolist()
 # Sort by column value
 df.sort_values("counts", ascending=False)
 
+# Check if value is empty
+pd.isnull(v)
+
+# Dates
+# =====
+df["week"] = df["Date"].dt.isocalendar().week
+
+# Format
+# ======
+
+# Use a gradient on a per column basis
+# https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.background_gradient.html
+df.style.background_gradient(axis=0)
+
+# Graph and visualization
+# =======================
+
+# Display a grid of distribution plot for revenue by owner
+sns.displot(df, x="revenue", col="owner")
+
+# Groupby
+# =======
+
 # groupby then get size as dataframe
 df.groupby("name").size().reset_index(name="counts")
 
@@ -84,25 +111,38 @@ df.groupby("Date").sum()
 # groupby then get means, median, etc.
 df.groupby("date")[["revenue"]].describe()
 
-# Check if value is empty
-pd.isnull(v)
+# groupby then aggregate into a set
+df.groupby("phone")["week"].agg(set).reset_index()
 
-# Dates
-# =====
-df["week"] = df["Date"].dt.isocalendar().week
+# Join & merge
+# ============
 
-# Describe
-# ========
+# Very useful link
+"https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_sql.html#compare-with-sql-join"
 
-# Use a gradient on a per column basis
-# https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.background_gradient.html
-df.style.background_gradient(axis=0)
+pd.merge(df1, df2, on="key", how="right")
 
-# Graph and visualization
-# =======================
+# Groupby
+# =======
 
-# Display a grid of distribution plot for revenue by owner
-sns.displot(df, x="revenue", col="owner")
+# groupby then get size as dataframe
+df.groupby("name").size().reset_index(name="counts")
+
+# groupby day
+df.groupby(by=df["Created UTC"].dt.date).size().reset_index(name="counts")
+# groupby day-hour
+df.groupby(by=df["Created UTC"].dt.floor("H")).size().reset_index(name="counts")
+# groupby then value counts
+df.groupby("column_name")["column_to_count"].value_counts()
+
+# groupby then sum
+df.groupby("Date").sum()
+
+# groupby then get means, median, etc.
+df.groupby("date")[["revenue"]].describe()
+
+# groupby then aggregate into a set
+df.groupby("phone")["week"].agg(set).reset_index()
 
 # Querying (indexing and selecting)
 # =================================

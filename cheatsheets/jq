@@ -45,5 +45,5 @@ jq keys
 
 # See also:
 # zq https://www.brimdata.io/blog/introducing-zq/
-# jless https://github.com/PaulJuliusMartinez/jless (rust)
-# fx https://github.com/antonmedv/fx (go)
+# jless (interactive) https://jless.io/user-guide (rust)
+# fx (interactive) https://fx.wtf/key-bindings (go) can be useful to get the jq path quickly

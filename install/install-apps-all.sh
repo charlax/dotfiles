@@ -250,6 +250,7 @@ function install_brew_packages {
         hexyl           # command-line hex viewer
         imagemagick     # convert images
         k9s             # monitor kubernetes
+        mitmproxy       # proxy https://mitmproxy.org/
         pipx            # install and run python applications in environments
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.

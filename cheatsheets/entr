@@ -1,9 +1,13 @@
 # entr: run command on file change
+# https://eradman.com/entrproject/
 
 find ./ -iname "*.py" | entr make lci
 
 # Watch for new files too:
 while sleep 0.1; do ls src/*.rb | entr -d make; done
+
+# Restart an app with -r
+while sleep 0.1; do ls ./**/*.py | entr -dr python app.py; done
 
 # See also:
 # watchdog https://github.com/gorakhargosh/watchdog

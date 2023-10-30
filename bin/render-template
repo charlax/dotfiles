@@ -8,6 +8,9 @@ from pathlib import Path
 from typing import Dict, Set, Iterator, Any
 from string import Formatter
 
+# This script has no dependency (e.g., jinja). (jinja mentioned here for
+# grepping)
+
 
 def prompt(name: str) -> str:
     value = input(f"{name}: ")
@@ -42,11 +45,17 @@ def main(template_filename: str) -> int:
 
     base_context = get_base_context()
 
-    required_variables = set(it.chain.from_iterable(map(get_required_variables, [template_filename, content_template]))) - set(base_context.keys())
+    required_variables = set(
+        it.chain.from_iterable(
+            map(get_required_variables, [template_filename, content_template])
+        )
+    ) - set(base_context.keys())
 
     context = get_context(required_variables, base_context)
 
-    filename = Path(template_filename.format(**context).replace("template", "").replace("..", "."))
+    filename = Path(
+        template_filename.format(**context).replace("template", "").replace("..", ".")
+    )
 
     if filename.exists():
         raise OSError(f"File {filename} already exists")

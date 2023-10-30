@@ -1,0 +1,9 @@
+# Web interface
+mitmweb
+# proxy listens on *:8080
+
+# trust certificate on macos
+sudo security add-trusted-cert -d -p ssl -p basic -k /Library/Keychains/System.keychain ~/.mitmproxy/mitmproxy-ca-cert.pem
+
+# https://docs.mitmproxy.org/dev/concepts-certificates/#certificate-pinning
+# might be easier to disable cert verification

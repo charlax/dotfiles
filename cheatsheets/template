@@ -1,0 +1,6 @@
+# good template CLI tools
+https://github.com/mattrobenolt/jinja2-cli
+https://github.com/hairyhenderson/gomplate
+
+# also check:
+bin/render-template

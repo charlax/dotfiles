@@ -1,2 +1,5 @@
 # Comment group of lines
 Cmd+/
+
+# Do not truncate
+pd.options.display.max_rows = 4000
