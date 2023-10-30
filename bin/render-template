@@ -22,16 +22,21 @@ Variables:
 - `today` replaced with date, e.g. '2023-01-01'
 - `now` replace with date and time, e.g. '2023-01-01 15:35'
 
+Uses:
+
+- Interview notes
+
 """
 
 import argparse
 import itertools as it
+import os
 import subprocess
 import sys
 from datetime import datetime
 from functools import reduce
 from pathlib import Path
-from typing import Dict, Set, Iterator, Any
+from typing import Dict, Set, Iterator, Any, List
 from string import Formatter
 
 # This script has no dependency (e.g., jinja). (jinja mentioned here for
@@ -76,7 +81,14 @@ def choose_template(dir: Path) -> Path:
     return returned
 
 
-def main(template: Path) -> int:
+def get_editor_cmd(editor: str) -> List[str]:
+    """Get editor command."""
+    if editor == "ia":
+        return ["open", "-a", "IA Writer"]
+    return editor
+
+
+def main(template: Path, editor: str = "") -> int:
     template_path = choose_template(template) if template.is_dir() else template
     template_filename = str(template_path.name)
 
@@ -107,7 +119,11 @@ def main(template: Path) -> int:
     with open(filename, "w") as f:
         f.write(content_template.format(**context))
 
-    print(f"\n./{filename}")
+    print(str(filename))
+
+    if editor:
+        editor_parsed = get_editor_cmd(editor)
+        subprocess.Popen([*editor_parsed, str(filename)])
 
     return 0
 
@@ -115,6 +131,13 @@ def main(template: Path) -> int:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="render a template file")
     parser.add_argument("template", help="template filename or folder")
+    parser.add_argument(
+        "-e",
+        "--editor",
+        help="editor",
+        default=os.environ["EDITOR"],
+    )
+
     args = parser.parse_args()
 
-    sys.exit(main(template=Path(args.template)))
+    sys.exit(main(template=Path(args.template), editor=args.editor))

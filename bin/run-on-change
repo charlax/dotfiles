@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# See also cheatsheet for entr
+
 function usage {
     echo "Usage: $0 command"
     exit 0
