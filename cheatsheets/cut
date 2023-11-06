@@ -5,13 +5,20 @@
 # hck https://github.com/sstadick/hck
 # See string-manipulation
 
+# Keep only the 3rd column
+cat stuff.txt | cut -d'-' -f3
+
 # Delete first two columns of CSV file
 cut -d, -f2 --complement file.csv
+
 # To delete the last column, count the number of columns first
 grep -o , file.csv | wc -l  # add 1 to this result
 
 # To cut out the third field of text or stdoutput that is delimited by a #:
 cut -d# -f3
+
+# Strip whitespace from output
+cat stuff.txt | cut -d'-' -f3 | awk '{$1=$1; print}'
 
 # Do not apply encodings and keep only first column of CSV
 cat filename | LC_ALL=C cut -d, -f1
