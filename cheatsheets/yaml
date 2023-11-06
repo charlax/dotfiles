@@ -1,0 +1,2 @@
+# Tool to manipulate yaml a la jq
+brew install yq  # https://github.com/kislyuk/yq

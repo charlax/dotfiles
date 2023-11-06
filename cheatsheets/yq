@@ -1,0 +1,2 @@
+# Convert to json
+cat file.yaml | yq -o json

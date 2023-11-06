@@ -1,5 +1,6 @@
 # Tools:
 # jless https://github.com/PaulJuliusMartinez/jless
+# pypipe https://github.com/bugen/pypipe
 
 # fx https://fx.wtf/ - JSON viewer in Go for terminal
 brew install fx

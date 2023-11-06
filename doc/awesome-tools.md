@@ -35,6 +35,7 @@
     - [Screenshots](#screenshots)
     - [Search](#search)
     - [Shell](#shell)
+    - [Spreadsheet](#spreadsheet)
     - [Static analysis](#static-analysis)
     - [System monitor](#system-monitor)
     - [Task runner (a la Make)](#task-runner-a-la-make)
@@ -104,6 +105,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [ranger/ranger: A VIM-inspired filemanager for the console](https://github.com/ranger/ranger)
 - [jarun/nnn: n³ The unorthodox terminal file manager](https://github.com/jarun/nnn)
+- [antonmedv/walk: Terminal file manager](https://github.com/antonmedv/walk)
 
 ### File sharing
 
@@ -140,6 +142,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [rcoh/angle-grinder: Slice and dice logs on the command line](https://github.com/rcoh/angle-grinder)
 - [tstack/lnav: Log file navigator](https://github.com/tstack/lnav)
+- [bensadeh/tailspin: 🌀 A log file highlighter](https://github.com/bensadeh/tailspin)
 
 ### macOS
 
@@ -170,6 +173,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Python
 
 - [davidhalter/jedi](https://github.com/davidhalter/jedi): autocompletion, static analysis and refactoring library for python
+- [bugen/pypipe: Python pipe command line tool](https://github.com/bugen/pypipe)
 
 ### Rename files
 
@@ -186,6 +190,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Shell
 
 - [moreutils](https://joeyh.name/code/moreutils/)
+
+### Spreadsheet
+
+- [Grist | The Evolution of Spreadsheets](https://www.getgrist.com/) - with [gristlabs/grist-electron: Desktop Grist, packaged with Electron](https://github.com/gristlabs/grist-electron)
 
 ### Static analysis
 

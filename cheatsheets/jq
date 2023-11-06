@@ -1,9 +1,3 @@
-# https://stedolan.github.io/jq/manual/
-# https://codefaster.substack.com/p/mastering-jq-part-1-59c
-#
-# Also check:
-# - zq https://www.brimdata.io/blog/introducing-zq/
-
 # To pretty print the json:
 jq "." < filename.json
 
@@ -27,14 +21,23 @@ jq '.items[] | {title,name}'
 jq '.items[] | {t: .title, n: .truc.name}'
 jq '.items[] | .title, .truc.name}'
 
+# Join list of items
+jq '.items[] | [.title, (.products | join(", "))]'
+
 # Select based on key presence
 jq ".items[] | select(.truc.name == null) | ."
 
 # Select with multiple conditions
 jq '.items[] | select(.truc == "toaster" and .machin == "bidule")'
 
+# Select if list "products" contains "toaster"
+jq '.items[] | select(.products | index("toaster")) | .name'
+
 # Output as json (needs array as input, and raw output)
 jq -r '.items[] | [.foo,.bar] | @csv'
+
+# Output as table
+jq '... | @tsv' -r
 
 # Parsing datetime
 now | strftime("%Y-%m-%d")
@@ -43,7 +46,14 @@ jq '[.[] | select(.date_field > (now | strftime("%Y-%m-%d")))]'
 # Show keys
 jq keys
 
-# See also:
+# Links
+# https://stedolan.github.io/jq/manual/
+# https://codefaster.substack.com/p/mastering-jq-part-1-59c
+
+# See other tools:
 # zq https://www.brimdata.io/blog/introducing-zq/
 # jless (interactive) https://jless.io/user-guide (rust)
 # fx (interactive) https://fx.wtf/key-bindings (go) can be useful to get the jq path quickly
+
+# See also:
+# json
