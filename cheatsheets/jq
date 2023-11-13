@@ -49,6 +49,7 @@ jq keys
 # Links
 # https://stedolan.github.io/jq/manual/
 # https://codefaster.substack.com/p/mastering-jq-part-1-59c
+# https://ishan.page/blog/2023-11-06-jq-by-example/
 
 # See other tools:
 # zq https://www.brimdata.io/blog/introducing-zq/

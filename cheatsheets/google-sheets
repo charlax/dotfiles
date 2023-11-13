@@ -1,24 +1,38 @@
 # Return cell content by row #, col # inside range
 # https://support.google.com/docs/answer/3098242?hl=en
 # INDEX(reference, [row], [column])
-INDEX(A2:D6, 2, 1)
+index(A2:D6, 2, 1)
 
 # Return relative position of item in one-dimensional range
 # https://support.google.com/docs/answer/3093378
 # MATCH(search_key, range, [search_type])
 # search_type is 1 (sorted in asc order), 0 (unsorted), -1 (desc)
-MATCH("Sunday",A2:A9,0)
+match("Sunday",A2:A9,0)
+
+# COUNTIFS multiple criteria, count the number of rows that match the criteria
+countif(A:A, "toaster", B:B, "red")
 
 # Returns a range reference shifted a specified number of rows and columns from a starting cell reference.
 # https://support.google.com/docs/answer/3093379?hl=en
-OFFSET(A2,3,4,2,2)
-OFFSET(cell_reference, offset_rows, offset_columns, [height], [width])
+offset(A2,3,4,2,2)
+offset(cell_reference, offset_rows, offset_columns, [height], [width])
+
+# Query https://support.google.com/docs/answer/3093343?hl=en
+# Last parameter is whether to include the header (boolean)
+query('Toaster (import)'!1:100, "select A where B ='"&A1&"'", FALSE)
 
 # Query with dates
-QUERY(A2:K3, "select I where J <= date '" & TEXT(F8, "yyyy-mm-dd") & "' and K >= date '" & TEXT(F8, "yyyy-mm-dd") & "'")
+query(A2:K3, "select I where J <= date '" & TEXT(F8, "yyyy-mm-dd") & "' and K >= date '" & TEXT(F8, "yyyy-mm-dd") & "'")
 
 # Return the value of a cell in the result range in the same position as the
 # matching value in the search range
-LOOKUP("name", search_range, [result_range])
+lookup("name", search_range, [result_range])
 
-SPARKLINE(A1:B1, {"charttype","bar"; "max",40})
+# Get set difference, i.e. values that are in A:A that are not in B:B
+filter(A:A,countif(B:B,A:A)=0)
+
+# Display sparkline
+sparkline(A1:B1, {"charttype","bar"; "max",40})
+
+# Parse as number
+value("0")

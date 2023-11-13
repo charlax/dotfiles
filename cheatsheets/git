@@ -189,6 +189,12 @@ git count-objects -vH
 # -s signing
 git tag -s $COMPONENT-v$VERSION -m "Release $COMPONENT version $VERSION"
 
+# Configuration
+# =============
+
+# Specify SSH command (can also use "core.sshCommand" configuration)
+export GIT_SSH_COMMAND="ssh -i /Users/$USER/.ssh/id_ed25519 -o IdentitiesOnly=yes"
+
 # Conflicts markers when rebasing (diff3)
 # (see doc/git.md)
 
