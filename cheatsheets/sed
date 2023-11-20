@@ -1,9 +1,3 @@
-# Other tools: tr, awk, grep, perl
-# sd https://github.com/chmln/sd
-# See string-manipulation
-
-# On macOS, use GNU sed with `gsed
-
 # Options
 -E         # extended (modern) regex
 -e         # append the editing command to the list
@@ -51,5 +45,15 @@ sed "s/##.*//"
 # Append after match (requires GNU sed)
 sed -i "/Monday/a- Overjoyed" songs.md
 
-# See also:
+# On macOS, use GNU sed with `gsed
+
+# Other tools:
+# tr
+# awk
+# grep
+# perl
+# sd https://github.com/chmln/sd
+
+# Other docs:
+# ./string-manipulation
 # https://learnbyexample.github.io/learn_gnused/

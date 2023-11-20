@@ -43,7 +43,7 @@ function install_osx_packages {
         dos2unix
         duti             # define default app on macOS https://github.com/moretension/duti
         editorconfig
-        exa              # modern replacement for ls https://the.exa.website/
+        eza              # modern replacement for ls https://github.com/eza-community/eza
         fd               # alternative to 'find' https://github.com/sharkdp/fd
         findutils
         fswatch          # watch for file changes

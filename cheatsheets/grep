@@ -11,4 +11,5 @@ cat .. | grep 'truc\|test'
 cat ~/.npmrc | grep -o "ghp_.*"
 
 # See also:
+# ./string-manipulation
 # https://learnbyexample.github.io/learn_gnugrep_ripgrep/

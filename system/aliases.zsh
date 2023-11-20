@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # grc overides for ls
-if command -v "exa" > /dev/null 2>&1; then
-    alias ls='exa'
-    alias l='exa -l'
-    alias ll='exa -lh'
-    alias la='exa -a'
+if command -v "eza" > /dev/null 2>&1; then
+    alias ls='eza'
+    alias l='eza -l'
+    alias ll='eza -lh'
+    alias la='eza -a'
 elif command -v "gls" > /dev/null 2>&1; then
     alias ls='gls -hF --color'
     alias l='gls -lAh --color'
