@@ -6,3 +6,6 @@ copy(UI.panels.network.networkLogView.dataGrid.rootNode().flatNodes.map(n => n.r
 
 # Search in tabs
 cmd+shift+a
+
+# See also
+# ./browser-developer-tools

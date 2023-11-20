@@ -23,6 +23,7 @@
     - [HTML](#html)
     - [HTTP client](#http-client)
     - [JSON](#json)
+    - [LLM](#llm)
     - [Logs (reading)](#logs-reading)
     - [macOS](#macos)
     - [Markdown](#markdown)
@@ -137,6 +138,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [antonmedv/fx: terminal JSON viewer](https://github.com/antonmedv/fx)
 - [tomnomnom/gron: Make JSON greppable!](https://github.com/tomnomnom/gron)
 - [noahgorstein/jqp: A TUI playground to experiment with jq](https://github.com/noahgorstein/jqp)
+
+### LLM
+
+- [Example of concrete local CLI use cases with LLM](https://simonwillison.net/2023/Oct/23/embeddings/)
 
 ### Logs (reading)
 

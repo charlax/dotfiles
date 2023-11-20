@@ -1,3 +1,8 @@
+# Download with same name
+curl -O https://raw.githubusercontent.com/google/re2/main/doc/syntax.txt
+# Save with specific name
+curl -o re2.txt https://raw.githubusercontent.com/google/re2/main/doc/syntax.txt
+
 # JSON query
 curl -X POST --header "Content-Type: application/json" --data '{"username": "truc"}' $url
 curl -X POST --header "Content-Type: application/json" -d @body.json $url

@@ -31,11 +31,14 @@ cheatpaths:
   # Paths that come earlier are considered to be the most "global", and will
   # thus be overridden by more local cheatsheets. That being the case, you
   # should probably list community cheatsheets first.
-  #
-  # Note that the paths and tags listed below are just examples. You may freely
-  # change them to suit your needs.
   - name: community
     path: ~/.dotfiles/config/cheat/community
+    tags: [ community ]
+    readonly: true
+
+  # reference cards, downloaded
+  - name: reference
+    path: ~/.dotfiles/refcards
     tags: [ community ]
     readonly: true
 

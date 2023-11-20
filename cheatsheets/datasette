@@ -1,0 +1,9 @@
+pip install datasette sqlite-utils
+
+touch analysis.db
+SQLITE_UTILS_DETECT_TYPES=1 sqlite-utils insert ~/Downloads/analysis.db toaster ~/Downloads/toasters.csv --encoding=latin-1 --csv
+
+datasette analysis.db
+
+# See also:
+# ./sqlite-utils

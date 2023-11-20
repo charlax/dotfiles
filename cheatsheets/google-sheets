@@ -1,7 +1,13 @@
+# Concatenate
+=A1&A2
+
 # Return cell content by row #, col # inside range
 # https://support.google.com/docs/answer/3098242?hl=en
 # INDEX(reference, [row], [column])
 index(A2:D6, 2, 1)
+
+# Check if cell is empty
+isblank(A1)
 
 # Return relative position of item in one-dimensional range
 # https://support.google.com/docs/answer/3093378
@@ -9,8 +15,20 @@ index(A2:D6, 2, 1)
 # search_type is 1 (sorted in asc order), 0 (unsorted), -1 (desc)
 match("Sunday",A2:A9,0)
 
+# Extract part of a string
+mid(string, starting_at, extract_length)
+
 # COUNTIFS multiple criteria, count the number of rows that match the criteria
 countif(A:A, "toaster", B:B, "red")
+
+# DCOUNT counts numeric values
+dcount($A:$U, "Nov 7", {{"product_name";"toaster"}})
+# comparisons
+dcount($A:$U, "Nov 7", {{"product_cost";">10"}})
+# multiple conditions
+dcount($A:$U, "Nov 7", {{"product_cost";">10"}, {"product_cost";"<5"})
+
+# DCOUNTA counts any value
 
 # Returns a range reference shifted a specified number of rows and columns from a starting cell reference.
 # https://support.google.com/docs/answer/3093379?hl=en
@@ -18,6 +36,8 @@ offset(A2,3,4,2,2)
 offset(cell_reference, offset_rows, offset_columns, [height], [width])
 
 # Query https://support.google.com/docs/answer/3093343?hl=en
+# Query language docs: https://developers.google.com/chart/interactive/docs/querylanguage#aggregation-functions
+# See also: D[...] functions such as DCOUNT
 # Last parameter is whether to include the header (boolean)
 query('Toaster (import)'!1:100, "select A where B ='"&A1&"'", FALSE)
 
@@ -31,8 +51,31 @@ lookup("name", search_range, [result_range])
 # Get set difference, i.e. values that are in A:A that are not in B:B
 filter(A:A,countif(B:B,A:A)=0)
 
+# Regex extract (RE2 format)
+# RE2 format doc: https://github.com/google/re2/blob/main/doc/syntax.txt
+# When there is no capture group, the whole match is returned
+regexextract(A2, "\d+")  # "here is 12 stuff time 2" -> "12"
+# Capture group
+regexextract(A2, "hello (\d+) hello")  # "hello 12 hello" -> "12"
+# multiple columns
+regexextract(A2, "hello (\d+) (\d+)")  # "hello 12 13" -> "12", "13"
+
+# Regex match
+regexmatch(text, regex)
+
+# Regex replace
+regexreplace(value, "^prefix", "")
+
 # Display sparkline
 sparkline(A1:B1, {"charttype","bar"; "max",40})
 
+# Replace
+substitute("toaster-toaster", "-", "")
+
 # Parse as number
 value("0")
+# Convert to text
+to_text(A1)
+
+# VLookup
+vlookup(key, range, index, is_sorted)

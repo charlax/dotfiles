@@ -1,2 +1,11 @@
+# Insert data
+sqlite-utils insert file.db tablename file.csv --csv
+# Other insert options
+# --truncate     # TRUNCATE table first
+# --alert        # ALTER columns first
+
+# Drop table
+sqlite-utils drop-table file.db tablename
+
 # The only remaining column will be created_at, though
 sqlite-utils insert stuff.db tablename stuff.csv --csv --detect-types --convert 'return {"created_at": datetime.datetime.fromisoformat(row["created_at"])}' --import "datetime"
