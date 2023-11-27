@@ -195,6 +195,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Shell
 
 - [moreutils](https://joeyh.name/code/moreutils/)
+- [geophile/marcel: A modern shell](https://github.com/geophile/marcel)
 
 ### Spreadsheet
 
