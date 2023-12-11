@@ -196,6 +196,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [moreutils](https://joeyh.name/code/moreutils/)
 - [geophile/marcel: A modern shell](https://github.com/geophile/marcel)
+- [kellyjonbrazil/jc: CLI tool and python library that converts the output of popular command-line tools, file-types, and common strings to JSON, YAML, or Dictionaries. This allows piping of output to tools like jq and simplifying automation scripts.](https://github.com/kellyjonbrazil/jc)
 
 ### Spreadsheet
 
