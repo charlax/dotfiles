@@ -179,6 +179,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [davidhalter/jedi](https://github.com/davidhalter/jedi): autocompletion, static analysis and refactoring library for python
 - [bugen/pypipe: Python pipe command line tool](https://github.com/bugen/pypipe)
+- [jsnjack/invenv: A tool to automatically create and run your Python scripts in a virtual environment with installed dependencies](https://github.com/jsnjack/invenv)
 
 ### Rename files
 
