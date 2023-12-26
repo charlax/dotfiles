@@ -1,3 +1,7 @@
+# Get all namespaces
+kubectl get namespace
+# See also: kubens
+
 # Get all resource
 kubectl get all -n $namespace
 
@@ -40,3 +44,6 @@ kubectl scale deployment $name --replicas=1
 
 # Other resources
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+# Other tools
+# kubectx (clusters) and kubens (namespace) https://github.com/ahmetb/kubectx

@@ -81,3 +81,9 @@ FROM
 GROUP BY
     department;
 ```
+
+## Install
+
+```bash
+brew install postgresql
+```

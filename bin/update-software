@@ -52,4 +52,4 @@ log_info "Updating tldr."
 tldr --update || true
 
 log_info "Updating poetry completions."
-poetry completions zsh > ~/.zfunc/_poetry
+poetry completions zsh > ~/.zfunc/_poetry || true

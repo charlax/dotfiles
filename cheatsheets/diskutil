@@ -1,0 +1,17 @@
+# disk utility for macOS
+
+# List storage devices
+diskutil list
+
+# Unmount a partition
+diskutil unmount /dev/diskX
+
+# Unmount all volumes for storage device
+diskutil unmountDisk /dev/diskX
+
+# Set FAT32 filesystem on /dev/diskX with name "SDCARD"
+# MBRFormat ensures compatibility with most devices
+diskutil eraseDisk FAT32 SDCARD MBRFormat /dev/diskX
+
+# Eject
+diskutil eject /dev/diskX

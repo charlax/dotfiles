@@ -105,6 +105,11 @@ alias cal='python -m calendar'
 # pretty print standard input
 alias pprint='python -c "import pprint, sys, ast; pprint.pprint(ast.literal_eval(sys.stdin.read()))"'
 
+rgpython () {
+    # Search for a string in Python source
+    rg "$1" $(python -c "import sys; print(sys.base_prefix)")
+}
+
 # ctags
 alias ctg='g -l --python . | ctags -L - -f tags'
 alias ctag='ctg'
