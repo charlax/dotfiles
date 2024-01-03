@@ -192,6 +192,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Search
 
 - [phiresky/ripgrep-all: rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.](https://github.com/phiresky/ripgrep-all)
+- [The ugrep file pattern searcher](https://ugrep.com/): interactive search, Google search terms, fuzzy search, compressed files, binary
 
 ### Shell
 

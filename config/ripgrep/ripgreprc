@@ -1,0 +1,5 @@
+# Limit column length to 200 characters
+-M
+200
+# Show preview for matching lines even if too long
+--max-columns-preview

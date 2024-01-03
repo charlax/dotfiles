@@ -7,14 +7,12 @@
 [alias]
     authors = shortlog -ns
     b = branch -v
-    c = !git add . && git commit -a && git push
     changelog = log --pretty=format:\" * %s\"
     changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
     co = checkout
     d = diff
     go = checkout -b
     l = log --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit
-    pr = !git commit -av && git push -f && hub pull-request
     recommit = !git commit --amend
     repush = !git recommit && git push -f
     rmbranch = branch -d
@@ -25,6 +23,10 @@
     stat = status
     uncommit = reset --soft HEAD^
     unstage = reset HEAD
+    # show this branch as a pr in github web
+    prweb = "!git branch --show-current | gh pr view --web"
+    # show this branch as a pr in the cli
+    prcli = "!git branch --show-current | gh pr view"
 
 [core]
     excludesfile = ~/.gitignore

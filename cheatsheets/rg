@@ -1,5 +1,3 @@
-# https://docs.rs/regex/1.3.9/regex/#syntax
-
 # search in a folder
 rg $query ./folder
 
@@ -14,11 +12,20 @@ rg $query -g *.env
 rg -l $query
 
 # Options
---max-filesize 100K    # exclude large files
 -w                     # only show word match (eq. to "\b$word\b")
 -t java                # only search java files
 -T java                # exclude java files
 --sort path            # sort by file path (ascending)
 --sortr modified       # sort by modified time (descending)
--M/--max-columns $num  # don't print lines longer than $num
 -g '!**test**'         # glob: ignore path that this *test* glob
+
+# Brevity
+--max-filesize 100K    # exclude large files
+-M/--max-columns $num  # don't print lines longer than $num
+# Show preview for long lines (best)
+-M 100 --max-columns-preview
+
+# https://docs.rs/regex/1.3.9/regex/#syntax
+
+# See also:
+# ugrep

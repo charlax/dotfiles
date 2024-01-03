@@ -1,0 +1,6 @@
+brew install ugrep
+
+# Start interactive TUI
+ugrep -Q
+
+# https://ugrep.com/

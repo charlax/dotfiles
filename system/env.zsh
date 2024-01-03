@@ -25,3 +25,5 @@ export BAT_THEME="Solarized (light)"
 # were deprecated in JDK 13 and will likely be removed in a future release.
 # https://github.com/technomancy/leiningen/issues/2611
 export LEIN_JVM_OPTS="-XX:TieredStopAtLevel=1"
+
+export RIPGREP_CONFIG_PATH="$DOTFILES/config/ripgrep/ripgreprc"
