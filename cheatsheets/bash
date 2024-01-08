@@ -15,17 +15,8 @@ for toaster in $(cat toasters.txt) ; do
      echo ${toaster}
 done
 
-# Simple iteration
+# Simple iteration over matching files in directory
 for i in *matching*; echo $i
-
-# if... elif... else
-if [ test ]; then
-  echo "foo"
-elif [ test ]; then
-  echo "bar"
-else
-  echo "else"
-fi
 
 # Loop over array
 array=(one two three)
@@ -36,32 +27,14 @@ done
 # Do something x times
 for _ in $(seq 1000); do ...; done
 
-# Simple arg handling
-```bash
-display_usage() {
-    echo -e "Usage: $0 filename"
-}
-
-# $# number of arguments
-# -ne    not equal
-
-if [ $# -ne 1 ]; then
-    echo -e "Invalid number of arguments"
-    display_usage
-    exit 1
+# if... elif... else
+if [ test ]; then
+  echo "foo"
+elif [ test ]; then
+  echo "bar"
+else
+  echo "else"
 fi
-
-# Checking if PATH already includes something
-case ":${PATH}:" in
-    *:"$HOME/.cargo/bin":*)
-        ;;
-    *)
-        # Prepending path in case a system-installed rustc needs to be overridden
-        export PATH="$HOME/.cargo/bin:$PATH"
-        ;;
-esac
-
-```
 
 # Download files numbered 1 to 20
 wget http://cloud.com/1/{1..20}.py
@@ -76,27 +49,6 @@ verbose/-v      # display commands
 errexit/-e      # exit on error
 xtrace/-x       # print a trace of simple commands
 nounset/-u      # exit if any variable is unset
-
-# tests
-# See `test` for more.
-
-## Regex check
-if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
-fi
-
-## User id
-[[ $(id -u) -ne 0 ]] && echo "run as root!" && exit 1
-
-## Check if command exists
-if ! command -v $command &> /dev/null; then
-fi
-
-## Check command result
-if command; then
-fi
-
-# -f "filename"             # file exists and is regular file
-# See `test` for more
 
 # Escape a single quote
 echo 'j'"'"'attends'
@@ -133,8 +85,58 @@ title: ${title}
 ---
 EOF
 
-# Resources:
-#
+# Tests
+# =====
+
+# See `test` for more.
+
+## Regex check
+if [[ "$CURRENT_SHELL" =~ "zsh" ]]; then
+fi
+
+## User id
+[[ $(id -u) -ne 0 ]] && echo "run as root!" && exit 1
+
+## Check if command exists
+if ! command -v $command &> /dev/null; then
+fi
+
+## Check command result
+if command; then
+fi
+
+# -f "filename"             # file exists and is regular file
+# See `test` for more
+
+# Simple arg handling
+# ===================
+
+display_usage() {
+    echo -e "Usage: $0 filename"
+}
+
+# $# number of arguments
+# -ne    not equal
+
+if [ $# -ne 1 ]; then
+    echo -e "Invalid number of arguments"
+    display_usage
+    exit 1
+fi
+
+# Checking if PATH already includes something
+case ":${PATH}:" in
+    *:"$HOME/.cargo/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="$HOME/.cargo/bin:$PATH"
+        ;;
+esac
+
+# Resources
+# =========
+
 # https://wiki.bash-hackers.org/
 # https://github.com/jlevy/the-art-of-command-line
 # https://github.com/onceupon/Bash-Oneliner

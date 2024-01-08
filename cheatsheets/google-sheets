@@ -78,4 +78,5 @@ value("0")
 to_text(A1)
 
 # VLookup
+# See also: HLookup, Index, Match
 vlookup(key, range, index, is_sorted)

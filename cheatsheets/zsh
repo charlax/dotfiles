@@ -5,6 +5,8 @@ zsh -d -f -i
 for i in random string to print; do
     echo $i
 done
+# Multiple words
+for i in "hello world" "salut monde"; do echo $i; done
 
 # Show all keyboard shortcuts
 bindkey

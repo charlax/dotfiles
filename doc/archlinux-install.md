@@ -16,7 +16,7 @@
   - [SSHD](#sshd)
   - [Time NTP](#time-ntp)
   - [Window manager (XFCE4)](#window-manager-xfce4)
-  - [Install Chrome](#install-chrome)
+  - [Install Chrome/Firefox](#install-chromefirefox)
   - [Install 1password](#install-1password)
   - [Docker](#docker)
   - [Dotfiles](#dotfiles)
@@ -298,9 +298,13 @@ systemctl start lightdm
 # Then Settings -> Mouse -> Invert scrolling
 ```
 
-## Install Chrome
+## Install Chrome/Firefox
 
 ```bash
+# Firefox
+pacman -S firefox-developer-edition
+
+# Chrome
 git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome
 makepkg -is  # part of pacman
