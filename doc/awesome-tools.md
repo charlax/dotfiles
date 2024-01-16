@@ -73,6 +73,8 @@
 
 See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
+- [YS-L/csvlens: Command line csv viewer](https://github.com/YS-L/csvlens)
+
 ### Datetimes
 
 - [hroptatyr/dateutils: nifty command line date and time utilities; fast date calculations and conversion in the shell](https://github.com/hroptatyr/dateutils)
@@ -121,6 +123,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Git
 
 - [tig(1) · Tig - Text-mode interface for Git](https://jonas.github.io/tig/doc/tig.1.html)
+- [jesseduffield/lazygit: simple terminal UI for git commands](https://github.com/jesseduffield/lazygit)
 
 ### HTML
 

@@ -1,2 +1,8 @@
+j/k  # next/previous commit
+J/K  # next/previous line in commit
+
 # Scroll commit content
 <PgUp>,<PgDown>
+
+# See other tools
+gitui  # https://github.com/extrawurst/gitui brew install gitui

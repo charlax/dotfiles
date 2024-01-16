@@ -70,4 +70,10 @@ where httprequest.uri like '%\_foo' escape '\'
 select cast(uuid() as varchar);
 ```
 
+## See also
+
+Presto is now Trino
+
+- https://trino.io/docs/current/functions.html
+
 <!-- vim: set ft=markdown: -->

@@ -32,6 +32,7 @@ mlr     # miller
 rbql    # https://rbql.org/
 xsv     # https://github.com/BurntSushi/xsv written in rust, `brew install xsv`
 vd      # https://www.visidata.org/ pipx install visidata
+csvlens # https://github.com/YS-L/csvlens less for csv `brew install csvlens`
 
 # SQL for CSV:
 

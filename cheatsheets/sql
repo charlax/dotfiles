@@ -1,29 +1,23 @@
-# SQL
 
-See also Cookbook
+-- DDL
+-- ===
 
-## DDL
-
-```sql
 DROP DATABASE IF EXISTS dbname;
 ALTER TABLE users ADD PRIMARY KEY (id);
 ALTER TABLE contacts ADD CONSTRAINT contacts_user_id FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE users ADD COLUMN has_stuff BOOLEAN DEFAULT false;
 
 create table toaster (id int primary key, color varchar);
-```
 
-### Index
+-- Index
+-- -----
 
-```sql
 create index index_name on table_name (column_name);
-```
 
-## Datetime
+-- Datetime
 
-sqlite: https://www.sqlite.org/lang_datefunc.html
+-- sqlite: https://www.sqlite.org/lang_datefunc.html
 
-```sql
 -- Parse created_at as unix timestamp
 select datetime(created_at, "unixepoch") from table;
 select date(created_at, "unixepoch") from table;
@@ -35,11 +29,9 @@ select time(created_at, "unixepoch", "5 hours") from table;
 -- Difference between two datetime columns in seconds
 SELECT strftime('%s', column1) - strftime('%s', column2) AS delta_seconds
 FROM your_table;
-```
 
-Group by hour and minute:
+-- Group by hour and minute:
 
-```sql
 -- MySQL
 select date_format(created_at, "%Y-%m-%d %H:%i")
 from table
@@ -51,34 +43,38 @@ select date_trunc('day', created_at), user_id, count(*)
 from event_logs
 group by 1, 2
 order by 1 asc;
-```
 
-## Postgres
+-- Postgres
 
-See also `psql` cheat sheet.
+ also `psql` cheat sheet.
+i--
 
 ```sql
 -- datetime
 now() - interval '2 days'
 ```
 
-## Selection
+-- Select
+-- ======
 
-```sql
-CASE WHEN boolval THEN 'value if true' ELSE 'value if false' END
-```
+case when boolval then 'value if true' else 'value if false' end
 
-## Data modification
+CASE
+    WHEN frequency = 0 THEN 'OFF'
+    WHEN frequency = 31 THEN 'Daily'
+    WHEN frequency = 1 THEN 'Weekly'
+    WHEN frequency = 21 THEN 'MWF'
+    ELSE cast(frequency as varchar)
+END AS frequency_label,
 
-### Insert
+-- Insert
+-- ======
 
-```sql
 insert into tablename (col1, col2) values (value1, value2);
-```
 
-### Update from subquery
+-- Update from subquery
+-- ====================
 
-```sql
 -- with subquery
 UPDATE users
 SET has_email = subquery.has_email
@@ -93,8 +89,23 @@ UPDATE users
 SET has_email = subquery.has_email
 FROM subquery
 WHERE users.user_id = subquery.user_id;
-```
 
-### See also
+-- Window
+-- ======
 
-- `./presto`
+-- Compute running total using ROWS UNBOUNDED PRECEDING:
+
+SELECT
+  sales_date,
+  daily_sales,
+  SUM(daily_sales) OVER (ORDER BY sales_date ROWS UNBOUNDED PRECEDING) AS running_total
+FROM
+  sales;
+
+-- See also
+-- ========
+
+-- `./presto`
+-- cookbook
+
+-- vim: set ft=sql:
