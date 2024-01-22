@@ -16,5 +16,6 @@ set -e
 . "$BIN_DIR/update-dotfiles"
 . "$BIN_DIR/update-software"
 . "$BIN_DIR/update-vim-plugins"
+. "$BIN_DIR/update-refcards"
 
 log_info "Everything is up to date."
