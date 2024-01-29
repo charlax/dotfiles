@@ -9,6 +9,7 @@
     - [Binary](#binary)
     - [Calculator](#calculator)
     - [Clipboard](#clipboard)
+    - [Code](#code)
     - [CSV](#csv)
     - [Datetimes](#datetimes)
     - [Diagram](#diagram)
@@ -68,6 +69,10 @@
 ### Clipboard
 
 - [Maccy - macOS clipboard manager](https://maccy.app/)
+
+### Code
+
+- [facebookincubator/fastmod: A fast partial replacement for the codemod tool](https://github.com/facebookincubator/fastmod)
 
 ### CSV
 
