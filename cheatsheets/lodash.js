@@ -22,3 +22,6 @@ console.assert(_.isEqual(flattenedObject, {aB: 1, aC: 2, aZW: 3, eA: 1, eB: 3}))
 
 const keyedBy = _.keyBy([{id: 1}], "id")
 console.assert(_.isEqual(keyedBy, {1: {id: 1}}))
+
+// See also:
+// https://devhints.io/lodash

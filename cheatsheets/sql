@@ -1,3 +1,11 @@
+-- CTE (Common Table Expression)
+-- =============================
+
+-- With multiple CTE
+with toasters as (select name, color from toasters),
+toasts as (select type, number from toasts)
+
+select toasters.*
 
 -- DDL
 -- ===
