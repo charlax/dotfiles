@@ -14,6 +14,9 @@ mlr --opprint -i csv filter '!(${User principal name} =~ "EXT")' then cut -f "Pr
 # http://johnkerl.org/miller-releases/miller-5.3.0/doc/cookbook.html#Splitting_nested_fields
 mlr --otsv -i csv nest --explode --values --across-records -f "Proxy addresses" --nested-fs ":" then users.csv
 
+# Convert from TSV to CSV
+mlr --itsv --ocsv cat items.tsv > items.csv
+
 # regex
 # https://github.com/google/re2/wiki/Syntax
 # Escaping metacharacters seems broken, see https://github.com/johnkerl/miller/issues/297
