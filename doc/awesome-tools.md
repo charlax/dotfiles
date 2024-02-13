@@ -156,6 +156,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [rcoh/angle-grinder: Slice and dice logs on the command line](https://github.com/rcoh/angle-grinder)
 - [tstack/lnav: Log file navigator](https://github.com/tstack/lnav)
 - [bensadeh/tailspin: 🌀 A log file highlighter](https://github.com/bensadeh/tailspin)
+- [Textualize/toolong: A terminal application to view, tail, merge, and search log files (plus JSONL).](https://github.com/Textualize/toolong)
 
 ### macOS
 
