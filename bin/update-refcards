@@ -3,4 +3,4 @@
 curl -o "$DOTFILES/refcards/re2.txt" https://raw.githubusercontent.com/google/re2/main/doc/syntax.txt
 
 # Fix trailing spaces etc.
-pre-commit run --files "$DOTFILES/refcards/*"
+pre-commit run --files "$DOTFILES/refcards/"*
