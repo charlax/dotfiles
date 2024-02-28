@@ -1,6 +1,17 @@
+---
+tags: [ database ]
+---
+
+# Create table
+sqlite3 <database> "create table os(id integer primary key, name text, year integer);"
+
+# Insert
+sqlite3 <database> "insert into 'os' values(1,'linux',1991);"
+
 # list tables
 .tables
 .schema
+.schema 'table_name'
 
 # One-liner CSV import
 sqlite3 :memory: -cmd '.mode csv' -cmd '.import data.csv taxi'
@@ -17,3 +28,4 @@ select * from tablename;
 .mode list # back to normal
 
 # See also: sql, sqlite-utils
+# https://github.com/coleifer/sqlite-web

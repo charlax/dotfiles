@@ -11,6 +11,8 @@ pydoc sys.exit
 
 ```bash
 python -c "import secrets; print(secrets.token_hex(), end='')" | base64
+
+python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'
 ```
 
 ## Core features

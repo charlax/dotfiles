@@ -1,0 +1,3 @@
+# Upgrade when using docker-compose
+docker compose pull homeassistant
+docker compose up -d

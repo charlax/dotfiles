@@ -2,3 +2,14 @@
 
 # Get temperature (divide by 1000) (in C)
 cat /sys/class/thermal/thermal_zone0/temp
+
+# Upgrade (won't upgrade the distro)
+sudo apt update
+dh -h                  # check if enough space on card
+sudo apt full-upgrade  # upgrade everything and their deps
+sudo apt clean         # useful to cleanup
+
+# See also
+# ========
+
+https://www.raspberrypi.com/documentation/computers/os.html

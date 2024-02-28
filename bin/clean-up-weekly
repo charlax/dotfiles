@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# See also: https://github.com/mac-cleanup/mac-cleanup-py/blob/main/mac_cleanup/default_modules.py
+
 import argparse
 import glob
 import os

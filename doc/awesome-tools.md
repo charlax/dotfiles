@@ -38,6 +38,7 @@
     - [Search](#search)
     - [Shell](#shell)
     - [Spreadsheet](#spreadsheet)
+    - [SQL](#sql)
     - [Static analysis](#static-analysis)
     - [System monitor](#system-monitor)
     - [Task runner (a la Make)](#task-runner-a-la-make)
@@ -213,6 +214,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Spreadsheet
 
 - [Grist | The Evolution of Spreadsheets](https://www.getgrist.com/) - with [gristlabs/grist-electron: Desktop Grist, packaged with Electron](https://github.com/gristlabs/grist-electron)
+
+### SQL
+
+- [ibis-project/ibis: The flexibility of Python with the scale and performance of modern SQL.](https://github.com/ibis-project/ibis)
 
 ### Static analysis
 
