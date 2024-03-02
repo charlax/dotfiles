@@ -23,6 +23,7 @@
   - [Disable suspend](#disable-suspend)
   - [Troubleshooting](#troubleshooting)
     - [Can't login (password failed)](#cant-login-password-failed)
+  - [See also](#see-also)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -33,6 +34,7 @@ Links:
 - https://wiki.archlinux.org/index.php/installation_guide
 - https://github.com/angristan/arch-linux-install
 - https://gist.github.com/eltonvs/d8977de93466552a3448d9822e265e38
+- https://archinstall.archlinux.page/installing/guided.html#guided
 
 ## Setup BIOS
 
@@ -366,3 +368,8 @@ Can happen when too many failures:
 ```bash
 faillock --reset
 ```
+
+## See also
+
+- https://archinstall.archlinux.page/installing/guided.html#guided
+- Links at the top of this doc

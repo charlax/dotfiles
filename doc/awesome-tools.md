@@ -173,6 +173,13 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [tshark](https://www.wireshark.org/docs/man-pages/tshark.html): dump and analyze network traffic
 - [iperf](https://iperf.fr/
 
+To follow network traffic:
+
+- iftop
+- iptraf
+- bmon
+- slurm
+
 ### Presentation
 
 - https://github.com/cpojer/remdx
@@ -218,6 +225,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### SQL
 
 - [ibis-project/ibis: The flexibility of Python with the scale and performance of modern SQL.](https://github.com/ibis-project/ibis)
+- [pql](https://pql.dev/)
 
 ### Static analysis
 
