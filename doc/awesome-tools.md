@@ -23,6 +23,7 @@
     - [Git](#git)
     - [HTML](#html)
     - [HTTP client](#http-client)
+    - [IO](#io)
     - [JSON](#json)
     - [LLM](#llm)
     - [Logs (reading)](#logs-reading)
@@ -140,6 +141,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [rs/curlie: The power of curl, the ease of use of httpie.](https://github.com/rs/curlie)
 - [ducaale/xh: Friendly and fast tool for sending HTTP requests](https://github.com/ducaale/xh)
+
+### IO
+
+- iotop
 
 ### JSON
 
