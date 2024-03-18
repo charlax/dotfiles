@@ -40,6 +40,11 @@ services:
     volumes:
       - "shared:/shared"
 
+  ha:
+    # ...
+    # defaults to "bridge".
+    network_mode: "host"
+
   redis:
     image: "redis:alpine"
 

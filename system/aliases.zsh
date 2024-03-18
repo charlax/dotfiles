@@ -92,8 +92,6 @@ alias p="ipython"
 alias p3="python3"
 alias python="python3"
 alias pypi_submit="python setup.py register sdist bdist upload"
-alias aa='source env/bin/activate'
-alias aactivate='source {.env,env}/bin/activate'
 alias venv='python -m venv'
 alias serve='python3 -m http.server'
 alias pydoc='python -m pydoc'
@@ -104,6 +102,16 @@ alias jcat='python -m json.tool'
 alias cal='python -m calendar'
 # pretty print standard input
 alias pprint='python -c "import pprint, sys, ast; pprint.pprint(ast.literal_eval(sys.stdin.read()))"'
+
+aactivate() {
+    if [ -f .env/bin/activate ]; then
+        source .env/bin/activate
+    elif [ -f env/bin/activate ]; then
+        source env/bin/activate
+    else
+        echo "No virtual environment found."
+    fi
+}
 
 rgpython () {
     # Search for a string in Python source
