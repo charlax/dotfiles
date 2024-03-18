@@ -117,6 +117,7 @@ function install_osx_packages {
         firefox              # browser
         font-roboto-mono-nerd-font
         kitty                # terminal
+        neovide              # neovim GUI
         pritunl              # open source VPN client
         rectangle            # window management
         shottr               # screenshot tool
