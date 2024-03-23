@@ -241,6 +241,7 @@ function install_brew_packages {
         broot           # better tree https://github.com/Canop/broot
         cloc            # count lines of code
         csvq            # query csv from command line
+        difftastic      # diff tool https://difftastic.wilfred.me.uk/git.html
         dust            # better du https://github.com/bootandy/dust
         fastmod         # multifile search and replace https://github.com/facebookincubator/fastmod
         gawk            # GNU awk

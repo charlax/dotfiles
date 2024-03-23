@@ -11,6 +11,9 @@
     changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
     co = checkout
     d = diff
+    dft = difftool
+    # better git log -p
+    dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
     go = checkout -b
     l = log --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit
     recommit = !git commit --amend
@@ -32,7 +35,6 @@
     excludesfile = ~/.gitignore
     quotepath = false
     editor = vim
-    # pager = delta
 
 [merge]
     tool = vimdiff
@@ -64,11 +66,13 @@
 
 [pull]
     rebase = true
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
 [rebase]
     autoStash = true
 
@@ -81,15 +85,18 @@
 [init]
     defaultBranch = main
 
-# Below added for https://github.com/dandavison/delta
-# [interactive]
-#     diffFilter = delta --color-only
-#
-# [delta]
-#     navigate = true
-#
-# [diff]
-#     colorMoved = default
+# https://difftastic.wilfred.me.uk/git.html
+[diff]
+    tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+    difftool = true
 
 # includeIf only works within gitconfig, not within included files
 [includeIf "gitdir:~/Work/"]

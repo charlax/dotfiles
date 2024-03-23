@@ -44,6 +44,7 @@
     - [System monitor](#system-monitor)
     - [Task runner (a la Make)](#task-runner-a-la-make)
     - [Text](#text)
+    - [Vim](#vim)
     - [Web/HTTP](#webhttp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -152,6 +153,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [antonmedv/fx: terminal JSON viewer](https://github.com/antonmedv/fx)
 - [tomnomnom/gron: Make JSON greppable!](https://github.com/tomnomnom/gron)
 - [noahgorstein/jqp: A TUI playground to experiment with jq](https://github.com/noahgorstein/jqp)
+- [ynqa/jnv: interactive JSON filter using jq](https://github.com/ynqa/jnv)
 
 ### LLM
 
@@ -247,6 +249,11 @@ To follow network traffic:
 ### Text
 
 - [birchb1024/frangipanni: Program to convert lines of text into a tree structure.](https://github.com/birchb1024/frangipanni)
+
+### Vim
+
+- MacVim
+- Neovide ([doc](https://neovide.dev/index.html))
 
 ### Web/HTTP
 
