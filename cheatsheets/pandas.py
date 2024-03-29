@@ -147,6 +147,13 @@ df.groupby("phone")["week"].agg(set).reset_index()
 # Querying (indexing and selecting)
 # =================================
 
+# Query using SQL with DuckDB https://duckdb.org/docs/api/python/overview
+# pip install duckdb
+import duckdb
+
+pandas_df = pd.DataFrame({"a": [42]})
+duckdb.sql("SELECT * FROM pandas_df")
+
 # https://pandas.pydata.org/pandas-docs/dev/user_guide/indexing.html#boolean-indexing
 # Multiple conditions
 df = df[(df["is_test"] != True) & (df["is_cancelled"] == False)]

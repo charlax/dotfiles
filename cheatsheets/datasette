@@ -1,3 +1,4 @@
+pipx install datasette
 pip install datasette sqlite-utils
 
 touch analysis.db
@@ -7,3 +8,4 @@ datasette analysis.db
 
 # See also:
 # ./sqlite-utils
+# ./sqlite

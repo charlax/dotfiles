@@ -27,5 +27,13 @@ select * from tablename;
 .output stdout
 .mode list # back to normal
 
-# See also: sql, sqlite-utils
+# CSV export
+sqlite3 -header -csv ./home-assistant_v2.db "select * from statistics" > table.csv
+
+# See also:
+# sql
+# sqlite-utils
+#
+# Tools to explore:
 # https://github.com/coleifer/sqlite-web
+# datasette

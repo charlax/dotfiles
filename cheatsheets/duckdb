@@ -1,0 +1,16 @@
+# Read from file
+duckdb -c \
+  "select license->>'key' as license, count(*) as count \
+  from 'repos.json' \
+  group by 1 \
+  order by count desc"
+
+# Output as JSON
+duckdb -json -c ... | jq
+
+# Read directly from URL
+duckdb -c \
+  "select license->>'key' as license, count(*) as count \
+  from read_json('https://api.github.com/orgs/golang/repos') \
+  group by 1 \
+  order by count desc"

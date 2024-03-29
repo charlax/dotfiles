@@ -3,6 +3,18 @@
 
 show create table table_name;
 
+drop database if exists dbname;
+alter table users add primary key (id);
+alter table contacts add constraint contacts_user_id foreign key (user_id) references users (id);
+alter table users add column has_stuff boolean default false;
+
+create table toaster (id int primary key, color varchar);
+
+-- Index
+-- -----
+
+create index index_name on table_name (column_name);
+
 -- CTE (Common Table Expression)
 -- =============================
 
@@ -11,21 +23,6 @@ with toasters as (select name, color from toasters),
 toasts as (select type, number from toasts)
 
 select toasters.*
-
--- DDL
--- ===
-
-DROP DATABASE IF EXISTS dbname;
-ALTER TABLE users ADD PRIMARY KEY (id);
-ALTER TABLE contacts ADD CONSTRAINT contacts_user_id FOREIGN KEY (user_id) REFERENCES users (id);
-ALTER TABLE users ADD COLUMN has_stuff BOOLEAN DEFAULT false;
-
-create table toaster (id int primary key, color varchar);
-
--- Index
--- -----
-
-create index index_name on table_name (column_name);
 
 -- Datetime
 
@@ -52,33 +49,36 @@ group 1
 order by 1 asc
 
 -- Postgres
+-- see also `psql` cheat sheet.
+
 select date_trunc('day', created_at), user_id, count(*)
 from event_logs
 group by 1, 2
 order by 1 asc;
 
--- Postgres
-
- also `psql` cheat sheet.
-i--
-
-```sql
--- datetime
-now() - interval '2 days'
-```
+select now() - interval '2 days';
 
 -- Select
 -- ======
 
+-- CASE
+
 case when boolval then 'value if true' else 'value if false' end
 
-CASE
-    WHEN frequency = 0 THEN 'OFF'
-    WHEN frequency = 31 THEN 'Daily'
-    WHEN frequency = 1 THEN 'Weekly'
-    WHEN frequency = 21 THEN 'MWF'
-    ELSE cast(frequency as varchar)
-END AS frequency_label,
+case
+    when frequency = 0 then 'off'
+    when frequency = 31 then 'daily'
+    when frequency = 1 then 'weekly'
+    when frequency = 21 then 'mwf'
+    else cast(frequency as varchar)
+end as frequency_label,
+
+-- GROUP BY (with total)
+
+select level,
+count(*),
+(count(*) * 100.0 / (select count(*) from df)) as percentage
+from df group by level
 
 -- Insert
 -- ======
@@ -120,5 +120,6 @@ FROM
 
 -- `./presto`
 -- cookbook
+-- psql
 
 -- vim: set ft=sql:

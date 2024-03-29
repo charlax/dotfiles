@@ -1,6 +1,7 @@
 # Tools:
 # jless https://github.com/PaulJuliusMartinez/jless
 # pypipe https://github.com/bugen/pypipe
+# duckdb https://duckdb.org/
 
 # fx https://fx.wtf/ - JSON viewer in Go for terminal
 brew install fx

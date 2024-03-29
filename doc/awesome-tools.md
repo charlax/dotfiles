@@ -25,11 +25,13 @@
     - [HTTP client](#http-client)
     - [IO](#io)
     - [JSON](#json)
+    - [Linux](#linux)
     - [LLM](#llm)
     - [Logs (reading)](#logs-reading)
     - [macOS](#macos)
     - [Markdown](#markdown)
     - [Network](#network)
+    - [Postgres](#postgres)
     - [Presentation](#presentation)
     - [Process managers](#process-managers)
     - [Proxy](#proxy)
@@ -137,6 +139,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [ericchiang/pup: Parsing HTML at the command line](https://github.com/ericchiang/pup): can also be used to beautify
 - tidy: HTML formatter/beautifier, installed by default on macOS, `brew install tidy-html5` to support html5
+- [Y2Z/monolith: ⬛️ CLI tool for saving complete web pages as a single HTML file](https://github.com/Y2Z/monolith)
 
 ### HTTP client
 
@@ -154,6 +157,12 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [tomnomnom/gron: Make JSON greppable!](https://github.com/tomnomnom/gron)
 - [noahgorstein/jqp: A TUI playground to experiment with jq](https://github.com/noahgorstein/jqp)
 - [ynqa/jnv: interactive JSON filter using jq](https://github.com/ynqa/jnv)
+- [DuckDB - An in-process SQL OLAP database management system](https://duckdb.org/) (can be used instead of jq, see [example](https://www.pgrs.net/2024/03/21/duckdb-as-the-new-jq/))
+- [Editor | JSON Crack](https://jsoncrack.com/editor): a JSON graph editor
+
+### Linux
+
+- [Linux Crisis Tools](https://www.brendangregg.com/blog/2024-03-24/linux-crisis-tools.html)
 
 ### LLM
 
@@ -186,6 +195,10 @@ To follow network traffic:
 - iptraf
 - bmon
 - slurm
+
+### Postgres
+
+- [pgloader](https://pgloader.readthedocs.io/en/latest/pgloader.html) (needs to be built from source on ARM architecture)
 
 ### Presentation
 
