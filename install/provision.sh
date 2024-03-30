@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Installs the strict minimum required to provision a machine
+
 set -euo pipefail
 
 # Defaults
@@ -21,7 +23,7 @@ function install_requirements() {
         echo ""
         echo "Provision: installing base packages"
         # shellcheck disable=SC2086
-        sudo $APT_GET install git curl file build-essential
+        sudo $APT_GET install git curl file build-essential zsh
 
     elif command -v pacman 1> /dev/null 2>&1; then
         echo ""
