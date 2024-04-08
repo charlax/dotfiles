@@ -9,3 +9,6 @@ asdf local terraform 0.15.5
 # Solution https://github.com/asdf-vm/asdf/issues/1115
 rm -f ~/.asdf/shims/*
 asdf reshim
+
+# See also:
+# mise https://mise.jdx.dev/

@@ -1,0 +1,5 @@
+# Install
+brew install uv
+
+# Create virtual env
+uv venv

@@ -24,6 +24,7 @@
     - [HTML](#html)
     - [HTTP client](#http-client)
     - [IO](#io)
+    - [JavaScript/TypeScript](#javascripttypescript)
     - [JSON](#json)
     - [Linux](#linux)
     - [LLM](#llm)
@@ -40,6 +41,7 @@
     - [Screenshots](#screenshots)
     - [Search](#search)
     - [Shell](#shell)
+    - [Sqlite](#sqlite)
     - [Spreadsheet](#spreadsheet)
     - [SQL](#sql)
     - [Static analysis](#static-analysis)
@@ -150,6 +152,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - iotop
 
+### JavaScript/TypeScript
+
+- https://bun.sh/: lots of really cool feature, such as import from sqlite db. Useful for scripts too.
+
 ### JSON
 
 - [jless is a command-line JSON viewer designed for reading, exploring, and searching through JSON data](https://github.com/PaulJuliusMartinez/jless)
@@ -237,6 +243,10 @@ To follow network traffic:
 - [geophile/marcel: A modern shell](https://github.com/geophile/marcel)
 - [kellyjonbrazil/jc: CLI tool and python library that converts the output of popular command-line tools, file-types, and common strings to JSON, YAML, or Dictionaries. This allows piping of output to tools like jq and simplifying automation scripts.](https://github.com/kellyjonbrazil/jc)
 - [The Bun Shell | Bun Blog](https://bun.sh/blog/the-bun-shell)
+
+### Sqlite
+
+- [coleifer/sqlite-web: Web-based SQLite database browser written in Python](https://github.com/coleifer/sqlite-web)
 
 ### Spreadsheet
 

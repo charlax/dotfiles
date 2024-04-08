@@ -106,6 +106,8 @@ alias pprint='python -c "import pprint, sys, ast; pprint.pprint(ast.literal_eval
 aactivate() {
     if [ -f .env/bin/activate ]; then
         source .env/bin/activate
+    elif [ -f .venv/bin/activate ]; then
+        source .venv/bin/activate
     elif [ -f env/bin/activate ]; then
         source env/bin/activate
     else
