@@ -24,6 +24,15 @@ sudo killall -HUP mDNSResponder
 # Get stats about connection
 networkQuality -v
 
+# Get network services
+networksetup -listallnetworkservices
+# Get DNS configuration
+networksetup -getdnsservers Wi-Fi  # show that there aren't any if set via dhcp
+scutil --dns
+
+# Renew lease
+networksetup -setdhcp Wi-Fi
+
 # Processes
 # =========
 
