@@ -29,14 +29,16 @@ Uses:
 """
 
 import argparse
+import csv
 import itertools as it
+import io
 import os
 import subprocess
 import sys
 from datetime import datetime
 from functools import reduce
 from pathlib import Path
-from typing import Dict, Set, Iterator, Any, List
+from typing import Dict, Set, Iterator, Any, List, Optional
 from string import Formatter
 
 # This script has no dependency (e.g., jinja). (jinja mentioned here for
@@ -85,10 +87,32 @@ def get_editor_cmd(editor: str) -> List[str]:
     """Get editor command."""
     if editor == "ia":
         return ["open", "-a", "IA Writer"]
-    return editor
+    return [editor]
 
 
-def main(template: Path, editor: str = "") -> int:
+def get_filename(template_filename: str, context: Dict[str, str]) -> Path:
+    """Return filename for the rendered template."""
+    return Path(
+        template_filename.format(**context)
+        .replace("template", "")
+        .replace("Template", "")
+        .replace("..", ".")
+        .strip()
+    )
+
+
+def render(content_template: str, filename: Path, context: Dict[str, str]) -> None:
+    """Render the file."""
+    if filename.exists():
+        raise OSError(f"File {filename} already exists")
+
+    with open(filename, "w") as f:
+        f.write(content_template.format(**context))
+
+
+def main(
+    template: Path, editor: str = "", csvfile: Optional[io.TextIOWrapper] = None
+) -> int:
     template_path = choose_template(template) if template.is_dir() else template
     template_filename = str(template_path.name)
 
@@ -103,27 +127,23 @@ def main(template: Path, editor: str = "") -> int:
         )
     ) - set(base_context.keys())
 
-    context = get_context(required_variables, base_context)
+    if csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            context = {**base_context, **row}
+            filename = get_filename(template_filename, context)
+            render(content_template, filename, context)
 
-    filename = Path(
-        template_filename.format(**context)
-        .replace("template", "")
-        .replace("Template", "")
-        .replace("..", ".")
-        .strip()
-    )
+    else:
+        context = get_context(required_variables, base_context)
+        filename = get_filename(template_filename, context)
+        render(content_template, filename, context)
 
-    if filename.exists():
-        raise OSError(f"File {filename} already exists")
+        print(str(filename))
 
-    with open(filename, "w") as f:
-        f.write(content_template.format(**context))
-
-    print(str(filename))
-
-    if editor:
-        editor_parsed = get_editor_cmd(editor)
-        subprocess.Popen([*editor_parsed, str(filename)])
+        if editor:
+            editor_parsed = get_editor_cmd(editor)
+            subprocess.Popen([*editor_parsed, str(filename)])
 
     return 0
 
@@ -137,7 +157,12 @@ if __name__ == "__main__":
         help="editor",
         default=os.environ["EDITOR"],
     )
+    parser.add_argument(
+        "--csv",
+        help="CSV with template variables",
+        type=argparse.FileType("r"),
+    )
 
     args = parser.parse_args()
 
-    sys.exit(main(template=Path(args.template), editor=args.editor))
+    sys.exit(main(template=Path(args.template), editor=args.editor, csvfile=args.csv))

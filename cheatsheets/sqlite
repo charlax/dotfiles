@@ -31,11 +31,11 @@ select * from tablename;
 sqlite3 -header -csv ./home-assistant_v2.db "select * from statistics" > table.csv
 
 # See also:
-# duckdb
+# duckdb (supports stats, etc.) https://duckdb.org/
 # sql
 # sqlite-utils
 #
-# Tools to explore:
-# https://github.com/coleifer/sqlite-web
+# Tools to explore a database:
+# sqlite-web https://github.com/coleifer/sqlite-web
 # datasette
 # jupyter notebook
