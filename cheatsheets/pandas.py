@@ -86,6 +86,15 @@ df["week"] = df["Date"].dt.isocalendar().week
 # https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.background_gradient.html
 df.style.background_gradient(axis=0)
 
+# Use gradient only for numerical columns
+numerical_cols = df.select_dtypes(include=[np.number]).columns
+df[numerical_cols] = (
+    df[numerical_cols].apply(pd.to_numeric, errors="coerce").astype("Int64")
+)
+df.style.format("{:,.0f}", subset=numerical_cols).background_gradient(
+    cmap="viridis", subset=numerical_cols
+)
+
 # Graph and visualization
 # =======================
 

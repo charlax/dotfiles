@@ -7,3 +7,6 @@ ps -aef --forest  # on linux
 ps eww $process_id
 # Pretty print
 ps eww -o command $process_id  | tr ' ' '\n'
+
+# See also
+# procs https://github.com/dalance/procs

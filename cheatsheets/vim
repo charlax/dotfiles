@@ -115,6 +115,28 @@ norm o execute the command o in normal mode
 :read /path/to/file
 ```
 
+## Replace
+
+Multiple search and replace with confirmation:
+
+```bash
+vim $(find /path/to/search -type f)
+```
+
+Then:
+
+```vim
+:bufdo %s/search_pattern/replacement_string/gc | update
+```
+
+- `bufdo` executes a command on all open buffers
+- `update` saves the file if changes were made
+
+See also:
+
+- `./string-manipulation`
+- `./sed`
+
 ## Ranges
 
 - `<number>` refers to a line number

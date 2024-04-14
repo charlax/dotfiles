@@ -11,3 +11,4 @@ binwalk -W file1 file2 | less - R  # -R: interpret color codes
 # vimdiff
 # opendiff (macOS)
 # colordiff
+# delta https://github.com/dandavison/delta

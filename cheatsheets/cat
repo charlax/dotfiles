@@ -10,3 +10,6 @@ EOF
 sudo tee -a /etc/... << EOF
 ...
 EOF
+
+# See also
+# bat https://github.com/sharkdp/bat

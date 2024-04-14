@@ -45,6 +45,17 @@ sed "s/##.*//"
 # Append after match (requires GNU sed)
 sed -i "/Monday/a- Overjoyed" songs.md
 
+# Multiple search and replace with confirmation (see also: vim)
+find /path/to/search -type f -exec grep -l 'search_pattern' {} \; | while read file; do
+    echo "Reviewing changes for: $file"
+    sed -n 's/search_pattern/replacement_string/gp' "$file"
+    echo "Apply changes? [y/n]"
+    read answer
+    if [ "$answer" = "y" ]; then
+        sed -i 's/search_pattern/replacement_string/g' "$file"
+    fi
+done
+
 # On macOS, use GNU sed with `gsed
 
 # Other tools:
@@ -52,7 +63,8 @@ sed -i "/Monday/a- Overjoyed" songs.md
 # awk
 # grep
 # perl
-# sd https://github.com/chmln/sd
+# sd https://github.com/chmln/sd (in rust)
+# vim (e.g., for multiple search and replace with confirmation)
 
 # Other docs:
 # ./string-manipulation

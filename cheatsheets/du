@@ -9,3 +9,6 @@
 
 # Display /var directories and their size, sorted
 du -sch /var/* .[!.]* | sort -rh
+
+# See also
+# dust https://github.com/bootandy/dust

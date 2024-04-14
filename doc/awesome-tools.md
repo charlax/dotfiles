@@ -58,6 +58,7 @@
 ## List of tools
 
 - [A list of new(ish) command line tools](https://jvns.ca/blog/_2022/04/12/a-list-of-new-ish--command-line-tools/)
+- [ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
 
 ## By topic
 

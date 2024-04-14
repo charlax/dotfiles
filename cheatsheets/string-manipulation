@@ -52,6 +52,9 @@ git shortlog -sn | cut -f1 | paste -sd+ - | bc
 # another way:
 awk '{s+=$1} END {print s}' filename
 
+# For multiple search and replace with confirmation
+# See vim's bufdo
+
 # See: awk, grep, perl, sed, tr
 #
 # choose https://github.com/theryangeary/choose - simpler alternative to cut
