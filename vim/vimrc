@@ -104,9 +104,6 @@ endif
 " Auto close HTML tags
 Plug 'alvan/vim-closetag'
 
-" .editorconfig support
-Plug 'editorconfig/editorconfig-vim'
-
 " Clojure REPL
 Plug 'tpope/vim-fireplace'
 
