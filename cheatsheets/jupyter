@@ -1,3 +1,6 @@
+# Run command
+%pip install ipywidgets
+
 # Comment group of lines
 Cmd+/
 

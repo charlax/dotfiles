@@ -78,7 +78,7 @@ For [preservim/vim-markdown](https://github.com/preservim/vim-markdown):
 ctrl-v =    # resizes the split panes to become equal
 ```
 
-## Custom keyboard shortcuts
+### Custom keyboard shortcuts
 
 ```raw
 <leader>pw   show the Python documentation for the word under the cursor.
@@ -113,6 +113,13 @@ norm o execute the command o in normal mode
 :read !date
 # Read file into current buffer
 :read /path/to/file
+```
+
+## UI
+
+```vim
+" Set between dark/light
+:set background=light
 ```
 
 ## Replace

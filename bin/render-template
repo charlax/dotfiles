@@ -76,7 +76,13 @@ def get_required_variables(template: str) -> Iterator[str]:
 def choose_template(dir: Path) -> Path:
     """Let the user choose from one template from folder."""
     ls = subprocess.Popen(["fd", ".", str(dir)], stdout=subprocess.PIPE)
-    r = subprocess.check_output(["fzf"], stdin=ls.stdout).decode("utf-8").strip()
+    r = (
+        subprocess.check_output(
+            ["fzf", "--delimiter", "/", "--with-nth", "-1"], stdin=ls.stdout
+        )
+        .decode("utf-8")
+        .strip()
+    )
     returned = Path(r)
     if not returned.exists():
         raise OSError(f"File {returned} does not exist")
