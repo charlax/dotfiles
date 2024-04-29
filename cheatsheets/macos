@@ -11,6 +11,30 @@ If it does not work: press shortly, then press and hold On button until it says 
 # Reset NVRAM
 Turn on your Mac and immediately press and hold these four keys together: Option, Command, P, and R
 
+# LaunchDaemons
+# =============
+
+# Example to run `ifconfig lo0 alias 192.168.99.100`
+sudo vim /Library/LaunchDaemons/org.my.ifconfig.plist
+
+# <?xml version="1.0" encoding="UTF-8"?>
+# <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+# <plist version="1.0">
+# <dict>
+#     <key>Label</key>
+#     <string>org.my.ifconfig</string>
+#     <key>RunAtLoad</key>
+#     <true/>
+#     <key>ProgramArguments</key>
+#     <array>
+#       <string>/sbin/ifconfig</string>
+#       <string>lo0</string>
+#       <string>alias</string>
+#       <string>YourIpHere</string>
+#     </array>
+# </dict>
+# </plist>
+
 # Network
 # =======
 

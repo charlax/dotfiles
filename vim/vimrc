@@ -289,14 +289,18 @@ function! s:setup_for_prose()
     " Use softwrap as well
     setlocal textwidth=0
     setlocal linebreak
+
     setlocal spell
+
     " For bulleted list to get correct indentation
     setlocal autoindent
 
     " Respect indentation when breaking lines
     setlocal breakindent
+
     " Indent only list items
     setlocal breakindentopt=list:2
+
     " See other config in ftplugin/markdown.vim
 
     " Spell lang
