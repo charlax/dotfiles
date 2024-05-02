@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# See tests
+
 import argparse
 import logging
 import os
@@ -22,7 +24,33 @@ def maybe_add_next(lines: Lines) -> Lines:
     if NEXT in lines:
         return lines
 
-    return [lines[0]] + ["", NEXT] + lines[1:]
+    # Find end of frontmatter
+    end_of_frontmatter = 0
+    if lines[0].startswith("---"):
+        end_of_frontmatter = lines.index("---", 1) + 1
+
+    # Find the existing "## Next" section or where it should be inserted
+    try:
+        next_index = lines.index(NEXT, end_of_frontmatter)
+    except ValueError:
+        next_index = -1
+
+    # Find the end of "## Recurring" section if it exists
+    end_of_recurring = None
+    if "## Recurring" in lines:
+        start_recurring = lines.index("## Recurring", end_of_frontmatter)
+        end_of_recurring = start_recurring + 1
+        while end_of_recurring < len(lines) and not lines[end_of_recurring].startswith(
+            "##"
+        ):
+            end_of_recurring += 1
+
+    # Determine where to insert "## Next" if it's not found
+    if next_index == -1:
+        insert_position = end_of_recurring if end_of_recurring else end_of_frontmatter
+        lines = lines[:insert_position] + ["", NEXT] + lines[insert_position:]
+
+    return lines
 
 
 def add_next_item(lines: Lines, item: str) -> Lines:
@@ -59,10 +87,14 @@ def atomic_write(filename: Path):
 def add_item(f: TextIO, item: str, is_dry_run: bool = False) -> None:
     """Add an item to a 1-1 agenda."""
     lines = [clean_line(line) for line in f.read().splitlines()]
+    start_number_of_lines = len(lines)
+
     lines = maybe_add_next(lines)
     lines = add_next_item(lines, item)
     # TODO: add blank line
     # lines = add_space(lines)
+
+    assert len(lines) > start_number_of_lines, "Would result in smaller file"
 
     if is_dry_run:
         print(f"Would write in {f.name}:")

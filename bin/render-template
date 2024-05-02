@@ -46,7 +46,7 @@ from string import Formatter
 
 
 def prompt(name: str) -> str:
-    value = input(f"{name}: ")
+    value = input(f"{name.strip()}: ")
     return value
 
 
