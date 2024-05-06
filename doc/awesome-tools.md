@@ -166,6 +166,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [ynqa/jnv: interactive JSON filter using jq](https://github.com/ynqa/jnv)
 - [DuckDB - An in-process SQL OLAP database management system](https://duckdb.org/) (can be used instead of jq, see [example](https://www.pgrs.net/2024/03/21/duckdb-as-the-new-jq/))
 - [Editor | JSON Crack](https://jsoncrack.com/editor): a JSON graph editor
+- [ffs: the file fileystem | ffs](https://mgree.github.io/ffs/): mount semi-structured data (like JSON) as a Unix filesystem
 
 ### Linux
 
