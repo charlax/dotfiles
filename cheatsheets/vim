@@ -421,4 +421,8 @@ vim -V9runtime.log
 vim -u NONE
 ```
 
+See also:
+
+- ./vimscript
+
 <!-- vim: set ft=markdown: -->

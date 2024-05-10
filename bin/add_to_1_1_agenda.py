@@ -25,42 +25,66 @@ def maybe_add_next(lines: Lines) -> Lines:
         return lines
 
     # Find end of frontmatter
-    end_of_frontmatter = 0
+    current_index = 0
     if lines[0].startswith("---"):
-        end_of_frontmatter = lines.index("---", 1) + 1
+        current_index = lines.index("---", 1) + 1
 
-    # Find the existing "## Next" section or where it should be inserted
-    try:
-        next_index = lines.index(NEXT, end_of_frontmatter)
-    except ValueError:
-        next_index = -1
+    for current_index in range(current_index, len(lines)):
+        if lines[current_index].strip() == "":
+            continue
 
-    # Find the end of "## Recurring" section if it exists
-    end_of_recurring = None
-    if "## Recurring" in lines:
-        start_recurring = lines.index("## Recurring", end_of_frontmatter)
-        end_of_recurring = start_recurring + 1
-        while end_of_recurring < len(lines) and not lines[end_of_recurring].startswith(
-            "##"
-        ):
-            end_of_recurring += 1
+        # h1 title
+        if lines[current_index].startswith("# "):
+            continue
+
+        if lines[current_index] == "## Recurring":
+            continue
+
+        if lines[current_index].startswith("## "):
+            break
+
+    # # Find the existing "## Next" section or where it should be inserted
+    # try:
+    #     next_index = lines.index(NEXT, end_of_frontmatter)
+    # except ValueError:
+    #     next_index = -1
+
+    # # Find the end of "## Recurring" section if it exists
+    # end_of_recurring = None
+    # if "## Recurring" in lines:
+    #     start_recurring = lines.index("## Recurring", end_of_frontmatter)
+    #     end_of_recurring = start_recurring + 1
+    #     while end_of_recurring < len(lines) and not lines[end_of_recurring].startswith(
+    #         "##"
+    #     ):
+    #         end_of_recurring += 1
+
+    lines = lines[:current_index] + ["", NEXT, ""] + lines[current_index:]
 
     # Determine where to insert "## Next" if it's not found
-    if next_index == -1:
-        insert_position = end_of_recurring if end_of_recurring else end_of_frontmatter
-        lines = lines[:insert_position] + ["", NEXT] + lines[insert_position:]
+    # if next_index == -1:
+    #     insert_position = end_of_recurring if end_of_recurring else end_of_frontmatter
+    #     lines = lines[:insert_position] + ["", NEXT, ""] + lines[insert_position:]
 
     return lines
 
 
 def add_next_item(lines: Lines, item: str) -> Lines:
     next_index = lines.index(NEXT)
-
-    if lines[next_index + 1] != "":
-        # Add blank line
-        lines.insert(next_index, "")
-
     lines.insert(next_index + 2, f"{ITEM_PREFIX}{item}")
+
+    # We're at the end, no need to add blank line
+    if len(lines) == next_index + 2:
+        return lines
+
+    i = next_index + 2
+    while lines[i] != "" and i < len(lines):
+        if lines[i].startswith("#"):
+            lines.insert(i, "")
+            break
+
+        i += 1
+
     return lines
 
 

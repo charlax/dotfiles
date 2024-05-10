@@ -199,3 +199,4 @@ Checkout [CONTRIBUTING.md](./CONTRIBUTING.md)
 ## Inspiration
 
 - [holman](https://github.com/holman/dotfiles)
+- [dotfiles.github.io](https://dotfiles.github.io/inspiration/)

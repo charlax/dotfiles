@@ -4,6 +4,10 @@ set nocompatible
 syntax enable
 set encoding=utf-8
 
+" Get architecture information using the uname command
+let architecture = system('uname -m')
+let platform = system('uname')
+
 " Make sure no shortcut mapped in insert mode is
 " using leader, otherwise you might trigger shortcuts while typing.
 let mapleader = "\<Space>"
@@ -112,11 +116,13 @@ Plug 'godlygeek/tabular'
 " See help at https://github.com/preservim/vim-markdown
 Plug 'preservim/vim-markdown'
 
-" LSP support and autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Extensions
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+if (platform =~ 'Darwin') || (architecture !~ 'arm')
+    " LSP support and autocompletion
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Extensions
+    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+endif
 
 " Initialize plugin system
 call plug#end()
