@@ -122,6 +122,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [ranger/ranger: A VIM-inspired filemanager for the console](https://github.com/ranger/ranger)
 - [jarun/nnn: n³ The unorthodox terminal file manager](https://github.com/jarun/nnn)
 - [antonmedv/walk: Terminal file manager](https://github.com/antonmedv/walk)
+- [MHNightCat/superfile: Pretty fancy and modern terminal file manager](https://github.com/MHNightCat/superfile)
 
 ### File sharing
 

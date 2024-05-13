@@ -161,6 +161,7 @@ def main(
     template: Path, editor: str = "", csvfile: Optional[io.TextIOWrapper] = None
 ) -> int:
     template_path = choose_template(template) if template.is_dir() else template
+    print(f"template_path: {template_path}")
     filename_template = str(template_path.name)
 
     with open(template_path) as f:
