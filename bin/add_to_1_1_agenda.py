@@ -37,34 +37,25 @@ def maybe_add_next(lines: Lines) -> Lines:
         if lines[current_index].startswith("# "):
             continue
 
-        if lines[current_index] == "## Recurring":
+        if (
+            lines[current_index].startswith("##")
+            and "recurring" in lines[current_index].lower()
+        ):
             continue
 
         if lines[current_index].startswith("## "):
+            # Backtrack one since we should add before this title.
+            current_index -= 1
             break
 
-    # # Find the existing "## Next" section or where it should be inserted
-    # try:
-    #     next_index = lines.index(NEXT, end_of_frontmatter)
-    # except ValueError:
-    #     next_index = -1
+    # print(f"current_index = {current_index}")
+    # print(f"current line = {lines[current_index]}")
+    # print(f"start = {lines[:current_index+1]}")
+    # print(f"end = {lines[current_index+1:]}")
 
-    # # Find the end of "## Recurring" section if it exists
-    # end_of_recurring = None
-    # if "## Recurring" in lines:
-    #     start_recurring = lines.index("## Recurring", end_of_frontmatter)
-    #     end_of_recurring = start_recurring + 1
-    #     while end_of_recurring < len(lines) and not lines[end_of_recurring].startswith(
-    #         "##"
-    #     ):
-    #         end_of_recurring += 1
-
-    lines = lines[:current_index] + ["", NEXT, ""] + lines[current_index:]
-
-    # Determine where to insert "## Next" if it's not found
-    # if next_index == -1:
-    #     insert_position = end_of_recurring if end_of_recurring else end_of_frontmatter
-    #     lines = lines[:insert_position] + ["", NEXT, ""] + lines[insert_position:]
+    # Wether or not to add an empty line
+    to_add = [NEXT, ""] if lines[current_index].strip() == "" else ["", NEXT, ""]
+    lines = lines[: current_index + 1] + to_add + lines[current_index + 1 :]
 
     return lines
 
@@ -77,8 +68,9 @@ def add_next_item(lines: Lines, item: str) -> Lines:
     if len(lines) == next_index + 2:
         return lines
 
+    # Add blank line before next header
     i = next_index + 2
-    while lines[i] != "" and i < len(lines):
+    while i < len(lines) and lines[i] != "":
         if lines[i].startswith("#"):
             lines.insert(i, "")
             break
@@ -115,8 +107,6 @@ def add_item(f: TextIO, item: str, is_dry_run: bool = False) -> None:
 
     lines = maybe_add_next(lines)
     lines = add_next_item(lines, item)
-    # TODO: add blank line
-    # lines = add_space(lines)
 
     assert len(lines) > start_number_of_lines, "Would result in smaller file"
 

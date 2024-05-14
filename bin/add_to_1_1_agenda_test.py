@@ -6,19 +6,19 @@ from add_to_1_1_agenda import maybe_add_next, add_next_item
 # pytest bin/add_to_1_1_agenda_test.py
 
 
-def test_add_next_when_absent():
+def test_maybe_add_next_when_absent():
     lines = ["---", "title: Sample Document", "---", "Some initial text."]
     expected = [
         "---",
         "title: Sample Document",
         "---",
+        "Some initial text.",
         "",
         "## Next",
         "",
-        "Some initial text.",
     ]
     result = maybe_add_next(lines)
-    assert result == expected, "Should add ## Next correctly when absent"
+    assert result == expected
 
 
 def test_no_duplicate_next():
@@ -43,7 +43,6 @@ def test_next_after_recurring():
         "## Recurring",
         "Item 1",
         "Item 2",
-        "Another header",
     ]
     result = maybe_add_next(lines)
     expected = [
@@ -53,11 +52,32 @@ def test_next_after_recurring():
         "## Recurring",
         "Item 1",
         "Item 2",
-        "Another header",
         "",
         "## Next",
         "",
     ]
+
+    assert result == expected
+
+
+def test_maybe_add_next_after_recurring_with_emoji():
+    lines = [
+        "# Title",
+        "",
+        "## ➡️  Recurring",
+        "- Item 2",
+    ]
+    expected = [
+        "# Title",
+        "",
+        "## ➡️  Recurring",
+        "- Item 2",
+        "",
+        "## Next",
+        "",
+    ]
+
+    result = maybe_add_next(lines)
 
     assert result == expected
 
@@ -104,7 +124,7 @@ def test_next_after_recurring_with_space():
     assert result == expected
 
 
-def test_next_after_recurring_with_existing_title():
+def test_add_next_with_existing_date_section():
     lines = [
         "# Title",
         "",
