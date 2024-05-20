@@ -51,6 +51,12 @@ Ctrl Alt F1 through F12
 # Check if in chroot
 ld -di /  # if != 2, in chroot
 
+# Debugging SSD
+# -------------
+
+sudo apt install smartmontools
+sudo smartctl -a /dev/sda
+
 # Other cheats
 #
 # https://learnbyexample.github.io/cli-computing/

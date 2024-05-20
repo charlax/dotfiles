@@ -4,11 +4,18 @@
 # Compare with last week
 node_cpu_seconds_total offset 1w
 
-# negative regex
-api_request{result!~"OK"}
+# Regex
+api_request{app_name=~"(Hello World|App Name)"}
+api_request{app_name=~"Hello (World|Monde)"}
 
-# sum by
+# Negative regex
+api_request{result!~"OK"}
+api_request{status!~"[23].+"}
+
+# Sum by
 sum by (grpc_server_status) (rate(grpc_io_server_completed_rpcs{k8s_environment="production",kubernetes_namespace="$namespace", grpc_server_method=~"$method"}[7d]))
+# Sum by increase
+sum(increase(http_server_requests_seconds_count{app=~"toaster"}[5m])) by (uri, status)
 
 # See also
 # https://promlabs.com/promql-cheat-sheet/
