@@ -52,6 +52,9 @@ ffmpeg -f avfoundation -i "4" output.mkv
 # Speed up video with copy codec
 ffmpeg -itsscale 0.07 -i input.mp4 -vcodec copy timelapse.mp4
 
+# Another way to create a timelapse
+ffmpeg -framerate 30 -pattern_type glob -i '*.JPG' -c:v libx264 -r 30 -pix_fmt yuv420p timelapse.mp4
+
 # Extract one segment from video
 # from minute 15:00 to minute 18:00
 # -c copy    uses stream copy

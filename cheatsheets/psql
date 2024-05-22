@@ -25,6 +25,15 @@ DELETE FROM tablename WHERE ...;
 
 # Drop db
 drop database dbname;
+
+# Rename db
+alter database currentname to newname;
+
+# Create db
+CREATE USER your_username WITH PASSWORD 'your_password';
+CREATE DATABASE homeassistant;
+CREATE USER your_username WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE homeassistant TO your_username;
 ```
 
 ## Privileges
