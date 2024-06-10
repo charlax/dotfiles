@@ -20,6 +20,7 @@
     - [File manager](#file-manager)
     - [File sharing](#file-sharing)
     - [Filesystem watchers](#filesystem-watchers)
+    - [Find files](#find-files)
     - [Git](#git)
     - [HTML](#html)
     - [HTTP client](#http-client)
@@ -133,6 +134,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - `entr`
 - [Watchexec](https://watchexec.github.io/)
 - `inotify`
+
+### Find files
+
+- [laktak/zfind: search for files (even inside tar/zip) using a SQL-WHERE filter](https://github.com/laktak/zfind)
 
 ### Git
 
@@ -259,6 +264,7 @@ To follow network traffic:
 
 - [ibis-project/ibis: The flexibility of Python with the scale and performance of modern SQL.](https://github.com/ibis-project/ibis)
 - [pql](https://pql.dev/)
+- [danvergara/dblab: The database client every command line junkie deserves.](https://github.com/danvergara/dblab)
 
 ### Static analysis
 
