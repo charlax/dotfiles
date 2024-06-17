@@ -239,6 +239,7 @@ To follow network traffic:
 ### Screenshots
 
 - [Shottr – Screenshot Annotation App For Mac](https://shottr.cc/#section-tips)
+- [Flameshot | Open Source Screenshot Software](https://flameshot.org/)
 
 ### Search
 
