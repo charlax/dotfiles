@@ -76,3 +76,5 @@ Run:
 ```bash
 ssh-add
 ```
+
+Also check `notes`.

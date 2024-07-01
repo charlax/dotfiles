@@ -14,14 +14,16 @@
     - [Datetimes](#datetimes)
     - [Diagram](#diagram)
     - [Disk usage](#disk-usage)
+    - [DNS client](#dns-client)
     - [Docker](#docker)
     - [Docs](#docs)
     - [Download](#download)
     - [File manager](#file-manager)
     - [File sharing](#file-sharing)
-    - [Filesystem watchers](#filesystem-watchers)
+    - [Filesystem watcher](#filesystem-watcher)
     - [Find files](#find-files)
     - [Git](#git)
+    - [Hexadecimal editor](#hexadecimal-editor)
     - [HTML](#html)
     - [HTTP client](#http-client)
     - [IO](#io)
@@ -40,6 +42,7 @@
     - [Python](#python)
     - [Rename files](#rename-files)
     - [Screenshots](#screenshots)
+    - [Scripting](#scripting)
     - [Search](#search)
     - [Shell](#shell)
     - [Sqlite](#sqlite)
@@ -102,6 +105,12 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [muesli/duf: Disk Usage/Free Utility - a better 'df' alternative](https://github.com/muesli/duf)
 
+### DNS client
+
+See `./cheatsheets/dns`
+
+- [Doggo | Doggo](https://doggo.mrkaran.dev/docs/)
+
 ### Docker
 
 - [jesseduffield/lazydocker: The lazier way to manage everything docker](https://github.com/jesseduffield/lazydocker)
@@ -129,7 +138,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [schollz/croc: Easily and securely send things from one computer to another](https://github.com/schollz/croc)
 
-### Filesystem watchers
+### Filesystem watcher
 
 - `entr`
 - [Watchexec](https://watchexec.github.io/)
@@ -143,6 +152,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [tig(1) · Tig - Text-mode interface for Git](https://jonas.github.io/tig/doc/tig.1.html)
 - [jesseduffield/lazygit: simple terminal UI for git commands](https://github.com/jesseduffield/lazygit)
+
+### Hexadecimal editor
+
+- [WerWolv/ImHex: 🔍 A Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM.](https://github.com/WerWolv/ImHex)
 
 ### HTML
 
@@ -240,6 +253,10 @@ To follow network traffic:
 
 - [Shottr – Screenshot Annotation App For Mac](https://shottr.cc/#section-tips)
 - [Flameshot | Open Source Screenshot Software](https://flameshot.org/)
+
+### Scripting
+
+- [Ruby: a great language for shell scripts!](https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/)
 
 ### Search
 
