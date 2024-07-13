@@ -48,6 +48,7 @@
     - [Sqlite](#sqlite)
     - [Spreadsheet](#spreadsheet)
     - [SQL](#sql)
+    - [SQLite](#sqlite)
     - [Static analysis](#static-analysis)
     - [System monitor](#system-monitor)
     - [Task runner (a la Make)](#task-runner-a-la-make)
@@ -277,12 +278,17 @@ To follow network traffic:
 ### Spreadsheet
 
 - [Grist | The Evolution of Spreadsheets](https://www.getgrist.com/) - with [gristlabs/grist-electron: Desktop Grist, packaged with Electron](https://github.com/gristlabs/grist-electron)
+- [andmarti1424/sc-im: sc-im - Spreadsheet Calculator Improvised -- An ncurses spreadsheet program for terminal](https://github.com/andmarti1424/sc-im)
 
 ### SQL
 
 - [ibis-project/ibis: The flexibility of Python with the scale and performance of modern SQL.](https://github.com/ibis-project/ibis)
 - [pql](https://pql.dev/)
 - [danvergara/dblab: The database client every command line junkie deserves.](https://github.com/danvergara/dblab)
+
+### SQLite
+
+- [DB Browser for SQLite](https://sqlitebrowser.org/)
 
 ### Static analysis
 
