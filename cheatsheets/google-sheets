@@ -28,6 +28,16 @@ dcount($A:$U, "Nov 7", {{"product_cost";">10"}})
 # multiple conditions
 dcount($A:$U, "Nov 7", {{"product_cost";">10"}, {"product_cost";"<5"})
 
+# Useful for counting scores
+# Where $A$25 is a competency like "Truth" or "Delivery"
+# $A26 is the manager name
+# B$25 is the score value, e.g., "1", "2", etc.
+DCOUNT('IC Scores'!$B$3:M$35, $A$25, {{"Manager";$A26}, {$A$25;B$25}})
+# See also: notes
+
+# Can also be useful:
+COUNTIF(Scores!$I$3:$M$23,"="&F14)
+
 # DCOUNTA counts any value
 
 # Returns a range reference shifted a specified number of rows and columns from a starting cell reference.

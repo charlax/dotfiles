@@ -199,7 +199,7 @@ fi
 
 # fzf + ag configuration
 if _has fzf && _has ag; then
-  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude={.git,.venv,.__pycache__,.ruff_cache}'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
   # No need to specify colors
