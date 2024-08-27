@@ -116,6 +116,7 @@ See `./cheatsheets/dns`
 
 - [jesseduffield/lazydocker: The lazier way to manage everything docker](https://github.com/jesseduffield/lazydocker)
 - [wagoodman/dive: A tool for exploring each layer in a docker image](https://github.com/wagoodman/dive)
+- [will-moss/isaiah: Self-hostable clone of lazydocker for the web. Manage your Docker fleet with ease](https://github.com/will-moss/isaiah)
 
 ### Docs
 
