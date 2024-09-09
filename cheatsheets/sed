@@ -65,6 +65,7 @@ done
 # perl
 # sd https://github.com/chmln/sd (in rust)
 # vim (e.g., for multiple search and replace with confirmation)
+# desed (debugger for sed) https://github.com/SoptikHa2/desed
 
 # Other docs:
 # ./string-manipulation
