@@ -38,6 +38,7 @@ fi
 log_info "Updating pip"
 pip3 install --user --upgrade pip
 
+# TODO: use uvx?
 log_info "Updating all pipx apps"
 set -v
 pipx upgrade-all  || true

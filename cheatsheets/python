@@ -96,6 +96,7 @@ sys.path.insert(0, os.path.abspath('.'))
 tldr:
 
 ```bash
+# Note: should use uvx?
 pipx reinstall-all
 ```
 
