@@ -27,6 +27,7 @@ csvsql --query  "select m.usda_id, avg(i.sepal_length) as mean_sepal_length from
 # =====================================================
 
 cut     # cut out selected portions of each line of a file
+cat file.csv | cut -d',' -f3  # keep the 3rd columns
 
 # Require install:
 

@@ -1,0 +1,45 @@
+-- SQL for Clickhouse (db optimized for log search)
+
+-- ## Datetime functions
+
+-- https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions
+toStartOfHour(timestamp) -- : round datetime to start of our
+
+-- Something that can be used by Grafana Time Series
+-- Needs:
+-- datetime as "time" column
+-- value as "value" column
+-- order by time
+with events as (
+SELECT
+timestamp,
+strings['event_type'] AS event_type,
+strings['status'] AS status,
+FROM default.table_name
+WHERE application = 'app_name' AND timestamp >= subtractHours(now(), 24*7)
+)
+
+select
+toStartOfHour(timestamp) as time,
+category,
+count(*) as value
+
+from events
+
+where 1=1
+and event_type = 'WHATEVER'
+and status != 'STATUS_SUCCESSFUL'
+
+group by 1, 2
+order by 1
+
+-- success ratio with countIf(...)
+select
+toStartOfHour(timestamp) as time,
+countIf(status = 'STATUS_SUCCESSFUL') / count(*) as value
+from events
+where event_type = 'WHATEVER'
+group by 1
+order by 1
+
+-- vim: set ft=sql:
