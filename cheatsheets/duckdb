@@ -14,3 +14,13 @@ duckdb -c \
   from read_json('https://api.github.com/orgs/golang/repos') \
   group by 1 \
   order by count desc"
+
+# With jupyter
+# https://duckdb.org/docs/guides/python/jupyter
+
+# Links
+# https://duckdb.org/docs/sql/functions/
+
+# See also
+# ./duckdb.py
+# ./duckdb.sql

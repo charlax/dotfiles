@@ -309,6 +309,10 @@ function! s:setup_for_prose()
 
     " See other config in ftplugin/markdown.vim
 
+    " Attempt to have proper list handling
+    " set formatoptions-=c formatoptions-=r formatoptions-=o formatoptions+=n
+    " inoremap <expr> <CR> ContinueProseList()
+
     " Spell lang
     nnoremap <Leader>f <Esc>:setlocal spelllang=fr<CR><Esc>:setlocal spell<CR>
 endfunction
@@ -371,8 +375,8 @@ let g:netrw_home = expand('~/.vim/temp/')
 set tags=./tags;,./tags_env;
 
 " My other functions
-
 source $HOME/.vim/my_functions.vim
+
 source $HOME/.vim/abbreviations.vim
 " Plugin-specific configuration
 source $HOME/.vim/pluginsrc.vim

@@ -131,30 +131,12 @@ df.groupby("phone")["week"].agg(set).reset_index()
 
 pd.merge(df1, df2, on="key", how="right")
 
-# Groupby
-# =======
-
-# groupby then get size as dataframe
-df.groupby("name").size().reset_index(name="counts")
-
-# groupby day
-df.groupby(by=df["Created UTC"].dt.date).size().reset_index(name="counts")
-# groupby day-hour
-df.groupby(by=df["Created UTC"].dt.floor("H")).size().reset_index(name="counts")
-# groupby then value counts
-df.groupby("column_name")["column_to_count"].value_counts()
-
-# groupby then sum
-df.groupby("Date").sum()
-
-# groupby then get means, median, etc.
-df.groupby("date")[["revenue"]].describe()
-
-# groupby then aggregate into a set
-df.groupby("phone")["week"].agg(set).reset_index()
-
 # Querying (indexing and selecting)
 # =================================
+
+df[df.appname == "toaster"]
+df[df.appname.isin(["toaster1", "toaster2"])]
+df[~df.appname.isin(["toaster1", "toaster2"])]
 
 # Query using SQL with DuckDB https://duckdb.org/docs/api/python/overview
 # pip install duckdb

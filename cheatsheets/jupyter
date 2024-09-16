@@ -1,3 +1,8 @@
+pip install jupyterlab duckdb jupysql pandas matplotlib duckdb-engine
+
+# With jupysql
+%load_ext sql
+
 # Run command
 %pip install ipywidgets
 
@@ -6,3 +11,8 @@ Cmd+/
 
 # Do not truncate
 pd.options.display.max_rows = 4000
+
+# Use `jupyter lab`, instead of `jupyter notebook`
+
+# See:
+# https://github.com/markusschanta/awesome-jupyter

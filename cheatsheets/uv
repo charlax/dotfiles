@@ -3,3 +3,16 @@ brew install uv
 
 # Create virtual env
 uv venv
+
+# Init a project
+uv init example
+cd example
+uv add jupyter duckdb
+uv run -- jupyter notebook
+
+# On an existing project
+uv sync  # sync .venv
+
+# Use the venv directly
+source .venv/bin/activate
+jupyter notebook
