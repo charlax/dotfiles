@@ -16,3 +16,6 @@ uv sync  # sync .venv
 # Use the venv directly
 source .venv/bin/activate
 jupyter notebook
+
+# Upgrade packages
+uv lock --upgrade

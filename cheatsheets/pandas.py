@@ -135,6 +135,8 @@ pd.merge(df1, df2, on="key", how="right")
 # =================================
 
 df[df.appname == "toaster"]
+df[df["appname"] == "toaster"]
+df[(df["appname"] == "toaster") & ~(df["is_inactive"])]
 df[df.appname.isin(["toaster1", "toaster2"])]
 df[~df.appname.isin(["toaster1", "toaster2"])]
 
@@ -153,3 +155,5 @@ df = df[(df["is_test"] != True) & (df["is_cancelled"] == False)]
 # ========
 "https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf"
 "https://www.webpages.uidaho.edu/~stevel/cheatsheets/Pandas%20DataFrame%20Notes_12pages.pdf"
+
+"https://docs.pola.rs/"

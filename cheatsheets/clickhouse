@@ -5,6 +5,9 @@
 -- https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions
 toStartOfHour(timestamp) -- : round datetime to start of our
 
+-- In Grafana, you can use those global variables
+where timestamp between $__fromTime and $__toTime
+
 -- Something that can be used by Grafana Time Series
 -- Needs:
 -- datetime as "time" column
@@ -41,5 +44,41 @@ from events
 where event_type = 'WHATEVER'
 group by 1
 order by 1
+
+-- bar chart
+SELECT
+    toHour(time) AS h,
+    sum(hits) AS t,
+    bar(t, 0, max(t) OVER (), 50) AS bar
+FROM wikistat
+GROUP BY h
+ORDER BY h ASC
+-- ┌──h─┬─────────t─┬─bar────────────────────────────────────────────────┐
+-- │  0 │ 146208847 │ ██████████████████████████████████████▋            │
+-- │  1 │ 143713140 │ █████████████████████████████████████▊             |
+-- └────┴───────────┴────────────────────────────────────────────────────┘
+
+-- Show errors individually, but start with the stores with the most errors
+SELECT
+    store_id,
+    order_id,
+    error_message,
+    COUNT(*) OVER (PARTITION BY store_id) AS error_count
+FROM
+    your_table_name
+ORDER BY
+    error_count DESC,
+    store_id;
+
+-- Group by showing array of grouped values
+select
+  store_id,
+  count(*),
+  -- Format string
+  arrayMap((x) -> 'https://tools.example.com' || x || '/details', groupArray(order_id))
+from
+  table_name
+group by 1
+order by 2 desc;
 
 -- vim: set ft=sql:

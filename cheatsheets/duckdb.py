@@ -12,5 +12,15 @@ df = pd.DataFrame(...)
 
 result_df = duckdb.sql("select * from df").df()
 
+# With jupysql
+import duckdb
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+%load_ext sql
+conn = duckdb.connect()
+%sql conn --alias duckdb
+
 # See also
 # ./duckdb
