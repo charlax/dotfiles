@@ -111,6 +111,10 @@ $ which python3  # make sure it's brew's Python, otherwise: brew link python3
 $ pipx reinstall-all
 ```
 
+## Other
+
+- [The Hy programming language](https://hylang.org/): a Lisp dialect built in Python
+
 ## References
 
 - [Comprehensive Python Cheatsheet](https://gto76.github.io/python-cheatsheet/)
