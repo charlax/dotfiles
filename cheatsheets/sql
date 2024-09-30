@@ -73,6 +73,9 @@ case
     else cast(frequency as varchar)
 end as frequency_label,
 
+-- Can also be used with CONCAT
+select CONCAT(region, ' ', CASE WHEN product = 'toaster' then 'Toaster' else 'other' end)
+
 -- GROUP BY (with total)
 
 select level,
