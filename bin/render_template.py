@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# /// script
+# dependencies = [
+#   "jinja2",
+# ]
+# ///
+
 """
 
 Dependencies:
@@ -30,7 +36,6 @@ Uses:
 
 import argparse
 import csv
-import itertools as it
 import io
 import os
 import re
@@ -42,8 +47,30 @@ from pathlib import Path
 from typing import Dict, Set, Any, List, Optional
 from string import Formatter
 
-# This script has no dependency (e.g., jinja). (jinja mentioned here for
-# grepping)
+from jinja2 import Environment, meta
+
+
+jinja_env = Environment()
+
+
+def extract_jinja2_variables(template_string: str) -> Set[str]:
+    ast = jinja_env.parse(template_string)
+    return set(meta.find_undeclared_variables(ast))
+
+
+def is_jinja_template(content: str) -> Optional[bool]:
+    # Patterns characteristic of Jinja2 templates
+    jinja2_patterns = [
+        r"{%.*?%}",  # Block statements
+        r"{{.*?}}",  # Expressions to print
+        r"{#.*?#}",  # Comments
+    ]
+
+    jinja2_score = sum(len(re.findall(pattern, content)) for pattern in jinja2_patterns)
+
+    if jinja2_score > 1:
+        return True
+    return False
 
 
 def prompt(name: str) -> str:
@@ -116,7 +143,13 @@ def get_filename(filename_template: str, context: Dict[str, str]) -> Path:
     )
 
 
-def get_rendered_content(template: str, context: Dict[str, str]) -> str:
+def get_rendered_content(
+    template: str, context: Dict[str, str], use_jinja: bool = False
+) -> str:
+    """Render the template content."""
+    if use_jinja:
+        return jinja_env.from_string(template).render(context)
+
     return template.format(**context)
 
 
@@ -158,7 +191,11 @@ def run_hooks(params: Dict[str, str]) -> None:
 
 
 def main(
-    template: Path, editor: str = "", csvfile: Optional[io.TextIOWrapper] = None
+    template: Path,
+    editor: str = "",
+    csvfile: Optional[io.TextIOWrapper] = None,
+    use_jinja: bool = False,
+    list_variables: bool = False,
 ) -> int:
     template_path = choose_template(template) if template.is_dir() else template
     print(f"template_path: {template_path}")
@@ -167,26 +204,45 @@ def main(
     with open(template_path) as f:
         content_template = clean_template(f.read(100000))
 
+    # Infer if it is a jinja template
+    if use_jinja is False:
+        use_jinja = is_jinja_template(content_template)
+        if use_jinja:
+            print(
+                "Template looks like Jinja2, switching to Jinja engine.",
+                file=sys.stderr,
+            )
+
     base_context = get_base_context()
 
-    required_variables = set(
-        it.chain.from_iterable(
-            map(get_required_variables, [filename_template, content_template])
-        )
+    # Get required variables
+    content_variables = (
+        extract_jinja2_variables(content_template)
+        if use_jinja
+        else get_required_variables(content_template)
+    )
+    required_variables = (
+        set(content_variables) | set(get_required_variables(filename_template))
     ) - set(base_context.keys())
+
+    if list_variables:
+        print("\t".join(required_variables))
+        return 0
 
     if csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             context = {**base_context, **row}
             filename = get_filename(filename_template, context)
-            rendered = get_rendered_content(content_template, context)
+            rendered = get_rendered_content(
+                content_template, context, use_jinja=use_jinja
+            )
             write_file(rendered, filename)
 
     else:
         context = get_context(required_variables, base_context)
         filename = get_filename(filename_template, context)
-        rendered = get_rendered_content(content_template, context)
+        rendered = get_rendered_content(content_template, context, use_jinja=use_jinja)
 
         params = get_frontmatter_params(rendered)
 
@@ -217,7 +273,27 @@ if __name__ == "__main__":
         help="CSV with template variables",
         type=argparse.FileType("r"),
     )
+    parser.add_argument(
+        "-j",
+        "--jinja",
+        help="whether to use jinja2 for templating",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-l",
+        "--list-variables",
+        help="extract variables from template",
+        action="store_true",
+    )
 
     args = parser.parse_args()
 
-    sys.exit(main(template=Path(args.template), editor=args.editor, csvfile=args.csv))
+    sys.exit(
+        main(
+            template=Path(args.template),
+            editor=args.editor,
+            csvfile=args.csv,
+            use_jinja=args.jinja,
+            list_variables=args.list_variables,
+        )
+    )
