@@ -47,15 +47,14 @@ def main(*, title, input_filename, output_filename):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Plot data with matplotlib")
-    parser.add_argument("--title", default=DEFAULT_TITLE,
-                        help="Title")
-    parser.add_argument("input_filename",
-                        help="input filename")
-    parser.add_argument("--output-filename",
-                        default=DEFAULT_OUTPUT_FILENAME,
-                        help="output filename")
+    parser.add_argument("--title", default=DEFAULT_TITLE, help="Title")
+    parser.add_argument("input_filename", help="input filename")
+    parser.add_argument(
+        "--output-filename", default=DEFAULT_OUTPUT_FILENAME, help="output filename"
+    )
     args = parser.parse_args()
-    main(title=args.title,
-         input_filename=args.input_filename,
-         output_filename=args.output_filename,
-         )
+    main(
+        title=args.title,
+        input_filename=args.input_filename,
+        output_filename=args.output_filename,
+    )

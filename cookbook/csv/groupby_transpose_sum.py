@@ -27,7 +27,9 @@ def main(infile: TextIO, outfile: TextIO) -> int:
     writer = csv.writer(outfile)
     writer.writerow(fieldnames)
     for status_code in sorted(status_codes):
-        writer.writerow([status_code, *[sums[day].get(status_code) for day in sorted_days]])
+        writer.writerow(
+            [status_code, *[sums[day].get(status_code) for day in sorted_days]]
+        )
 
     outfile.close()
     return 0

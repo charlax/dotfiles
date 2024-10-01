@@ -237,8 +237,8 @@ GRAYSCALE: Dict[int, int] = dict(_GRAYSCALE)
 GRAYSCALE_POINTS: List[int] = [i for i, _ in _GRAYSCALE]
 
 
-def get_closest(v: int, l: list):
-    return min(l, key=lambda x: abs(x - v))
+def get_closest(v: int, li: list):
+    return min(li, key=lambda x: abs(x - v))
 
 
 class Memorize(dict):
@@ -273,8 +273,7 @@ def memorize(func) -> Callable:
 
 @memorize
 def rgb_to_xterm(r: int, g: int, b: int) -> int:
-    """ Converts RGB values to the nearest equivalent xterm-256 color.
-    """
+    """Converts RGB values to the nearest equivalent xterm-256 color."""
     if r == g == b:
         # use gray scale
         gs = get_closest(r, GRAYSCALE_POINTS)

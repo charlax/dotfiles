@@ -13,7 +13,7 @@ def main(bucket: str) -> int:
         print("Not deleting")
         return -1
 
-    s3 = boto3.resource('s3')
+    s3 = boto3.resource("s3")
     bucket = s3.Bucket(bucket)
     bucket.object_versions.delete()
     return 0

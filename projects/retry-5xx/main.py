@@ -31,7 +31,9 @@ def main(url: str) -> int:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="retry calling an endpoint until it returns an ok response")
+    parser = argparse.ArgumentParser(
+        description="retry calling an endpoint until it returns an ok response"
+    )
     parser.add_argument("url")
     args = parser.parse_args()
 
