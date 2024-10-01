@@ -50,7 +50,7 @@ from string import Formatter
 from jinja2 import Environment, meta
 
 
-jinja_env = Environment()
+jinja_env = Environment(trim_blocks=True, lstrip_blocks=True)
 
 
 def extract_jinja2_variables(template_string: str) -> Set[str]:
@@ -67,19 +67,17 @@ def is_jinja_template(content: str) -> Optional[bool]:
     ]
 
     jinja2_score = sum(len(re.findall(pattern, content)) for pattern in jinja2_patterns)
-
-    if jinja2_score > 1:
-        return True
-    return False
+    return jinja2_score > 1
 
 
 def prompt(name: str) -> str:
+    """Prompt the user for a value."""
     value = input(f"{name.strip()}: ")
     return value
 
 
 def clean_template(template: str) -> str:
-    # Clean up variables (some have space before them)
+    """Clean up variables (some have space before them)."""
     # Exclude double curly (which is the way to escape)
     # https://docs.python.org/3/library/string.html#format-string-syntax
     pattern = r"(?<!{)\{\s*([^{}]+?)\s*\}(?!})"
@@ -87,6 +85,7 @@ def clean_template(template: str) -> str:
 
 
 def get_base_context() -> Dict[str, Any]:
+    """Return context items that are always available."""
     return {
         "today": datetime.now().strftime("%Y-%m-%d"),
         "now": datetime.now().strftime("%Y-%m-%d %H:%M"),
@@ -105,12 +104,13 @@ def get_context(names: Set[str], base: Dict[str, str]) -> Dict[str, str]:
 
 
 def get_required_variables(template: str) -> List[str]:
+    """Return required variables from template."""
     parsed = Formatter().parse(template)
     return list(filter(None, [fieldname for _, fieldname, _, _ in parsed]))
 
 
 def choose_template(dir: Path) -> Path:
-    """Let the user choose from one template from folder."""
+    """Let the user choose a template from a folder."""
     ls = subprocess.Popen(["fd", ".", str(dir)], stdout=subprocess.PIPE)
     r = (
         subprocess.check_output(
@@ -162,6 +162,21 @@ def write_file(rendered: str, filename: Path) -> None:
         f.write(rendered)
 
 
+def parse_context(context: Dict[str, str], use_jinja: bool) -> Dict[str, Any]:
+    """Parse booleans in context."""
+    if not use_jinja:
+        return context
+
+    return {
+        key: (
+            value.lower() in {"yes", "true", "on", "1"}
+            if key.startswith(("is_", "has_"))
+            else value
+        )
+        for key, value in context.items()
+    }
+
+
 def get_frontmatter_params(content: str) -> Dict[str, str]:
     """Parse frontmatter."""
     params = {}
@@ -198,11 +213,11 @@ def main(
     list_variables: bool = False,
 ) -> int:
     template_path = choose_template(template) if template.is_dir() else template
-    print(f"template_path: {template_path}")
+    print(f"template_path: {template_path}", file=sys.stderr)
     filename_template = str(template_path.name)
 
     with open(template_path) as f:
-        content_template = clean_template(f.read(100000))
+        content_template = f.read(100000)
 
     # Infer if it is a jinja template
     if use_jinja is False:
@@ -212,6 +227,9 @@ def main(
                 "Template looks like Jinja2, switching to Jinja engine.",
                 file=sys.stderr,
             )
+
+    if not use_jinja:
+        content_template = clean_template(content_template)
 
     base_context = get_base_context()
 
@@ -232,12 +250,13 @@ def main(
     if csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            context = {**base_context, **row}
+            context = {**base_context, **parse_context(row, use_jinja=use_jinja)}
             filename = get_filename(filename_template, context)
             rendered = get_rendered_content(
                 content_template, context, use_jinja=use_jinja
             )
             write_file(rendered, filename)
+            print(f"wrote file: {filename}")
 
     else:
         context = get_context(required_variables, base_context)
