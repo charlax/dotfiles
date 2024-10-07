@@ -2,6 +2,19 @@
 
 (now Trino)
 
+## Aggregations
+
+```sql
+select array_join(array_agg(name), ', ')
+from toasters
+group by color;
+
+-- you can also use string concat
+select array_join(array_agg('http://toaster.com/' || name || '/hello'), ', ')
+from toasters
+group by color;
+```
+
 ## Useful functions
 
 Links:
