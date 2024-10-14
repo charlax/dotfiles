@@ -93,6 +93,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [YS-L/csvlens: Command line csv viewer](https://github.com/YS-L/csvlens)
 
+### Database
+
+- [sq | wrangle data](https://sq.io/): jq for databases
+
 ### Datetimes
 
 - [hroptatyr/dateutils: nifty command line date and time utilities; fast date calculations and conversion in the shell](https://github.com/hroptatyr/dateutils)

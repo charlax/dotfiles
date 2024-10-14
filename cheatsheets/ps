@@ -5,6 +5,7 @@ ps -aef --forest  # on linux
 
 # Get env var for process on macOs
 ps eww $process_id
+ps -wwwE
 # Pretty print
 ps eww -o command $process_id  | tr ' ' '\n'
 

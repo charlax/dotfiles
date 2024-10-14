@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run -q
+# note: need to run the .py variant
+# see https://github.com/astral-sh/uv/issues/6360
 
 # /// script
 # dependencies = [

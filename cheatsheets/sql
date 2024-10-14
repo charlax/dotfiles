@@ -1,8 +1,6 @@
 -- DDL
 -- ===
-
 show create table table_name;
-
 drop database if exists dbname;
 alter table users add primary key (id);
 alter table contacts add constraint contacts_user_id foreign key (user_id) references users (id);
@@ -124,5 +122,6 @@ FROM
 -- `./presto`
 -- cookbook
 -- psql
+-- sqlformat (prettify sql)
 
 -- vim: set ft=sql:

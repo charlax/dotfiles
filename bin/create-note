@@ -59,7 +59,7 @@ read title
 
 if [[ $USE_ZETTELKASTEN_FORMAT -gt 0 ]]; then
     id=$(date +"%Y%m%d%H%M%S")
-    filename="$FOLDER/$id $title.md"
+    filename="$FOLDER/$title $id.md"
 else
     id=$(date +"%Y-%m-%d")
     filename="$FOLDER/$title $id.md"
@@ -71,7 +71,7 @@ cat >"$filename" <<EOF
 ---
 title: ${title}
 date: ${date_value}
-keywords:
+id: $id
 ---
 
 # ${title}

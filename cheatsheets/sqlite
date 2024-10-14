@@ -34,6 +34,7 @@ sqlite3 -header -csv ./home-assistant_v2.db "select * from statistics" > table.c
 # duckdb (supports stats, etc.) https://duckdb.org/
 # sql
 # sqlite-utils
+# sq https://sq.io/ (jq for databases)
 #
 # Tools to explore a database:
 # sqlite-web https://github.com/coleifer/sqlite-web

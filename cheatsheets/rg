@@ -1,6 +1,9 @@
 # search in a folder
 rg $query ./folder
 
+# Escape
+rg '\]\('
+
 # include hidden files (which are excluded by default)
 rg --hidden $query
 # include more files with -u -uu -uuu

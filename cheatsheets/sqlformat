@@ -1,0 +1,2 @@
+# Prettify sql. Provided by sqlparse python package (hence uvx)
+pbpaste | uvx --from sqlparse sqlformat - --reindent

@@ -41,8 +41,6 @@ Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 " Not included in vim-polyglot
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja2' }
 
-Plug 'greyblake/vim-preview'
-"
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 
 " Syntax highlighting to RTF
@@ -62,6 +60,7 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 
 Plug 'sukima/xmledit', { 'for': 'xml' }
 
+" Some utility functions for VIM
 Plug 'tomtom/tlib_vim'
 
 Plug 'tpope/vim-commentary'
@@ -119,7 +118,8 @@ Plug 'preservim/vim-markdown'
 if (platform =~ 'Darwin') || (architecture !~ 'arm')
     " LSP support and autocompletion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Extensions
+
+    " COC Extensions
     Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
     Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 endif

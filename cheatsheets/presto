@@ -35,6 +35,8 @@ https://prestodb.io/docs/current/functions/datetime.html
 select * from tablename
 where time > to_iso8601(TIMESTAMP '2021-04-06 00:00:00');
 
+select from_unixtime(1494257400);
+
 -- ms since epoch column
 select
 from_unixtime(t.created_at / 1000),

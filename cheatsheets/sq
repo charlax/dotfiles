@@ -1,0 +1,9 @@
+# install
+brew install neilotoole/sq/sq
+
+sq '@postgres_db | .actor | .first_name, .last_name | .[0:5]'
+
+# you can inspect metadata too
+
+# docs
+# https://sq.io/
