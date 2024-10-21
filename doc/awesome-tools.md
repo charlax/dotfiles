@@ -269,6 +269,7 @@ To follow network traffic:
 
 - [phiresky/ripgrep-all: rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.](https://github.com/phiresky/ripgrep-all)
 - [The ugrep file pattern searcher](https://ugrep.com/): interactive search, Google search terms, fuzzy search, compressed files, binary
+- [alexpovel/srgn: A grep-like tool which understands source code syntax and allows for manipulation in addition to search](https://github.com/alexpovel/srgn)
 
 ### Shell
 

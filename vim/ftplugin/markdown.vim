@@ -18,6 +18,23 @@ setl comments=b:*,b:-,b:+,b:1.,n:>
 nnoremap <S-Tab> <<
 nnoremap <Tab> >>
 
+" Check task items [ ] Todo -> [.] In progress -> [x] Done
+function Checkbox()
+    let l:line=getline('.')
+    let l:curs=winsaveview()  " saves cursor position
+    if l:line=~?'\s*-\s*\[\s*\].*'
+        s/\[\s*\]/[.]/
+    elseif l:line=~?'\s*-\s*\[\.\].*'
+        s/\[.\]/[x]/
+    elseif l:line=~?'\s*-\s*\[x\].*'
+        s/\[x\]/[ ]/
+    endif
+    call winrestview(l:curs)  " restores cursor position
+endfunction
+
+" leader enter marks tasks as done
+nnoremap <Leader><Enter> :call Checkbox()<CR>
+
 " Do not conceal code blocks
 let g:vim_markdown_conceal_code_blocks = 0
 " See conceallevel for help
