@@ -133,6 +133,10 @@ See `./cheatsheets/dns`
 
 - [ytdl-org/youtube-dl: Command-line program to download videos from YouTube.com and other video sites](https://github.com/ytdl-org/youtube-dl/): tool to download .`.ts`, `.m3u8` files
 
+### Ebooks
+
+- [maoserr/epublifier: Converts some webnovels to epub format](https://github.com/maoserr/epublifier)
+
 ### File manager
 
 - [ranger/ranger: A VIM-inspired filemanager for the console](https://github.com/ranger/ranger)
