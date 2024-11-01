@@ -23,11 +23,11 @@ function Checkbox()
     let l:line=getline('.')
     let l:curs=winsaveview()  " saves cursor position
     if l:line=~?'\s*-\s*\[\s*\].*'
-        s/\[\s*\]/[.]/
+        s/\[\s*\]/[x]/
     elseif l:line=~?'\s*-\s*\[\.\].*'
-        s/\[.\]/[x]/
+        s/\[.\]/[ ]/
     elseif l:line=~?'\s*-\s*\[x\].*'
-        s/\[x\]/[ ]/
+        s/\[x\]/[.]/
     endif
     call winrestview(l:curs)  " restores cursor position
 endfunction
