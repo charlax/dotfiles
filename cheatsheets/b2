@@ -1,5 +1,8 @@
 # B2 (Backblaze) storage
 
+# Install
+brew install b2-tools
+
 # Setup
 b2 authorize_account
 
@@ -7,4 +10,7 @@ b2 authorize_account
 b2 upload_file $bucket_name $local_file prefix/$filename
 
 # Sync
-b2 sync --excludeRegex '(.*\.DS_Store)|(.*\.Spotlight-V100)' ./ b2://$bucket_name/prefix/
+b2 sync --exclude-regex '(.*\.DS_Store)|(.*\.Spotlight-V100)' ./ b2://$bucket_name/prefix/
+
+# See also
+# notes
