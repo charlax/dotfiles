@@ -198,6 +198,11 @@ See `./cheatsheets/dns`
 - [ffs: the file fileystem | ffs](https://mgree.github.io/ffs/): mount semi-structured data (like JSON) as a Unix filesystem
 - [TomWright/dasel: Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package.](https://github.com/TomWright/dasel)
 
+### Kubernetes
+
+- [tohjustin/kube-lineage: A CLI tool to display all dependencies or dependents of an object in a Kubernetes cluster.](https://github.com/tohjustin/kube-lineage)
+- [Krew – kubectl plugin manager](https://krew.sigs.k8s.io/) - and its list of [Kubectl plugins available · Krew](https://krew.sigs.k8s.io/plugins/)
+
 ### Linux
 
 - [Linux Crisis Tools](https://www.brendangregg.com/blog/2024-03-24/linux-crisis-tools.html)

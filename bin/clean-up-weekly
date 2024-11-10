@@ -8,7 +8,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 import color  # noqa: E402
@@ -106,11 +106,20 @@ CHECKS = {
 }
 
 
-def main(is_dry_run: bool, checks: List[str] = None) -> None:
+def main(is_dry_run: bool, checks: Optional[List[str]] = None) -> None:
     to_run = checks if checks else CHECKS.keys()
 
     for c in to_run:
-        CHECKS[c](is_dry_run)
+        try:
+            run = CHECKS[c]
+        except KeyError:
+            print(
+                f"Error: unknown check '{c}'. Must be one of: {', '.join(CHECKS.keys())}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+        run(is_dry_run)
 
 
 if __name__ == "__main__":
