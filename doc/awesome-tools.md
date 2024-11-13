@@ -77,6 +77,8 @@
 
 ### Calculator
 
+See also: Conversions section
+
 - [Numi](https://numi.io/): beautiful calculator app for Mac (like Soulver)
 
 ### Clipboard
@@ -86,6 +88,12 @@
 ### Code
 
 - [facebookincubator/fastmod: A fast partial replacement for the codemod tool](https://github.com/facebookincubator/fastmod)
+
+### Conversions
+
+See also: Calculator section
+
+- [Free online converters - BetaConvert](https://www.betaconvert.com/)
 
 ### CSV
 

@@ -40,6 +40,15 @@ COUNTIF(Scores!$I$3:$M$23,"="&F14)
 
 # DCOUNTA counts any value
 
+# SUMIF
+# SUMIF(range, criterion, [sum_range])
+# e.g. in B13 ">12"
+=SUMIF(S19:S57, $B$13, N19:N57)
+
+# SUMIFS(sum_range, criteria_range1, criterion1, [criteria_range2, criterion2, ...])
+# e.g. in B13 ">12"
+=SUMIFS(Q19:Q57, S19:S57, $B$13, G19:G57, "TRUE")
+
 # Returns a range reference shifted a specified number of rows and columns from a starting cell reference.
 # https://support.google.com/docs/answer/3093379?hl=en
 offset(A2,3,4,2,2)

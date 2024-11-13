@@ -1,1 +1,5 @@
 # https://alexplescan.com/posts/2023/08/20/gnu-parallel/
+
+# https://www.gnu.org/software/parallel/
+
+parallel -j 8 git clone ::: $(cat ../meta/repo_list.txt)
