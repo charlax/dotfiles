@@ -99,3 +99,6 @@ to_text(A1)
 # VLookup
 # See also: HLookup, Index, Match
 vlookup(key, range, index, is_sorted)
+
+# Keyboard shortcuts
+Ctrl + e  # toggle range-selection mode when creating formulat https://support.google.com/docs/answer/46977?sjid=13598264465819881483-NA
