@@ -85,6 +85,9 @@ ffmpeg -framerate 1.5 -pattern_type glob -i './IMG_9*.jpeg' -vf "scale=1024:-1:f
 # Remove audio
 ffmpeg -i $input_file -c copy -an $output_file
 
+# Re-encode .MOV to mp4
+ffmpeg -i input.mov -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k output.mp4
+
 # See also:
 # man ffmpeg
 # man ffmpeg-filters

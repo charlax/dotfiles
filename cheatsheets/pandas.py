@@ -123,6 +123,18 @@ df.groupby("date")[["revenue"]].describe()
 # groupby then aggregate into a set
 df.groupby("phone")["week"].agg(set).reset_index()
 
+# polars can be more expressive.
+# https://labs.quansight.org/blog/dataframe-group-by
+# E.g.: "find the maximum value of 'views', # where 'sales' is greater than its mean, per 'id'"
+df.groupby("id").apply(lambda df: df[df["sales"] > df["sales"].mean()]["views"].max())
+# or
+df[df["sales"] > df.groupby("id")["sales"].transform("mean")].groupby("id")[
+    "views"
+].max()
+# Compare with polars
+pl.col("views").filter(pl.col("sales") > pl.mean("sales")).max()
+# (see ./polars.py for complete solution)
+
 # Join & merge
 # ============
 
