@@ -14,7 +14,8 @@ project = "BLAH" and parentEpic = BLAH-222 and type = "Story" and status not in 
 
 # Labels
 labels = SupportEng
-labels != SupportEng
+# Watch out for checking for empty label too!
+labels != SupportEng or labels is EMPTY
 
 # Assignmed or creator
 assignee = currentUser()

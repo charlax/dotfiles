@@ -7,3 +7,7 @@ sudo systemd-resolve --flush-caches
 
 # Get DNS config
 scutil --dns
+
+# Check DNS propagation
+https://www.whatsmydns.net/#A/example.org
+https://www.whatsmydns.net/#CNAME/example.org

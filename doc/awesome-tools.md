@@ -298,6 +298,7 @@ To follow network traffic:
 ### Sqlite
 
 - [coleifer/sqlite-web: Web-based SQLite database browser written in Python](https://github.com/coleifer/sqlite-web)
+- [SQLiteStudio](https://sqlitestudio.pl/)
 
 ### Spreadsheet
 

@@ -7,3 +7,5 @@ AND timestamp between $__fromTime and $__toTime
 
 # You can have link to other tools, including clickable data cell
 https://grafana.com/docs/grafana/latest/panels-visualizations/configure-data-links/
+# Links can use variables, e.g.:
+https://tools.yourstartup.com/debug-inspector/${__value.raw}
