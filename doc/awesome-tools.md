@@ -322,6 +322,8 @@ To follow network traffic:
 ### System monitor
 
 - [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop)
+- [nschloe/tiptop: :desktop_computer: Command-line system monitoring](https://github.com/nschloe/tiptop)
+- htop
 
 ### Task runner (a la Make)
 
