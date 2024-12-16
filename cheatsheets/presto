@@ -15,6 +15,23 @@ from toasters
 group by color;
 ```
 
+## Create tables with rows
+
+Use `values` and `AS t (...)`.
+
+```sql
+WITH sample_data AS (
+  SELECT *
+  FROM (
+    VALUES
+      (1, 'A', date '2024-01-01'),
+      (2, 'B', date '2024-01-02'),
+      (3, 'C', date '2024-01-03')
+  ) AS t (id, code, date)
+)
+SELECT * FROM sample_data;
+```
+
 ## Useful functions
 
 Links:

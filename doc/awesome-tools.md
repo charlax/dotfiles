@@ -75,6 +75,10 @@
 
 - [wader/fq: jq for binary formats](https://github.com/wader/fq)
 
+### Browser
+
+- [Nyxt browser: The hacker's browser](https://nyxt.atlas.engineer/)
+
 ### Calculator
 
 See also: Conversions section
@@ -140,6 +144,7 @@ See `./cheatsheets/dns`
 ### Download
 
 - [ytdl-org/youtube-dl: Command-line program to download videos from YouTube.com and other video sites](https://github.com/ytdl-org/youtube-dl/): tool to download .`.ts`, `.m3u8` files
+  [yt-dlp/yt-dlp: A feature-rich command-line audio/video downloader](https://github.com/yt-dlp/yt-dlp) (YouTube)
 
 ### Ebooks
 
@@ -170,6 +175,7 @@ See `./cheatsheets/dns`
 
 - [tig(1) · Tig - Text-mode interface for Git](https://jonas.github.io/tig/doc/tig.1.html)
 - [jesseduffield/lazygit: simple terminal UI for git commands](https://github.com/jesseduffield/lazygit)
+- [Ask HN: Git Alternatives – Sapling vs. Jj | Hacker News](https://news.ycombinator.com/item?id=42351436)
 
 ### Hexadecimal editor
 
@@ -205,6 +211,7 @@ See `./cheatsheets/dns`
 - [Editor | JSON Crack](https://jsoncrack.com/editor): a JSON graph editor
 - [ffs: the file fileystem | ffs](https://mgree.github.io/ffs/): mount semi-structured data (like JSON) as a Unix filesystem
 - [TomWright/dasel: Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package.](https://github.com/TomWright/dasel)
+- [JSON5 – JSON for Humans | JSON5](https://json5.org/)
 
 ### Kubernetes
 
@@ -328,6 +335,8 @@ To follow network traffic:
 ### Task runner (a la Make)
 
 - [joerdav/xc: Create executable documentation.](https://github.com/joerdav/xc)
+- just
+- [jdx/mise: dev tools, env vars, task runner](https://github.com/jdx/mise)
 
 ### Text
 
