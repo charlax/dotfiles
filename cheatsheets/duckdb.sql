@@ -1,4 +1,5 @@
 -- SUMMARIZE is equivalent to df.describe()
+-- https://duckdb.org/docs/guides/meta/summarize.html
 SUMMARIZE tablename;
 
 -- FILTER can be used for pivot tables https://duckdb.org/docs/sql/query_syntax/filter

@@ -273,7 +273,7 @@ def main(
 
         if editor:
             editor_parsed = get_editor_cmd(editor)
-            subprocess.Popen([*editor_parsed, str(filename)])
+            subprocess.call([*editor_parsed, str(filename)])
 
     return 0
 

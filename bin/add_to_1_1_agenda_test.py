@@ -2,8 +2,17 @@ from add_to_1_1_agenda import maybe_add_next, add_next_item
 
 # Run with:
 # uv pip install pytest
-# source .venv/bin/activate
-# pytest bin/add_to_1_1_agenda_test.py
+# uv run pytest bin/add_to_1_1_agenda_test.py
+
+
+def test_maybe_add_next_when_empty():
+    lines = []
+    expected = [
+        "## Next",
+        "",
+    ]
+    result = maybe_add_next(lines)
+    assert result == expected
 
 
 def test_maybe_add_next_when_absent():
@@ -174,6 +183,27 @@ def test_next_after_recurring_with_existing_next():
         "- Add 1",
         "",
         "## May 06, 2024",
+    ]
+
+    assert result == expected
+
+
+def test_skip_duplicate():
+    lines = [
+        "# Title",
+        "",
+        "## Next",
+        "",
+        "- Add 1",
+    ]
+    result = maybe_add_next(lines)
+    result = add_next_item(result, "Add 1")
+    expected = [
+        "# Title",
+        "",
+        "## Next",
+        "",
+        "- Add 1",
     ]
 
     assert result == expected

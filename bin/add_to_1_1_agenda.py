@@ -24,6 +24,9 @@ def maybe_add_next(lines: Lines) -> Lines:
     if NEXT in lines:
         return lines
 
+    if not lines:
+        return [NEXT, ""]
+
     # Find end of frontmatter
     current_index = 0
     if lines[0].startswith("---"):
@@ -61,8 +64,14 @@ def maybe_add_next(lines: Lines) -> Lines:
 
 
 def add_next_item(lines: Lines, item: str) -> Lines:
+    item_to_add = f"{ITEM_PREFIX}{item}"
     next_index = lines.index(NEXT)
-    lines.insert(next_index + 2, f"{ITEM_PREFIX}{item}")
+
+    if len(lines) > next_index + 2 and lines[next_index + 2] == item_to_add:
+        # The item is already there, skipping
+        return lines
+
+    lines.insert(next_index + 2, item_to_add)
 
     # We're at the end, no need to add blank line
     if len(lines) == next_index + 2:
@@ -108,7 +117,7 @@ def add_item(f: TextIO, item: str, is_dry_run: bool = False) -> None:
     lines = maybe_add_next(lines)
     lines = add_next_item(lines, item)
 
-    assert len(lines) > start_number_of_lines, "Would result in smaller file"
+    assert len(lines) >= start_number_of_lines, "Would result in smaller file"
 
     if is_dry_run:
         print(f"Would write in {f.name}:")
