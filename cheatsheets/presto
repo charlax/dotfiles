@@ -66,6 +66,9 @@ where from_unixtime(t.created_at / 1000) between timestamp '2022-01-01 11:00:00 
 date_trunc('week', created_at)
 -- date difference
 date_diff('minute', created_at, updated_at)
+
+-- results in the past two weeks
+select * from table where from_unixtime(ingested_at / 1000) > date_add('day', -14, current_date);
 ```
 
 ## Grouping
