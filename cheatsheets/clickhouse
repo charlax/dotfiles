@@ -81,4 +81,8 @@ from
 group by 1
 order by 2 desc;
 
+-- ## Strings
+-- https://clickhouse.com/docs/en/sql-reference/functions/string-replace-functions
+select replace(haystack, pattern, replacement);
+
 -- vim: set ft=sql:

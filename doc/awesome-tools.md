@@ -301,6 +301,7 @@ To follow network traffic:
 - [geophile/marcel: A modern shell](https://github.com/geophile/marcel)
 - [kellyjonbrazil/jc: CLI tool and python library that converts the output of popular command-line tools, file-types, and common strings to JSON, YAML, or Dictionaries. This allows piping of output to tools like jq and simplifying automation scripts.](https://github.com/kellyjonbrazil/jc)
 - [The Bun Shell | Bun Blog](https://bun.sh/blog/the-bun-shell)
+- [samwho/spacer: CLI tool to insert spacers when command output stops](https://github.com/samwho/spacer)
 
 ### Sqlite
 
@@ -321,6 +322,10 @@ To follow network traffic:
 ### SQLite
 
 - [DB Browser for SQLite](https://sqlitebrowser.org/)
+
+### SSH
+
+- [Keypub: A verified directory for SSH public keys.](https://keypub.sh/)
 
 ### Static analysis
 
