@@ -96,3 +96,4 @@ ffmpeg -i input.mov -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k outpu
 # Resources:
 # https://img.ly/blog/ultimate-guide-to-ffmpeg/
 # https://amiaopensource.github.io/ffmprovisr/
+# https://ffmpegbyexample.com/

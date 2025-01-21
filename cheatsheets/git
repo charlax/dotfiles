@@ -55,6 +55,10 @@ git log -p -- ':!*.ipynb'
 # Total line changed
 git log --author="$author" --pretty=tformat: --numstat --since 2023-04-01 --until 2023-07-01 | gawk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s removed lines: %s total lines: %s\n", add, subs, loc }' -
 
+# Main authors of the past 3 months, sorted by number of commits
+# -s only number of commits -n sort authors -e show author email
+git shortlog -sne --since="3 months ago" --all | sort -k1 -nr
+
 # Other git log options
 # --name-only      # show only filenames
 # --name-status    # show filenames and status
