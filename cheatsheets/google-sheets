@@ -33,6 +33,9 @@ dcount($A:$U, "Nov 7", {{"product_cost";">10"}, {"product_cost";"<5"})
 # $A26 is the manager name
 # B$25 is the score value, e.g., "1", "2", etc.
 DCOUNT('IC Scores'!$B$3:M$35, $A$25, {{"Manager";$A26}, {$A$25;B$25}})
+
+# DCOUNTA to count text values, for instance, counting when "Color" is "red"
+DCOUNTA('IC Scores'!$B$3:M$35, $A$25, {{"Manager";$A26}, {"Color";"red"}})
 # See also: notes
 
 # Can also be useful:

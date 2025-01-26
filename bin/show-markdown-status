@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# For colors:
+# $DOTFILES/helpers/colors.sh"
+
 # Exit on error, undefined variables, and pipe failures
 set -euo pipefail
 
@@ -15,6 +18,7 @@ main() {
     rg -l "^---" . | sort -n | while read -r file; do file_status=$(sed -n '/^---/,/^---/p' "$file" | grep "^status:" | sed 's/^status: *//'); printf "%-60s %s\n" "$file" "$(echo "$file_status" | awk '{
     color = "37";  # default white
     if ($0 == "created") color = "31";  # red
+    if ($0 == "started") color = "35";  # magenta
     if ($0 == "drafted") color = "33";  # yellow
     if ($0 == "shared") color = "32";   # green
     print "\033[" color "m" $0 "\033[0m"
