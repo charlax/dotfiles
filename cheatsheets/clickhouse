@@ -4,6 +4,7 @@
 
 -- https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions
 toStartOfHour(timestamp) -- : round datetime to start of our
+toStartOfInterval(timestamp, INTERVAL 7 DAY)
 
 -- In Grafana, you can use those global variables
 where timestamp between $__fromTime and $__toTime

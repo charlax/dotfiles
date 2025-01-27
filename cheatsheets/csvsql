@@ -1,0 +1,5 @@
+# Install
+brew install csvkit
+
+# Get CREATE TABLE
+csvsql --tables your_table --dialect sqlite yourfile.csv
