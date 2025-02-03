@@ -64,6 +64,7 @@
 
 - [A list of new(ish) command line tools](https://jvns.ca/blog/_2022/04/12/a-list-of-new-ish--command-line-tools/)
 - [ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
+- [IT Tools - Handy online tools for developers](https://it-tools.tech/)
 
 ## By topic
 
@@ -335,6 +336,7 @@ To follow network traffic:
 
 - [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop)
 - [nschloe/tiptop: :desktop_computer: Command-line system monitoring](https://github.com/nschloe/tiptop)
+- [exelban/stats: macOS system monitor in your menu bar](https://github.com/exelban/stats)
 - htop
 
 ### Task runner (a la Make)

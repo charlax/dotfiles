@@ -20,7 +20,9 @@ main() {
     if ($0 == "created") color = "31";  # red
     if ($0 == "started") color = "35";  # magenta
     if ($0 == "drafted") color = "33";  # yellow
+    if ($0 == "ready") color = "32";    # green
     if ($0 == "shared") color = "32";   # green
+    if ($0 == "done") color = "9;90";   # light grey + strike through
     print "\033[" color "m" $0 "\033[0m"
     }')"; done
 
