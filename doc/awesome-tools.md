@@ -192,6 +192,7 @@ See `./cheatsheets/dns`
 
 - [rs/curlie: The power of curl, the ease of use of httpie.](https://github.com/rs/curlie)
 - [ducaale/xh: Friendly and fast tool for sending HTTP requests](https://github.com/ducaale/xh)
+- [monasticacademy/httptap: View HTTP/HTTPS requests made by any Linux program](https://github.com/monasticacademy/httptap)
 
 ### IO
 
