@@ -8,11 +8,17 @@ toStartOfInterval(timestamp, INTERVAL 7 DAY)
 toDateTime(timestamp, 'America/Los_Angeles')
 
 -- In Grafana, you can use those global variables
+-- https://grafana.com/grafana/plugins/grafana-clickhouse-datasource/
+-- Check also: ./grafana
 where timestamp between $__fromTime and $__toTime
+select $__timeInterval(columnName)
+-- replaces with:
+toStartOfInterval(toDateTime(column), INTERVAL 20 second)
 
 -- Something that can be used by Grafana Time Series
 -- Needs:
 -- datetime as "time" column
+-- --> otherwise you get "long series must be sorted ascending by time to be converted: Could not process SQL results"
 -- value as "value" column
 -- order by time
 with events as (

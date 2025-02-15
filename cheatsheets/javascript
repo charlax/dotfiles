@@ -2,7 +2,11 @@
 arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])
 
 // console, get all h3 titles' text
+// then right click, "Copy as object"
 [...document.querySelectorAll("#main-content > table > tbody > tr > td > div > h3")].map(e => e.innerText)
+
+// Get all headings
+[...document.querySelectorAll("h1, h2, h3")].map(e => e.innerText)
 
 // See also:
 // bun https://bun.sh/

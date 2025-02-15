@@ -25,6 +25,7 @@ select toasters.*
 -- Datetime
 
 -- sqlite: https://www.sqlite.org/lang_datefunc.html
+-- presto: ./presto
 
 -- Parse created_at as unix timestamp
 select datetime(created_at, "unixepoch") from table;
@@ -55,6 +56,9 @@ group by 1, 2
 order by 1 asc;
 
 select now() - interval '2 days';
+
+-- Group by day in another column's timezone
+select date_format(date_trunc('day', cast(from_unixtime(o.created_at/1000, o.timezone) as timestamp)), '%Y-%m-%d'),
 
 -- Select
 -- ======
