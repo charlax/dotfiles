@@ -1,2 +1,5 @@
 # Respect gitignore
 cloc --vcs git
+
+# See also:
+# tokei

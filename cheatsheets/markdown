@@ -11,3 +11,7 @@
 ## Heading-id {#heading-id}
 
 https://www.markdownguide.org/extended-syntax/#heading-ids
+
+## Tools
+
+- [yshavit/mdq: like jq but for Markdown: find specific elements in a md doc](https://github.com/yshavit/mdq)

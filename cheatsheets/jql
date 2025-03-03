@@ -17,6 +17,9 @@ labels = SupportEng
 # Watch out for checking for empty label too!
 labels != SupportEng or labels is EMPTY
 
+# Issues without a Parent epic
+parent is EMPTY
+
 # Assignmed or creator
 assignee = currentUser()
 creator = currentUser

@@ -1,5 +1,7 @@
 # Get current version
 cat /etc/lsb-release
+cat /etc/os-release
+uname -a
 
 # Set modified time to 48h in the past
 touch -m -A '-480000' file.txt

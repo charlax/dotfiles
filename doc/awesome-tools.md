@@ -242,6 +242,7 @@ See `./cheatsheets/dns`
 ### Markdown
 
 - [charmbracelet/glow: Render markdown on the CLI, with pizzazz! 💅🏻](https://github.com/charmbracelet/glow)
+- [yshavit/mdq: like jq but for Markdown: find specific elements in a md doc](https://github.com/yshavit/mdq)
 
 ### Network
 

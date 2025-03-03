@@ -8,6 +8,10 @@ sudo apt update
 df -h                  # check if enough space on card
 sudo apt full-upgrade  # upgrade everything and their deps
 sudo apt clean         # useful to cleanup
+sudo apt autoremove -y
+sudo reboot
+
+# The recommended way to upgrade a major os version is to image a new card
 
 # See also
 # ========

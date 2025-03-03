@@ -100,7 +100,10 @@ diskutil mountDisk /dev/disk2
 Click Apple menu, hold option, click System information, then Controller or iBridge
 
 # Prevent from going to sleep
+# (does not seem to work)
 caffeinate -disu
+# Another option:
+pmset noidle
 
 # Clipboard
 pbpaste -Prefer rtf  # does not work

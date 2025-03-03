@@ -9,10 +9,4 @@
 
 # Install Ubuntu
 
-## SSHD
-
-```bash
-sudo apt install openssh-server
-sudo vim /etc/ssh/sshd_config
-sudo systemctl restart sshd.service
-```
+See `notes`
