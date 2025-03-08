@@ -63,6 +63,15 @@ select date_format(date_trunc('day', cast(from_unixtime(o.created_at/1000, o.tim
 -- Select
 -- ======
 
+SELECT <expressions>
+FROM <tables>
+JOIN <to other table> ON <join condition>
+WHERE <predicates>
+GROUP BY <expressions>
+HAVING <predicate>
+ORDER BY <expressions>
+LIMIT <number of rows> OFFSET <n>;
+
 -- CASE
 
 case when boolval then 'value if true' else 'value if false' end

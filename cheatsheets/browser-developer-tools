@@ -1,4 +1,22 @@
-# https://alan.norbauer.com/articles/browser-debugging-tricks
+$()
+// equivalent to
+document.querySelector()
 
-# See also:
-# ./javascript
+$$()
+// equivalent to
+document.querySelectorAll()
+
+$0, $1, $2, ... $n
+// references to the elements you have recently selected in the Elements panel.
+// $0 represents the most recently selected element, $1 represents the second...
+
+$x()
+// allows you to query the DOM using XPath expressions
+$x("//div") // would return all div elements on the page.
+
+// https://alan.norbauer.com/articles/browser-debugging-tricks
+
+// See also:
+// ./javascript
+
+// vim: set ft=javascript:

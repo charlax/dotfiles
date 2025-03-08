@@ -89,8 +89,13 @@ from
 group by 1
 order by 2 desc;
 
+-- Group by with subtotals
+select ...
+group by rollup (1, 2);
+
 -- ## Strings
 -- https://clickhouse.com/docs/en/sql-reference/functions/string-replace-functions
 select replace(haystack, pattern, replacement);
+select replaceOne(event_type, 'DELIVERY_METRIC_EVENT_', '')
 
 -- vim: set ft=sql:

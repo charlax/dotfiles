@@ -106,7 +106,7 @@ norm o execute the command o in normal mode
 # Delete all lines matching patterns
 :g/profile/d
 
-# Expand all tabs after having changed settings
+# Expand all tabs after having changed settings (hard tabs to soft tabs)
 :retab
 
 # Include output of external bash command
