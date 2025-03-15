@@ -107,7 +107,7 @@ select cast(uuid() as varchar);
 
 ## See also
 
-Presto is now Trino
+Presto is now Trino, see `./presto`
 
 - https://trino.io/docs/current/functions.html
 

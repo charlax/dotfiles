@@ -264,6 +264,7 @@ To follow network traffic:
 ### Presentation
 
 - https://github.com/cpojer/remdx
+- [mfontanini/presenterm: A markdown terminal slideshow tool](https://github.com/mfontanini/presenterm)
 
 ### Process managers
 

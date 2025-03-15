@@ -1,3 +1,6 @@
+# Install
+brew install duckdb
+
 # Read from file
 duckdb -c \
   "select license->>'key' as license, count(*) as count \
@@ -14,6 +17,9 @@ duckdb -c \
   from read_json('https://api.github.com/orgs/golang/repos') \
   group by 1 \
   order by count desc"
+
+# UI
+duckdb -ui
 
 # With jupyter
 # https://duckdb.org/docs/guides/python/jupyter
