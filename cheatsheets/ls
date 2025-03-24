@@ -1,3 +1,6 @@
+# Sort by time last modified, reverse
+ls -tr
+
 # see also:
 # lsd https://github.com/lsd-rs/lsd
 # exa

@@ -1,13 +1,12 @@
-# Example JQL
-updated <= -25w AND project = $PROJECTNAME AND status in ("To Do", "TO DO", Testing, "In Progress", "In progress", "IN PROGRESS", "in progress") AND (labels != Stale OR labels is EMPTY) ORDER BY created ASC
+# Install jira-cli with:
+# Homepage https://github.com/ankitpokhrel/jira-cli
+brew tap ankitpokhrel/jira-cli
+brew install jira-cli
+# Create API key and put in Keychain
+# https://github.com/ankitpokhrel/jira-cli/discussions/356
+jira init
 
-# Marked as stale, assigned or created by me
-(assignee in (currentUser()) OR creator in (currentUser())) AND project = $PROJECTNAME AND status in ("To Do", "TO DO", Testing, "In Progress", "In progress", "IN PROGRESS", "in progress") AND labels = Stale ORDER BY created ASC
-
-# In a project, children of epic
-project = "ZZ" and parentEpic = ZZ-5624 and type = "Story" ORDER BY statusCategory desc, rank DESC
-
-# Keyboard shortcuts
+# Keyboard shortcuts for Jira web
 ?          # get keyboard shortcuts
 l          # labels
 c          # create issue
@@ -18,3 +17,7 @@ d          # change issue status
 q          # log work
 shift + s  # share
 # https://community.atlassian.com/t5/App-Central-articles/Jira-Keyboard-Shortcuts-A-Comprehensive-List-for-Power-Users/ba-p/2546146
+
+
+# See also
+# ./jql     Jira Query Language

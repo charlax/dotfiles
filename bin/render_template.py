@@ -73,7 +73,7 @@ def is_jinja_template(content: str) -> Optional[bool]:
 def prompt(name: str) -> str:
     """Prompt the user for a value."""
     value = input(f"{name.strip()}: ")
-    return value
+    return value.strip()
 
 
 def clean_template(template: str) -> str:

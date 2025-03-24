@@ -6,6 +6,8 @@
 toStartOfHour(timestamp) -- : round datetime to start of our
 toStartOfInterval(timestamp, INTERVAL 7 DAY)
 toDateTime(timestamp, 'America/Los_Angeles')
+-- use with Grafana variable
+date_trunc('${group_by}', toDateTime(timestamp, 'America/Los_Angeles')) as date,
 
 -- In Grafana, you can use those global variables
 -- https://grafana.com/grafana/plugins/grafana-clickhouse-datasource/
@@ -19,8 +21,9 @@ toStartOfInterval(toDateTime(column), INTERVAL 20 second)
 -- Needs:
 -- datetime as "time" column
 -- --> otherwise you get "long series must be sorted ascending by time to be converted: Could not process SQL results"
--- value as "value" column
+-- "value" column can be anything
 -- order by time
+-- Make sure you select "Time Series" query type
 with events as (
 SELECT
 timestamp,

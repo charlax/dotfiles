@@ -12,6 +12,15 @@ summary ~ text_to_match and summary ~ other_text_to_match
 # Useful for Sheets
 project = "BLAH" and parentEpic = BLAH-222 and type = "Story" and status not in ('Invalid', 'Duplicate') and (resolved IS NULL or resolved >= startOfWeek(-1w)) ORDER BY statusCategory desc, due asc, rank asc, status desc
 
+# Example JQL
+updated <= -25w AND project = $PROJECTNAME AND status in ("To Do", "TO DO", Testing, "In Progress", "In progress", "IN PROGRESS", "in progress") AND (labels != Stale OR labels is EMPTY) ORDER BY created ASC
+
+# Marked as stale, assigned or created by me
+(assignee in (currentUser()) OR creator in (currentUser())) AND project = $PROJECTNAME AND status in ("To Do", "TO DO", Testing, "In Progress", "In progress", "IN PROGRESS", "in progress") AND labels = Stale ORDER BY created ASC
+
+# In a project, children of epic
+project = "ZZ" and parentEpic = ZZ-5624 and type = "Story" ORDER BY statusCategory desc, rank DESC
+
 # Labels
 labels = SupportEng
 # Watch out for checking for empty label too!
