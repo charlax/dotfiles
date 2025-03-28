@@ -1,0 +1,2 @@
+# Open shell with xan (CSV tool, see ./csv)
+nix-shell -p xan

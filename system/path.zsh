@@ -30,6 +30,9 @@ export FORK_PATH="$HOME/Forks"
 # Go
 export GOPATH=$CODE_PATH/golang
 
+# GNU binaries (e.g., gtar on macos)
+[[ -e /opt/homebrew/opt/gnu-tar/libexec/gnubin ]] && export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+
 # Java
 JAVA_HOME=$(/usr/libexec/java_home -v 1.8) >/dev/null 2>&1
 export JAVA_HOME

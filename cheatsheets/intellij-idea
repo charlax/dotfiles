@@ -1,0 +1,11 @@
+Cmd+Shift+O     # Open file
+Cmd+E           # Open rescent files
+Cmd+B           # Go to declaration
+Cmd+Shift+t     # Open test file
+
+# Run test for file
+Ctrl+Shift+r
+
+Alt+Enter       # Check issues
+F2              # Go to next issue
+Shift+F2        # Go to previous issue

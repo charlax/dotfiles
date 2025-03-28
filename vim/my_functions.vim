@@ -145,3 +145,9 @@ function Scratch()
     setlocal noswapfile
 endfunction
 command! -nargs=0 Scratch call Scratch()
+
+" Fix highlighting crashes
+function RestartHighlight()
+    execute 'syn off | syn on'
+endfunction
+command! RestartHighlight call RestartHighlight()
