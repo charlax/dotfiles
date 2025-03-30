@@ -5,6 +5,7 @@ document.querySelector()
 $$()
 // equivalent to
 document.querySelectorAll()
+copy([...$$(".hdlist1")].map(e => e.innerText))
 
 $0, $1, $2, ... $n
 // references to the elements you have recently selected in the Elements panel.

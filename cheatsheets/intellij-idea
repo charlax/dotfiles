@@ -1,11 +1,22 @@
+# File navigation
+# https://www.jetbrains.com/help/idea/navigating-through-the-source-code.html
 Cmd+Shift+O     # Open file
-Cmd+E           # Open rescent files
+Cmd+O           # Go to class
+Cmd+Opt+O       # Go to symbol
 Cmd+B           # Go to declaration
+Cmd+E           # Open recent files
+Cmd+Shift+E     # Open recent locations
 Cmd+Shift+t     # Open test file
+Shift-Shift     # Search everywhere
+Cmd+Shift+A     # Bring up "Find Action"
 
-# Run test for file
-Ctrl+Shift+r
+# Navigation within file
+Cmd+F12         # Navigate in file structure
 
+# Running
+Ctrl+Shift+r    # Run test for file
+
+# Issues
 Alt+Enter       # Check issues
 F2              # Go to next issue
 Shift+F2        # Go to previous issue

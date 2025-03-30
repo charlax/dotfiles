@@ -8,6 +8,7 @@ index(A2:D6, 2, 1)
 
 # Check if cell is empty
 isblank(A1)
+not(isblank(A1))  # opposite
 
 # Return relative position of item in one-dimensional range
 # https://support.google.com/docs/answer/3093378
