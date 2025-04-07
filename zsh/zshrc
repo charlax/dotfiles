@@ -14,6 +14,11 @@ export ZSH=$HOME/.dotfiles
 # We source the path first (needed for zoxide etc.)
 source $ZSH/system/path.zsh
 
+# Needs to be before compinit
+if type brew &>/dev/null; then
+    eval $(brew shellenv)
+fi
+
 # ZSH Modules
 # ===========
 

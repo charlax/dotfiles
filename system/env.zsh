@@ -27,3 +27,6 @@ export BAT_THEME="Solarized (light)"
 export LEIN_JVM_OPTS="-XX:TieredStopAtLevel=1"
 
 export RIPGREP_CONFIG_PATH="$DOTFILES/config/ripgrep/ripgreprc"
+
+# Use fzf for cheat autocompletion https://github.com/cheat/cheat
+export CHEAT_USE_FZF=true

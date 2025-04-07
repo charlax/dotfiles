@@ -53,6 +53,10 @@ from jinja2 import Environment, meta
 jinja_env = Environment(trim_blocks=True, lstrip_blocks=True)
 
 
+def get_bool(value: str) -> bool:
+    return value.lower() in ("true", "1", "y", "on") if value else False
+
+
 def extract_jinja2_variables(template_string: str) -> Set[str]:
     ast = jinja_env.parse(template_string)
     return set(meta.find_undeclared_variables(ast))
@@ -168,11 +172,7 @@ def parse_context(context: Dict[str, str], use_jinja: bool) -> Dict[str, Any]:
         return context
 
     return {
-        key: (
-            value.lower() in {"yes", "true", "on", "1"}
-            if key.startswith(("is_", "has_"))
-            else value
-        )
+        key: get_bool(value) if key.startswith(("is_", "has_")) else value
         for key, value in context.items()
     }
 
@@ -209,6 +209,7 @@ def main(
     template: Path,
     editor: str = "",
     csvfile: Optional[io.TextIOWrapper] = None,
+    skip_column: Optional[str] = None,
     use_jinja: bool = False,
     list_variables: bool = False,
 ) -> int:
@@ -250,6 +251,9 @@ def main(
     if csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            if skip_column and get_bool(row.get(skip_column)) is True:
+                continue
+
             context = {**base_context, **parse_context(row, use_jinja=use_jinja)}
             filename = get_filename(filename_template, context)
             rendered = get_rendered_content(
@@ -304,6 +308,10 @@ if __name__ == "__main__":
         help="extract variables from template",
         action="store_true",
     )
+    parser.add_argument(
+        "--skip-column",
+        help="(with csv) name of column to use to skip records",
+    )
 
     args = parser.parse_args()
 
@@ -314,5 +322,6 @@ if __name__ == "__main__":
             csvfile=args.csv,
             use_jinja=args.jinja,
             list_variables=args.list_variables,
+            skip_column=args.skip_column,
         )
     )
