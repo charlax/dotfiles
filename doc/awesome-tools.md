@@ -265,6 +265,7 @@ To follow network traffic:
 
 - https://github.com/cpojer/remdx
 - [mfontanini/presenterm: A markdown terminal slideshow tool](https://github.com/mfontanini/presenterm)
+- [ssine/pptx2md: a pptx to markdown converter](https://github.com/ssine/pptx2md)
 
 ### Process managers
 

@@ -2,7 +2,7 @@
 
 Run with:
 
-uv run pytest bin/render_template_test.py
+uv run --with jinja2 --with pytest pytest bin/render_template_test.py
 """
 
 import io
@@ -31,7 +31,7 @@ def test_skip_column(tmp_path):
     Name: {name}
     """.strip()
 
-    template_file = tmp_path / "template.txt"
+    template_file = tmp_path / "Test {name}.txt"
     template_file.write_text(template_content)
 
     csv_content = """name,skip
@@ -42,7 +42,12 @@ Charlie,false
 
     csv_file = io.StringIO(csv_content)
 
-    main(template=template_file, csvfile=csv_file, skip_column="skip")
+    main(
+        template=template_file,
+        output_dir=tmp_path,
+        csvfile=csv_file,
+        skip_column="skip",
+    )
 
     # Expected files
     alice_file = tmp_path / "Test Alice.txt"

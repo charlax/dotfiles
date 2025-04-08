@@ -136,15 +136,18 @@ def get_editor_cmd(editor: str) -> List[str]:
     return [editor]
 
 
-def get_filename(filename_template: str, context: Dict[str, str]) -> Path:
-    """Return filename for the rendered template."""
-    return Path(
+def get_filename(
+    filename_template: str, context: Dict[str, str], output_dir: Path
+) -> Path:
+    """Return filename for the rendered template in the specified output directory."""
+    name = (
         filename_template.format(**context)
         .replace("template", "")
         .replace("Template", "")
         .replace("..", ".")
         .strip()
     )
+    return output_dir / name
 
 
 def get_rendered_content(
@@ -207,6 +210,7 @@ def run_hooks(params: Dict[str, str]) -> None:
 
 def main(
     template: Path,
+    output_dir: Path,
     editor: str = "",
     csvfile: Optional[io.TextIOWrapper] = None,
     skip_column: Optional[str] = None,
@@ -255,7 +259,7 @@ def main(
                 continue
 
             context = {**base_context, **parse_context(row, use_jinja=use_jinja)}
-            filename = get_filename(filename_template, context)
+            filename = get_filename(filename_template, context, output_dir)
             rendered = get_rendered_content(
                 content_template, context, use_jinja=use_jinja
             )
@@ -264,7 +268,7 @@ def main(
 
     else:
         context = get_context(required_variables, base_context)
-        filename = get_filename(filename_template, context)
+        filename = get_filename(filename_template, context, output_dir)
         rendered = get_rendered_content(content_template, context, use_jinja=use_jinja)
 
         params = get_frontmatter_params(rendered)
@@ -312,12 +316,24 @@ if __name__ == "__main__":
         "--skip-column",
         help="(with csv) name of column to use to skip records",
     )
+    parser.add_argument(
+        "output_dir",
+        nargs="?",
+        default=".",
+        help="output directory (defaults to current folder)",
+    )
 
     args = parser.parse_args()
+
+    output_path = Path(args.output_dir)
+    if not output_path.exists() or not output_path.is_dir():
+        print(f"Error: {output_path} is not a valid directory.", file=sys.stderr)
+        sys.exit(1)
 
     sys.exit(
         main(
             template=Path(args.template),
+            output_dir=output_path,
             editor=args.editor,
             csvfile=args.csv,
             use_jinja=args.jinja,
