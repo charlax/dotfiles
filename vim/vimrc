@@ -192,7 +192,7 @@ if has('termguicolors')
 endif
 
 if has('gui_running') || has('gui_vimr')
-    set background=dark
+    set background=light
 else
     set background=dark
 endif
