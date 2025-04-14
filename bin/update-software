@@ -49,8 +49,5 @@ if command -v npm >/dev/null 2>&1; then
     npm install npm@latest -g
 fi
 
-log_info "Updating tldr."
-tldr --update || true
-
 log_info "Updating poetry completions."
 poetry completions zsh > ~/.zfunc/_poetry || true

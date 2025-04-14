@@ -25,4 +25,4 @@ dig $domain txt
 dig $domain SOA
 
 # Also check: nslookup, host
-# dog https://github.com/ogham/dog
+# dog https://github.com/ogham/dog (unmaintained since Oct 2021)

@@ -92,7 +92,6 @@ function install_osx_packages {
     [[ -e /usr/local/opt/fzf/install ]] && /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
     [[ -e /opt/homebrew/opt/fzf/install ]] && /opt/homebrew/opt/fzf/install --key-bindings --completion --no-update-rc
 
-    brew tap homebrew/cask-fonts
     brew tap espanso/espanso
 
     # Do not install macvim as a cask (to automatically install Python3)
@@ -258,7 +257,6 @@ function install_brew_packages {
         renameutils     # imv (faster rename) etc.
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         starship        # command line prompt https://starship.rs/
-        tldr            # simplified and community-driven man pages
         tokei           # cloc https://github.com/XAMPPRocky/tokei
         yarn            # required for installing coc extensions
         zoxide          # smarter cd command https://github.com/ajeetdsouza/zoxide
