@@ -1,7 +1,3 @@
-# Resources
-
-# https://tech.davis-hansson.com/p/make/
-
 # use a recent bash (make uses /bin/sh by default)
 SHELL := bash
 
@@ -47,3 +43,7 @@ $^  # all inputs (or dependency)
 $@  # output (or target)
 VAR = $(OTHER_VAR) foo  # "recursively expanded var": expansion happens when needed
 VAR := $(OTHER_VAR) bar # "simply expanded var": expansion happens at definition
+
+# See also
+# https://cliutils.gitlab.io/modern-cmake/README.html
+# https://tech.davis-hansson.com/p/make/
