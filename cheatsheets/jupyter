@@ -1,10 +1,6 @@
+# See also: https://docs.astral.sh/uv/guides/integration/jupyter/
+
 pip install jupyterlab duckdb jupysql pandas matplotlib duckdb-engine
-
-# With jupysql
-%load_ext sql
-
-# Run command
-%pip install ipywidgets
 
 # Comment group of lines
 Cmd+/
@@ -12,7 +8,17 @@ Cmd+/
 # Do not truncate
 pd.options.display.max_rows = 4000
 
-# Use `jupyter lab`, instead of `jupyter notebook`
+# Useful table
+uv add itables  # then check ./jupyter.py
+
+# Don't use `jupyter notebook`
+jupyter lab
+uv run --with jupyter jupyter lab
+# Run within its own env
+uv tool run jupyter lab
+
+# See also:
+# ./jupyter.py
 
 # See:
 # https://github.com/markusschanta/awesome-jupyter

@@ -1,13 +1,8 @@
 #!/usr/bin/env zsh
 
-# For colors:
-# $DOTFILES/helpers/colors.sh"
-
-# Exit on error, undefined variables, and pipe failures
 set -euo pipefail
 
 main() {
-    # Check if ripgrep is installed
     if (( ! $+commands[rg] )); then
         print -u2 "Error: ripgrep (rg) is required but not installed"
         exit 1
@@ -15,18 +10,42 @@ main() {
 
     printf "%-60s %s\n" "FILENAME" "STATUS"
     printf "%s %s\n" "$(printf '%.60s' "------------------------------------------------------------")" "------"
-    rg -l "^---" . | sort -n | while read -r file; do file_status=$(sed -n '/^---/,/^---/p' "$file" | grep "^status:" | sed 's/^status: *//'); printf "%-60s %s\n" "$file" "$(echo "$file_status" | awk '{
-    color = "37";  # default white
-    if ($0 == "created") color = "31";  # red
-    if ($0 == "started") color = "35";  # magenta
-    if ($0 == "drafted") color = "33";  # yellow
-    if ($0 == "ready") color = "32";    # green
-    if ($0 == "shared") color = "32";   # green
-    if ($0 == "done") color = "9;90";   # light grey + strike through
-    print "\033[" color "m" $0 "\033[0m"
-    }')"; done
 
+    local tmpfile=$(mktemp)
+
+    rg -l "^---" . | while read -r file; do
+        file_status=$(sed -n '/^---/,/^---/p' "$file" | grep "^status:" | sed 's/^status: *//')
+        printf "%s\t%s\n" "$file_status" "$file" >> "$tmpfile"
+    done
+
+    # Print all except 'done' first
+    grep -v "^done	" "$tmpfile" | sort | while IFS=$'\t' read -r f_status f_path; do
+        print_formatted "$f_path" "$f_status"
+    done
+
+    # Then print 'done'
+    grep "^done	" "$tmpfile" | sort | while IFS=$'\t' read -r f_status f_path; do
+        print_formatted "$f_path" "$f_status"
+    done
+
+    rm "$tmpfile"
 }
 
-# Run the script
+print_formatted() {
+    local file="$1"
+    local file_status="$2"
+    local color="37"
+
+    case "$file_status" in
+        created) color="31" ;;
+        started) color="35" ;;
+        drafted) color="33" ;;
+        ready)   color="32" ;;
+        shared)  color="9;90" ;;   # strikethrough grey
+        done)    color="9;90" ;;   # strikethrough grey
+    esac
+
+    printf "%-60s \033[%sm%s\033[0m\n" "$file" "$color" "$file_status"
+}
+
 main "$@"

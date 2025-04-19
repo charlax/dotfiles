@@ -1,3 +1,4 @@
 # See also: traceroute, network
+brew install mtr
 
 # https://phil.lavin.me.uk/2022/03/how-to-properly-interpret-a-traceroute-or-mtr/
