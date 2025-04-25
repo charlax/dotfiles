@@ -257,6 +257,11 @@ To follow network traffic:
 - bmon
 - slurm
 
+### Notebook
+
+- [marimo | a next-generation Python notebook](https://marimo.io/)
+- [Atuin Desktop: Runbooks that Run](https://blog.atuin.sh/atuin-desktop-runbooks-that-run/)
+
 ### Postgres
 
 - [pgloader](https://pgloader.readthedocs.io/en/latest/pgloader.html) (needs to be built from source on ARM architecture)
