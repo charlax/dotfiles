@@ -9,6 +9,9 @@ import pandas as pd
 import numpy as np
 import duckdb
 
+# Use thousands separator and display 2 decimals
+pd.set_option('display.float_format', '{:,.2f}'.format)
+
 import itables
 
 itables.init_notebook_mode()
