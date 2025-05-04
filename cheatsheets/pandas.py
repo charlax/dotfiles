@@ -95,6 +95,10 @@ df.style.format("{:,.0f}", subset=numerical_cols).background_gradient(
     cmap="viridis", subset=numerical_cols
 )
 
+# Show caption title
+table = duckdb.sql(query).df().style
+table.set_caption("Table caption")
+
 # Graph and visualization
 # =======================
 

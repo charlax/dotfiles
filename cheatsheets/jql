@@ -9,6 +9,9 @@ summary ~ text_to_match and summary ~ other_text_to_match
 # Not resolved or resolved recently
 (resolved IS NULL or resolved >= startOfWeek(-1w))
 
+# Epic tracking
+project = "ZZ" AND issueType = "Epic" and (status changed after -90d or resolved is null) and status != 'invalid' ORDER BY statusCategory, priority, status, createdDate DESC
+
 # Useful for Sheets
 project = "BLAH" and parentEpic = BLAH-222 and type = "Story" and status not in ('Invalid', 'Duplicate') and (resolved IS NULL or resolved >= startOfWeek(-1w)) ORDER BY statusCategory desc, due asc, rank asc, status desc
 

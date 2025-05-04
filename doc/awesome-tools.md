@@ -219,6 +219,7 @@ See `./cheatsheets/dns`
 
 - [tohjustin/kube-lineage: A CLI tool to display all dependencies or dependents of an object in a Kubernetes cluster.](https://github.com/tohjustin/kube-lineage)
 - [Krew – kubectl plugin manager](https://krew.sigs.k8s.io/) - and its list of [Kubectl plugins available · Krew](https://krew.sigs.k8s.io/plugins/)
+- [Kubetail | Kubernetes logging dashboard](https://www.kubetail.com/)
 
 ### Linux
 
