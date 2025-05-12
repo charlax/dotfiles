@@ -49,6 +49,8 @@ from string import Formatter
 
 from jinja2 import Environment, meta
 
+TEMPLATE_POST_TAGS = ["template_post", "template-post"]
+
 
 jinja_env = Environment(trim_blocks=True, lstrip_blocks=True)
 
@@ -197,8 +199,8 @@ def get_frontmatter_params(content: str) -> Dict[str, str]:
 
         key, value = line.split(": ", 1)
 
-        if key.strip() == "template_post":
-            params[key.strip()] = value.strip()
+        if key.strip() in TEMPLATE_POST_TAGS:
+            params["template_post"] = value.strip()
 
     return params
 
