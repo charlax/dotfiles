@@ -17,6 +17,11 @@ df = pd.DataFrame(list_of_dicts)
 # numpy.ndarray to DataFrame
 pd.DataFrame(filtered_emails, columns=["email"])
 
+# Explore
+# =======
+
+df.nunique()  # show number of uniques for each column
+
 # Dtypes
 # ======
 
