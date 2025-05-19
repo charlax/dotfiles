@@ -15,7 +15,7 @@ sqlite3 <database> "insert into 'os' values(1,'linux',1991);"
 
 # One-liner CSV import
 sqlite3 :memory: -cmd '.mode csv' -cmd '.import data.csv taxi'
-# See also: sqlite-utils (pipx install sqlite-utils)
+# See also: sqlite-utils (uv tool install sqlite-utils)
 # sqlite-utils insert dogs.db dogs dogs.csv --csv --detect-types
 # (advantage compared to sqlite3 .import: will guess the right column types
 

@@ -5,6 +5,27 @@ set -e
 # shellcheck source=helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh"
 
+function install_python_tools {
+    log_info "Installing Python software with uvx"
+
+    # Optional
+
+    # wfuzz        # the web fuzzer
+    # glances      # htop alternative
+    # yq           # jq for YAML, XML, TOML
+
+    python_tools=(
+        ipython      # better python console
+        pre-commit   # pre-commit hooks
+        vim-vint     # vimscript linter
+    )
+
+    set -o verbose
+    for package in "${python_tools[@]}"; do
+        uv tool install --upgrade "$package"
+    done
+    set +o verbose
+}
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     ssh-add --apple-load-keychain
@@ -36,13 +57,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 log_info "Updating pip"
-pip3 install --user --upgrade pip
-
-# TODO: use uvx?
-log_info "Updating all pipx apps"
-set -v
-pipx upgrade-all  || true
-set +v
+pip3 install --user --upgrade pip  || true
 
 if command -v npm >/dev/null 2>&1; then
     log_info "Updating npm"
@@ -51,3 +66,5 @@ fi
 
 log_info "Updating poetry completions."
 poetry completions zsh > ~/.zfunc/_poetry || true
+
+install_python_tools

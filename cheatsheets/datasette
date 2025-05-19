@@ -1,4 +1,4 @@
-pipx install datasette
+uvx datasette
 pip install datasette sqlite-utils
 
 touch analysis.db

@@ -1,6 +1,5 @@
 # Install jira-cli with:
 # Homepage https://github.com/ankitpokhrel/jira-cli
-brew tap ankitpokhrel/jira-cli
 brew install jira-cli
 # Create API key and put in Keychain
 # https://github.com/ankitpokhrel/jira-cli/discussions/356

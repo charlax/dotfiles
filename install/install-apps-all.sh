@@ -252,12 +252,12 @@ function install_brew_packages {
         imagemagick     # convert images
         k9s             # monitor kubernetes
         mitmproxy       # proxy https://mitmproxy.org/
-        pipx            # install and run python applications in environments
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         starship        # command line prompt https://starship.rs/
         tokei           # cloc https://github.com/XAMPPRocky/tokei
+        uv              # Python package manager
         yarn            # required for installing coc extensions
         zoxide          # smarter cd command https://github.com/ajeetdsouza/zoxide
         zsh
@@ -271,29 +271,6 @@ function install_brew_packages {
 function install_vim {
     log_info "Installing vim"
     "$current_dir/install-vim.sh"
-}
-
-function install_pipx_packages {
-    log_info "Installing Python software with pipx"
-
-    # Optional
-
-    # wfuzz        # the web fuzzer
-    # glances      # htop alternative
-    # yq           # jq for YAML, XML, TOML
-
-    pipx_packages=(
-        ipython      # better python console
-        poetry       # package management
-        pre-commit   # pre-commit hooks
-        vim-vint     # vimscript linter
-    )
-
-    set -o verbose
-    for package in "${pipx_packages[@]}"; do
-        pipx install --force "$package"
-    done
-    set +o verbose
 }
 
 function update_all {
@@ -310,7 +287,6 @@ fi
 
 install_brew_packages
 install_vim
-install_pipx_packages
 update_all
 
 log_info "Done. If this is a fresh install, you might want to logout/login"

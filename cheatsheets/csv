@@ -34,7 +34,7 @@ cat file.csv | cut -d',' -f3  # keep the 3rd columns
 mlr     # miller
 rbql    # https://rbql.org/
 xsv     # https://github.com/BurntSushi/xsv written in rust, `brew install xsv`
-vd      # https://www.visidata.org/ pipx install visidata
+vd      # https://www.visidata.org/ uvx visidata
 csvlens # https://github.com/YS-L/csvlens less for csv `brew install csvlens`
 xan     # https://github.com/medialab/xan (includes UI)
 
