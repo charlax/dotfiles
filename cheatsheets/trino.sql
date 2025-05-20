@@ -1,6 +1,10 @@
 select count_if(color = 'red')
 from toasters;
 
+-- ## Datetime
+
+select date_format(date_trunc('month', from_unixtime(d.created_at / 1000) AT TIME ZONE 'America/New_York'), '%Y-%m-%d') AS month;
+
 -- ## JSON
 
 -- parsing JSON

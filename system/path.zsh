@@ -44,7 +44,7 @@ PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
 [[ -e /usr/texbin ]] && export PATH="/usr/texbin:$PATH"
 [[ -e $HOME/.cargo/bin ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
-# $HOME/.local/bin is necessary for pipx (among others)
+# $HOME/.local/bin is necessary for uvx (among others)
 export PATH="/usr/local/opt/gettext/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH:$HOME/bin:$GOPATH/bin:$PYTHON_BIN_PATH:$HOME/.local/bin"
 
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"

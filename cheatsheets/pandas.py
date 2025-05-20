@@ -27,6 +27,8 @@ df.nunique()  # show number of uniques for each column
 
 # See https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes
 
+df["revenue"] = pd.to_numeric(pd["revenue"])
+
 # CSV
 # https://pandas.pydata.org/docs/user_guide/cookbook.html#cookbook-csv
 pd.read_csv(path, skiprows=1, dtype=defaultdict(lambda: str))
