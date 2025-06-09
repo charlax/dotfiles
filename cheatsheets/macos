@@ -85,7 +85,7 @@ sudo fs_usage
 # Audio
 # =====
 
-# Restart audio
+# Restart audio (if sound does not work)
 sudo killall coreaudiod
 sudo pkill coreaudiod
 sudo launchctl start com.apple.audio.coreaudiod
