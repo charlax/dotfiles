@@ -7,5 +7,9 @@ copy(UI.panels.network.networkLogView.dataGrid.rootNode().flatNodes.map(n => n.r
 # Search in tabs
 cmd+shift+a
 
+# Search in bookmarks
+# Install https://github.com/Fannon/search-bookmarks-history-and-tabs#readme
+Cmd+Shift+.
+
 # See also
 # ./browser-developer-tools

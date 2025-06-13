@@ -47,6 +47,12 @@ and status != 'STATUS_SUCCESSFUL'
 group by 1, 2
 order by 1
 
+-- argMax
+-- https://clickhouse.com/docs/sql-reference/aggregate-functions/reference/argmax
+-- Useful to use in groupby
+SELECT argMax(user, salary) FROM salary;
+SELECT argMax(trace_id, timestamp) as last_trace_id FROM logs;
+
 -- success ratio with countIf(...)
 select
 toStartOfHour(timestamp) as time,
