@@ -1,0 +1,5 @@
+# Decrease jpeg quality by 80%
+for f in *.jpg; do
+  [[ "$f" == *.low.jpg ]] && continue
+  magick "$f" -quality 75 "${f%.jpg}.low.jpg"
+done
