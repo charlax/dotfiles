@@ -1,0 +1,39 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+# Function to print usage
+usage() {
+  printf "Usage: %s <filename>\n" "${0:t}"
+}
+
+# Ensure exactly one argument
+if [[ $# -ne 1 ]]; then
+  usage
+  exit 1
+fi
+
+file="$1"
+archive_dir="Archive"
+
+# Check if file exists and is a regular file
+if [[ ! -f "$file" ]]; then
+  printf "Error: %s not found or is not a regular file.\n" "$file" >&2
+  exit 2
+fi
+
+# Create archive directory if it does not exist
+if [[ ! -d "$archive_dir" ]]; then
+  mkdir -- "$archive_dir"
+fi
+
+# Check if target file already exists in Archive directory
+if [[ -e "$archive_dir/${file:t}" ]]; then
+  printf "Error: %s already exists in %s directory.\n" "${file:t}" "$archive_dir" >&2
+  exit 3
+fi
+
+# Move the file
+mv -- "$file" "$archive_dir/"
+
+# Success message
+printf "Moved %s to %s/\n" "$file" "$archive_dir"

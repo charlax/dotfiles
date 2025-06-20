@@ -218,6 +218,8 @@ def main(
     skip_column: Optional[str] = None,
     use_jinja: bool = False,
     list_variables: bool = False,
+    user_context: Optional[Dict[str, str]] = None,
+    will_open_editor: Optional[bool] = True,
 ) -> int:
     template_path = choose_template(template) if template.is_dir() else template
     print(f"template_path: {template_path}", file=sys.stderr)
@@ -239,6 +241,8 @@ def main(
         content_template = clean_template(content_template)
 
     base_context = get_base_context()
+    if user_context:
+        base_context.update(user_context)
 
     # Get required variables
     content_variables = (
@@ -254,6 +258,7 @@ def main(
         print("\t".join(required_variables))
         return 0
 
+    # Multi-create
     if csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -281,7 +286,7 @@ def main(
 
         print(str(filename))
 
-        if editor:
+        if editor and will_open_editor:
             editor_parsed = get_editor_cmd(editor)
             subprocess.call([*editor_parsed, str(filename)])
 
@@ -319,11 +324,17 @@ if __name__ == "__main__":
         help="(with csv) name of column to use to skip records",
     )
     parser.add_argument(
+        "--not-open-editor",
+        help="do not open text editor after creation",
+        action="store_true",
+    )
+    parser.add_argument(
         "output_dir",
         nargs="?",
         default=".",
         help="output directory (defaults to current folder)",
     )
+    parser.add_argument("--context", action="append", nargs=2)
 
     args = parser.parse_args()
 
@@ -331,6 +342,10 @@ if __name__ == "__main__":
     if not output_path.exists() or not output_path.is_dir():
         print(f"Error: {output_path} is not a valid directory.", file=sys.stderr)
         sys.exit(1)
+
+    context: Optional[Dict[str, str]] = None
+    if args.context:
+        context = {c[0]: c[1] for c in args.context}
 
     sys.exit(
         main(
@@ -341,5 +356,7 @@ if __name__ == "__main__":
             use_jinja=args.jinja,
             list_variables=args.list_variables,
             skip_column=args.skip_column,
+            user_context=context,
+            will_open_editor=not args.not_open_editor,
         )
     )

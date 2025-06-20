@@ -19,5 +19,6 @@ $x("//div") // would return all div elements on the page.
 
 // See also:
 // ./javascript
+// ./google-chrome
 
 // vim: set ft=javascript:
