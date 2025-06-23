@@ -88,3 +88,6 @@ const Title = styled.Text<{isEditable: boolean}>`
   padding-bottom: ${({isEditable}) => (isEditable ? 14 : 0)}px;
 `;
 ```
+
+
+See: https://www.typescriptlang.org/cheatsheets/
