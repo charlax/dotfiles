@@ -174,6 +174,12 @@ if has('autocmd')
 
     autocmd FileType arduino,c,cpp,java,php,python,javascript,html,css,mako,sql,json,jsonc,rst,cucumber,yaml,zsh autocmd BufWritePre <buffer> :call TrimEndLines()
 
+    " Do not change color for quote block (prefixed with `>`)
+    augroup MarkdownQuoteNormal
+      autocmd!
+      autocmd FileType markdown highlight link mkdBlockquote Normal
+    augroup END
+
 endif
 
 

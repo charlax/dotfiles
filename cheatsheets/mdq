@@ -1,0 +1,8 @@
+# install with
+brew install mdq
+
+# Find all list items in sections "questions"
+cat ./*.md | mdq '# /(His|Her) question/' | grep -v '##' | grep '^-' | sort
+
+# Help:
+# https://github.com/yshavit/mdq/wiki/Tutorial

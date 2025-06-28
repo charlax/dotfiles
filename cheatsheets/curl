@@ -47,6 +47,9 @@ curl --cacert ./tmp/caddy-cert.crt $url
 # Multiple url
 curl --remote-name-all https://example.com/a.html https://example.com/b.html
 
+# Grep on headers (includes redirecting stderr to stdout)
+curl http://toaster.com 2>&1 > /dev/null | grep -E "HTTP|Location"
+
 # Resources
 # https://ec.haxx.se/http/http-multipart
 
@@ -54,3 +57,4 @@ curl --remote-name-all https://example.com/a.html https://example.com/b.html
 # xh      https://github.com/ducaale/xh (written in rust)
 # httpie  https://httpie.io/ (Python)
 # curlie  https://github.com/rs/curlie (Golang, tries to mimic curl)
+# hurl    https://github.com/Orange-OpenSource/hurl

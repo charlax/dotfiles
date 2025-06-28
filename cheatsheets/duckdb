@@ -20,6 +20,8 @@ duckdb -c \
 
 # UI
 duckdb -ui
+# Open CSV with UI
+duckdb -cmd "CREATE VIEW view_name AS FROM 'filename.csv';" -ui
 
 # With jupyter
 # https://duckdb.org/docs/guides/python/jupyter

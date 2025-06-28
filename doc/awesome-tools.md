@@ -193,6 +193,7 @@ See `./cheatsheets/dns`
 - [rs/curlie: The power of curl, the ease of use of httpie.](https://github.com/rs/curlie)
 - [ducaale/xh: Friendly and fast tool for sending HTTP requests](https://github.com/ducaale/xh)
 - [monasticacademy/httptap: View HTTP/HTTPS requests made by any Linux program](https://github.com/monasticacademy/httptap)
+- [Orange-OpenSource/hurl: Hurl, run and test HTTP requests with plain text.](https://github.com/Orange-OpenSource/hurl)
 
 ### IO
 
@@ -363,6 +364,7 @@ To follow network traffic:
 
 - [iamgio/quarkdown: 🪐 Markdown with superpowers — from ideas to presentations, articles and books.](https://github.com/iamgio/quarkdown)
 - LaTeX
+- [Typst: Compose papers faster](https://typst.app/)
 
 ### Vim
 
