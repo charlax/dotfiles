@@ -19,6 +19,9 @@ match("Sunday",A2:A9,0)
 # Extract part of a string
 mid(string, starting_at, extract_length)
 
+# Check if cell is present in column
+countif(A:A, B1) > 0
+
 # COUNTIFS multiple criteria, count the number of rows that match the criteria
 countif(A:A, "toaster", B:B, "red")
 

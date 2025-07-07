@@ -47,6 +47,9 @@ df = df[df["latitude"].astype(bool)]
 # Drop rows for which latitude is NaN
 df.dropna(subset=["latitude"], inplace=True)
 
+# Drop columns
+df = df.drop(columns=["created_at"])
+
 # Filter rows (multiple conditions)
 df.loc[(df["created_at"] >= "2023-02-22") & (df["created_at"] <= "2023-02-22")]
 df.query("object_id == '1' and ts == 0")
@@ -92,6 +95,11 @@ df["week"] = df["Date"].dt.isocalendar().week
 # Use a gradient on a per column basis
 # https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.background_gradient.html
 df.style.background_gradient(axis=0)
+
+# Colors:
+# https://matplotlib.org/stable/users/explain/colors/colormaps.html
+# e.g. RdYlGn
+df.style.background_gradient(cmap="RdYlGn", subset=["col1"])
 
 # Use gradient only for numerical columns
 numerical_cols = df.select_dtypes(include=[np.number]).columns

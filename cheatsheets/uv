@@ -8,14 +8,15 @@ uv venv
 uv init example
 cd example
 uv add jupyter duckdb
-uv run -- jupyter notebook
+uv run jupyter lab
 
 # On an existing project
 uv sync  # sync .venv
 
 # Use the venv directly
 source .venv/bin/activate
-jupyter notebook
+jupyter lab
 
 # Upgrade packages
 uv lock --upgrade
+uv sync --verbose # or `uv run` will upgrade

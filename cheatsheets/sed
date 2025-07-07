@@ -6,6 +6,9 @@
 # Tester:
 # https://sed.js.org/index.html
 
+# Insert line at top of file
+gsed -i '1i\This is the new first line' filename.md
+
 # Add newlines
 sed -E -e '/.*/G' -i '' $FILE
 
@@ -56,7 +59,7 @@ find /path/to/search -type f -exec grep -l 'search_pattern' {} \; | while read f
     fi
 done
 
-# On macOS, use GNU sed with `gsed
+# On macOS, use GNU sed with `gsed`
 
 # Other tools:
 # tr

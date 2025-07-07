@@ -52,6 +52,9 @@ git shortlog -sn | cut -f1 | paste -sd+ - | bc
 # another way:
 awk '{s+=$1} END {print s}' filename
 
+# Insert line at top of file ("1i\" = insert after line 1)
+gsed -i '1i\This is the new first line' filename.md
+
 # For multiple search and replace with confirmation
 # See vim's bufdo
 
