@@ -44,7 +44,9 @@ def extract_scores(
 
 
 def replace_overall_score(lines: List[str], score_line: str) -> List[str]:
-    pattern = re.compile(r"^- Overall:\s*\d*(\.\d+)?\s*/\s*10\s*$", re.IGNORECASE)
+    pattern = re.compile(
+        r"^- Overall(?: score)?:\s*\d*(\.\d+)?\s*/\s*10\s*$", re.IGNORECASE
+    )
     return [
         score_line if pattern.match(line.strip()) else line.rstrip() for line in lines
     ]
