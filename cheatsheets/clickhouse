@@ -107,4 +107,7 @@ group by rollup (1, 2);
 select replace(haystack, pattern, replacement);
 select replaceOne(event_type, 'DELIVERY_METRIC_EVENT_', '')
 
+-- ## Aggregate functions
+select any(colname), first_value(colname), last_value(colname);
+
 -- vim: set ft=sql:

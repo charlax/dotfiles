@@ -12,8 +12,13 @@ PGPASSWORD=password psql -h 127.0.0.1 -p 5432 -U username -d dbname
 # select database
 \c dbname
 
+# Show all tables
+\d
+show tables;
+
 # show create table
 \d tablename
+show columns from tablename;
 \d+ tablename  # show all table info
 \dn            # list schemas
 
