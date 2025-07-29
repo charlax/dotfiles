@@ -19,17 +19,28 @@ nnoremap <S-Tab> <<
 nnoremap <Tab> >>
 
 " Check task items [ ] Todo -> [.] In progress -> [x] Done
-function Checkbox()
-    let l:line=getline('.')
-    let l:curs=winsaveview()  " saves cursor position
-    if l:line=~?'\s*-\s*\[\s*\].*'
-        s/\[\s*\]/[x]/
-    elseif l:line=~?'\s*-\s*\[\.\].*'
-        s/\[.\]/[ ]/
-    elseif l:line=~?'\s*-\s*\[x\].*'
-        s/\[x\]/[.]/
+function! Checkbox()
+    let l:lnum = line('.')
+    let l:line = getline(l:lnum)
+    let l:curs = winsaveview()
+
+    if l:line =~# '\s*-\s*\[\s*\].*'
+        " [ ] -> [x]
+        let l:line = substitute(l:line, '\[\s*\]', '[x]', '')
+        let l:today = strftime("%Y-%m-%d")
+        let l:line = substitute(l:line, 'TODO_DATE', l:today, '')  " first only
+        call setline(l:lnum, l:line)
+    elseif l:line =~# '\s*-\s*\[\.\].*'
+        " [.] -> [ ]
+        let l:line = substitute(l:line, '\[.\]', '[ ]', '')
+        call setline(l:lnum, l:line)
+    elseif l:line =~# '\s*-\s*\[x\].*'
+        " [x] -> [.]
+        let l:line = substitute(l:line, '\[x\]', '[.]', '')
+        call setline(l:lnum, l:line)
     endif
-    call winrestview(l:curs)  " restores cursor position
+
+    call winrestview(l:curs)
 endfunction
 
 " leader enter marks tasks as done
