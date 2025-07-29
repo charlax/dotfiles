@@ -10,10 +10,11 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 from typing import List, TextIO
+from datetime import date
 
 Lines = List[str]
 NEXT = "## Next"
-ITEM_PREFIX = "- "
+ITEM_PREFIX = "-"
 
 
 class FileAlreadyExistsException(Exception):
@@ -63,8 +64,15 @@ def maybe_add_next(lines: Lines) -> Lines:
     return lines
 
 
-def add_next_item(lines: Lines, item: str) -> Lines:
-    item_to_add = f"{ITEM_PREFIX}{item}"
+def add_next_item(
+    lines: Lines, item: str, add_date: bool = False, is_task: bool = False
+) -> Lines:
+    """Add the next item to the lines."""
+    maybe_task = "" if not is_task else "[ ]"
+    maybe_date = "" if not add_date else date.today().isoformat()
+    prefix = " ".join(filter(None, [ITEM_PREFIX, maybe_task, maybe_date]))
+
+    item_to_add = f"{prefix} {item}"
     next_index = lines.index(NEXT)
 
     if len(lines) > next_index + 2 and lines[next_index + 2] == item_to_add:
@@ -109,13 +117,19 @@ def atomic_write(filename: Path):
     os.replace(tmp, filename)
 
 
-def add_item(f: TextIO, item: str, is_dry_run: bool = False) -> None:
+def add_item(
+    f: TextIO,
+    item: str,
+    is_dry_run: bool = False,
+    add_date: bool = False,
+    is_task: bool = False,
+) -> None:
     """Add an item to a 1-1 agenda."""
     lines = [clean_line(line) for line in f.read().splitlines()]
     start_number_of_lines = len(lines)
 
     lines = maybe_add_next(lines)
-    lines = add_next_item(lines, item)
+    lines = add_next_item(lines, item, add_date=add_date, is_task=is_task)
 
     assert len(lines) >= start_number_of_lines, "Would result in smaller file"
 
@@ -134,12 +148,14 @@ def main(
     item: str = "",
     is_dry_run: bool = False,
     is_verbose: bool = False,
+    is_task: bool = False,
+    add_date: bool = False,
 ) -> int:
     if is_verbose:
         logging.basicConfig(level=logging.DEBUG)
 
     for f in infiles:
-        add_item(f, item, is_dry_run)
+        add_item(f, item, is_dry_run, add_date=add_date, is_task=is_task)
 
     return 0
 
@@ -153,6 +169,15 @@ if __name__ == "__main__":
     )
     parser.add_argument("-i", "--item", required=True)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "-d",
+        "--date",
+        action="store_true",
+        help="include today's date in isoformat as prefix, e.g., '2025-07-28'",
+    )
+    parser.add_argument(
+        "-t", "--task", action="store_true", help="include Markdown task prefix `[ ]`"
+    )
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -162,5 +187,7 @@ if __name__ == "__main__":
             item=args.item,
             is_dry_run=args.dry_run,
             is_verbose=args.verbose,
+            is_task=args.task,
+            add_date=args.date,
         )
     )

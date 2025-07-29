@@ -1,8 +1,40 @@
 from add_to_1_1_agenda import maybe_add_next, add_next_item
 
 # Run with:
+# uv venv
 # uv pip install pytest
 # uv run pytest bin/add_to_1_1_agenda_test.py
+
+
+def test_add_item():
+    lines = ["## Next"]
+    expected = [
+        "## Next",
+        "- hello",
+    ]
+    result = add_next_item(lines, "hello")
+    assert result == expected
+
+
+def test_add_task():
+    lines = ["## Next"]
+    expected = [
+        "## Next",
+        "- [ ] hello",
+    ]
+    result = add_next_item(lines, "hello", is_task=True)
+    assert result == expected
+
+
+def test_add_task_date():
+    lines = ["## Next"]
+    expected = [
+        "## Next",
+        # TODO: fix hardcoded date in test
+        "- [ ] 2025-07-28 hello",
+    ]
+    result = add_next_item(lines, "hello", add_date=True, is_task=True)
+    assert result == expected
 
 
 def test_maybe_add_next_when_empty():
