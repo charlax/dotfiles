@@ -14,7 +14,6 @@ function dotfiles {
 }
 
 alias n=create-note
-
 # cd into whatever is the forefront Finder window.
 function cdf {  # short for cdfinder
     thepath=$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')
@@ -143,4 +142,8 @@ function escape() {
 function unidecode() {
 	perl -e "binmode(STDOUT, ':utf8'); print \"$@\""
 	echo # newline
+}
+
+function sqlformat() {
+    uvx --from sqlparse sqlformat -k lower -r
 }

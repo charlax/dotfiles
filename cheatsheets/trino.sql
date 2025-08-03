@@ -4,6 +4,7 @@ from toasters;
 -- ## Datetime
 
 select date_format(date_trunc('month', from_unixtime(d.created_at / 1000) AT TIME ZONE 'America/New_York'), '%Y-%m-%d') AS month;
+select * where created_at_ts between timestamp '2025-07-30 07:05 UTC' and timestamp '2025-07-30 07:42:00 UTC'
 
 -- ## JSON
 

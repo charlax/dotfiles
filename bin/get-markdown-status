@@ -14,7 +14,7 @@ main() {
     local tmpfile=$(mktemp)
 
     rg -l "^---" . | while read -r file; do
-        file_status=$(sed -n '/^---/,/^---/p' "$file" | grep "^status:" | sed 's/^status: *//')
+        file_status=$(sed -n '/^---/,/^---/p' "$file" | grep "^status:" | sed 's/^status: *//' | sed 's/#.*//')
         printf "%s\t%s\n" "$file_status" "$file" >> "$tmpfile"
     done
 

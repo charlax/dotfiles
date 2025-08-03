@@ -1,2 +1,5 @@
 # Prettify sql. Provided by sqlparse python package (hence uvx)
-pbpaste | uvx --from sqlparse sqlformat - --reindent
+pbpaste | uvx --from sqlparse sqlformat - -k lower --reindent
+
+# Now a ZSH functions defined in system/functions.zsh
+sqlformat
