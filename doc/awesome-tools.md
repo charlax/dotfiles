@@ -118,6 +118,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [Excalidraw](https://excalidraw.com/)
 - [Text to diagram](https://text-to-diagram.com/)
+- [ASCII output | D2 Documentation](https://d2lang.com/blog/ascii/)
 
 ### Disk usage
 

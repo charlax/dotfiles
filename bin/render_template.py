@@ -39,6 +39,7 @@ import csv
 import io
 import os
 import re
+import shlex
 import subprocess
 import sys
 from datetime import datetime
@@ -207,7 +208,14 @@ def get_frontmatter_params(content: str) -> Dict[str, str]:
 
 def run_hooks(params: Dict[str, str]) -> None:
     if "template_post" in params:
-        subprocess.run(params["template_post"], shell=True, check=True)
+        command = params["template_post"]
+        try:
+            subprocess.run(shlex.split(command), check=True)
+        except (subprocess.CalledProcessError, FileNotFoundError) as e:
+            print(
+                f"Error executing template-post command: {command}\n{e}",
+                file=sys.stderr,
+            )
 
 
 def main(

@@ -69,7 +69,7 @@ def add_next_item(
 ) -> Lines:
     """Add the next item to the lines."""
     maybe_task = "" if not is_task else "[ ]"
-    maybe_date = "" if not add_date else date.today().isoformat()
+    maybe_date = "" if not add_date else f"(created: {date.today().isoformat()})"
     prefix = " ".join(filter(None, [ITEM_PREFIX, maybe_task, maybe_date]))
 
     item_to_add = f"{prefix} {item}"

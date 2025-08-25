@@ -18,5 +18,8 @@ select max_distance_km
 from config
 where max_distance_km < 9
 
+-- Include other column with group by (first_value require window)
+select store_id, min(store_name) from table group by store_id
+
 -- see also
 -- ./presto
