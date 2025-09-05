@@ -109,6 +109,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 ### Database
 
 - [sq | wrangle data](https://sq.io/): jq for databases
+- [Base - SQLite editor for macOS](https://menial.co.uk/base/)
 
 ### Datetimes
 

@@ -14,3 +14,8 @@ toStartOfInterval(toDateTime(column), INTERVAL 20 second)
 https://grafana.com/docs/grafana/latest/panels-visualizations/configure-data-links/
 # Links can use variables, e.g.:
 https://tools.yourstartup.com/debug-inspector/${__value.raw}
+
+# Using a variable in a SQL query
+SELECT * from events where ('$event_type' = '' or event_type = '${event_type}')
+# For variable where "all" is 'all is selected'
+SELECT * from events where ('$event_type' = 'all' or event_type = '${event_type}')

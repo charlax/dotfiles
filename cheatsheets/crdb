@@ -1,2 +1,4 @@
-# /d table
+-- /d table
 show columns from tablename;
+-- show index
+show index from tablename;
