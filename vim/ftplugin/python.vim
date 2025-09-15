@@ -12,9 +12,6 @@ command! -range RemoveExtraEqualSpace <line1>,<line2>s/ \+= \+/=/g
 " Add debugger
 map <Leader>d :call InsertPDBLine()<CR>
 
-" Prettify Python
-vnoremap <leader>pp <Esc>:'<,'>!pypprint<CR>
-
 function! InsertPDBLine()
     let trace = expand("import ipdb; ipdb.set_trace()  # FIXME REMOVE")
     execute "normal o".trace

@@ -151,3 +151,14 @@ function RestartHighlight()
     execute 'syn off | syn on'
 endfunction
 command! RestartHighlight call RestartHighlight()
+
+
+" Format with Python pprint
+command! FormatJSONpprint %!python -c "
+\import sys, json, pprint;
+\try:
+\    data = json.loads(sys.stdin.read());
+\    pprint.pprint(data, width=120, indent=2, sort_dicts=True)
+\except Exception as e:
+\    print('JSON Error: ' + str(e), file=sys.stderr);
+\    sys.exit(1)"

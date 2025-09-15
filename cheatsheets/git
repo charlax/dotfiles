@@ -9,6 +9,20 @@ git bisect bad $commitid
 # List authors sorted by number of commits
 git shortlog -ns
 git shortlog -sn --all
+# top 10 committers over the past 6 months
+# format:"%an"  display only author name
+# sort -nr      -n treat first field as numbers, -r reverse order
+git log --since="6 months ago" --pretty=format:"%an" | sort | uniq -c | sort -nr | head -10
+
+# Authors with percentile ranking by number of commits
+# NR = awk's builtin current line number
+git log --since="6 months ago" --pretty=format:"%an" | sort | uniq -c | sort -nr > /tmp/commits.txt && \
+total=$(wc -l < /tmp/commits.txt) && \
+awk -v total="$total" '{
+  rank = NR
+  percentile = ((total - rank + 1) / total) * 100
+  printf "%3d commits | %5.1f percentile | %s\n", $1, percentile, substr($0, index($0, " ") + 1)
+}' /tmp/commits.txt | head -10
 
 # Check why file is gitignored
 git check-ignore -v filename

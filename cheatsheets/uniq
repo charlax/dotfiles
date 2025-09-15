@@ -1,0 +1,2 @@
+# Average number of uniq lines
+cat file.txt | sort | uniq -c | awk '{sum+=$1; count++} END {print sum/count}'

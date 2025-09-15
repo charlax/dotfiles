@@ -19,3 +19,10 @@ https://tools.yourstartup.com/debug-inspector/${__value.raw}
 SELECT * from events where ('$event_type' = '' or event_type = '${event_type}')
 # For variable where "all" is 'all is selected'
 SELECT * from events where ('$event_type' = 'all' or event_type = '${event_type}')
+
+# Alerts - using timeseries
+SELECT
+  toStartOfHour(timestamp) as time, min(value)
+  from events
+  group by toStartOfHour(timestamp)
+  order by toStartOfHour(timestamp) asc; -- very important: asc time, otherwise Grafana alerts does not understand it
