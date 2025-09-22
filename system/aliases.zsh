@@ -151,6 +151,10 @@ fi
 
 alias generate_secret="openssl rand -base64 32"
 
+function generate_uuid () {
+    python3 -c "import uuid; print(str(uuid.uuid4()).lower())"
+}
+
 alias d='cd ~/Downloads'
 alias checkout='cd ~/Downloads && m '
 alias br='broot'

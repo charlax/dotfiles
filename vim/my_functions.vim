@@ -162,3 +162,23 @@ command! FormatJSONpprint %!python -c "
 \except Exception as e:
 \    print('JSON Error: ' + str(e), file=sys.stderr);
 \    sys.exit(1)"
+
+function! PrettyJSONForgiving() range
+    let content = join(getline(a:firstline, a:lastline), '')
+    let result = ''
+    let indent = 0
+    let in_quotes = 0
+
+    for i in range(len(content))
+        let char = content[i]
+        if char == '"' && (i == 0 || content[i-1] != '\') | let in_quotes = !in_quotes | endif
+        if !in_quotes && char == '{' | let result .= char . "\n" . repeat('  ', indent + 1) | let indent += 1
+        elseif !in_quotes && char == '}' | let indent -= 1 | let result .= "\n" . repeat('  ', indent) . char
+        elseif !in_quotes && char == ',' | let result .= char . "\n" . repeat('  ', indent)
+        else | let result .= char | endif
+    endfor
+
+    execute a:firstline . ',' . a:lastline . 'delete'
+    call append(a:firstline - 1, split(result, "\n"))
+endfunction
+command! PrettyJSONForgiving call PrettyJSONForgiving()
