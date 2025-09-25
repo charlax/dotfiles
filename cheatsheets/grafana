@@ -20,9 +20,27 @@ SELECT * from events where ('$event_type' = '' or event_type = '${event_type}')
 # For variable where "all" is 'all is selected'
 SELECT * from events where ('$event_type' = 'all' or event_type = '${event_type}')
 
+# Using a multi-value variable (adapts automatically)
+# Use the query inspector to debug
+select * from events where event_type in (${event_type});
+
 # Alerts - using timeseries
 SELECT
   toStartOfHour(timestamp) as time, min(value)
   from events
   group by toStartOfHour(timestamp)
   order by toStartOfHour(timestamp) asc; -- very important: asc time, otherwise Grafana alerts does not understand it
+
+# Customize date display
+Choose "Custom unit" then type e.g. "time:YYYY-MM-DD"
+
+# Grafana + Clickhouse + Clickhouse Parameterize View
+select
+$__timeInterval(timestamp),
+quantile(0.50)(duration_ms) as p50,
+quantile(0.90)(duration_ms) as p90,
+quantile(0.99)(duration_ms) as p99
+from events(from=$__from, to=$__to)
+where true
+and ('${category}' = 'all' or category = '${category}')
+group by 1

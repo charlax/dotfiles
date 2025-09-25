@@ -1,0 +1,5 @@
+# Install with:
+npm install -g @mermaid-js/mermaid-cli
+
+# Generate with:
+mmdc -i schema.mmd -o output.png -b transparent
