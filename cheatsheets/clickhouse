@@ -50,8 +50,10 @@ order by 1
 -- argMax
 -- https://clickhouse.com/docs/sql-reference/aggregate-functions/reference/argmax
 -- Useful to use in groupby
-SELECT argMax(user, salary) FROM salary;
-SELECT argMax(trace_id, timestamp) as last_trace_id FROM logs;
+select argMax(user, salary) from salary;
+select argMax(trace_id, timestamp) as last_trace_id from logs;
+-- argMax with if
+select argMax(reason, if(success='true', timestamp, toDateTime64('1970-01-01', 3))) as last_failure_reason from events;
 
 -- success ratio with countIf(...)
 select
