@@ -7,12 +7,18 @@ git bisect good $commitid
 git bisect bad $commitid
 
 # List authors sorted by number of commits
+# For some reason it does not return the same number of commits than gitlog
 git shortlog -ns
 git shortlog -sn --all
 # top 10 committers over the past 6 months
 # format:"%an"  display only author name
 # sort -nr      -n treat first field as numbers, -r reverse order
 git log --since="6 months ago" --pretty=format:"%an" | sort | uniq -c | sort -nr | head -10
+# format
+# %H        long commit hash
+# %an       author name
+# %ae       author email
+git log --since="2025-07-01" --before="2025-10-01" --oneline --format="%H %an <%ae>"
 
 # Authors with percentile ranking by number of commits
 # NR = awk's builtin current line number

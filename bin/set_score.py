@@ -19,7 +19,7 @@ def extract_scores(
         r"""
         [\-\*]?\s*.{0,3}                      # bullet (- or *), optional space
         [Ss]core\s+
-        (?P<category>[\w\s]+):\s*      # category label before colon
+        (?P<category>[\w\s-]+):\s*      # category label before colon
         (?P<score>\d+(?:\.\d+)?)\s*/\s*# score (may be decimal) before slash
         (?P<max>\d+(?:\.\d+)?)         # max (may be decimal) after slash
         """,

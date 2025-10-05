@@ -163,7 +163,7 @@ command! FormatJSONpprint %!python -c "
 \    print('JSON Error: ' + str(e), file=sys.stderr);
 \    sys.exit(1)"
 
-function! PrettyJSONForgiving() range
+function! PrettyPrintJSONForgiving() range
     let content = join(getline(a:firstline, a:lastline), '')
     let result = ''
     let indent = 0
@@ -181,4 +181,21 @@ function! PrettyJSONForgiving() range
     execute a:firstline . ',' . a:lastline . 'delete'
     call append(a:firstline - 1, split(result, "\n"))
 endfunction
-command! PrettyJSONForgiving call PrettyJSONForgiving()
+command! PrettyJSONForgiving call PrettyPrintJSONForgiving()
+
+function! PrettyPrintJSONJQ() range
+  let l:save_cursor = getcurpos()
+
+  " Determine if we're in visual mode (range was specified)
+  if a:firstline != a:lastline || (a:firstline == a:lastline && mode() =~# '[vV]')
+    let l:start_line = a:firstline
+    let l:end_line = a:lastline
+
+    execute l:start_line . ',' . l:end_line . '!jq .'
+  else
+    execute '%!jq .'
+  endif
+
+  call setpos('.', l:save_cursor)
+endfunction
+command! JSONPretty call PrettyPrintJSONJQ()
