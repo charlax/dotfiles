@@ -3,17 +3,42 @@ set -euo pipefail
 
 # Function to print usage
 usage() {
-  printf "Usage: %s <filename>\n" "${0:t}"
+  printf "Usage: %s [-n|--dry-run] <filename>\n" "${0:t}"
+  printf "  -n, --dry-run  Show what would be done without moving the file\n"
 }
 
-# Ensure exactly one argument
-if [[ $# -ne 1 ]]; then
+# Parse arguments
+dry_run=0
+file=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -n|--dry-run)
+      dry_run=1
+      shift
+      ;;
+    -*)
+      printf "Error: Unknown option %s\n" "$1" >&2
+      usage
+      exit 1
+      ;;
+    *)
+      if [[ -n "$file" ]]; then
+        printf "Error: Multiple files specified\n" >&2
+        usage
+        exit 1
+      fi
+      file="$1"
+      shift
+      ;;
+  esac
+done
+
+# Ensure file argument provided
+if [[ -z "$file" ]]; then
   usage
   exit 1
 fi
-
-file="$1"
-archive_dir="Archive"
 
 # Check if file exists and is a regular file
 if [[ ! -f "$file" ]]; then
@@ -21,9 +46,28 @@ if [[ ! -f "$file" ]]; then
   exit 2
 fi
 
+# Determine archive directory location
+# If file has a directory path, check for Archive folder there
+file_dir="${file:h}"
+if [[ "$file_dir" != "$file" && "$file_dir" != "." ]]; then
+  # File has a path component
+  if [[ -d "$file_dir/Archive" ]]; then
+    archive_dir="$file_dir/Archive"
+  else
+    archive_dir="$file_dir/Archive"
+  fi
+else
+  # File is in current directory
+  archive_dir="Archive"
+fi
+
 # Create archive directory if it does not exist
 if [[ ! -d "$archive_dir" ]]; then
-  mkdir -- "$archive_dir"
+  if [[ $dry_run -eq 1 ]]; then
+    printf "[DRY RUN] Would create directory: %s\n" "$archive_dir"
+  else
+    mkdir -- "$archive_dir"
+  fi
 fi
 
 # Check if target file already exists in Archive directory
@@ -33,7 +77,9 @@ if [[ -e "$archive_dir/${file:t}" ]]; then
 fi
 
 # Move the file
-mv -- "$file" "$archive_dir/"
-
-# Success message
-printf "Moved %s to %s/\n" "$file" "$archive_dir"
+if [[ $dry_run -eq 1 ]]; then
+  printf "[DRY RUN] Would move: %s -> %s/%s\n" "$file" "$archive_dir" "${file:t}"
+else
+  mv -- "$file" "$archive_dir/"
+  printf "Moved %s to %s/\n" "$file" "$archive_dir"
+fi
