@@ -1,0 +1,5 @@
+# For grpc
+grpcurl -v -plaintext -H 'x-b3-traceid:1234' -H 'x-b3-spanid: 4567' -H "x-b3-sampled: 1"
+
+# For Http
+curl -v -plaintext -H 'x-b3-traceid:1234' -H 'x-b3-spanid: 4567' -H "x-b3-sampled: 1"

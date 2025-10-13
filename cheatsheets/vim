@@ -424,5 +424,6 @@ vim -u NONE
 See also:
 
 - ./vimscript
+- helix `hx`
 
 <!-- vim: set ft=markdown: -->

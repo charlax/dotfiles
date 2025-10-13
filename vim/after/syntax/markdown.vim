@@ -1,8 +1,8 @@
 " Priority task highlighting for markdown files
 " Define syntax patterns for priority tasks
-syntax match markdownTaskP0 /^\s*- \[ \] P0\s.*$/ contains=markdownTaskP0Priority
-syntax match markdownTaskP1 /^\s*- \[ \] P1\s.*$/ contains=markdownTaskP1Priority
-syntax match markdownTaskP2 /^\s*- \[ \] P2\s.*$/ contains=markdownTaskP2Priority
+syntax match markdownTaskP0 /^\s*- \[.\] P0\s.*$/ contains=markdownTaskP0Priority
+syntax match markdownTaskP1 /^\s*- \[.\] P1\s.*$/ contains=markdownTaskP1Priority
+syntax match markdownTaskP2 /^\s*- \[.\] P2\s.*$/ contains=markdownTaskP2Priority
 
 " Define the priority labels themselves for more specific styling
 syntax match markdownTaskP0Priority /P0/ contained
