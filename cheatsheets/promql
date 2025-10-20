@@ -4,6 +4,18 @@
 # Compare with last week
 node_cpu_seconds_total offset 1w
 
+# Here's where to put offset in a more complicated query
+label_replace(
+    sum(
+        rate(
+            grpc_io_server_completed_rpcs{
+                grpc_server_method=~"${grpc_method_prefix}.*", grpc_server_method=~".*$method"
+            }[$__rate_interval] offset 1d
+        )
+    ) by (grpc_server_method, $groupBy),
+    "short_method", "$3", "grpc_server_method", "${grpc_method_prefix}.(.+)?\\..+/(.*)"
+)
+
 # Regex
 api_request{app_name=~"(Hello World|App Name)"}
 api_request{app_name=~"Hello (World|Monde)"}
