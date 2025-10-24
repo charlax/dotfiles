@@ -1,0 +1,87 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+PROGRAM_NAME=${0##*/}
+
+echoerr() { echo "$@" 1>&2; }
+
+usage() {
+    echoerr "Usage: $PROGRAM_NAME <search-query> [directory]"
+    echoerr ""
+    echoerr "Search for notes in a Zettelkasten repository:"
+    echoerr "  1. Exact match in filename (case-insensitive)"
+    echoerr "  2. Exact match in frontmatter 'keywords' field"
+    echoerr "  3. Exact match in Markdown titles"
+    echoerr "  4. Anywhere in file content"
+    exit 1
+}
+
+if [[ $# -lt 1 ]]; then
+    usage
+fi
+
+if (( ! $+commands[rg] )); then
+    echoerr "Error: ripgrep (rg) is required but not installed"
+    exit 1
+fi
+
+QUERY="$1"
+SEARCH_DIR="${2:-.}"
+
+# Track files we've already shown
+typeset -A SHOWN_FILES
+
+# Helper to check if file was already shown
+should_show() {
+    local file="$1"
+    if [[ -z "${SHOWN_FILES[$file]:-}" ]]; then
+        SHOWN_FILES[$file]=1
+        return 0
+    fi
+    return 1
+}
+
+# 1. Search for exact match in filename (case-insensitive)
+FILENAME_RESULTS=$(rg --files "$SEARCH_DIR" | rg -i "\.md$" | rg -i "$QUERY")
+if [[ -n "$FILENAME_RESULTS" ]]; then
+    echo "\033[1;36m# Filename matches\033[0m"
+    echo "$FILENAME_RESULTS" | while read -r file; do
+        if should_show "$file"; then
+            echo "$file"
+        fi
+    done
+fi
+
+# 2. Search for exact match in frontmatter keywords
+KEYWORDS_RESULTS=$(rg --type md -U "^---\n(.*\n)*?keywords:.*\b$QUERY\b" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
+if [[ -n "$KEYWORDS_RESULTS" ]]; then
+    echo "\033[1;36m# Keywords matches\033[0m"
+    echo "$KEYWORDS_RESULTS" | while read -r file; do
+        if should_show "$file"; then
+            echo "$file"
+        fi
+    done
+fi
+
+# 3. Search for exact match in Markdown titles (lines starting with #)
+TITLE_RESULTS=$(rg --type md "^#+\s+.*\b$QUERY\b" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
+if [[ -n "$TITLE_RESULTS" ]]; then
+    echo "\033[1;36m# Title matches\033[0m"
+    echo "$TITLE_RESULTS" | while read -r file; do
+        if should_show "$file"; then
+            echo "$file"
+        fi
+    done
+fi
+
+# 4. Search anywhere in files
+CONTENT_RESULTS=$(rg --type md "$QUERY" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
+if [[ -n "$CONTENT_RESULTS" ]]; then
+    echo "\033[1;36m# Content matches\033[0m"
+    echo "$CONTENT_RESULTS" | while read -r file; do
+        if should_show "$file"; then
+            echo "$file"
+        fi
+    done
+fi
