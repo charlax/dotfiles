@@ -13,9 +13,17 @@ date_trunc('${group_by}', toDateTime(timestamp, 'America/Los_Angeles')) as date,
 -- https://grafana.com/grafana/plugins/grafana-clickhouse-datasource/
 -- Check also: ./grafana
 where timestamp between $__fromTime and $__toTime
+
 select $__timeInterval(columnName)
 -- replaces with:
 toStartOfInterval(toDateTime(column), INTERVAL 20 second)
+
+-- If you have an `$interval` grafana variable with '30s', '5m', '1d', etc.
+SELECT
+    toStartOfInterval(timestamp, INTERVAL parseTimeDelta('${interval}') SECOND) as time,
+    avg(value)
+FROM table
+GROUP BY time_bucket
 
 -- Something that can be used by Grafana Time Series
 -- Needs:
@@ -46,6 +54,23 @@ and status != 'STATUS_SUCCESSFUL'
 
 group by 1, 2
 order by 1
+
+-- Typical log query
+SELECT
+    JSONExtractString(rawJSON, 'http', 'headers', 'referer') AS referer_url,
+    JSONExtractString(rawJSON, 'http', 'headers', 'origin') AS origin_domain,
+    replaceRegexpOne(JSONExtractString(rawJSON, 'http', 'path'), '(.*/)[^/]*$', '\\1') AS request_path_normalized,
+    count(*) AS request_count
+FROM logs
+WHERE true
+    and timestamp >= now() - INTERVAL 12 HOUR
+GROUP BY
+    referer_url,
+    origin_domain,
+    request_path_normalized
+ORDER BY
+    request_count DESC
+LIMIT 10;
 
 -- argMax
 -- https://clickhouse.com/docs/sql-reference/aggregate-functions/reference/argmax

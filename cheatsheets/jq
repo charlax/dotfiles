@@ -16,6 +16,12 @@ jq '.[-2:]'
 # Show 'url' value for each array item
 jq '.[].url'
 
+# Handle "." in key
+jq '.[] | .fields["payload.json.context.toasterId"]'
+
+# Grab a uuid
+jq '.[] | .fields["payload.json.context.toasterId"]' file.json | sed -n 's/.*the toaster id is \([0-9a-f]]\{36\}\)/\1/p'
+
 # Select multiple fields
 jq '.items[] | {title,name}'
 jq '.items[] | {t: .title, n: .truc.name}'

@@ -2,3 +2,10 @@
 show columns from tablename;
 -- show index
 show index from tablename;
+
+-- Query in array
+-- objects VARCHAR(50)[]
+select *
+from table
+where true
+and 'toaster' = any(objects);
