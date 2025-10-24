@@ -200,3 +200,4 @@ Checkout [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 - [holman](https://github.com/holman/dotfiles)
 - [dotfiles.github.io](https://dotfiles.github.io/inspiration/)
+- [Scripts I wrote that I use all the time](https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/), Evan Hahn

@@ -18,6 +18,11 @@ else
     alias la='ls -A --color'
 fi
 
+# Create directory and move to it
+mkcd () {
+    mkdir -p "$1" && cd "$1" || return
+}
+
 c () {
     cd "$CODE_PATH/$1" || return
 }
@@ -84,6 +89,7 @@ alias gogo='git-done'
 alias gg='git-done'
 
 gb () {
+    # shellcheck disable=SC2063 # it's not a regex
     git checkout "$(git branch -v --sort=-committerdate | grep -v '* .*' | fzf | tr -s ' ' | cut -d ' ' -f 2)"
 }
 
@@ -117,7 +123,7 @@ aactivate() {
 
 rgpython () {
     # Search for a string in Python source
-    rg "$1" $(python -c "import sys; print(sys.base_prefix)")
+    rg "$1" "$(python -c 'import sys; print(sys.base_prefix)')"
 }
 
 # ctags
