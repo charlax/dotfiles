@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Copy current wording directory
+set -e
+set -u
+set -o pipefail
+
+pwd | tr -d '\n' | pbcopy

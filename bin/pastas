@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+
+trap 'exit 0' SIGINT
+
+last_value=''
+
+while true
+do
+  value="$(pbpaste)"
+
+  if [ "$last_value" != "$value" ]; then
+    echo "$value"
+    last_value="$value"
+  fi
+
+  sleep 0.1
+done
+
+# Taken from https://codeberg.org/EvanHahn/dotfiles/src/commit/843b9ee13d949d346a4a73ccee2a99351aed285b/home/bin/bin/pastas
+# Used to aggregate clipboard into one file, for instance:
+# 1. `pastas > clipboard.txt`
+# 2. Bunch of copy
+# 3. Do something with the file
