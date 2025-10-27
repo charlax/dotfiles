@@ -42,13 +42,28 @@ should_show() {
     return 1
 }
 
+# Format output: folder first, then filename in color at the end
+format_result() {
+    local file="$1"
+    local dir="${file%/*}"
+    local filename="${file##*/}"
+
+    # If file has no directory component, use current directory indicator
+    if [[ "$dir" == "$file" ]]; then
+        dir="."
+    fi
+
+    # Display directory, then filename in green
+    printf "%s\t\033[0;32m%s\033[0m\n" "$dir" "$filename"
+}
+
 # 1. Search for exact match in filename (case-insensitive)
 FILENAME_RESULTS=$(rg --files "$SEARCH_DIR" | rg -i "\.md$" | rg -i "$QUERY")
 if [[ -n "$FILENAME_RESULTS" ]]; then
     echo "\033[1;36m# Filename matches\033[0m"
-    echo "$FILENAME_RESULTS" | while read -r file; do
+    echo "$FILENAME_RESULTS" | sort | while read -r file; do
         if should_show "$file"; then
-            echo "$file"
+            format_result "$file"
         fi
     done
 fi
@@ -57,9 +72,9 @@ fi
 KEYWORDS_RESULTS=$(rg --type md -U "^---\n(.*\n)*?keywords:.*\b$QUERY\b" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
 if [[ -n "$KEYWORDS_RESULTS" ]]; then
     echo "\033[1;36m# Keywords matches\033[0m"
-    echo "$KEYWORDS_RESULTS" | while read -r file; do
+    echo "$KEYWORDS_RESULTS" | sort | while read -r file; do
         if should_show "$file"; then
-            echo "$file"
+            format_result "$file"
         fi
     done
 fi
@@ -68,9 +83,9 @@ fi
 TITLE_RESULTS=$(rg --type md "^#+\s+.*\b$QUERY\b" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
 if [[ -n "$TITLE_RESULTS" ]]; then
     echo "\033[1;36m# Title matches\033[0m"
-    echo "$TITLE_RESULTS" | while read -r file; do
+    echo "$TITLE_RESULTS" | sort | while read -r file; do
         if should_show "$file"; then
-            echo "$file"
+            format_result "$file"
         fi
     done
 fi
@@ -79,9 +94,9 @@ fi
 CONTENT_RESULTS=$(rg --type md "$QUERY" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
 if [[ -n "$CONTENT_RESULTS" ]]; then
     echo "\033[1;36m# Content matches\033[0m"
-    echo "$CONTENT_RESULTS" | while read -r file; do
+    echo "$CONTENT_RESULTS" | sort | while read -r file; do
         if should_show "$file"; then
-            echo "$file"
+            format_result "$file"
         fi
     done
 fi

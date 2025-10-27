@@ -1,0 +1,7 @@
+# httpie
+
+# Get header value from env variable
+http http://127.0.0.1:8000/admin/ "Authorization:$TOKEN"
+
+# See also:
+# ./httpie

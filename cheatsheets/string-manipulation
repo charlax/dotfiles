@@ -55,6 +55,9 @@ awk '{s+=$1} END {print s}' filename
 # Insert line at top of file ("1i\" = insert after line 1)
 gsed -i '1i\This is the new first line' filename.md
 
+# Get all the pylint disable. Stripe whitespace
+rg -oN "# pylint: disable=.*" | sed 's/.*# pylint: disable=//; s/,/\n/g; s/^[[:space:]]*//; s/[[:space:]]*$//' | sort | uniq -c | sort -rn
+
 # For multiple search and replace with confirmation
 # See vim's bufdo
 
