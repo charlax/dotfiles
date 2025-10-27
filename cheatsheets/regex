@@ -4,3 +4,6 @@
 
 >>> re.match('<(.*?)>', '<aa> b <c>').group(1)
 'aa'
+
+# Tools
+# https://github.com/pemistahl/grex create regex from examples
