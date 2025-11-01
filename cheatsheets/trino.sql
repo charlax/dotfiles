@@ -3,7 +3,13 @@ from toasters;
 
 -- ## Datetime
 
+-- cast
+select cast(day_partition as date) as day_partition from example;
+
+-- date format + timezone change
 select date_format(date_trunc('month', from_unixtime(d.created_at / 1000) AT TIME ZONE 'America/New_York'), '%Y-%m-%d') AS month;
+
+-- BETWEEN timestamps in UTC
 select * where created_at_ts between timestamp '2025-07-30 07:05 UTC' and timestamp '2025-07-30 07:42:00 UTC'
 
 -- ## JSON

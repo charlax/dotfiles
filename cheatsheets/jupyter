@@ -1,12 +1,10 @@
 # See also: https://docs.astral.sh/uv/guides/integration/jupyter/
 
 pip install jupyterlab duckdb jupysql pandas matplotlib duckdb-engine
+# jupysql makes it easier to use sql in jupyter: https://jupysql.ploomber.io/en/latest/quick-start.html
 
 # Comment group of lines
 Cmd+/
-
-# Do not truncate
-pd.options.display.max_rows = 4000
 
 # Useful table
 uv add itables  # then check ./jupyter.py
@@ -17,8 +15,8 @@ uv run --with jupyter jupyter lab
 # Run within its own env
 uv tool run jupyter lab
 
-# See also:
-# ./jupyter.py
-
 # See:
 # https://github.com/markusschanta/awesome-jupyter
+
+# See also:
+# ./jupyter.py Python code

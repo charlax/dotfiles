@@ -79,7 +79,7 @@ echo "GIT_PATH = '$GIT_PATH'"
 echo "MESSAGE = '$MESSAGE'"
 
 echo "Adding $GIT_PATH"
-git add $GIT_PATH
+git add "$GIT_PATH"
 
 echo "Showing git diff"
 git diff --cached

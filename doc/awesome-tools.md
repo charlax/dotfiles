@@ -72,6 +72,10 @@
 
 - [dcmoura/spyql: Query data on the command line with SQL-like SELECTs powered by Python expressions](https://github.com/dcmoura/spyql)
 
+### Annotation
+
+- [Draw Over It](https://draw.wrobele.com/): Annotate, explain, create - anywhere on your screen
+
 ### Binary
 
 - [wader/fq: jq for binary formats](https://github.com/wader/fq)
@@ -217,6 +221,7 @@ See `./cheatsheets/dns`
 - [ffs: the file fileystem | ffs](https://mgree.github.io/ffs/): mount semi-structured data (like JSON) as a Unix filesystem
 - [TomWright/dasel: Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package.](https://github.com/TomWright/dasel)
 - [JSON5 – JSON for Humans | JSON5](https://json5.org/)
+- [JSON Query - a small, flexible, and expandable JSON query language](https://jsonquerylang.org/)
 
 ### Kubernetes
 

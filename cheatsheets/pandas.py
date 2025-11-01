@@ -183,7 +183,11 @@ duckdb.sql("SELECT * FROM pandas_df")
 df = df[(df["is_test"] != True) & (df["is_cancelled"] == False)]
 
 # See also
-# ========
+# ./matplotlib.py
+# ./jupyter.py
+
+# Other docs
+# ==========
 "https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf"
 "https://www.webpages.uidaho.edu/~stevel/cheatsheets/Pandas%20DataFrame%20Notes_12pages.pdf"
 
