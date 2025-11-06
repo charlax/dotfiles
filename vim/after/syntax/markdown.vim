@@ -28,7 +28,7 @@ highlight markdownTaskP0DonePriority ctermbg=DarkRed ctermfg=Gray guibg=DarkRed 
 highlight markdownTaskP1DonePriority ctermbg=Brown ctermfg=Gray guibg=#CC6600 guifg=Gray
 highlight markdownTaskP2DonePriority ctermbg=DarkGreen ctermfg=Gray guibg=DarkGreen guifg=Gray
 
-" Wikilink highlighting - anything between [[ and ]]
-" Need to use containedin to work inside list items and other structures
-syn match WikiLink '\[\[.\{-}\]\]' containedin=ALL
-hi def link WikiLink Underlined
+" Wikilink highlighting - only the content between [[ and ]]
+" \zs and \ze mark the start/end of match to exclude brackets from styling
+syn match WikiLink '\[\[\zs.\{-}\ze\]\]' containedin=ALL
+hi def link WikiLink markdownUrl

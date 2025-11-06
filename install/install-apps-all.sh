@@ -115,6 +115,7 @@ function install_osx_packages {
         espanso              # text expander
         firefox              # browser
         font-roboto-mono-nerd-font
+        ghostty              # terminal
         kitty                # terminal
         neovide              # neovim GUI
         pritunl              # open source VPN client

@@ -20,3 +20,6 @@ cmd+page_up     Scroll page up 
 
 # Check what bytes are sent
 kitty +kitten show_key
+
+# See also
+# ghostty

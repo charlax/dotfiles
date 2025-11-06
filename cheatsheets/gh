@@ -26,3 +26,6 @@ gh label create do-not-merge
 
 # Get CI status for current PR
 gh pr checks --watch
+
+# Get PR comments
+gh pr status --json comments
