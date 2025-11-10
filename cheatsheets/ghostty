@@ -1,0 +1,5 @@
+# Show default config
+ghostty +show-config --default --docs
+
+# Show themes
+ghostty +list-themes
