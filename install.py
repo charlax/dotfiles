@@ -48,6 +48,7 @@ CONFIGURATION_FILES = (
     ("asdf/tool-versions", ".tool-versions"),
     ("config/cheat", ".config/cheat"),
     ("config/kitty", ".config/kitty"),
+    ("config/ghostty", ".config/ghostty"),
     ("config/fish/config.fish", ".config/fish/config.fish"),
     ("config/tig/config", ".config/tig/config"),
     ("config/pudb/pudb.cfg", ".config/pudb/pudb.cfg"),

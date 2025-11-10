@@ -23,4 +23,4 @@ cmd+page_up     Scroll page up 
 kitty +kitten show_key
 
 # See also
-# ghostty
+# ./ghostty

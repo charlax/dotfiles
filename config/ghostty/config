@@ -1,0 +1,8 @@
+# Keyboard shortcuts
+keybind = alt+cmd+arrow_right=next_tab
+keybind = alt+cmd+arrow_left=previous_tab
+keybind = cmd+arrow_right=goto_split:right
+keybind = cmd+arrow_left=goto_split:left
+
+# This is for vim ctrlp
+keybind = ctrl+p=unbind
