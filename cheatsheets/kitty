@@ -8,6 +8,7 @@ ctrl+shift+g    Open last command output in pager
 ctrl+shift+esc  Open kitty shell
 cmd+r           Enter resize mode
 cmd+k           Clear terminal
+ctrl+shift+l    Circle through layout
 
 # Tab
 ctrl+shift+.    Move tab forward

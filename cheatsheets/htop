@@ -6,3 +6,4 @@
 # glances https://github.com/nicolargo/glances
 # bottom https://github.com/ClementTsang/bottom
 # tiptop https://github.com/nschloe/tiptop
+# btop https://github.com/aristocratos/btop brew install btop

@@ -352,7 +352,7 @@ To follow network traffic:
 
 ### System monitor
 
-- [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop)
+- [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop) (`brew install btop`)
 - [nschloe/tiptop: :desktop_computer: Command-line system monitoring](https://github.com/nschloe/tiptop)
 - [exelban/stats: macOS system monitor in your menu bar](https://github.com/exelban/stats)
 - htop

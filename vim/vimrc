@@ -323,6 +323,8 @@ function! s:setup_for_prose()
     nnoremap <Leader>f <Esc>:setlocal spelllang=fr<CR><Esc>:setlocal spell<CR>
 endfunction
 
+set spelllang=en_us,fr
+
 " ============================================================
 " Searching
 " ============================================================

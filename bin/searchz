@@ -1,102 +1,201 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env python3
 
-set -euo pipefail
+import sys
+import os
+import re
+import subprocess
+from pathlib import Path
+from collections import defaultdict
 
-PROGRAM_NAME=${0##*/}
 
-echoerr() { echo "$@" 1>&2; }
+def echoerr(*args):
+    print(*args, file=sys.stderr)
 
-usage() {
-    echoerr "Usage: $PROGRAM_NAME <search-query> [directory]"
-    echoerr ""
-    echoerr "Search for notes in a Zettelkasten repository:"
-    echoerr "  1. Exact match in filename (case-insensitive)"
-    echoerr "  2. Exact match in frontmatter 'keywords' field"
-    echoerr "  3. Exact match in Markdown titles"
-    echoerr "  4. Anywhere in file content"
-    exit 1
-}
 
-if [[ $# -lt 1 ]]; then
-    usage
-fi
+def usage():
+    program_name = os.path.basename(sys.argv[0])
+    echoerr(f"Usage: {program_name} <search-query> [directory]")
+    echoerr("")
+    echoerr("Search for notes in a Zettelkasten repository:")
+    echoerr("  1. Exact match in filename (case-insensitive)")
+    echoerr("  2. Exact match in frontmatter 'keywords' field")
+    echoerr("  3. Exact match in Markdown titles")
+    echoerr("  4. Anywhere in file content")
+    echoerr("")
+    echoerr("Multi-word queries rank files matching more words higher.")
+    sys.exit(1)
 
-if (( ! $+commands[rg] )); then
-    echoerr "Error: ripgrep (rg) is required but not installed"
-    exit 1
-fi
 
-QUERY="$1"
-SEARCH_DIR="${2:-.}"
+def check_rg():
+    try:
+        subprocess.run(["rg", "--version"], capture_output=True, check=True)
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        echoerr("Error: ripgrep (rg) is required but not installed")
+        sys.exit(1)
 
-# Track files we've already shown
-typeset -A SHOWN_FILES
 
-# Helper to check if file was already shown
-should_show() {
-    local file="$1"
-    if [[ -z "${SHOWN_FILES[$file]:-}" ]]; then
-        SHOWN_FILES[$file]=1
-        return 0
-    fi
-    return 1
-}
-
-# Format output: folder first, then filename in color at the end
-format_result() {
-    local file="$1"
-    local dir="${file%/*}"
-    local filename="${file##*/}"
-
-    # If file has no directory component, use current directory indicator
-    if [[ "$dir" == "$file" ]]; then
-        dir="."
-    fi
+def format_result(file_path):
+    """Format output: folder first, then filename in color at the end"""
+    path = Path(file_path)
+    dir_part = str(path.parent) if path.parent != Path(".") else "."
+    filename = path.name
 
     # Display directory, then filename in green
-    printf "%s\t\033[0;32m%s\033[0m\n" "$dir" "$filename"
-}
+    return f"{dir_part}\t\033[0;32m{filename}\033[0m"
 
-# 1. Search for exact match in filename (case-insensitive)
-echo "\033[1;36m# Filename matches\033[0m"
-FILENAME_RESULTS=$(rg --files "$SEARCH_DIR" | rg -i "\.md$" | rg -i "$QUERY" || true)
-if [[ -n "$FILENAME_RESULTS" ]]; then
-    echo "$FILENAME_RESULTS" | sort | while read -r file; do
-        if should_show "$file"; then
-            format_result "$file"
-        fi
-    done
-fi
 
-# 2. Search for exact match in frontmatter keywords
-echo "\033[1;36m# Keywords matches\033[0m"
-KEYWORDS_RESULTS=$(rg --type md -U -i "^---\n(.*\n)*?keywords:.*\b$QUERY\b" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
-if [[ -n "$KEYWORDS_RESULTS" ]]; then
-    echo "$KEYWORDS_RESULTS" | sort | while read -r file; do
-        if should_show "$file"; then
-            format_result "$file"
-        fi
-    done
-fi
+def run_rg(args, search_dir):
+    """Run ripgrep and return matching files"""
+    result = subprocess.run(
+        args,
+        cwd=search_dir if search_dir != "." else None,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode == 0:
+        return [
+            line.strip() for line in result.stdout.strip().split("\n") if line.strip()
+        ]
+    return []
 
-# 3. Search for exact match in Markdown titles (lines starting with #)
-echo "\033[1;36m# Title matches\033[0m"
-TITLE_RESULTS=$(rg --type md -i "^#+\s+.*\b$QUERY\b" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
-if [[ -n "$TITLE_RESULTS" ]]; then
-    echo "$TITLE_RESULTS" | sort | while read -r file; do
-        if should_show "$file"; then
-            format_result "$file"
-        fi
-    done
-fi
 
-# 4. Search anywhere in files
-echo "\033[1;36m# Content matches\033[0m"
-CONTENT_RESULTS=$(rg --type md -i "$QUERY" "$SEARCH_DIR" --files-with-matches 2>/dev/null || true)
-if [[ -n "$CONTENT_RESULTS" ]]; then
-    echo "$CONTENT_RESULTS" | sort | while read -r file; do
-        if should_show "$file"; then
-            format_result "$file"
-        fi
-    done
-fi
+def search_filenames(words, search_dir):
+    """Search for words in markdown filenames"""
+    matches = defaultdict(int)
+
+    # Get all markdown files
+    all_files = run_rg(["rg", "--files", "--glob", "**/*.md"], search_dir)
+
+    for word in words:
+        escaped_word = re.escape(word)
+        for file in all_files:
+            if re.search(escaped_word, file, re.IGNORECASE):
+                matches[file] += 1
+
+    return matches
+
+
+def search_keywords(words, search_dir):
+    """Search for words in frontmatter keywords field"""
+    matches = defaultdict(int)
+
+    for word in words:
+        # Search for word boundary in keywords field within frontmatter
+        escaped_word = re.escape(word)
+        pattern = rf"^---\n(.*\n)*?keywords:.*\b{escaped_word}\b"
+        files = run_rg(
+            [
+                "rg",
+                "--type",
+                "md",
+                "-U",  # multiline
+                "-i",  # case-insensitive
+                "--files-with-matches",
+                pattern,
+            ],
+            search_dir,
+        )
+
+        for file in files:
+            matches[file] += 1
+
+    return matches
+
+
+def search_titles(words, search_dir):
+    """Search for words in Markdown titles (lines starting with #)"""
+    matches = defaultdict(int)
+
+    for word in words:
+        # Search for word boundary in markdown headings
+        escaped_word = re.escape(word)
+        pattern = rf"^#+\s+.*\b{escaped_word}\b"
+        files = run_rg(
+            [
+                "rg",
+                "--type",
+                "md",
+                "-i",
+                "--files-with-matches",
+                pattern,
+            ],  # case-insensitive
+            search_dir,
+        )
+
+        for file in files:
+            matches[file] += 1
+
+    return matches
+
+
+def search_content(words, search_dir):
+    """Search for words anywhere in file content"""
+    matches = defaultdict(int)
+
+    for word in words:
+        files = run_rg(
+            [
+                "rg",
+                "--type",
+                "md",
+                "-i",
+                "--files-with-matches",
+                word,
+            ],  # case-insensitive
+            search_dir,
+        )
+
+        for file in files:
+            matches[file] += 1
+
+    return matches
+
+
+def print_category_results(title, matches, shown_files):
+    """Print results for a category, ranked by number of matching words"""
+    print(f"\033[1;36m# {title}\033[0m")
+
+    if not matches:
+        return
+
+    # Sort by number of matches (descending), then by filename
+    sorted_files = sorted(matches.items(), key=lambda x: (-x[1], x[0]))
+
+    for file, match_count in sorted_files:
+        if file not in shown_files:
+            shown_files.add(file)
+            print(format_result(file))
+
+
+def main():
+    if len(sys.argv) < 2:
+        usage()
+
+    check_rg()
+
+    query = sys.argv[1]
+    search_dir = sys.argv[2] if len(sys.argv) > 2 else "."
+
+    # Split query into words for multi-word matching
+    words = query.split()
+
+    # Track files we've already shown to avoid duplicates
+    shown_files = set()
+
+    # Search in each category
+    filename_matches = search_filenames(words, search_dir)
+    print_category_results("Filename matches", filename_matches, shown_files)
+
+    keywords_matches = search_keywords(words, search_dir)
+    print_category_results("Keywords matches", keywords_matches, shown_files)
+
+    title_matches = search_titles(words, search_dir)
+    print_category_results("Title matches", title_matches, shown_files)
+
+    content_matches = search_content(words, search_dir)
+    print_category_results("Content matches", content_matches, shown_files)
+
+
+if __name__ == "__main__":
+    main()
