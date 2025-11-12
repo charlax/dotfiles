@@ -35,8 +35,11 @@ curl "$url" --request-target "../" -v --path-as-is
 # Upload
 curl -F 'upload=@./file.png;type=image/png;filename=image.png'
 
-# Request
--H 'X-foo: value'  # header
+# Header
+curl -H 'X-foo: value' $host
+
+# Cookie
+curl -b "name=value; name2=value2" $host
 
 # POST with application/x-www-form-urlencoded
 curl -X POST -d 'param1=value1&param2=value2' $host

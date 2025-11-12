@@ -1,0 +1,7 @@
+# Tool for HTTP request, like httpie
+
+# Follow redirects and display all requests
+xh --all --follow http://localhost/redirect "Authorization: Bearer $USER_TOKEN"
+
+# See also
+# ./http

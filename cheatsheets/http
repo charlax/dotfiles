@@ -3,5 +3,9 @@
 # Get header value from env variable
 http http://127.0.0.1:8000/admin/ "Authorization:$TOKEN"
 
+# Follow redirects
+http -F http://localhost/redirect
+
 # See also:
 # ./httpie
+# xh

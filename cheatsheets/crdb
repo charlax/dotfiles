@@ -9,3 +9,6 @@ select *
 from table
 where true
 and 'toaster' = any(objects);
+
+-- Create table
+show create table tablename;

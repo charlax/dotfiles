@@ -10,5 +10,8 @@ keybind = cmd+arrow_left=goto_split:left
 # This is for vim ctrlp
 keybind = ctrl+p=unbind
 
+# Show list of available themes: ghostty +list-themes
+theme = Ghostty Default StyleDark
+
 # Show all options
 # ghostty +show-config --default --docs
