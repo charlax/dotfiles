@@ -1,6 +1,9 @@
 # search in a folder
 rg $query ./folder
 
+# OR
+rg "(sqlalchemy|sq\.)"
+
 # Escape
 rg '\]\('
 

@@ -219,6 +219,15 @@ git tag -s $COMPONENT-v$VERSION -m "Release $COMPONENT version $VERSION"
 # Specify SSH command (can also use "core.sshCommand" configuration)
 export GIT_SSH_COMMAND="ssh -i /Users/$USER/.ssh/id_ed25519 -o IdentitiesOnly=yes"
 
+# Worktree
+# ========
+
+# Create new worktree at "../repo-worktree" with new branch "ca/topic/name" from main
+git worktree add -b ca/topic/name ../repo-worktree main
+
+# Other topics
+# ============
+
 # Conflicts markers when rebasing (diff3)
 # (see doc/git.md)
 

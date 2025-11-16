@@ -1,0 +1,5 @@
+# brew install mike-engel/jwt-cli/jwt-cli
+
+jwt decode "the.jwt"
+
+echo "..." | cut -d '.' -f 2 | base64 -d

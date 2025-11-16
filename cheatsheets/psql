@@ -43,7 +43,13 @@ GRANT ALL PRIVILEGES ON DATABASE homeassistant TO your_username;
 
 ## Privileges
 
-```psql
+```sql
+-- show user
+select current_user;
+
+-- change owner of table
+ALTER TABLE routes OWNER TO "the-user-name";
+
 -- list roles
 \du
 
@@ -59,7 +65,9 @@ select grantee, privilege_type from information_schema.role_table_grants where t
 
 ## Get table size
 
+```sql
 SELECT pg_size_pretty( pg_total_relation_size('tablename') );
+```
 
 ## Export
 
