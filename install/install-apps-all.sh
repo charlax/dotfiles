@@ -133,6 +133,9 @@ function install_osx_packages {
     brew install --cask "${apps[@]}"
     brew install --cask chromium --no-quarantine
 
+    log_info "Installing LSP servers via npm"
+    npm install -g pyright
+
     rectangle_config="$HOME/Library/Preferences/com.knollsoft.Rectangle.plist"
     if [ ! -L "$rectangle_config" ]; then
       log_info "Overwriting Rectangle shortcuts with link to dotfiles ones."

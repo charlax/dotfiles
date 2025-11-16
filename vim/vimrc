@@ -75,6 +75,12 @@ Plug 'vim-scripts/applescript.vim', { 'for': 'applescript' }
 " Asynchronous Lint Engine with LSP support
 Plug 'dense-analysis/ale'
 
+" LSP support
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
 " Automatically discover and properly update ctags files on save
 Plug 'ludovicchabant/vim-gutentags'
 
@@ -115,14 +121,14 @@ Plug 'godlygeek/tabular'
 " See help at https://github.com/preservim/vim-markdown
 Plug 'preservim/vim-markdown'
 
-if (platform =~ 'Darwin') || (architecture !~ 'arm')
-    " LSP support and autocompletion
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" if (platform =~ 'Darwin') || (architecture !~ 'arm')
+"     " LSP support and autocompletion
+"     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-    " COC Extensions
-    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
-endif
+"     " COC Extensions
+"     Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+"     Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+" endif
 
 " Initialize plugin system
 call plug#end()

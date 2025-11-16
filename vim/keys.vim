@@ -161,6 +161,39 @@ inoremap <silent><expr><CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " /Completion
 " =======================================================
 
+" =======================================================
+" LSP Keybindings
+" =======================================================
+
+" Go to definition
+nmap <silent> gd <plug>(lsp-definition)
+" Go to type definition
+nmap <silent> gy <plug>(lsp-type-definition)
+" Go to implementation
+nmap <silent> gi <plug>(lsp-implementation)
+" Find references
+nmap <silent> gr <plug>(lsp-references)
+" Rename symbol
+nmap <silent> <leader>rn <plug>(lsp-rename)
+" Show hover documentation
+nmap <silent> K <plug>(lsp-hover)
+" Show signature help
+inoremap <silent> <C-k> <C-o>:LspSignatureHelp<CR>
+" Format document
+nmap <silent> <leader>f <plug>(lsp-document-format)
+vmap <silent> <leader>f <plug>(lsp-document-range-format)
+" Show diagnostics
+nmap <silent> <leader>d <plug>(lsp-document-diagnostics)
+" Next/previous diagnostic
+nmap <silent> [g <plug>(lsp-previous-diagnostic)
+nmap <silent> ]g <plug>(lsp-next-diagnostic)
+" Peek definition
+nmap <silent> gp <plug>(lsp-peek-definition)
+
+" =======================================================
+" /LSP Keybindings
+" =======================================================
+
 " UltiSnips (for snippets, not for autocompletion)
 
 " Tab/shift-tab can be used to select the snippet key.

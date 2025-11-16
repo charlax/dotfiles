@@ -166,16 +166,23 @@ command! FormatJSONpprint %!python -c "
 function! PrettyPrintJSONForgiving() range
     let content = join(getline(a:firstline, a:lastline), '')
     let result = ''
-    let indent = 0
     let in_quotes = 0
 
     for i in range(len(content))
         let char = content[i]
-        if char == '"' && (i == 0 || content[i-1] != '\') | let in_quotes = !in_quotes | endif
-        if !in_quotes && char == '{' | let result .= char . "\n" . repeat('  ', indent + 1) | let indent += 1
-        elseif !in_quotes && char == '}' | let indent -= 1 | let result .= "\n" . repeat('  ', indent) . char
-        elseif !in_quotes && char == ',' | let result .= char . "\n" . repeat('  ', indent)
-        else | let result .= char | endif
+
+        " Toggle quote state for both single and double quotes
+        if (char == '"' || char == "'") && (i == 0 || content[i-1] != '\')
+            let in_quotes = !in_quotes
+        endif
+
+        " Add character to result
+        let result .= char
+
+        " Add newline after comma if not inside quotes
+        if !in_quotes && char == ','
+            let result .= "\n"
+        endif
     endfor
 
     execute a:firstline . ',' . a:lastline . 'delete'

@@ -125,13 +125,63 @@ augroup disablefixers
 augroup END
 
 " =======================================================
-" Autocomplete
+" vim-lsp
 " =======================================================
 
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Enable diagnostics (already handled by ALE, so we disable LSP diagnostics)
+let g:lsp_diagnostics_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 0
+
+" Show diagnostic signs
+let g:lsp_signs_enabled = 0
+
+" Enable hover
+let g:lsp_hover_ui = 'preview'
+
+" Enable completion
+let g:lsp_completion_documentation_enabled = 1
+
+" Disable virtual text (inline diagnostics)
+let g:lsp_diagnostics_virtual_text_enabled = 0
+
+" vim-lsp-settings will automatically install language servers
+let g:lsp_settings_enable_suggestions = 0
+
+" Register language servers manually for better control
+if executable('pyright-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyright',
+        \ 'cmd': {server_info->['pyright-langserver', '--stdio']},
+        \ 'allowlist': ['python'],
+        \ 'workspace_config': {'python': {'analysis': {'typeCheckingMode': 'basic'}}}
+        \ })
+endif
+
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), ['package.json', 'tsconfig.json', 'jsconfig.json']))},
+        \ 'allowlist': ['typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascript.jsx'],
+        \ })
+endif
+
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls']},
+        \ 'allowlist': ['go'],
+        \ })
+endif
+
+" =======================================================
+" asyncomplete
+" =======================================================
+
+" Enable asyncomplete
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
 
 " =======================================================
 " Status line
