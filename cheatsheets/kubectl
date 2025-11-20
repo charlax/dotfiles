@@ -18,6 +18,7 @@ kubectl apply -f deployment.yaml
 cat stuff.yaml | kubectl apply -f -
 
 # Get a shell
+kubectl exec --context="context-name"
 kubectl exec -it eks-sample-linux-deployment-65b7669776-m6qxz -n eks-sample-app -- /bin/bash
 
 # Delete

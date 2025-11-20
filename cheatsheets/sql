@@ -99,8 +99,9 @@ from df group by level
 
 insert into tablename (col1, col2) values (value1, value2);
 
--- Update from subquery
--- ====================
+-- Update
+-- ======
+update users set has_email = true, updated_at = NOW() where id = 1;
 
 -- with subquery
 UPDATE users
