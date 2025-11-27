@@ -38,10 +38,13 @@ kubectl config set-context --current --namespace=<insert-namespace-name-here>
 kubectl get events --watch
 # Filter by object
 kubectl get events --all-namespaces --field-selector involvedObject.kind=Ingress
+# Sorting, filter by namespace
+kubectl get events -n namespace-name --sort-by='.lastTimestamp'
 
 # Restart
 kubectl scale deployment $name --replicas=0
 kubectl scale deployment $name --replicas=1
+
 
 # Other resources
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/

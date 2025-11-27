@@ -1,0 +1,5 @@
+# https://github.com/stern/stern
+# Multi pod and container log tailing for Kubernetes
+
+stern . -n kube-namespace-name
+stern . -n kube-namespace-name -c container-name

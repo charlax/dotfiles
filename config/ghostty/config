@@ -13,5 +13,8 @@ keybind = ctrl+p=unbind
 # Show list of available themes: ghostty +list-themes
 theme = Ghostty Default Style Dark
 
+# For Claude code
+keybind = shift+enter=text:\x1b\r
+
 # Show all options
 # ghostty +show-config --default --docs

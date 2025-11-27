@@ -184,66 +184,13 @@ let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,noselect
 let g:asyncomplete_popup_delay = 200
 
-" Custom fuzzy file completor
-function! s:fuzzy_file_completor(opt, ctx) abort
-    let l:col = a:ctx['col']
-    let l:typed = a:ctx['typed']
-
-    " Find the start of the file path
-    let l:kw = matchstr(l:typed, '\f*$')
-    let l:kwlen = len(l:kw)
-    let l:startcol = l:col - l:kwlen
-
-    " Extract directory and partial filename
-    let l:dir = fnamemodify(l:kw, ':h')
-    let l:partial = fnamemodify(l:kw, ':t')
-
-    if empty(l:dir) || l:dir ==# '.'
-        let l:dir = './'
-    else
-        let l:dir = l:dir . '/'
-    endif
-
-    " Get all files in directory
-    let l:files = glob(l:dir . '*', 0, 1) + glob(l:dir . '.[^.]*', 0, 1)
-
-    " Build fuzzy pattern from partial filename
-    let l:pattern = ''
-    if !empty(l:partial)
-        let l:chars = split(tolower(l:partial), '\zs')
-        for l:i in range(len(l:chars))
-            let l:pattern .= escape(l:chars[l:i], '\.*[]^$')
-            if l:i < len(l:chars) - 1
-                let l:pattern .= '.*'
-            endif
-        endfor
-    endif
-
-    " Filter and format results
-    let l:matches = []
-    for l:file in l:files
-        let l:basename = fnamemodify(l:file, ':t')
-
-        " Apply fuzzy matching if pattern exists
-        if empty(l:pattern) || tolower(l:basename) =~# l:pattern
-            call add(l:matches, {
-                \ 'word': l:file,
-                \ 'abbr': l:basename . (isdirectory(l:file) ? '/' : ''),
-                \ 'dup': 1
-                \ })
-        endif
-    endfor
-
-    call asyncomplete#complete(a:opt['name'], a:ctx, l:startcol, l:matches)
-endfunction
-
-" Register custom fuzzy file completion source
-au User asyncomplete_setup call asyncomplete#register_source({
-    \ 'name': 'file',
-    \ 'allowlist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('s:fuzzy_file_completor'),
-    \ })
+" Register fuzzy file completion source
+au User asyncomplete_setup call asyncomplete#register_source(
+    \ asyncomplete#sources#fuzzyfile#get_source_options({
+    \   'name': 'fuzzyfile',
+    \   'allowlist': ['*'],
+    \   'completor': function('asyncomplete#sources#fuzzyfile#completor')
+    \ }))
 
 " =======================================================
 " Status line
