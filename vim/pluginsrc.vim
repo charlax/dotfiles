@@ -185,12 +185,21 @@ set completeopt=menuone,noinsert,noselect
 let g:asyncomplete_popup_delay = 200
 
 " Register fuzzy file completion source
+" VimScript version (slower but works in all Vim versions)
 au User asyncomplete_setup call asyncomplete#register_source(
     \ asyncomplete#sources#fuzzyfile#get_source_options({
     \   'name': 'fuzzyfile',
     \   'allowlist': ['*'],
     \   'completor': function('asyncomplete#sources#fuzzyfile#completor')
     \ }))
+
+" Lua version (faster, requires Neovim or Vim with Lua support)
+" au User asyncomplete_setup call asyncomplete#register_source(
+"     \ asyncomplete#sources#fuzzyfile_lua#get_source_options({
+"     \   'name': 'fuzzyfile',
+"     \   'allowlist': ['*'],
+"     \   'completor': function('asyncomplete#sources#fuzzyfile_lua#completor')
+"     \ }))
 
 " =======================================================
 " Status line

@@ -80,7 +80,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
+" Plug 'prabirshrestha/asyncomplete-file.vim'  " Replaced with custom fuzzyfile
 
 " Automatically discover and properly update ctags files on save
 Plug 'ludovicchabant/vim-gutentags'
