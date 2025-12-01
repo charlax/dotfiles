@@ -1,0 +1,61 @@
+# https://github.com/dathere/qsv
+brew install qsv
+
+# lens: interactive exploration
+# =============================
+
+qsv lens file.csv.gz
+
+# Only show rows that contain "NYPD"
+qsv lens --filter NYPD data.csv
+
+# Find and highlight matches in the data
+qsv lens --find 'New York' data.csv
+
+# luau: execute luau scripts
+# ==========================
+
+# Sum numeric columns 'a' and 'b' and call new column 'c'
+qsv luau map c "a + b"
+
+# select: choose columns
+# ======================
+
+# https://github.com/dathere/qsv/blob/master/src/cmd/select.rs#L2
+
+# Select 1st and 4th column
+qsv select 1,4
+# Select first 4 columns
+qsv select 1-4
+qsv select Header1-Header4
+
+# sqlp: polars SQL queries
+# ========================
+
+# https://github.com/dathere/qsv/blob/master/src/cmd/sqlp.rs#L2
+# Supports joins etc.
+
+qsv sqlp data.csv 'select * from data where col1 > 10 order by all desc limit 20'
+
+qsv sqlp data1.csv data2.csv 'SELECT * FROM data1 UNION ALL BY NAME SELECT * FROM data2'
+
+# sniff: infer CSV metadata
+# =========================
+
+# https://github.com/dathere/qsv/blob/master/src/cmd/sniff.rs#L2
+
+qsv sniff file.csv
+
+# Other commands
+# ==============
+
+# https://github.com/dathere/qsv/blob/master/src/cmd/pivotp.rs#L2
+qsv pivots
+
+# https://github.com/dathere/qsv/blob/master/src/cmd/stats.rs#L2
+qsv stats
+
+# See also
+# ========
+# ./csv
+# ./xan

@@ -1,0 +1,28 @@
+# https://github.com/medialab/xan
+brew install xan
+
+# Preview file
+xan view medias.csv
+
+# Flattened representation
+# NOTE: drop -c to avoid truncating the values
+xan flatten -c medias.csv
+
+# Selecting some columns
+xan select foundation_year,name medias.csv | xan view
+
+# Sorting the file
+xan sort -s foundation_year medias.csv | xan view -s name,foundation_year
+
+# Histogram
+xan frequency -s edito medias.csv | xan hist
+
+# Custom aggregation
+xan agg 'sum(indegree) as total_indegree, mean(indegree) as mean_indegree' medias.csv | xan view -I
+
+# Docs
+# https://github.com/medialab/xan
+
+# See also
+# ./csv
+# ./qsv
