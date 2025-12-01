@@ -142,7 +142,6 @@ alias timestamp_ms="python -c 'import time; print(int(time.time() * 1000))'"
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias chrome='open -a "Google Chrome"'
     alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
-    alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
     alias firefox='open -a "Firefox"'
     alias ff='firefox'

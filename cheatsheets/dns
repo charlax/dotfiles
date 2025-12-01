@@ -11,3 +11,7 @@ scutil --dns
 # Check DNS propagation
 https://www.whatsmydns.net/#A/example.org
 https://www.whatsmydns.net/#CNAME/example.org
+
+# See also
+# ./dig
+# doggo https://github.com/mr-karan/doggo - brew install doggo

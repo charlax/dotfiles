@@ -131,7 +131,6 @@ function install_osx_packages {
 
     log_info "Installing brew cask packages for macOS"
     brew install --cask "${apps[@]}"
-    brew install --cask chromium --no-quarantine
 
     log_info "Installing LSP servers via npm"
     npm install -g pyright

@@ -109,6 +109,27 @@ See also: Calculator section
 See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 - [YS-L/csvlens: Command line csv viewer](https://github.com/YS-L/csvlens)
+- [medialab/xan: The CSV magician](https://github.com/medialab/xan)
+  - 3.4k stars
+  - Written in Rust. Leverages a SIMD CSV parser.
+  - Preview, filter, slice, aggregate, sort, join...
+  - Includes its own expression language
+  - Display CSV in terminal and basic dataviz
+- [dathere/qsv: Blazing-fast Data-Wrangling toolkit](https://github.com/dathere/qsv)
+  - 3.3k stars
+  - Written in Rust.
+  - Support for basic NLP functions
+  - `describegpt` command
+  - Smart deduping
+  - Lens to interactively view
+  - Fetch
+  - Flatten
+  - Foreach
+  - Join
+  - Luau (smart computed columns)
+  - Py (run Python for every line)
+  - `sqlp` (Polars SQL)
+  - Validate
 
 ### Database
 
@@ -133,7 +154,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 
 See `./cheatsheets/dns`
 
-- [Doggo | Doggo](https://doggo.mrkaran.dev/docs/)
+- [Doggo](https://doggo.mrkaran.dev/docs/)
 
 ### Docker
 
