@@ -14,6 +14,8 @@ ssh -f -N -L 4479:localhost:4479 remote
 ssh -N -L localhost:$PORT:$remote:$PORT BRIDGE_MACHINE_USER@BRIDGE_MACHINE
 
 # Generate a public/private key
+# (can also use 1Password with its SSH agent)
+ssh-keygen -t ed25519 -C "your_email@example.com"
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
 # Copy an SSH key to authorized_keys

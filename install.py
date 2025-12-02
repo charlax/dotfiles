@@ -226,7 +226,7 @@ def install_minimal(os_: str) -> None:
         # Check brew exists and is installed
         run(["brew", "-v"])
         run(["brew", "install", *packages])
-        run(["brew", "install", "--cash", *apps])
+        run(["brew", "install", "--cask", *apps])
 
 
 def main(args) -> int:
