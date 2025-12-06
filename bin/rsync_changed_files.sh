@@ -8,7 +8,7 @@ function usage {
 }
 
 function check_args {
-    if [[ "$@" = "" ]]; then
+    if [[ $# -eq 0 ]]; then
         usage
     fi
 }
@@ -19,7 +19,7 @@ git add .
 
 echo ""
 echo "Pushing all files"
-git diff --name-only --diff-filter=ACMRTUXB $DIFF_AGAINST | rsync --files-from=- -avz -e ssh . $@
+git diff --name-only --diff-filter=ACMRTUXB "$DIFF_AGAINST" | rsync --files-from=- -avz -e ssh . "$@"
 
 # echo ""
 # echo "Removing deleted files"

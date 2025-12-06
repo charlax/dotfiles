@@ -71,9 +71,9 @@ def test_no_duplicate_next():
 def test_frontmatter_preservation():
     lines = ["---", "title: Sample Document", "---", "Some initial text."]
     result = maybe_add_next(lines)
-    assert (
-        result[0] == "---" and result[2] == "---"
-    ), "Frontmatter should be preserved and intact"
+    assert result[0] == "---" and result[2] == "---", (
+        "Frontmatter should be preserved and intact"
+    )
 
 
 def test_next_after_recurring():

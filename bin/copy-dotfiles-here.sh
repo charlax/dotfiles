@@ -1,7 +1,8 @@
+#!/bin/bash
 mkdir -p .dotfiles
-cd .dotfiles
+cd .dotfiles || exit
 git archive --format=tar --remote=~/.dotfiles/ HEAD | tar xf -
-cd ..
+cd .. || exit
 python ~/.dotfiles/install.py --symlink-base .
 
 # Some computer have old git version

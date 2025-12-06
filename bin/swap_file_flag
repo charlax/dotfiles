@@ -14,10 +14,10 @@ NC='\033[0m'
 
 FILENAME=$1
 
-if [ -f $FILENAME ]; then
+if [ -f "$FILENAME" ]; then
   echo -e "Flag exists, ${RED}removing${NC}"
-  rm $FILENAME
+  rm "$FILENAME"
 else
   echo -e "Flag does not exist, ${GREEN}creating${NC}"
-  touch $FILENAME
+  touch "$FILENAME"
 fi

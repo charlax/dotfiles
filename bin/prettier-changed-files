@@ -4,7 +4,7 @@ set -o errexit
 
 BASE=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
-FILES=$(git diff $BASE --name-only --relative --diff-filter=ACMR ./ | xargs)
+FILES=$(git diff "$BASE" --name-only --relative --diff-filter=ACMR ./ | xargs)
 
 set -o verbose
 

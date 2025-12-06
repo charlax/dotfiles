@@ -8,14 +8,14 @@ function usage {
 }
 
 function check_args {
-    if [[ "$@" = "" ]]; then
+    if [[ $# -eq 0 ]]; then
         usage
     fi
 }
 
 check_args "$@"
 echo "$@"
-$(echo "$@")  || true
+"$@" || true
 while sleep 1; do
     find . -not -path '*/\.*' -not -iname '*\.pyc' | entr -c -d "$@"
 done

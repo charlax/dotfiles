@@ -55,7 +55,7 @@ echo "FOLDER=$FOLDER"
 
 date_value=$(gdate --iso-8601=seconds)
 echo "Filename? (without .md)"
-read title
+read -r title
 
 if [[ $USE_ZETTELKASTEN_FORMAT -gt 0 ]]; then
     id=$(date +"%Y%m%d%H%M%S")

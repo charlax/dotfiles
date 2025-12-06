@@ -1,6 +1,9 @@
 # Run for all files
 pre-commit run -a
 
+# Run for some files
+pre-commit run --files bin/*
+
 Some useful options:
 
 ```yaml
