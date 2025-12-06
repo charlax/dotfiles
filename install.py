@@ -61,6 +61,7 @@ CONFIGURATION_FILES = (
     ("vim/config/nvim/init.vim", ".config/nvim/init.vim"),
     ("vim/gvimrc", ".gvimrc"),
     ("vim/vimrc", ".vimrc"),
+    ("zsh/completions", ".zfunc"),
 )
 
 
