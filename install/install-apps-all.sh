@@ -111,7 +111,7 @@ function install_osx_packages {
     # vagrant             # useful for installing kali - requires Rosetta 2
 
     apps=(anki               # flash cards
-        adobe-acrobat-reader # necessary for some docs
+        # adobe-acrobat-reader # necessary for some docs
         espanso              # text expander
         firefox              # browser
         font-roboto-mono-nerd-font
@@ -121,7 +121,7 @@ function install_osx_packages {
         pritunl              # open source VPN client
         rectangle            # window management
         shottr               # screenshot tool
-        spotify              # music
+        # spotify              # music
         visual-studio-code   # text editor
         vlc                  # video player
         whatsapp
@@ -130,7 +130,14 @@ function install_osx_packages {
         )
 
     log_info "Installing brew cask packages for macOS"
-    brew install --cask "${apps[@]}"
+    if ! brew install --cask "${apps[@]}"; then
+        log_info "Some apps failed to install (may already be installed)"
+        read -p "Continue anyway? (y/n) " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            exit 1
+        fi
+    fi
 
     log_info "Installing LSP servers via npm"
     npm install -g pyright

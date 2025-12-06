@@ -15,6 +15,10 @@ python3 "$DOTFILES/install.py"
 (cd "$DOTFILES" && git submodule update --remote --merge config/cheat)
 
 # Install pre-commit
-(cd "$DOTFILES" && pre-commit install)
+if command -v pre-commit &> /dev/null; then
+    (cd "$DOTFILES" && pre-commit install)
+else
+    log_info "⚠️  pre-commit not found, skipping pre-commit install"
+fi
 
 log_info "✅ Updated $DOTFILES"
