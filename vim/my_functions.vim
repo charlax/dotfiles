@@ -223,3 +223,22 @@ function! PrettyPrintJSONJQ() range
   call setpos('.', l:save_cursor)
 endfunction
 command! JSONPretty call PrettyPrintJSONJQ()
+
+" Format SQL using sql-formatter
+" Install with: npm install -g sql-formatter
+function! FormatSQL() range
+  let l:save_cursor = getcurpos()
+
+  " Determine if we're in visual mode (range was specified)
+  if a:firstline != a:lastline || (a:firstline == a:lastline && mode() =~# '[vV]')
+    let l:start_line = a:firstline
+    let l:end_line = a:lastline
+
+    execute l:start_line . ',' . l:end_line . '!sql-formatter'
+  else
+    execute '%!sql-formatter'
+  endif
+
+  call setpos('.', l:save_cursor)
+endfunction
+command! -range=% FormatSQL call FormatSQL()
