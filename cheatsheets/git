@@ -213,6 +213,14 @@ git count-objects -vH
 # -s signing
 git tag -s $COMPONENT-v$VERSION -m "Release $COMPONENT version $VERSION"
 
+# Debugging ssh
+# =============
+
+ssh -T git@github.com
+# git@github.com: Permission denied (publickey).
+# fatal: Could not read from remote repository.
+# -> see ./ssh
+
 # Configuration
 # =============
 
