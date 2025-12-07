@@ -44,6 +44,7 @@ function install_osx_packages {
         duti             # define default app on macOS https://github.com/moretension/duti
         editorconfig
         eza              # modern replacement for ls https://github.com/eza-community/eza
+        fish             # modern shell https://fishshell.com/
         fd               # alternative to 'find' https://github.com/sharkdp/fd
         findutils
         fswatch          # watch for file changes
