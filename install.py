@@ -5,7 +5,6 @@ import errno
 import logging
 import os
 import platform
-import re
 import shutil
 import subprocess
 import sys
@@ -22,15 +21,6 @@ CODE_PERSO = Path("~/CodePerso").expanduser()
 ESPANSO_REPO = "git@github.com:charlax/config-espanso.git"
 ESPANSO_DEST = CODE_PERSO / "espanso-config"
 ESPANSO_DEFAULT_CONFIG = Path("~/Library/Application Support/espanso").expanduser()
-
-REPOS: List[str] = [
-    "git@github.com:charlax/notes.git",
-    "git@github.com:charlax/website.git",
-    "git@github.com:charlax/professional-programming.git",
-    "git@github.com:charlax/engineering-management.git",
-    "git@github.com:charlax/entrepreneurship-resources.git",
-    "git@github.com:charlax/python-education.git",
-]
 
 CONFIGURATION_FILES = (
     # src, dst
@@ -213,12 +203,6 @@ def setup_espanso() -> None:
     ln(ESPANSO_DEST, path, force=True)
 
 
-def clone_repos() -> None:
-    for r in REPOS:
-        dest = re.search(r"/([\w-]+).git$", r).group(1)
-        clone_or_update(r, CODE_PERSO / dest)
-
-
 def install_minimal(os_: str) -> None:
     """Install a minimal environment to streamline debugging install."""
     if os_ == "Darwin":
@@ -232,6 +216,9 @@ def install_minimal(os_: str) -> None:
 
 def main(args) -> int:
     """Install the dotfiles."""
+    # Ensure CodePerso exists (useful for Go)
+    os.makedirs(CODE_PERSO, exist_ok=True)
+
     os_ = platform.system()
     if not args.skip_common:
         clone_or_update(REPOSITORY, DOTFILES_PATH)
@@ -249,9 +236,6 @@ def main(args) -> int:
 
     if args.with_espanso:
         setup_espanso()
-
-    if args.with_clones:
-        clone_repos()
 
     print(color.green("\nInstall complete."))
 
@@ -283,7 +267,6 @@ if __name__ == "__main__":
         args.with_apps = True
         args.with_settings = True
         args.with_espanso = True
-        args.with_clones = True
 
     os.environ["DOTFILES"] = str(DOTFILES_PATH)
 
