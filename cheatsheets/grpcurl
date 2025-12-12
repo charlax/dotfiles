@@ -1,0 +1,24 @@
+grpcurl -plaintext \
+  -d '{"field": "value"}' \
+  server:50051 \
+  package.YourService/YourMethod
+
+# Healthcheck
+grpcurl -plaintext $server:50051 grpc.health.v1.Health/Check
+
+# With metadata
+grpcurl -plaintext \
+  -H 'authorization: Bearer token123' \
+  -H 'x-custom-header: value' \
+  -d '{"field": "value"}' \
+  server:50051 \
+  package.YourService/YourMethod
+
+# List available services
+grpcurl -plaintext server:50051 list
+
+# List methods in a service
+grpcurl -plaintext server:50051 list package.YourService
+
+# Describe method (shows request/response structure)
+grpcurl -plaintext server:50051 describe package.YourService.YourMethod

@@ -11,6 +11,10 @@ cmd+shift+a
 # Install https://github.com/Fannon/search-bookmarks-history-and-tabs#readme
 Cmd+Shift+.
 
+# Clear DNS cache
+chrome://net-internals/#dns
+chrome://net-internals/#sockets
+
 # See also
 # ./browser-developer-tools
 # ./javascript

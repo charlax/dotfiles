@@ -33,27 +33,26 @@ GROUP BY time_bucket
 -- order by time
 -- Make sure you select "Time Series" query type
 with events as (
-SELECT
-timestamp,
-strings['event_type'] AS event_type,
-strings['status'] AS status,
-FROM default.table_name
-WHERE application = 'app_name' AND timestamp >= subtractHours(now(), 24*7)
+    SELECT
+    timestamp,
+    strings['event_type'] AS event_type,
+    strings['status'] AS status,
+    FROM default.table_name
+    WHERE application = 'app_name' AND timestamp >= subtractHours(now(), 24*7)
 )
-
 select
-toStartOfHour(timestamp) as time,
+-- toStartOfHour(timestamp) as time,
+-- $__timeInterval for Grafana (see above)
+$__timeInterval(timestamp) as time,
 category,
 count(*) as value
-
 from events
-
-where 1=1
-and event_type = 'WHATEVER'
-and status != 'STATUS_SUCCESSFUL'
-
+where 1=1 and event_type = 'WHATEVER' and status != 'STATUS_SUCCESSFUL'
 group by 1, 2
 order by 1
+
+-- cast as string
+select toString(status_code)
 
 -- Typical log query
 SELECT

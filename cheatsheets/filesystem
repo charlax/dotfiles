@@ -1,0 +1,4 @@
+# Useful tools
+
+# macos: monitor deletion
+sudo fs_usage -w -f filesys | grep -E "(unlink|rmdir)"
