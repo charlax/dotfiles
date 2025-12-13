@@ -1,3 +1,9 @@
+<dl>
+  <dt>Definition term</dt>
+  <dd>The definition</dd>
+</dl>
+
+
 # See also:
 # pup (jq for html)
 # tidy (formatter/beautifier)
