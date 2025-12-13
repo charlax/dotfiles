@@ -1,0 +1,23 @@
+brew install ddrescue
+
+# Unmount the card first (e.g., from Disk Utility)
+# Rescueing a mounted partition will result in something useless
+
+# Backup first
+diskutil list
+# You want the (external, physical)
+
+# Backup the image
+# use a mapfile to retry without starting from scratch
+sudo ddrescue /dev/disk4 ~/temp/sdcard.img ~/temp/sdcard.mapfile
+
+# Other options
+# -d (--idirect) - Direct disk access, bypasses kernel cache
+# https://www.gnu.org/software/ddrescue/manual/ddrescue_manual.html#Direct-disc-access
+
+brew install testdisk  # contains photorec
+
+photorec ./sdcard.img
+
+# Deselect most file format - otherwise photorec does not know where to stop
+# Use smallest sector size (512) in paranoid mode
