@@ -203,6 +203,25 @@ def setup_espanso() -> None:
     ln(ESPANSO_DEST, path, force=True)
 
 
+def setup_rectangle() -> None:
+    """Setup Rectangle window manager config (macOS only)."""
+    if platform.system() != "Darwin":
+        return
+
+    print(color.green("\nSetting up Rectangle config..."))
+    rectangle_config = Path.home() / "Library/Preferences/com.knollsoft.Rectangle.plist"
+    source_config = DOTFILES_PATH / "rectangle/com.knollsoft.Rectangle.plist"
+
+    # Backup existing config if it exists and is not a symlink
+    if rectangle_config.exists() and not rectangle_config.is_symlink():
+        backup_path = Path.home() / "Downloads/Rectangle.plist.bak"
+        print(f"Backing up existing Rectangle config to {backup_path}")
+        shutil.copy2(rectangle_config, backup_path)
+
+    # Create symlink, overwriting if it doesn't match
+    ln(source_config, rectangle_config, force=True)
+
+
 def install_minimal(os_: str) -> None:
     """Install a minimal environment to streamline debugging install."""
     if os_ == "Darwin":
@@ -223,6 +242,7 @@ def main(args) -> int:
     if not args.skip_common:
         clone_or_update(REPOSITORY, DOTFILES_PATH)
         symlink_files(args)
+        setup_rectangle()
 
         for d in ("~/.vim/temp/temp", "~/.vim/temp/backup", "~/.config/nvim"):
             os.makedirs(os.path.expanduser(d), exist_ok=True)

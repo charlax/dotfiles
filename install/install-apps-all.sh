@@ -142,13 +142,6 @@ function install_osx_packages {
 
     log_info "Installing LSP servers via npm"
     npm install -g pyright
-
-    rectangle_config="$HOME/Library/Preferences/com.knollsoft.Rectangle.plist"
-    if [ ! -L "$rectangle_config" ]; then
-      log_info "Overwriting Rectangle shortcuts with link to dotfiles ones."
-      [ -e "$rectangle_config" ] && mv "$rectangle_config" "$HOME/Downloads/SpectacleShortcuts.bak.json"
-      ln -s "$DOTFILES/rectangle/com.knollsoft.Rectangle.plist" "$rectangle_config"
-    fi
 }
 
 function install_apt_packages {
