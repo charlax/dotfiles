@@ -149,6 +149,10 @@ Key environment variables set in `system/path.zsh`:
 3. They'll be available in PATH via `$ZSH/bin` (set in `system/path.zsh`)
 4. For shell scripts, run shellcheck via pre-commit: `pre-commit run shellcheck --files bin/script-name.sh`
 
+### Adding New Aliases
+
+When adding new aliases, you MUST update both `system/aliases.zsh` (ZSH) and `config/fish/aliases.fish` (Fish) to keep them in sync.
+
 ### Python Scripts
 
 - Use `#!/usr/bin/env python3` shebang

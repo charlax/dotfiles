@@ -111,6 +111,7 @@ if test (uname) = Darwin
     alias chrome='open -a "Google Chrome"'
     alias firefox='open -a "Firefox"'
     alias ff='firefox'
+    alias idea='open -a "IntelliJ IDEA"'
     alias iawriter='open -a "IA Writer"'
     alias iar='iawriter README*'
 end

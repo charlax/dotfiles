@@ -146,6 +146,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias firefox='open -a "Firefox"'
     alias ff='firefox'
 
+    alias idea='open -a "IntelliJ IDEA"'
+
     ia () {
         touch "$1" && open -a "IA Writer" "$1"
     }

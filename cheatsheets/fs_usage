@@ -2,3 +2,4 @@
 
 # Monitor file deletion. Includes process PID and name
 sudo fs_usage -w -f filesys | grep --line-buffered -E "(unlink|rmdir).*python" | tee ~/Downloads/deletion.log
+sudo fs_usage -w -f filesys | grep --line-buffered python | grep --line-buffered -E "(unlink|rmdir)" | tee ~/Downloads/deletion.log
