@@ -167,6 +167,8 @@ inoremap <silent><expr><CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Go to definition
 nmap <silent> gd <plug>(lsp-definition)
+" F12 for definition (same as IDEA, VSCode, etc.)
+nmap <silent> <F12> <plug>(lsp-definition)
 " Go to type definition
 nmap <silent> gy <plug>(lsp-type-definition)
 " Go to implementation

@@ -10,6 +10,9 @@ keybind = cmd+arrow_left=goto_split:left
 # This is for vim ctrlp
 keybind = ctrl+p=unbind
 
+# Alt+Backspace to delete word in insert mode (sends Ctrl+W)
+keybind = alt+backspace=text:\x17
+
 # Show list of available themes: ghostty +list-themes
 theme = Ghostty Default Style Dark
 
