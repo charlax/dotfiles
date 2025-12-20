@@ -74,11 +74,11 @@ function! DisableDisplayWrapping()
 endfunction
 
 " Wrap in '' and add trailing comma
-function! SQLListify()
-    %s/\(\S*\)/'\1',/g
-    $s/,$/
+function! SQLListify() range
+    execute a:firstline . ',' . a:lastline . "s/\\(\\S*\\)/'\\1',/g"
+    execute a:lastline . 's/,$//'
 endfunction
-command! SQLListify call SQLListify()
+command! -range=% SQLListify call SQLListify()
 
 " Format all uuids
 function! FormatUUIDS()
