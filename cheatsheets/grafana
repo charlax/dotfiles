@@ -21,8 +21,16 @@ SELECT * from events where ('$event_type' = '' or event_type = '${event_type}')
 SELECT * from events where ('$event_type' = 'all' or event_type = '${event_type}')
 
 # Using a multi-value variable (adapts automatically)
+#
+# Under "Selection options":
+# - [x] Multi-value
+# - [x] Include All option
+# Custom All option = "all"
+#
+# ${var:singlequote} ensures it works with single selected value
 # Use the query inspector to debug
 select * from events where event_type in (${event_type});
+select * from events where true and ('all' in (${grpc_method:singlequote}) or method in (${grpc_method:singlequote}));
 
 # Alerts - using timeseries
 SELECT

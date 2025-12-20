@@ -22,3 +22,24 @@ grpcurl -plaintext server:50051 list package.YourService
 
 # Describe method (shows request/response structure)
 grpcurl -plaintext server:50051 describe package.YourService.YourMethod
+
+# With payload (-d must come before service)
+grpcurl -d '{"id": 1234, "tags": ["foo","bar"]}' \
+    grpc.server.com:443 my.custom.server.Service/Method
+
+# With payload from command / file
+grpcurl -d @ grpc.server.com:443 my.custom.server.Service/Method <<EOM
+{
+  "id": 1234,
+  "tags": [
+    "foor",
+    "bar"
+  ]
+}
+EOM
+
+# With payload from file
+grpcurl -d @ grpc.server.com:443 my.custom.server.Service/Method < ~/Downloads/thepayload.json
+
+# Docs
+# https://github.com/fullstorydev/grpcurl
