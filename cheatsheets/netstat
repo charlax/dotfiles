@@ -26,3 +26,7 @@ ip -s link
 
 # For netstat -g
 ip maddr
+
+# See also
+# ./ss
+# snitch https://github.com/karol-broda/snitch

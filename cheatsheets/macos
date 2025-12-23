@@ -76,6 +76,12 @@ sudo fs_usage -w -f filesys mds_stores
 # Get file info
 mdls file.pdf
 
+# Get attributes
+xattr .
+
+# Remove quarantine attribute from all files in this directory
+xattr -dr com.apple.quarantine .
+
 # Check file system usage
 sudo fs_usage
 

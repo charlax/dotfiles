@@ -11,3 +11,6 @@ apt install iproute2
 
 # display all TCP listening sockets
 ss -tlp
+
+# See also
+# snitch https://github.com/karol-broda/snitch
