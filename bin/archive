@@ -1,85 +1,68 @@
-#!/usr/bin/env zsh
-set -euo pipefail
+#!/usr/bin/env python3
+"""Archive a file by moving it to an Archive subdirectory."""
 
-# Function to print usage
-usage() {
-  printf "Usage: %s [-n|--dry-run] <filename>\n" "${0:t}"
-  printf "  -n, --dry-run  Show what would be done without moving the file\n"
-}
+import argparse
+import sys
+from pathlib import Path
 
-# Parse arguments
-dry_run=0
-file=""
 
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    -n|--dry-run)
-      dry_run=1
-      shift
-      ;;
-    -*)
-      printf "Error: Unknown option %s\n" "$1" >&2
-      usage
-      exit 1
-      ;;
-    *)
-      if [[ -n "$file" ]]; then
-        printf "Error: Multiple files specified\n" >&2
-        usage
-        exit 1
-      fi
-      file="$1"
-      shift
-      ;;
-  esac
-done
+def main():
+    parser = argparse.ArgumentParser(
+        description="Archive a file by moving it to an Archive subdirectory"
+    )
+    parser.add_argument(
+        "-n",
+        "--dry-run",
+        action="store_true",
+        help="Show what would be done without moving the file",
+    )
+    parser.add_argument("filename", help="File to archive")
 
-# Ensure file argument provided
-if [[ -z "$file" ]]; then
-  usage
-  exit 1
-fi
+    args = parser.parse_args()
 
-# Check if file exists and is a regular file
-if [[ ! -f "$file" ]]; then
-  printf "Error: %s not found or is not a regular file.\n" "$file" >&2
-  exit 2
-fi
+    file_path = Path(args.filename)
 
-# Determine archive directory location
-# If file has a directory path, check for Archive folder there
-file_dir="${file:h}"
-if [[ "$file_dir" != "$file" && "$file_dir" != "." ]]; then
-  # File has a path component
-  if [[ -d "$file_dir/Archive" ]]; then
-    archive_dir="$file_dir/Archive"
-  else
-    archive_dir="$file_dir/Archive"
-  fi
-else
-  # File is in current directory
-  archive_dir="Archive"
-fi
+    # Check if file exists and is a regular file
+    if not file_path.exists():
+        print(f"Error: {args.filename} not found.", file=sys.stderr)
+        sys.exit(2)
 
-# Create archive directory if it does not exist
-if [[ ! -d "$archive_dir" ]]; then
-  if [[ $dry_run -eq 1 ]]; then
-    printf "[DRY RUN] Would create directory: %s\n" "$archive_dir"
-  else
-    mkdir -- "$archive_dir"
-  fi
-fi
+    if not file_path.is_file():
+        print(
+            f"Error: {args.filename} is not a regular file.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
 
-# Check if target file already exists in Archive directory
-if [[ -e "$archive_dir/${file:t}" ]]; then
-  printf "Error: %s already exists in %s directory.\n" "${file:t}" "$archive_dir" >&2
-  exit 3
-fi
+    # Determine archive directory location
+    # If file has a directory path, use Archive folder there
+    # Otherwise use Archive in current directory
+    file_dir = file_path.parent
+    archive_dir = file_dir / "Archive"
 
-# Move the file
-if [[ $dry_run -eq 1 ]]; then
-  printf "[DRY RUN] Would move: %s -> %s/%s\n" "$file" "$archive_dir" "${file:t}"
-else
-  mv -- "$file" "$archive_dir/"
-  printf "Moved %s to %s/\n" "$file" "$archive_dir"
-fi
+    # Create archive directory if it does not exist
+    if not archive_dir.exists():
+        if args.dry_run:
+            print(f"[DRY RUN] Would create directory: {archive_dir}")
+        else:
+            archive_dir.mkdir(parents=True, exist_ok=True)
+
+    # Check if target file already exists in Archive directory
+    target_path = archive_dir / file_path.name
+    if target_path.exists():
+        print(
+            f"Error: {file_path.name} already exists in {archive_dir} directory.",
+            file=sys.stderr,
+        )
+        sys.exit(3)
+
+    # Move the file
+    if args.dry_run:
+        print(f"[DRY RUN] Would move: {file_path} -> {target_path}")
+    else:
+        file_path.rename(target_path)
+        print(f"Moved {file_path} to {archive_dir}/")
+
+
+if __name__ == "__main__":
+    main()
