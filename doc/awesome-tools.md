@@ -65,6 +65,7 @@
 - [A list of new(ish) command line tools](https://jvns.ca/blog/_2022/04/12/a-list-of-new-ish--command-line-tools/)
 - [ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
 - [IT Tools - Handy online tools for developers](https://it-tools.tech/)
+- [Prism.Tools - Developer Utilities](https://blgardner.github.io/prism.tools/)
 
 ## By topic
 
@@ -342,6 +343,8 @@ To follow network traffic:
 - [kellyjonbrazil/jc: CLI tool and python library that converts the output of popular command-line tools, file-types, and common strings to JSON, YAML, or Dictionaries. This allows piping of output to tools like jq and simplifying automation scripts.](https://github.com/kellyjonbrazil/jc)
 - [The Bun Shell | Bun Blog](https://bun.sh/blog/the-bun-shell)
 - [samwho/spacer: CLI tool to insert spacers when command output stops](https://github.com/samwho/spacer)
+- [Nushell](https://www.nushell.sh/)
+- Fish
 
 ### Sqlite
 

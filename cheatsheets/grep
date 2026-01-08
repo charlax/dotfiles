@@ -13,6 +13,9 @@ cat ~/.npmrc | grep -o "ghp_.*"
 # Or
 curl http://toaster.com | grep -E "toaster|stuff"
 
+# Only show the matching part ("-o")
+cat file | grep -oE 'pgbouncer_\w*'
+
 # See also:
 # ./string-manipulation
 # https://learnbyexample.github.io/learn_gnugrep_ripgrep/

@@ -14,19 +14,15 @@ highlight markdownTaskP0Priority ctermbg=Red ctermfg=White guibg=Red guifg=White
 highlight markdownTaskP1Priority ctermfg=DarkYellow guifg=Orange
 highlight markdownTaskP2Priority ctermfg=DarkGreen guifg=DarkGreen
 
-" Highlight completed priority tasks differently
-syntax match markdownTaskP0Done /^\s*- \[x\] P0\s.*$/ contains=markdownTaskP0DonePriority
-syntax match markdownTaskP1Done /^\s*- \[x\] P1\s.*$/ contains=markdownTaskP1DonePriority
-syntax match markdownTaskP2Done /^\s*- \[x\] P2\s.*$/ contains=markdownTaskP2DonePriority
+" Highlight completed priority tasks differently - dim the entire line
+syntax match markdownTaskP0Done /^\s*- \[x\] P0\s.*$/
+syntax match markdownTaskP1Done /^\s*- \[x\] P1\s.*$/
+syntax match markdownTaskP2Done /^\s*- \[x\] P2\s.*$/
 
-syntax match markdownTaskP0DonePriority /P0/ contained
-syntax match markdownTaskP1DonePriority /P1/ contained
-syntax match markdownTaskP2DonePriority /P2/ contained
-
-" Dimmed versions for completed tasks
-highlight markdownTaskP0DonePriority ctermbg=DarkRed ctermfg=Gray guibg=DarkRed guifg=Gray
-highlight markdownTaskP1DonePriority ctermbg=Brown ctermfg=Gray guibg=#CC6600 guifg=Gray
-highlight markdownTaskP2DonePriority ctermbg=DarkGreen ctermfg=Gray guibg=DarkGreen guifg=Gray
+" Dim entire completed task lines
+highlight markdownTaskP0Done ctermfg=Gray guifg=Gray
+highlight markdownTaskP1Done ctermfg=Gray guifg=Gray
+highlight markdownTaskP2Done ctermfg=Gray guifg=Gray
 
 " Wikilink highlighting - only the content between [[ and ]]
 " \zs and \ze mark the start/end of match to exclude brackets from styling
