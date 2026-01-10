@@ -45,6 +45,7 @@ alias nv='nvim'
 alias mr='mvim'
 alias vscode='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias edit-dotfiles='$EDITOR $DOTFILES'
+alias cn='create-note'
 
 # Utilities
 alias tf='tail -f'

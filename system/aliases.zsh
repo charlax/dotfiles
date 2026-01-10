@@ -54,6 +54,8 @@ alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/
 # single quotes used here to prevent variable expansion at definition time
 alias edit-dotfiles='$EDITOR $DOTFILES'
 
+alias cn='create-note'
+
 alias tf='tail -f'
 
 alias ka9='killall -9'

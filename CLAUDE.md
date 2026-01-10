@@ -159,3 +159,11 @@ When adding new aliases, you MUST update both `system/aliases.zsh` (ZSH) and `co
 - Follow black and ruff formatting/linting rules
 - Add tests with pytest when appropriate (see `bin/render_template_test.py` for example)
 - Run with `uvx` for scripts needing dependencies: `uvx --with "jinja2" python script.py`
+
+#### Type Annotations and Docstrings
+
+- **ALWAYS add type annotations** to all function signatures (parameters and return types)
+- **Keep docstrings concise**: Only include Args/Returns sections when they explain something beyond what the type hints already convey
+  - ❌ Bad: Restating `folder: str` as "Args: folder (str): Directory to create the note in"
+  - ✅ Good: Explaining constraints, side effects, or business logic not obvious from the type
+  - Example: A simple function like `def create_note(folder: str, title: str) -> Path:` only needs a one-line docstring describing what it does

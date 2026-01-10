@@ -1,89 +1,192 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-set -Eeuo pipefail
+import argparse
+import os
+import subprocess
+import sys
+from datetime import datetime
+from pathlib import Path
 
-PROGRAM_NAME=${0##*/}
 
-USE_ZETTELKASTEN_FORMAT=${USE_ZETTELKASTEN_FORMAT:-0}
-CHOOSE_DIRECTORY=${CHOOSE_DIRECTORY:-0}
-THE_EDITOR=${THE_EDITOR:-$EDITOR_GUI}
+def echoerr(msg: str) -> None:
+    """Print to stderr."""
+    print(msg, file=sys.stderr)
 
-echoerr() { echo "$@" 1>&2; }
 
-function usage {
-    echoerr "Usage: $PROGRAM_NAME [-z/--zettelkasten] [-d/--choose-directory] [-h/--help] [-e/--editor EDITOR] [directory]"
-    exit 1
-}
+def is_in_notes_folder() -> bool:
+    """Check if current directory name starts with 'notes.' (case-insensitive)."""
+    cwd = Path.cwd()
+    return cwd.name.lower().startswith("notes.")
 
-while true; do
-    case "${1:-}" in
-        -h | --help)
-            usage
-            ;;
-        -z | --zettelkasten)
-            USE_ZETTELKASTEN_FORMAT=1
-            shift 1
-            ;;
-        -d | --choose-directory)
-            CHOOSE_DIRECTORY=1
-            shift 1
-            ;;
-        -e | --editor)
-            THE_EDITOR="$2"
-            shift 2
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
 
-# Handle folder
-if [[ "${1-}" != "" ]]; then
-    if [[ $CHOOSE_DIRECTORY -gt 0 ]]; then
-        echoerr "Can't have both directory argument and choose directory option"
-        exit 1
-    fi
-    FOLDER="$1"
-elif [[ $CHOOSE_DIRECTORY -gt 0 ]]; then
-    FOLDER=$(fd --type directory | fzf)
-else
-    FOLDER="."
-fi
+def has_subdirectories(path: str = ".") -> bool:
+    """Check if the given path contains any subdirectories."""
+    try:
+        return any(p.is_dir() for p in Path(path).iterdir())
+    except (OSError, PermissionError):
+        return False
 
-echo "FOLDER=$FOLDER"
 
-date_value=$(gdate --iso-8601=seconds)
-echo "Filename? (without .md)"
-read -r title
+def choose_directory_with_fzf() -> str:
+    """Use fzf to select a directory."""
+    try:
+        # Use fd to find directories and pipe to fzf
+        fd_proc = subprocess.Popen(
+            ["fd", "--type", "directory"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        fzf_proc = subprocess.Popen(
+            ["fzf"],
+            stdin=fd_proc.stdout,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        fd_proc.stdout.close()
+        selected, _ = fzf_proc.communicate()
 
-if [[ $USE_ZETTELKASTEN_FORMAT -gt 0 ]]; then
-    id=$(date +"%Y%m%d%H%M%S")
-    filename="$FOLDER/$title $id.md"
-else
-    id=$(date +"%Y-%m-%d")
-    filename="$FOLDER/$title $id.md"
-fi
+        if fzf_proc.returncode != 0:
+            echoerr("Directory selection cancelled")
+            sys.exit(1)
 
-[[ -s $filename ]] && echo -e "Error: file already exists" && return 1
+        return selected.strip()
+    except FileNotFoundError as e:
+        echoerr(f"Error: Required command not found: {e}")
+        sys.exit(1)
 
-cat >"$filename" <<EOF
+
+def open_in_editor(filename: Path, editor: str) -> None:
+    """Open the file in the specified editor."""
+    if editor == "ia":
+        subprocess.run(["open", "-a", "IA Writer", str(filename)])
+    elif "vim" in editor:
+        # Open vim at end of file in insert mode
+        subprocess.run([editor, "+normal G$", "+startinsert", str(filename)])
+    else:
+        subprocess.run([editor, str(filename)])
+
+
+def create_note(folder: str, title: str, use_zettelkasten: bool, editor: str) -> Path:
+    """Create a note file with frontmatter and open it in editor."""
+    # Generate date and ID
+    now = datetime.now()
+    date_value = now.astimezone().isoformat()
+
+    if use_zettelkasten:
+        note_id = now.strftime("%Y%m%d%H%M%S")
+        filename = Path(folder) / f"{title} {note_id}.md"
+    else:
+        note_id = now.strftime("%Y-%m-%d")
+        filename = Path(folder) / f"{title} {note_id}.md"
+
+    # Check if file already exists
+    if filename.exists() and filename.stat().st_size > 0:
+        echoerr(f"Error: file already exists: {filename}")
+        sys.exit(1)
+
+    # Create the file with frontmatter
+    content = f"""---
+title: {title}
+date: {date_value}
+id: {note_id}
 ---
-title: ${title}
-date: ${date_value}
-id: $id
----
 
-# ${title}
+# {title}
 
-EOF
+"""
 
-echo "filename=$filename"
+    filename.write_text(content)
+    print(f"filename={filename}")
 
-if [[ "$THE_EDITOR" = "ia" ]]; then
-    open -a "IA Writer" "$filename"
-elif [[ "$THE_EDITOR" =~ "vim" ]]; then
-    $THE_EDITOR "+normal G$" +startinsert "$filename"
-else
-    $THE_EDITOR "$filename"
-fi
+    # Open in editor
+    open_in_editor(filename, editor)
+
+    return filename
+
+
+def main(
+    folder: str,
+    title: str,
+    use_zettelkasten: bool,
+    editor: str,
+) -> Path:
+    """Create a note with the given parameters."""
+    print(f"FOLDER={folder}")
+    return create_note(folder, title, use_zettelkasten, editor)
+
+
+if __name__ == "__main__":
+    # Set up argument parser
+    parser = argparse.ArgumentParser(
+        description="Create a new note with frontmatter",
+        prog="create-note",
+    )
+    parser.add_argument(
+        "-z",
+        "--zettelkasten",
+        action="store_true",
+        help="Use Zettelkasten format (YYYYMMDDHHMMSS)",
+    )
+    parser.add_argument(
+        "-d",
+        "--choose-directory",
+        action="store_true",
+        help="Choose directory interactively with fzf",
+    )
+    parser.add_argument(
+        "-e",
+        "--editor",
+        type=str,
+        default=None,
+        help="Editor to use (defaults to $EDITOR_GUI or $EDITOR)",
+    )
+    parser.add_argument(
+        "directory",
+        nargs="?",
+        default=None,
+        help="Directory to create note in",
+    )
+
+    args = parser.parse_args()
+
+    # Auto-detect defaults
+    in_notes_folder = is_in_notes_folder()
+    has_dirs = has_subdirectories()
+
+    # Default to zettelkasten if in notes.* folder
+    use_zettelkasten = args.zettelkasten or in_notes_folder
+
+    # Default to choosing directory if there are subdirectories
+    choose_dir = args.choose_directory or has_dirs
+
+    # Determine the editor
+    editor = (
+        args.editor or os.environ.get("EDITOR_GUI") or os.environ.get("EDITOR", "vim")
+    )
+
+    # Handle folder selection
+    if args.directory:
+        if args.choose_directory:
+            echoerr(
+                "Error: Can't have both directory argument and choose directory option"
+            )
+            sys.exit(1)
+        folder = args.directory
+    elif choose_dir:
+        folder = choose_directory_with_fzf()
+    else:
+        folder = "."
+
+    # Get the note title
+    try:
+        title = input("Filename? (without .md)\n")
+        if not title:
+            echoerr("Error: title cannot be empty")
+            sys.exit(1)
+    except (KeyboardInterrupt, EOFError):
+        echoerr("\nCancelled")
+        sys.exit(1)
+
+    # Create the note
+    main(folder, title, use_zettelkasten, editor)
