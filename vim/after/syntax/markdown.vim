@@ -24,6 +24,11 @@ highlight markdownTaskP0Done ctermfg=Gray guifg=Gray
 highlight markdownTaskP1Done ctermfg=Gray guifg=Gray
 highlight markdownTaskP2Done ctermfg=Gray guifg=Gray
 
+" Dim all completed tasks without priority labels
+" This matches tasks that don't have P0, P1, or P2 patterns
+syntax match markdownTaskDoneGeneral /^\s*- \[x\] \(P[012]\s\)\@!.*$/
+highlight markdownTaskDoneGeneral ctermfg=Gray guifg=Gray
+
 " Wikilink highlighting - only the content between [[ and ]]
 " \zs and \ze mark the start/end of match to exclude brackets from styling
 syn match WikiLink '\[\[\zs.\{-}\ze\]\]' containedin=ALL

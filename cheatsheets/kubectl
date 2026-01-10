@@ -5,6 +5,9 @@ kubectl get namespace
 # Get all resource
 kubectl get all -n $namespace
 
+# Get all resources across all namespaces
+kubectl get all --all-namespaces -l app=your-app-name
+
 # Get a pod
 kubectl get pods -n $namespace --selector="app=app-name"
 # Output only name
