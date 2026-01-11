@@ -255,6 +255,7 @@ function install_brew_packages {
         hexyl           # command-line hex viewer
         imagemagick     # convert images
         k9s             # monitor kubernetes
+        kubecolor       # colorize kubectl output
         mitmproxy       # proxy https://mitmproxy.org/
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.

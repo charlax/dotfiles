@@ -1,0 +1,4 @@
+# Tool useful to monitor k8s deployments
+
+:deploy  ## show deployments
+:pod     ## show pods

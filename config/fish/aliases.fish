@@ -30,6 +30,9 @@ end
 
 # Kubectl
 if command -v kubectl > /dev/null
+    if command -v kubecolor > /dev/null
+        alias kubectl='kubecolor'
+    end
     alias k='kubectl'
 end
 

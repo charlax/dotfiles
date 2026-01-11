@@ -37,8 +37,9 @@ kubectl describe pods -n $namespace
 # Set default namespace
 kubectl config set-context --current --namespace=<insert-namespace-name-here>
 
-# Follow events
+# Follow events (useful for deploys)
 kubectl get events --watch
+kubectl get events --namespace my-namespace --watch
 # Filter by object
 kubectl get events --all-namespaces --field-selector involvedObject.kind=Ingress
 # Sorting, filter by namespace

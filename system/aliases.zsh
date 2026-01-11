@@ -28,6 +28,9 @@ c () {
 }
 
 if command -v kubectl > /dev/null 2>&1; then
+    if command -v kubecolor > /dev/null 2>&1; then
+        alias kubectl="kubecolor"
+    fi
     alias k="kubectl"
 fi
 
