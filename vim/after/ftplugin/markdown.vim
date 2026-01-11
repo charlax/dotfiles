@@ -13,3 +13,6 @@ setl shiftwidth=2
 " Need to put in after, for some reason it is overriden
 " see :help fo-table
 setl formatoptions+=o
+
+" Smart list continuation: Enter on empty list item removes the bullet
+inoremap <buffer> <expr> <CR> ContinueProseList()

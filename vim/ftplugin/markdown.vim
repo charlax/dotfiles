@@ -7,7 +7,6 @@ setl spell
 " See https://github.com/plasticboy/vim-markdown/issues/126
 " To check where the config is set:
 " verb set flp fo ft inde comments tw
-setl formatoptions+=ro
 setl comments=b:*,b:-,b:+,b:1.,n:>
 
 " Map <tab> in insert mode in a list (starting with -) to indent
@@ -51,7 +50,8 @@ let g:vim_markdown_conceal_code_blocks = 0
 " See conceallevel for help
 setl conceallevel=2
 
-let g:vim_markdown_new_list_item_indent = 2
+" Disable auto-indent for new list items since ContinueProseList() handles it
+let g:vim_markdown_new_list_item_indent = 0
 
 " https://github.com/preservim/vim-markdown support folding
 " see cheats for keyboard shortcuts

@@ -126,14 +126,18 @@ command! CopyCurrentFilename call CopyCurrentFilename()
 " Continue a list properly
 function! ContinueProseList()
     let l:line = getline('.')
-    let l:indent = matchstr(l:line, '^\s*')
     let l:list_marker = matchstr(l:line, '^\s*[-*]\s*')
 
-    if !empty(l:list_marker) && l:line !~ '^\s*[-*]\s*$'
-        return "\<CR>" . l:list_marker
-    elseif !empty(l:indent)
-        return "\<CR>\<C-U>"
+    if !empty(l:list_marker)
+        if l:line =~ '^\s*[-*]\s*$'
+            " Empty list item: remove the marker and indent, then newline
+            return "\<C-U>\<CR>"
+        else
+            " List item with content: continue the list
+            return "\<CR>" . l:list_marker
+        endif
     else
+        " Not in a list: just newline
         return "\<CR>"
     endif
 endfunction
