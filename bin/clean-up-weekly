@@ -64,12 +64,59 @@ def empty_temp_dirs(is_dry_run: bool = False):
         run(f"trash {d}/*")
 
 
+def try_git_pull(directory: Path, is_dry_run: bool) -> None:
+    """Try to pull from the default branch."""
+    # Get the default branch from the remote
+    branch_result = subprocess.run(
+        ["git", "ls-remote", "--symref", "origin", "HEAD"],
+        capture_output=True,
+        cwd=directory,
+        text=True,
+    )
+
+    if branch_result.returncode != 0:
+        print(color.red(f"{directory}: failed to get default branch"))
+        print(f"  {branch_result.stderr.strip()}")
+        return
+
+    # Parse "ref: refs/heads/main	HEAD" -> "main"
+    first_line = branch_result.stdout.strip().split("\n")[0]
+    if not first_line.startswith("ref:"):
+        print(color.red(f"{directory}: unexpected git ls-remote output"))
+        return
+
+    default_branch = first_line.split("refs/heads/")[1].split()[0]
+
+    if is_dry_run:
+        print(f"{directory}: would try to pull from {default_branch}")
+        return
+
+    print(f"{directory}: running `git pull origin {default_branch}`")
+    pull_result = subprocess.run(
+        ["git", "pull", "origin", default_branch],
+        capture_output=True,
+        cwd=directory,
+        text=True,
+    )
+
+    if pull_result.returncode != 0:
+        print(color.red(f"{directory}: git pull failed"))
+        print(f"  {pull_result.stderr.strip()}")
+        return
+
+    output = pull_result.stdout.strip()
+    if "Already up to date" not in output and output:
+        print(color.green(f"{directory}: pulled from {default_branch}"))
+        print(f"  {output}")
+
+
 def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
     """Make sure all code is committed and pushed."""
     print_task("Checking for uncommitted or unpushed code")
     path = os.environ.get("CODE_PATH")
     if not path:
         print(color.red("CODE_PATH environment variable not set"))
+        return
 
     for d in [x for x in Path(path).iterdir() if x.is_dir()]:
         if d.name in IGNORE_UNCOMMITED_CODE_DIR:
@@ -85,6 +132,7 @@ def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
 
         if result.stdout:
             print(color.magenta(f"{d} has uncommitted code"))
+            continue
 
         result = subprocess.run(
             "git diff ..@{u}", shell=True, capture_output=True, cwd=d
@@ -96,6 +144,10 @@ def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
 
         if result.stdout:
             print(color.magenta(f"{d} has unpushed code"))
+            continue
+
+        # No uncommitted changes, try to pull
+        try_git_pull(d, is_dry_run)
 
 
 CHECKS = {
