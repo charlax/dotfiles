@@ -45,7 +45,7 @@ nnoremap <leader>V  :call ToggleFocusMode()<cr>
 function! StripTrailingWhitespaces()
     let save_cursor = getpos('.')
     " https://vi.stackexchange.com/questions/5949/substitute-with-pure-vimscript-without-s
-    %s/\s\+$//e
+    silent! keeppatterns %s/\s\+$//e
     call setpos('.', save_cursor)
 endfunction
 command! -range=% StripTrailingWhitespaces call StripTrailingWhitespaces()
@@ -53,7 +53,7 @@ command! -range=% StripTrailingWhitespaces call StripTrailingWhitespaces()
 " Trim end lines
 function! TrimEndLines()
     let save_cursor = getpos('.')
-    :silent! %s#\($\n\s*\)\+\%$##
+    silent! keeppatterns %s#\($\n\s*\)\+\%$##
     call setpos('.', save_cursor)
 endfunction
 
@@ -83,7 +83,7 @@ command! -range=% SQLListify call SQLListify()
 " Format all uuids
 function! FormatUUIDS()
     let save_cursor = getpos('.')
-    %s/\<
+    silent! keeppatterns %s/\<
       \\([0-9A-Fa-f]\{8\}
       \\)\([0-9A-Fa-f]\{4\}\)
       \\([0-9A-Fa-f]\{4\}\)
@@ -129,7 +129,7 @@ function! ContinueProseList()
     let l:list_marker = matchstr(l:line, '^\s*[-*]\s*')
 
     if !empty(l:list_marker)
-        if l:line =~ '^\s*[-*]\s*$'
+        if l:line =~# '^\s*[-*]\s*$'
             " Empty list item: remove the marker and indent, then newline
             return "\<C-U>\<CR>"
         else

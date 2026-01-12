@@ -26,7 +26,7 @@ function! Checkbox()
     if l:line =~# '\s*-\s*\[\s*\].*'
         " [ ] -> [x]
         let l:line = substitute(l:line, '\[\s*\]', '[x]', '')
-        let l:today = strftime("%Y-%m-%d")
+        let l:today = strftime('%Y-%m-%d')
         let l:line = substitute(l:line, 'TODO_DATE', l:today, '')  " first only
         call setline(l:lnum, l:line)
     elseif l:line =~# '\s*-\s*\[\.\].*'

@@ -1,6 +1,6 @@
 function! PrettyHTML()
-    set sw=2
-    %s/>/>\r/g
+    setlocal sw=2
+    silent! keeppatterns %s/>/>\r/g
     execute 'normal gg=G'
 endfunction
 command! PrettyHTML call PrettyHTML()

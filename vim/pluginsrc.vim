@@ -148,31 +148,34 @@ let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_settings_enable_suggestions = 0
 
 " Register language servers manually for better control
-if executable('pyright-langserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyright',
-        \ 'cmd': {server_info->['pyright-langserver', '--stdio']},
-        \ 'allowlist': ['python'],
-        \ 'workspace_config': {'python': {'analysis': {'typeCheckingMode': 'basic'}}}
-        \ })
-endif
+augroup LspSetup
+    autocmd!
+    if executable('pyright-langserver')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'pyright',
+            \ 'cmd': {server_info->['pyright-langserver', '--stdio']},
+            \ 'allowlist': ['python'],
+            \ 'workspace_config': {'python': {'analysis': {'typeCheckingMode': 'basic'}}}
+            \ })
+    endif
 
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server',
-        \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), ['package.json', 'tsconfig.json', 'jsconfig.json']))},
-        \ 'allowlist': ['typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascript.jsx'],
-        \ })
-endif
+    if executable('typescript-language-server')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'typescript-language-server',
+            \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+            \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), ['package.json', 'tsconfig.json', 'jsconfig.json']))},
+            \ 'allowlist': ['typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascript.jsx'],
+            \ })
+    endif
 
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls']},
-        \ 'allowlist': ['go'],
-        \ })
-endif
+    if executable('gopls')
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'gopls',
+            \ 'cmd': {server_info->['gopls']},
+            \ 'allowlist': ['go'],
+            \ })
+    endif
+augroup END
 
 " =======================================================
 " asyncomplete
@@ -186,12 +189,15 @@ let g:asyncomplete_popup_delay = 200
 
 " Register fuzzy file completion source
 " VimScript version (slower but works in all Vim versions)
-au User asyncomplete_setup call asyncomplete#register_source(
-    \ asyncomplete#sources#fuzzyfile#get_source_options({
-    \   'name': 'fuzzyfile',
-    \   'allowlist': ['*'],
-    \   'completor': function('asyncomplete#sources#fuzzyfile#completor')
-    \ }))
+augroup AsyncompleteSetup
+    autocmd!
+    au User asyncomplete_setup call asyncomplete#register_source(
+        \ asyncomplete#sources#fuzzyfile#get_source_options({
+        \   'name': 'fuzzyfile',
+        \   'allowlist': ['*'],
+        \   'completor': function('asyncomplete#sources#fuzzyfile#completor')
+        \ }))
+augroup END
 
 " Lua version (faster, requires Neovim or Vim with Lua support)
 " au User asyncomplete_setup call asyncomplete#register_source(

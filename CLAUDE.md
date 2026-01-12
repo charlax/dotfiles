@@ -19,6 +19,11 @@ make test
 # Run pre-commit manually
 pre-commit run --all-files
 
+# Run specific linters
+pre-commit run vint --all-files          # Vim files only
+pre-commit run shellcheck --all-files    # Shell scripts only
+pre-commit run ruff-check --all-files    # Python linting only
+
 # Update pre-commit plugins
 pre-commit autoupdate
 ```
