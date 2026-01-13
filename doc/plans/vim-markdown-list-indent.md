@@ -9,7 +9,8 @@ Smart list continuation in Markdown: pressing Enter on an empty list item remove
 ### Files Modified
 
 **1. vim/my_functions.vim:127-143** - Fixed `ContinueProseList()` function
-- Changed `"\<CR>\<C-U>"` to `"\<C-U>\<CR>"` (delete current line first, then newline)
+- Changed to use `"\<CR>\<C-O>0"` instead of `"\<CR>\<C-U>"`
+- `<C-O>0` jumps to column 0 without interfering with the newline (unlike `<C-U>` which was canceling the `<CR>`)
 
 **2. vim/ftplugin/markdown.vim:53** - Disabled vim-markdown auto-indent
 - Set `g:vim_markdown_new_list_item_indent = 0`

@@ -133,8 +133,9 @@ function! ContinueProseList()
             " Empty list item: remove the marker and indent, then newline
             return "\<C-U>\<CR>"
         else
-            " List item with content: continue the list
-            return "\<CR>" . l:list_marker
+            " List item with content: continue the list at same indentation
+            " Jump to column 0, then insert the marker with its captured indentation
+            return "\<CR>\<C-O>0" . l:list_marker
         endif
     else
         " Not in a list: just newline
