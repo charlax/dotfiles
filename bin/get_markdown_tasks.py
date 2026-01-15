@@ -16,7 +16,6 @@ import re
 from typing import List, Dict
 
 from rich.console import Console
-from rich.markdown import Markdown
 
 
 def get_md_files(paths: List[str]) -> List[str]:
@@ -53,19 +52,32 @@ def extract_open_tasks(content: str) -> Dict[str, List[str]]:
     return tasks
 
 
+def colorize_priorities(text: str) -> str:
+    """Apply vim-style colors to priority markers in text."""
+    # P0: Red background with white text
+    text = re.sub(r"\bP0\b", "[white on red]P0[/white on red]", text)
+    # P1: Yellow text
+    text = re.sub(r"\bP1\b", "[yellow]P1[/yellow]", text)
+    # P2: Dark green text
+    text = re.sub(r"\bP2\b", "[dark_green]P2[/dark_green]", text)
+    return text
+
+
 def pretty_print_tasks(
     filename: str, tasks: Dict[str, List[str]], console: Console
 ) -> None:
-    """Print tasks indented under filename, grouped by section, with markdown rendering."""
-    console.rule(f"[bold blue]{filename}")
+    """Print tasks indented under filename, grouped by section."""
+    # Print filename (left-aligned, bold blue, no underline)
+    console.print(f"[bold blue]{filename}[/bold blue]", justify="left")
+    console.print()
     for section, task_list in tasks.items():
         if not task_list:
             continue
-        section_markdown = section
-        tasks_markdown = "\n".join(task_list)
-        # Indent markdown manually for visual nesting
-        combined = f"{section_markdown}\n{tasks_markdown}"
-        console.print(Markdown(combined), style="dim")
+        # Print section header
+        console.print(colorize_priorities(section))
+        # Print each task with colors
+        for task in task_list:
+            console.print(colorize_priorities(task))
     console.print()  # Blank line
 
 
