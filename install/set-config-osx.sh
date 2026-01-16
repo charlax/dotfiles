@@ -165,6 +165,19 @@ defaults write com.apple.iChat 'PlaySoundsKey' -bool false
 defaults write com.apple.screencapture disable-sound -bool true
 
 # ==============================================================================
+# Rectangle (window manager)
+# ==============================================================================
+
+# Launch Rectangle on login
+defaults write com.knollsoft.Rectangle launchOnLogin -bool true
+
+# Left half: Ctrl+Opt+Left (keyCode 123, modifierFlags 786432)
+defaults write com.knollsoft.Rectangle leftHalf -dict keyCode -int 123 modifierFlags -int 786432
+
+# Right half: Ctrl+Opt+Right (keyCode 124, modifierFlags 786432)
+defaults write com.knollsoft.Rectangle rightHalf -dict keyCode -int 124 modifierFlags -int 786432
+
+# ==============================================================================
 # Full cleanup
 # ==============================================================================
 

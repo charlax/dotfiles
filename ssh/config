@@ -1,3 +1,5 @@
+Include /Users/ca/.colima/ssh_config
+
 # Order matters: needs to be first
 Include ~/.dotfiles/ssh/config.local
 
