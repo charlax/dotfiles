@@ -17,6 +17,10 @@ setl comments=b:*,b:-,b:+,b:1.,n:>
 nnoremap <S-Tab> <<
 nnoremap <Tab> >>
 
+" Insert bold and italic markers in insert mode (MacVim)
+inoremap <D-b> ****<Left><Left>
+inoremap <D-i> __<Left>
+
 " Check task items [ ] Todo -> [.] In progress -> [x] Done
 function! Checkbox()
     let l:lnum = line('.')
