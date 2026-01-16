@@ -178,6 +178,13 @@ defaults write com.knollsoft.Rectangle leftHalf -dict keyCode -int 123 modifierF
 defaults write com.knollsoft.Rectangle rightHalf -dict keyCode -int 124 modifierFlags -int 786432
 
 # ==============================================================================
+# Chrome
+# ==============================================================================
+
+# Cmd+Shift+D Pin/unpin tab
+defaults write com.google.Chrome NSUserKeyEquivalents -dict-add "Pin Tab" "@\$d"
+
+# ==============================================================================
 # Full cleanup
 # ==============================================================================
 
