@@ -6,8 +6,13 @@ ps -aef --forest  # on linux
 # Get env var for process on macOs
 ps eww $process_id
 ps -wwwE
+
 # Pretty print
 ps eww -o command $process_id  | tr ' ' '\n'
 
+# Find containerized processes
+ps aux | xargs -I{} sh -c 'cat /proc/{}/cgroup 2>/dev/null | grep -q docker && echo {}'
+
 # See also
 # procs https://github.com/dalance/procs
+# psc https://github.com/loresuso/psc the ps utility, with an eBPF twist and container context

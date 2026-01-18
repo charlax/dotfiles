@@ -77,4 +77,21 @@ Run:
 ssh-add
 ```
 
+## "error: Couldn't find key in agent?"
+
+```bash
+$ git commit -am "Do things"
+error: Couldn't find key in agent?
+
+fatal: failed to write commit object
+```
+
+Debugging:
+
+- Check the signing configuration in `gitconfig`.
+- If `gpg`, check: `gpg --list-secret-keys --keyid-format=long`
+- If `ssh`, check agent: `ssh-add -l`
+
+## See also
+
 Also check `notes`.

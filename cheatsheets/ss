@@ -12,5 +12,8 @@ apt install iproute2
 # display all TCP listening sockets
 ss -tlp
 
+# Find processes with established connections on port 443
+ss -tnp | grep ESTAB | grep :443 | awk '{print $6}' | cut -d'"' -f2
+
 # See also
 # snitch https://github.com/karol-broda/snitch
