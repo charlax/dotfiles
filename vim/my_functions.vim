@@ -12,11 +12,14 @@ command! CdToCurrentFile cd %:p:h
 
 " Reload vimrc
 if !exists('*ReloadVimrc')
-  function ReloadVimrc()
+  function! ReloadVimrc()
       source $MYVIMRC
       if has('gui_running')
           source ~/.gvimrc
       endif
+      " Re-trigger filetype detection to reload ftplugin files
+      " This ensures buffer-specific settings (like shiftwidth for markdown) are reloaded
+      filetype detect
   endfunction
   command! ReloadVimConfig call ReloadVimrc()
 endif
