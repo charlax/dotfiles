@@ -63,11 +63,14 @@ defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.audio.Au
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
-# Set password delay to 0 seconds (immediate)
+# Set password delay to 0 seconds (immediate lock on sleep)
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Set screen saver to start after 300 seconds (5 minutes) of inactivity
 defaults -currentHost write com.apple.screensaver idleTime 300
+
+# Lock screen immediately when going to sleep (applies to lid close, sleep menu, etc.)
+# The askForPasswordDelay setting above already ensures immediate lock on wake
 
 # ==============================================================================
 # Finder
@@ -88,11 +91,22 @@ chflags nohidden ~/Library
 # Keep folders on top when sorting by name in Finder windows
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
+# Set default sort order to Name (other options: Kind, Date Modified, Date Created, Size, Tags)
+defaults write com.apple.finder FXPreferredGroupBy -string "Name"
+
 # Use list view (Nlsv) in all Finder windows by default (icnv=icon, clmv=column, Nlsv=list)
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Prevent Finder from opening folders in new tabs instead of new windows
 defaults write com.apple.Finder FinderSpawnTab -bool false
+
+# When Cmd+double-clicking a folder in Finder, open in a new window instead of a new tab
+# This also affects "Open in New Window" from right-click menu
+defaults write com.apple.finder FinderDoubleClickOpensInNewWindow -bool true
+
+# Set global window tabbing preference to "manual" (prevents automatic tab creation)
+# Options: always, fullscreen, manual (manual = only create tabs when explicitly requested)
+defaults write -g AppleWindowTabbingMode -string manual
 
 # ==============================================================================
 # Mac App Store
