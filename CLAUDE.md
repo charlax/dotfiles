@@ -137,7 +137,9 @@ Key environment variables set in `system/path.zsh`:
 2. Changes are immediately reflected in your environment (via symlinks)
 3. For ZSH changes: run `reload_zshrc!` alias or `. ~/.zshrc`
 4. For Vim changes: use `:ReloadVimConfig` command or `:source $MYVIMRC`
-5. Run `make test` before committing to ensure linting passes
+5. **IMPORTANT**: Immediately after editing files, run pre-commit to check and fix syntax:
+   - For specific files: `pre-commit run --files path/to/file`
+   - For all files: `pre-commit run --all-files` or `make test`
 6. Pre-commit hooks will run automatically on commit
 
 ### Adding New Configuration Files

@@ -33,3 +33,14 @@ highlight markdownTaskDoneGeneral ctermfg=Gray guifg=Gray
 " \zs and \ze mark the start/end of match to exclude brackets from styling
 syn match WikiLink '\[\[\zs.\{-}\ze\]\]' containedin=ALL
 hi def link WikiLink markdownUrl
+
+" Quote block highlighting - add subtle background that respects color scheme
+" preservim/vim-markdown uses mkdBlockquote for quote blocks
+" Uses default foreground to respect color scheme
+if &background ==# 'light'
+    " Light background: slightly darker grey
+    highlight mkdBlockquote ctermbg=254 guibg=#f0f0f0
+else
+    " Dark background: slightly lighter grey
+    highlight mkdBlockquote ctermbg=235 guibg=#2a2a2a
+endif
