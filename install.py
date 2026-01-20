@@ -48,7 +48,7 @@ CONFIGURATION_FILES = (
     ("ssh/config", ".ssh/config"),
     ("ssh/rc", ".ssh/rc"),
     ("vim", ".vim"),
-    ("vim/config/nvim/init.vim", ".config/nvim/init.vim"),
+    ("vim/config/nvim", ".config/nvim"),
     ("vim/gvimrc", ".gvimrc"),
     ("vim/vimrc", ".vimrc"),
     ("zsh/completions", ".zfunc"),

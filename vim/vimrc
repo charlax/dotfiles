@@ -101,6 +101,15 @@ Plug 'sheerun/vim-polyglot'
 " Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
 Plug 'embear/vim-localvimrc'
 
+" Neovim-only plugins
+if has('nvim')
+    " Treesitter for better syntax highlighting and code understanding
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    " Code outline window
+    Plug 'stevearc/aerial.nvim'
+endif
+
 " Search with rg/ack/...
 " https://github.com/wincent/ferret
 " Provides :Ack :Back :Lack etc.
