@@ -104,11 +104,6 @@ def try_git_pull(directory: Path, is_dry_run: bool) -> None:
         print(f"  {pull_result.stderr.strip()}")
         return
 
-    output = pull_result.stdout.strip()
-    if "Already up to date" not in output and output:
-        print(color.green(f"{directory}: pulled from {default_branch}"))
-        print(f"  {output}")
-
 
 def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
     """Make sure all code is committed and pushed."""
