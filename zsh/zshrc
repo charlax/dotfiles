@@ -267,7 +267,7 @@ fi
 # Load other files
 
 # Source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh) do
+for config_file ($ZSH/**/*.zsh~*vim/plugged*) do
   source $config_file
 done
 
