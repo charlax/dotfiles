@@ -267,9 +267,11 @@ fi
 # Load other files
 
 # Source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh~*vim/plugged*) do
+setopt EXTENDED_GLOB
+for config_file ($ZSH/**/*.zsh~*vim/plugged*~*test*) do
   source $config_file
 done
+unsetopt EXTENDED_GLOB
 
 # asdf (if it's there)
 # this needs to be at the end because it updates $PATH
