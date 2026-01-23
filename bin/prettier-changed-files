@@ -8,4 +8,4 @@ FILES=$(git diff "$BASE" --name-only --relative --diff-filter=ACMR ./ | xargs)
 
 set -o verbose
 
-./node_modules/.bin/prettier --write $FILES
+npx prettier --write "$FILES"
