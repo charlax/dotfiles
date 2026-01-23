@@ -28,11 +28,11 @@ def has_subdirectories(path: str = ".") -> bool:
 
 
 def choose_directory_with_fzf() -> str:
-    """Use fzf to select a directory."""
+    """Use fzf to select a first-level directory."""
     try:
-        # Use fd to find directories and pipe to fzf
+        # Use fd to find first-level directories only
         fd_proc = subprocess.Popen(
-            ["fd", "--type", "directory"],
+            ["fd", "--type", "directory", "--max-depth", "1"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
