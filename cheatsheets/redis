@@ -1,0 +1,8 @@
+# Install
+brew install redis
+
+# Server
+redis-server
+
+# Client
+redis-cli

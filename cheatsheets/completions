@@ -1,0 +1,5 @@
+$ compaudit
+There are insecure directories:
+/opt/homebrew/share
+
+chmod g-w /opt/homebrew/share
