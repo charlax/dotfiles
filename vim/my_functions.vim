@@ -135,7 +135,7 @@ function! ContinueProseList()
     endif
 
     let l:line = getline('.')
-    let l:list_marker = matchstr(l:line, '^\s*[-*]\s*')
+    let l:list_marker = matchstr(l:line, '^\s*[-*]\s\+')
 
     if !empty(l:list_marker)
         if l:line =~# '^\s*[-*]\s*$'
