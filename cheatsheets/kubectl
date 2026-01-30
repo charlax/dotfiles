@@ -8,13 +8,6 @@ kubectl get all -n $namespace
 # Get all resources across all namespaces
 kubectl get all --all-namespaces -l app=your-app-name
 
-# Get a pod
-kubectl get pods -n $namespace --selector="app=app-name"
-# Output only name
-kubectl get pods -o jsonpath='{.items[0].metadata.name}'
-# Output annotations
-kubectl get pod $podname -o jsonpath='{.metadata.annotations}' | jq
-
 # Describe a service
 kubectl -n $namespace describe service $service_name
 
@@ -25,6 +18,8 @@ cat stuff.yaml | kubectl apply -f -
 # Get a shell
 kubectl exec --context="context-name"
 kubectl exec -it eks-sample-linux-deployment-65b7669776-m6qxz -n eks-sample-app -- /bin/bash
+# Get a shell when you don't know podname
+kubectl exec -it -n $namespace $(kubectl get pod -n $namespace -l app=$appname -o jsonpath='{.items[0].metadata.name}') -- /bin/bash
 
 # Delete
 kubectl delete -f deployment.yaml
@@ -50,6 +45,26 @@ kubectl get events -n namespace-name --sort-by='.lastTimestamp'
 # Restart
 kubectl scale deployment $name --replicas=0
 kubectl scale deployment $name --replicas=1
+
+# Pod
+# ===
+
+# Get a pod
+kubectl get pods -n $namespace --selector="app=app-name"
+# Output only name
+kubectl get pods -o jsonpath='{.items[0].metadata.name}'
+# Output annotations
+kubectl get pod $podname -o jsonpath='{.metadata.annotations}' | jq
+
+# Events related to a pod (default: 1 hour retention)
+kubectl get events --field-selector involvedObject.name=<pod-name> -n <namespace>
+
+# Describe pod with recent events
+kubectl describe pod <pod-name> -n <namespace>
+
+# You can use k9 too
+k9s
+# Navigate to pods, select your pod, press 'e' for events
 
 
 # Other resources
