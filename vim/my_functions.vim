@@ -128,6 +128,12 @@ command! CopyCurrentFilename call CopyCurrentFilename()
 
 " Continue a list properly
 function! ContinueProseList()
+    " If popup menu is visible, close it first without accepting completion
+    " then re-invoke the function to handle list continuation
+    if pumvisible()
+        return "\<C-e>\<C-R>=ContinueProseList()\<CR>"
+    endif
+
     let l:line = getline('.')
     let l:list_marker = matchstr(l:line, '^\s*[-*]\s*')
 
