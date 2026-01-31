@@ -6,11 +6,6 @@ let NERDTreeIgnore = ['\.pyc$']
 " Only the test file is prefixed with 'test_'
 let PyUnitTestsStructure = 'disabled'
 
-" RTFHighlight
-let g:rtfh_theme = 'moe'
-let g:rtfh_font = 'Consolas'
-let g:rtfh_size = '34'
-
 " See https://github.com/jiangmiao/auto-pairs/issues/88, can't type a
 " circumflex without this.
 let g:AutoPairsShortcutBackInsert=''
@@ -34,18 +29,6 @@ let g:closetag_regions =  {
 \ 'javascript.jsx': 'jsxRegion',
 \ }
 
-" Highlight matching HTML tags
-let g:mta_filetypes = {
-            \ 'javascript.jsx': 1,
-            \ 'typescript.tsx': 1,
-            \ 'typescriptreact': 1,
-            \ 'typescript': 1,
-            \ 'html' : 1,
-            \ 'xhtml' : 1,
-            \ 'xml' : 1,
-            \ 'jinja' : 1,
-            \ }
-
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippets_my']
 
 " =======================================================
@@ -62,12 +45,6 @@ let g:jsx_ext_required = 0
 
 " Do not conceal quotes in JSON
 let g:vim_json_syntax_conceal = 0
-
-" Latex
-" Skim is the default viewer
-let g:LatexBox_viewer = 'skim'
-" Auto-update when file has changed
-let g:LatexBox_latexmk_options = '-pvc'
 
 
 " =======================================================

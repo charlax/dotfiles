@@ -18,9 +18,6 @@ Plug 'kana/vim-textobj-user'
 " Text objects for comments
 Plug 'glts/vim-textobj-comment'
 
-" Interpret a file by function and cache file automatically
-Plug 'MarcWeber/vim-addon-mw-utils'
-"
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -39,9 +36,6 @@ Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja2' }
 
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 
-" Syntax highlighting to RTF
-Plug 'jdonaldson/rtf-highlight'
-
 " Fuzzy finder. This will also install fzf
 " It exposes functions such as :Rg (same as :Ack) :Files :Tabs etc.
 " https://github.com/junegunn/fzf
@@ -56,15 +50,10 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 
 Plug 'sukima/xmledit', { 'for': 'xml' }
 
-" Some utility functions for VIM
-Plug 'tomtom/tlib_vim'
-
 Plug 'tpope/vim-commentary'
 " Enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-
-Plug 'vim-scripts/LaTeX-Box', { 'for': 'latex' }
 
 Plug 'vim-scripts/applescript.vim', { 'for': 'applescript' }
 
@@ -106,21 +95,12 @@ if has('nvim')
     Plug 'stevearc/aerial.nvim'
 endif
 
-" Search with rg/ack/...
-" https://github.com/wincent/ferret
-" Provides :Ack :Back :Lack etc.
-Plug 'wincent/ferret'
-
-if has('python')
-  " Match HTML tags
-  Plug 'Valloric/MatchTagAlways'
-endif
 
 " Auto close HTML tags
 Plug 'alvan/vim-closetag'
 
 " Clojure REPL
-Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Tabular needs to be loaded first
 Plug 'godlygeek/tabular'
