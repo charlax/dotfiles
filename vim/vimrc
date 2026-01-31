@@ -4,10 +4,6 @@ set nocompatible
 syntax enable
 set encoding=utf-8
 
-" Get architecture information using the uname command
-let architecture = system('uname -m')
-let platform = system('uname')
-
 " Make sure no shortcut mapped in insert mode is
 " using leader, otherwise you might trigger shortcuts while typing.
 let mapleader = "\<Space>"
@@ -188,7 +184,10 @@ if has('autocmd')
     au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
           \| exe "normal! g`\"" | endif
 
-    autocmd FileType arduino,c,cpp,java,php,python,javascript,html,css,mako,sql,json,jsonc,rst,cucumber,yaml,zsh autocmd BufWritePre <buffer> :call TrimEndLines()
+    augroup TrimEndLinesGroup
+      autocmd!
+      autocmd FileType arduino,c,cpp,java,php,python,javascript,html,css,mako,sql,json,jsonc,rst,cucumber,yaml,zsh autocmd BufWritePre <buffer> :call TrimEndLines()
+    augroup END
 
     " Do not change color for quote block (prefixed with `>`)
     augroup MarkdownQuoteNormal
