@@ -1,20 +1,19 @@
-#!env python
+#!/usr/bin/env python3
 """
 csv2python.py
 
 Takes a CSV and Python script as input, call a ``handle()`` function in the
 script repeatedly which each line of the CSV file.
 """
-from __future__ import print_function
 
 import argparse
 import csv
-import imp
+import importlib.util
 import inspect
 import logging
 import sys
 
-logger = logging.getLogger('csv2python')
+logger = logging.getLogger("csv2python")
 
 EXTRA_DOC = """
 
@@ -35,22 +34,24 @@ arguments.
 """
 
 
-def get_script(script_filename):
+def get_script(script_filename: str):
     """Get the handle function from a filename."""
-    script = imp.load_source('handler', script_filename)
+    spec = importlib.util.spec_from_file_location("handler", script_filename)
+    script = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(script)
     return script
 
 
-def number_of_arguments(func):
+def number_of_arguments(func) -> int:
     """Return the number of arguments."""
-    return len(inspect.getargspec(func).args)
+    return len(inspect.getfullargspec(func).args)
 
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 
-def handle(handler, index, row):
+def handle(handler, index: int, row) -> None:
     try:
         if number_of_arguments(handler) == 1:
             handler(row)
@@ -58,22 +59,21 @@ def handle(handler, index, row):
             handler(index, row)
 
     except KeyError:
-        eprint('Got exception with line %d: %s' % (index, row))
+        eprint("Got exception with line %d: %s" % (index, row))
         raise
 
 
-def main(args):
+def main(args: argparse.Namespace) -> None:
     """Render the template."""
     csv_file = csv.DictReader(args.csv)
     script = get_script(args.python_script)
-    rows = [{k.strip(): v.strip()
-             for k, v in row.iteritems()} for row in csv_file]
+    rows = [{k.strip(): v.strip() for k, v in row.items()} for row in csv_file]
 
     total = len(rows)
-    logger.info('%d rows to handle.', total)
+    logger.info("%d rows to handle.", total)
 
     # Call before hook.
-    if hasattr(script, 'before'):
+    if hasattr(script, "before"):
         script.before()
 
     handler = getattr(script, args.function)
@@ -84,35 +84,35 @@ def main(args):
 
     for index, line in enumerate(rows, start=1):
         if index == args.stop_after:
-            logger.info('Stopping after %d iteration.', args.stop_after)
+            logger.info("Stopping after %d iteration.", args.stop_after)
             break
-        logger.info('Handling row %d/%d', index + 1, total)
+        logger.info("Handling row %d/%d", index + 1, total)
         handle(handler, index, line)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Render the template using CSV data",
         epilog=EXTRA_DOC,
-        formatter_class=argparse.RawTextHelpFormatter
+        formatter_class=argparse.RawTextHelpFormatter,
     )
-    parser.add_argument("csv", nargs="?", type=argparse.FileType('rU'),
-                        default=sys.stdin)
-    parser.add_argument("python_script", type=str)
     parser.add_argument(
-        "--stop-after",
-        type=int,
-        help='stop after x iteration')
+        "csv", nargs="?", type=argparse.FileType("r"), default=sys.stdin
+    )
+    parser.add_argument("python_script", type=str)
+    parser.add_argument("--stop-after", type=int, help="stop after x iteration")
     parser.add_argument(
         "--whole",
-        action='store_true',
+        action="store_true",
         default=False,
-        help='pass the whole file as a list of dict to the function')
+        help="pass the whole file as a list of dict to the function",
+    )
     parser.add_argument(
         "--function",
         type=str,
-        default='handle',
-        help='handler function name (default: %(default)s)')
+        default="handle",
+        help="handler function name (default: %(default)s)",
+    )
     args = parser.parse_args()
 
     main(args)

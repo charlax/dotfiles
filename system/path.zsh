@@ -22,7 +22,12 @@ if [[ -e /opt/homebrew/bin ]]; then
 fi
 
 # Google Cloud
-[[ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]] && source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+if command -v brew &>/dev/null; then
+    _gcloud_inc="$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+    # shellcheck disable=SC1090
+    [[ -e "$_gcloud_inc" ]] && source "$_gcloud_inc"
+    unset _gcloud_inc
+fi
 
 export CODE_PATH="$HOME/CodePerso"
 export FORK_PATH="$HOME/Forks"

@@ -102,7 +102,6 @@ gb () {
 alias p="ipython"
 alias p3="python3"
 alias python="python3"
-alias pypi_submit="python setup.py register sdist bdist upload"
 alias venv='python -m venv'
 alias serve='python3 -m http.server'
 alias pydoc='python -m pydoc'
@@ -138,7 +137,6 @@ alias ctag='ctg'
 # tmux
 alias tma="if tmux has; then tmux attach; else tmux new; fi"
 
-alias ack="ag"
 
 alias timestamp="date +'%s'"
 alias timestamp_ms="python -c 'import time; print(int(time.time() * 1000))'"
