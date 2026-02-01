@@ -59,7 +59,7 @@
     default = simple
 
 [help]
-    autocorrect = 1
+    autocorrect = prompt
 
 [rerere]
     enabled = true

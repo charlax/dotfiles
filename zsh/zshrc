@@ -273,11 +273,6 @@ for config_file ($ZSH/**/*.zsh~*vim/plugged*~*test*) do
 done
 unsetopt EXTENDED_GLOB
 
-# asdf (if it's there)
-# this needs to be at the end because it updates $PATH
-if _has asdf; then
-    . $(brew --prefix asdf)/libexec/asdf.sh
-fi
 
 # Activate for profiling (should remain at the end)
 # zprof

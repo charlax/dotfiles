@@ -35,7 +35,6 @@ CONFIGURATION_FILES = (
     "zsh/zshenv",
     "zsh/zshrc",
     "pandoc",
-    ("asdf/tool-versions", ".tool-versions"),
     ("config/cheat", ".config/cheat"),
     ("config/kitty", ".config/kitty"),
     ("config/ghostty", ".config/ghostty"),

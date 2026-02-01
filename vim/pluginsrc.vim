@@ -13,14 +13,6 @@ let g:AutoPairsShortcutJump=''  " î
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" Configuration for vim-gutentags
-let g:gutentags_file_list_command = {
- \ 'markers': {
-     \ '.git': 'git ls-files',
-     \ '.hg': 'hg files',
-     \ },
- \ }
-
 " Auto close HTML tags
 let g:closetag_filenames = '*.html,*.jsx,*.tsx,*.js'
 let g:closetag_regions =  {
@@ -48,8 +40,10 @@ let g:vim_json_syntax_conceal = 0
 
 
 " =======================================================
-" ALE (linting, fixing)
+" ALE (linting, fixing) - disabled in Neovim
 " =======================================================
+
+if !has('nvim')
 
 " Linting
 " isort fails as of writing
@@ -101,16 +95,23 @@ augroup disablefixers
     autocmd BufNewFile * :call DisableFixersOutsideCode()
 augroup END
 
+endif " !has('nvim')
+
 " =======================================================
 " vim-lsp
 " =======================================================
 
-" Enable diagnostics (already handled by ALE, so we disable LSP diagnostics)
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_diagnostics_echo_cursor = 0
-
-" Show diagnostic signs
-let g:lsp_signs_enabled = 0
+" In Vim, diagnostics are handled by ALE, so we disable LSP diagnostics.
+" In Neovim, ALE is disabled, so we enable LSP diagnostics.
+if has('nvim')
+    let g:lsp_diagnostics_enabled = 1
+    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_signs_enabled = 1
+else
+    let g:lsp_diagnostics_enabled = 0
+    let g:lsp_diagnostics_echo_cursor = 0
+    let g:lsp_signs_enabled = 0
+endif
 
 " Enable hover
 let g:lsp_hover_ui = 'preview'
@@ -205,19 +206,21 @@ let g:lightline = {
       \ }
       \ }
 
-" ale integration
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
-let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
+" ale integration (only in Vim, not Neovim)
+if !has('nvim')
+    let g:lightline.component_expand = {
+          \  'linter_checking': 'lightline#ale#checking',
+          \  'linter_infos': 'lightline#ale#infos',
+          \  'linter_warnings': 'lightline#ale#warnings',
+          \  'linter_errors': 'lightline#ale#errors',
+          \  'linter_ok': 'lightline#ale#ok',
+          \ }
+    let g:lightline.component_type = {
+          \     'linter_checking': 'right',
+          \     'linter_infos': 'right',
+          \     'linter_warnings': 'warning',
+          \     'linter_errors': 'error',
+          \     'linter_ok': 'right',
+          \ }
+    let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
+endif

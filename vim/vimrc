@@ -42,9 +42,6 @@ Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 
-" Displays tags in a window, ordered by class etc.
-Plug 'preservim/tagbar'
-
 " A tree explorer plugin
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 
@@ -55,10 +52,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
-Plug 'vim-scripts/applescript.vim', { 'for': 'applescript' }
-
-" Asynchronous Lint Engine with LSP support
-Plug 'dense-analysis/ale'
+" Asynchronous Lint Engine with LSP support (disabled in Neovim)
+if !has('nvim')
+    Plug 'dense-analysis/ale'
+endif
 
 " LSP support
 Plug 'prabirshrestha/vim-lsp'
@@ -67,21 +64,20 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " Plug 'prabirshrestha/asyncomplete-file.vim'  " Replaced with custom fuzzyfile
 
-" Automatically discover and properly update ctags files on save
-Plug 'ludovicchabant/vim-gutentags'
-
 " Simple status line
 Plug 'itchyny/lightline.vim'
 " ALE-status line integration
-Plug 'maximbaz/lightline-ale'
+if !has('nvim')
+    Plug 'maximbaz/lightline-ale'
+endif
 
 " Git gutter
 Plug 'airblade/vim-gitgutter'
 " Git integration
 Plug 'tpope/vim-fugitive'
 
-" Solid language pack
-Plug 'sheerun/vim-polyglot'
+" Solid language pack (disabled: conflicts with dedicated language plugins, slow startup)
+" Plug 'sheerun/vim-polyglot'
 
 " Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
 Plug 'embear/vim-localvimrc'

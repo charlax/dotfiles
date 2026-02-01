@@ -207,36 +207,24 @@ command! PrettyJSONForgiving call PrettyPrintJSONForgiving()
 function! PrettyPrintJSON() range
   let l:save_cursor = getcurpos()
 
-  " Determine if we're in visual mode (range was specified)
   if a:firstline != a:lastline || (a:firstline == a:lastline && mode() =~# '[vV]')
     let l:start_line = a:firstline
     let l:end_line = a:lastline
+  else
+    let l:start_line = 1
+    let l:end_line = line('$')
+  endif
 
+  if executable('jq')
     execute l:start_line . ',' . l:end_line . '!jq .'
   else
-    execute '%!jq .'
+    execute l:start_line . ',' . l:end_line . '!python3 -m json.tool'
   endif
 
   call setpos('.', l:save_cursor)
 endfunction
 command! -range=% PrettyJSON call PrettyPrintJSON()
-
-function! PrettyPrintJSONJQ() range
-  let l:save_cursor = getcurpos()
-
-  " Determine if we're in visual mode (range was specified)
-  if a:firstline != a:lastline || (a:firstline == a:lastline && mode() =~# '[vV]')
-    let l:start_line = a:firstline
-    let l:end_line = a:lastline
-
-    execute l:start_line . ',' . l:end_line . '!jq .'
-  else
-    execute '%!jq .'
-  endif
-
-  call setpos('.', l:save_cursor)
-endfunction
-command! JSONPretty call PrettyPrintJSONJQ()
+command! -range=% JSONPretty call PrettyPrintJSON()
 
 " Format SQL using sql-formatter
 " Install with: npm install -g sql-formatter

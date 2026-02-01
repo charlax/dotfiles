@@ -1,8 +1,8 @@
 exclude: '^zsh/iterm2_shell_integration\.zsh$'
 
 repos:
-  - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 3.0.0
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
     hooks:
     - id: shellcheck
   - repo: https://github.com/pre-commit/pre-commit-hooks
