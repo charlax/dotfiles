@@ -1,0 +1,8 @@
+# Add profiles
+pritunl-client add <profile-url>
+
+# List profiles
+pritunl-client list
+
+# Interactive selection with fzf
+pritunl-client list -j | jq -r '.[] | "\(.id)\t\(.name)\t\(.status)"' | fzf -m --with-nth=2,3 | cut -f1 | xargs -I{} pritunl-client start {}

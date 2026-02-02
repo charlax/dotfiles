@@ -54,6 +54,9 @@ export PATH="/usr/local/opt/gettext/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:
 
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 
+# Pritunl
+[[ -d /Applications/Pritunl.app/Contents/Resources ]] && export PATH="$PATH:/Applications/Pritunl.app/Contents/Resources"
+
 # Dotfiles
 export DOTFILES="$HOME/.dotfiles"
 export VIM_DOTFILES="$DOTFILES/vim"
