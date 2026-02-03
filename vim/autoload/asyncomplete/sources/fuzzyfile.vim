@@ -119,13 +119,8 @@ function! asyncomplete#sources#fuzzyfile#completor(opt, ctx) abort
   " Supports: /path, ./path, ../path, ~/path, and relative paths
   let l:kw = matchstr(l:typed, '\(\~\|/\|\./\|\.\./\|\.\.\./\)[^ \t]*$')
 
-  " Also match simple filenames in current directory
   if empty(l:kw)
-    let l:kw = matchstr(l:typed, '\f\+$')
-    " Only proceed if it looks like a file path (contains / or .)
-    if l:kw !~# '[/.]'
-      return
-    endif
+    return
   endif
 
   let l:kwlen = len(l:kw)
