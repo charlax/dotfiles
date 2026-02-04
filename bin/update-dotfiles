@@ -14,11 +14,11 @@ python3 "$DOTFILES/install.py"
 # Update cheatsheet submodule
 (cd "$DOTFILES" && git submodule update --remote --merge config/cheat)
 
-# Install pre-commit
-if command -v pre-commit &> /dev/null; then
-    (cd "$DOTFILES" && pre-commit install)
+# Install prek hooks
+if command -v prek &> /dev/null; then
+    (cd "$DOTFILES" && prek install)
 else
-    log_info "⚠️  pre-commit not found, skipping pre-commit install"
+    log_info "⚠️  prek not found, skipping prek install"
 fi
 
 log_info "✅ Updated $DOTFILES"

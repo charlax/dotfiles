@@ -5,12 +5,12 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-install:  ## Install pre-commit
-	pre-commit install
+install:  ## Install prek
+	prek install
 .PHONY: install
 
 test:  ## Run test and linters
-	pre-commit run --all-files
+	prek run --all-files
 	uvx --with "jinja2" pytest bin/render_template_test.py
 .PHONY: test
 

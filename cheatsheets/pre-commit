@@ -1,8 +1,8 @@
 # Run for all files
-pre-commit run -a
+prek run -a
 
 # Run for some files
-pre-commit run --files bin/*
+prek run --files bin/*
 
 Some useful options:
 

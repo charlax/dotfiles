@@ -10,22 +10,22 @@ This is a personal dotfiles repository for managing configuration files across m
 
 ### Testing and Linting
 ```bash
-# Install pre-commit hooks
+# Install prek hooks
 make install
 
 # Run all tests and linters (shellcheck, black, ruff, vint, etc.)
 make test
 
-# Run pre-commit manually
-pre-commit run --all-files
+# Run prek manually
+prek run --all-files
 
 # Run specific linters
-pre-commit run vint --all-files          # Vim files only
-pre-commit run shellcheck --all-files    # Shell scripts only
-pre-commit run ruff-check --all-files    # Python linting only
+prek run vint --all-files          # Vim files only
+prek run shellcheck --all-files    # Shell scripts only
+prek run ruff-check --all-files    # Python linting only
 
-# Update pre-commit plugins
-pre-commit autoupdate
+# Update prek plugins
+prek autoupdate
 ```
 
 ### Installation and Setup
@@ -103,7 +103,7 @@ Uses [vim-plug](https://github.com/junegunn/vim-plug) for plugin management. Key
 
 ### Pre-commit Hooks
 
-The repository uses pre-commit hooks defined in `.pre-commit-config.yaml`:
+The repository uses [prek](https://github.com/j178/prek) (a faster drop-in alternative to pre-commit) with hooks defined in `.pre-commit-config.yaml`:
 - **shellcheck**: Shell script linting
 - **vint**: Vim script linting
 - **black**: Python code formatting
@@ -131,7 +131,7 @@ Key environment variables set in `system/path.zsh`:
 
 ## Development Workflow
 
-**CRITICAL**: After ANY file edit, you MUST run `pre-commit run --files <edited-files>` and fix all errors before considering the task complete. Never skip this step.
+**CRITICAL**: After ANY file edit, you MUST run `prek run --files <edited-files>` and fix all errors before considering the task complete. Never skip this step.
 
 ### Making Changes to Dotfiles
 
@@ -139,10 +139,10 @@ Key environment variables set in `system/path.zsh`:
 2. Changes are immediately reflected in your environment (via symlinks)
 3. For ZSH changes: run `reload_zshrc!` alias or `. ~/.zshrc`
 4. For Vim changes: use `:ReloadVimConfig` command or `:source $MYVIMRC`
-5. **MANDATORY**: Run pre-commit and fix any issues:
-   - For specific files: `pre-commit run --files path/to/file`
-   - For all files: `pre-commit run --all-files` or `make test`
-6. Pre-commit hooks will run automatically on commit
+5. **MANDATORY**: Run prek and fix any issues:
+   - For specific files: `prek run --files path/to/file`
+   - For all files: `prek run --all-files` or `make test`
+6. Hooks will run automatically on commit
 
 ### Adding New Configuration Files
 
@@ -156,7 +156,7 @@ Key environment variables set in `system/path.zsh`:
 1. Add scripts to `bin/` directory
 2. Make them executable: `chmod +x bin/script-name`
 3. They'll be available in PATH via `$ZSH/bin` (set in `system/path.zsh`)
-4. For shell scripts, run shellcheck via pre-commit: `pre-commit run shellcheck --files bin/script-name.sh`
+4. For shell scripts, run shellcheck via prek: `prek run shellcheck --files bin/script-name.sh`
 
 ### Adding New Aliases
 

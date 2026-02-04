@@ -239,7 +239,7 @@ function install_brew_packages {
     # terraform       # infrastructure management
     # veeso/termscp/termscp  # terminal UI file transfer (e.g. sftp) https://veeso.github.io/termscp
 
-    packages=(bandwhich # bandwith utilization https://github.com/imsnif/bandwhich
+    packages=(bandwhich   # bandwith utilization https://github.com/imsnif/bandwhich
         binwalk         # inspect files
         broot           # better tree https://github.com/Canop/broot
         cloc            # count lines of code
@@ -257,6 +257,7 @@ function install_brew_packages {
         k9s             # monitor kubernetes
         kubecolor       # colorize kubectl output
         mitmproxy       # proxy https://mitmproxy.org/
+        prek            # faster pre-commit alternative https://github.com/j178/prek
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd

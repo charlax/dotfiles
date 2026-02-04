@@ -16,7 +16,6 @@ function install_python_tools {
 
     python_tools=(
         ipython      # better python console
-        pre-commit   # pre-commit hooks
         vim-vint     # vimscript linter
     )
 
