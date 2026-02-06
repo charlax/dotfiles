@@ -2,6 +2,13 @@
 kubectl get namespace
 # See also: kubens
 
+# Get context
+kubectl config get-contexts
+# See also: kubectx
+
+# Get services in a context and namespace
+kubectl get svc -n $namespace --context $context
+
 # Get all resource
 kubectl get all -n $namespace
 
@@ -39,8 +46,12 @@ kubectl get events --watch
 kubectl get events --namespace my-namespace --watch
 # Filter by object
 kubectl get events --all-namespaces --field-selector involvedObject.kind=Ingress
-# Sorting, filter by namespace
-kubectl get events -n namespace-name --sort-by='.lastTimestamp'
+
+# History of events (last 1 hour) with sorting, filter by namespace
+kubectl get events -n $namespace --sort-by='.lastTimestamp'
+kubectl get events --field-selector involvedObject.kind=Service --sort-by='.lastTimestamp' -n $namespace
+# only for a pod:
+kubectl get events --field-selector involvedObject.name=$podname --sort-by='.lastTimestamp'
 
 # Restart
 kubectl scale deployment $name --replicas=0
@@ -66,9 +77,20 @@ kubectl describe pod <pod-name> -n <namespace>
 k9s
 # Navigate to pods, select your pod, press 'e' for events
 
+# Tests
+# =====
+
+# Run a connection test for grpc (requires create pod permission)
+kubectl run conn-test --rm -it --restart=Never --image=busybox -- nc -zv app.namespace.svc.cluster.local 50051
+
+# Run a dns test (requires create pod permission)
+kubectl run dns-test --rm -it --restart=Never --image=busybox -- nslookup app.namespace.svc.cluster.local
+
+
 
 # Other resources
 # https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 # Other tools
-# kubectx (clusters) and kubens (namespace) https://github.com/ahmetb/kubectx
+# kubectx (select clusters)
+# kubens (namespace) https://github.com/ahmetb/kubectx
