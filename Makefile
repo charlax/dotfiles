@@ -6,6 +6,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 install:  ## Install prek
+	@command -v prek >/dev/null 2>&1 || brew install j178/tap/prek
 	prek install
 .PHONY: install
 
