@@ -29,3 +29,6 @@ gh pr checks --watch
 
 # Get PR comments
 gh pr status --json comments
+
+# Get inline PR comments
+gh api repos/$org/$repo/pulls/$prnumber/comments
