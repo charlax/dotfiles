@@ -31,8 +31,8 @@ def extract_scores(
         match = pattern.match(line.strip())
         if match:
             category = match.group("category").strip()
-            # Explicitly skip overall scores
-            if "overall" in category.lower():
+            # Explicitly skip standalone "overall" scores
+            if category.strip().lower() == "overall":
                 continue
             score = float(match.group("score"))
             outof = float(match.group("max"))
@@ -41,6 +41,12 @@ def extract_scores(
             detailed.append((category, score, outof))
 
     return total, max_score, detailed
+
+
+def detect_percentage_template(lines: List[str]) -> bool:
+    """Check if the template uses percentage-based overall scoring."""
+    pattern = re.compile(r"Overall(?: score)?:.*hence.*%", re.IGNORECASE)
+    return any(pattern.search(line) for line in lines)
 
 
 def replace_overall_score(lines: List[str], score_line: str) -> List[str]:
@@ -52,10 +58,25 @@ def replace_overall_score(lines: List[str], score_line: str) -> List[str]:
     ]
 
 
+def replace_overall_percentage(lines: List[str], score_line: str) -> List[str]:
+    pattern = re.compile(
+        r"^-\s+Overall(?: score)?:\s*.*/\s*\d+.*hence.*%", re.IGNORECASE
+    )
+    return [
+        score_line if pattern.match(line.strip()) else line.rstrip() for line in lines
+    ]
+
+
 def print_score(score_10: float) -> None:
     color = "\033[92m" if score_10 >= 5 else "\033[91m"
     reset = "\033[0m"
     print(f"{color}Overall score: {score_10:.1f} / 10{reset}")
+
+
+def print_percentage_score(total: float, max_score: float, percentage: int) -> None:
+    color = "\033[92m" if percentage >= 50 else "\033[91m"
+    reset = "\033[0m"
+    print(f"{color}Overall score: {total:g} / {max_score:g} hence {percentage}%{reset}")
 
 
 def main(path: Path, dry_run: bool) -> None:
@@ -75,12 +96,19 @@ def main(path: Path, dry_run: bool) -> None:
         print("Error: Maximum score is 0. Cannot compute ratio.", file=sys.stderr)
         sys.exit(1)
 
-    raw_score = (total / max_score) * 10
-    score_10 = math.floor(raw_score * 2) / 2  # Round down to nearest 0.5
-    score_line = f"- Overall score: {score_10:.1f} / 10"
+    is_percentage = detect_percentage_template(lines)
 
-    print_score(score_10)
-    new_lines = replace_overall_score(lines, score_line)
+    if is_percentage:
+        percentage = math.floor((total / max_score) * 100)
+        score_line = f"- Overall score: {total:g} / {max_score:g} hence {percentage}%"
+        print_percentage_score(total, max_score, percentage)
+        new_lines = replace_overall_percentage(lines, score_line)
+    else:
+        raw_score = (total / max_score) * 10
+        score_10 = math.floor(raw_score * 2) / 2  # Round down to nearest 0.5
+        score_line = f"- Overall score: {score_10:.1f} / 10"
+        print_score(score_10)
+        new_lines = replace_overall_score(lines, score_line)
 
     if len(new_lines) < len(lines) - 10:
         print("Error: Too many lines removed. Aborting.", file=sys.stderr)
@@ -94,7 +122,7 @@ def main(path: Path, dry_run: bool) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Compute and update 'Overall: X / 10' in file."
+        description="Compute and update overall score in interview file (supports /10 and percentage)."
     )
     parser.add_argument("file", type=Path, help="Path to the input file")
     parser.add_argument(
