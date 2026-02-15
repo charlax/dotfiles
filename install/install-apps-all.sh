@@ -260,6 +260,7 @@ function install_brew_packages {
         prek            # faster pre-commit alternative https://github.com/j178/prek
         procs           # modern ps, experimental support for macos https://github.com/dalance/procs
         renameutils     # imv (faster rename) etc.
+        rust            # the programming language
         sd              # intuitive find & replace cli, kind of like sed https://github.com/chmln/sd
         starship        # command line prompt https://starship.rs/
         tokei           # cloc https://github.com/XAMPPRocky/tokei
