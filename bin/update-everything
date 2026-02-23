@@ -13,9 +13,10 @@ set -e
 
 
 # We first update the dotfiles to ensure we use the latest version of the update script
-. "$BIN_DIR/update-dotfiles"
-. "$BIN_DIR/update-software"
-. "$BIN_DIR/update-vim-plugins"
-. "$BIN_DIR/update-refcards"
+"$BIN_DIR/update-dotfiles"
+"$BIN_DIR/update-software"
+"$BIN_DIR/update-vim-plugins"
+"$BIN_DIR/update-refcards"
+"$BIN_DIR/clean-up-weekly" --checks check_code_repo
 
 log_info "Everything is up to date."

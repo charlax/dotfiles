@@ -105,7 +105,7 @@ def try_git_pull(directory: Path, is_dry_run: bool) -> None:
         return
 
 
-def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
+def check_code_repo(is_dry_run: bool = False) -> None:
     """Make sure all code is committed and pushed."""
     print_task("Checking for uncommitted or unpushed code")
     path = os.environ.get("CODE_PATH")
@@ -148,7 +148,7 @@ def check_for_uncommitted_code(is_dry_run: bool = False) -> None:
 CHECKS = {
     "empty_temp_dirs": empty_temp_dirs,
     "clean_up_ruby": clean_up_ruby,
-    "check_for_uncommitted_code": check_for_uncommitted_code,
+    "check_code_repo": check_code_repo,
     # "clean_up_docker": clean_up_docker
 }
 
