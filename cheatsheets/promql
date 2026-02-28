@@ -29,5 +29,8 @@ sum by (grpc_server_status) (rate(grpc_io_server_completed_rpcs{k8s_environment=
 # Sum by increase
 sum(increase(http_server_requests_seconds_count{app=~"toaster"}[5m])) by (uri, status)
 
+# "Limit"
+topk(1, grpc_io_client_completed_rpcs)
+
 # See also
 # https://promlabs.com/promql-cheat-sheet/

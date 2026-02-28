@@ -1,2 +1,6 @@
+# install with:
+brew install exiftool
+
 # Extract EXIF info from file
 exiftool file.jpg
+exiftool file.pdf
