@@ -5,3 +5,6 @@
 .tags.lock
 
 __pycache__
+
+# Auto-generated completion files
+zsh/completions/_poetry
