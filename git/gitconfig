@@ -103,3 +103,5 @@
     path = ~/.dotfiles/git/gitconfig.work.local
 [includeIf "gitdir:~/CodePerso/"]
      path = ~/.dotfiles/git/gitconfig.codeperso.local
+[includeIf "gitdir:~/.dotfiles/"]
+     path = ~/.dotfiles/git/gitconfig.codeperso.local
