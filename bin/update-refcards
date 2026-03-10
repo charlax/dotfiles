@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
+# Download re2 syntax reference
 curl -o "$DOTFILES/refcards/re2.txt" https://raw.githubusercontent.com/google/re2/main/doc/syntax.txt
 
-# Fix trailing spaces etc.
-prek run --files "$DOTFILES/refcards/"*
+# Download kubectl cheatsheet
+curl -o "$DOTFILES/refcards/kubectl.md" https://raw.githubusercontent.com/kubernetes/website/main/content/en/docs/reference/kubectl/quick-reference.md
+
+# Fix trailing spaces etc. - run after downloads are complete
+prek run --files "$DOTFILES/refcards/re2.txt" "$DOTFILES/refcards/kubectl.md"
