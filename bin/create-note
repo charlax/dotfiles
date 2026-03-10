@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import readline  # noqa: F401 - enables arrow keys/history in input()
 import subprocess
 import sys
 from datetime import datetime
@@ -14,9 +15,9 @@ def echoerr(msg: str) -> None:
 
 
 def is_in_notes_folder() -> bool:
-    """Check if current directory name starts with 'notes.' (case-insensitive)."""
+    """Check if current directory name starts with 'notes' (case-insensitive)."""
     cwd = Path.cwd()
-    return cwd.name.lower().startswith("notes.")
+    return cwd.name.lower().startswith("notes")
 
 
 def has_subdirectories(path: str = ".") -> bool:
