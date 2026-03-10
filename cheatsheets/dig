@@ -24,5 +24,8 @@ dig +trace $domain
 dig $domain txt
 dig $domain SOA
 
+# Timeout
+dig +time=1 example.com
+
 # Also check: nslookup, host
 # dog https://github.com/ogham/dog (unmaintained since Oct 2021, no longer available via brew)

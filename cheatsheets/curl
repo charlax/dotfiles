@@ -15,12 +15,13 @@ curl $url -d "key=value1&key2=value2"
 curl -H 'Host: truc.com' ...
 
 # Options
--L                 # follow redirections
+-L                   # follow redirections
 -s/--silent
--o/--output        # e.g. redirect response body to /dev/null
--k/--insecure      # do not check certificates
---remote-name-all  # issue multiple query (see below)
+-o/--output          # e.g. redirect response body to /dev/null
+-k/--insecure        # do not check certificates
+--remote-name-all    # issue multiple query (see below)
 --resolve example.com:444:127.0.0.1  # Provide a host without changing /etc/hosts
+--connect-timeout 1  # connection timeout
 
 # Path
 
