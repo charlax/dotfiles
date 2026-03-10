@@ -3,3 +3,6 @@
 
 stern . -n $namespace
 stern . -n $namespace -c container-name
+
+# All logs for pod matching "appname" in namespace and context
+stern appname -n $namespace --context $context

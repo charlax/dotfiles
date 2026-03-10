@@ -19,5 +19,10 @@ theme = Ghostty Default Style Dark
 # For Claude code
 keybind = shift+enter=text:\x1b\r
 
+# Notifications for long commands
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 30s
+
 # Show all options
 # ghostty +show-config --default --docs

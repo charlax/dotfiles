@@ -86,6 +86,8 @@ brew install git python3
 # Create an SSH key and add it to Github
 ssh-keygen -t ed25519 -C "youremail@example.com"
 pbcopy < ~/.ssh/id_rsa.pub
+# Keychain setup (one-time)
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 # Then add it to Github
 
 # Verify you can connect to github:
