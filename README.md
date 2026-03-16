@@ -6,6 +6,7 @@
   - [Mac Os X](#mac-os-x)
   - [Linux Debian/Ubuntu/Arch](#linux-debianubuntuarch)
 - [Installation](#installation)
+- [Development](#development)
 - [Post-install checklist on a fresh installation - Mac Os X](#post-install-checklist-on-a-fresh-installation---mac-os-x)
   - [Initialization](#initialization)
   - [Mac Os X Settings](#mac-os-x-settings)
@@ -63,6 +64,14 @@ To install all the required software, run:
 
 ```bash
 ~/.dotfiles/install/install-apps-all.sh
+```
+
+## Development
+
+Install git hooks:
+
+```bash
+make install
 ```
 
 ## Post-install checklist on a fresh installation - Mac Os X
