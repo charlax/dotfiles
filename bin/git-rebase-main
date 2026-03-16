@@ -1,4 +1,5 @@
 #!/bin/bash
+# git-rebase-main
 
 set -e
 # set -x
@@ -9,19 +10,9 @@ if [[ $DEFAULT_BRANCH = "" ]]; then
     DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
 fi
 
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-function finish {
-    echo "Errored out, checking out $CURRENT_BRANCH branch"
-    git checkout "$CURRENT_BRANCH"
-}
-trap finish EXIT
-
 MASTER=${1:-$DEFAULT_BRANCH}
 
-echo "Pulling and rebasing on $MASTER"
+echo "Fetching and rebasing on $MASTER"
 
-git checkout "$MASTER"
-git pull
-git checkout "$CURRENT_BRANCH"
-git rebase "$MASTER"
+git fetch origin
+git rebase "origin/$MASTER"
