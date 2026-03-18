@@ -215,16 +215,35 @@ function! PrettyPrintJSON() range
     let l:end_line = line('$')
   endif
 
-  if executable('jq')
-    execute l:start_line . ',' . l:end_line . '!jq .'
-  else
-    execute l:start_line . ',' . l:end_line . '!python3 -m json.tool'
-  endif
+  let l:py_cmd = 'import sys, json, ast; data = sys.stdin.read();' .
+      \ ' exec(''try:\n  parsed=json.loads(data)\nexcept Exception:\n  parsed=ast.literal_eval(data)'');' .
+      \ ' print(json.dumps(parsed, indent=2))'
+  execute l:start_line . ',' . l:end_line . '!python3 -c ' . shellescape(l:py_cmd)
 
   call setpos('.', l:save_cursor)
 endfunction
 command! -range=% PrettyJSON call PrettyPrintJSON()
 command! -range=% JSONPretty call PrettyPrintJSON()
+
+function! PrettyPythonPPrint() range
+  let l:save_cursor = getcurpos()
+
+  if a:firstline != a:lastline || (a:firstline == a:lastline && mode() =~# '[vV]')
+    let l:start_line = a:firstline
+    let l:end_line = a:lastline
+  else
+    let l:start_line = 1
+    let l:end_line = line('$')
+  endif
+
+  let l:py_cmd = 'import sys, ast, pprint; data = sys.stdin.read();' .
+      \ ' parsed = ast.literal_eval(data);' .
+      \ ' pprint.pprint(parsed, width=120, indent=2, sort_dicts=False)'
+  execute l:start_line . ',' . l:end_line . '!python3 -c ' . shellescape(l:py_cmd)
+
+  call setpos('.', l:save_cursor)
+endfunction
+command! -range=% PrettyPythonPPrint call PrettyPythonPPrint()
 
 " Format SQL using sql-formatter
 " Install with: npm install -g sql-formatter
