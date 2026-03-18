@@ -3,6 +3,7 @@
 # See tests
 
 import argparse
+import glob
 import logging
 import os
 import os.path
@@ -164,8 +165,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="add an item to 1-1 agenda")
     parser.add_argument(
         "infiles",
-        nargs="+",
-        type=argparse.FileType("r+"),
+        nargs="*",
     )
     parser.add_argument("-i", "--item", required=True)
     parser.add_argument("--dry-run", action="store_true")
@@ -181,9 +181,16 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args()
 
+    paths = [p for pattern in args.infiles for p in glob.glob(pattern)]
+    if not paths:
+        print("Warning: no files matched", file=sys.stderr)
+        sys.exit(0)
+
+    infiles = [open(p, "r+") for p in paths]
+
     sys.exit(
         main(
-            args.infiles,
+            infiles,
             item=args.item,
             is_dry_run=args.dry_run,
             is_verbose=args.verbose,
