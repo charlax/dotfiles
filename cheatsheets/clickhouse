@@ -135,5 +135,7 @@ select replaceOne(event_type, 'DELIVERY_METRIC_EVENT_', '')
 
 -- ## Aggregate functions
 select any(colname), first_value(colname), last_value(colname);
+-- https://clickhouse.com/docs/sql-reference/aggregate-functions/reference/quantiletiming
+select quantileTiming(0.50)(duration_ms);  -- optimized for latencies etc.
 
 -- vim: set ft=sql:
