@@ -18,6 +18,9 @@ gh issue create
 # Create pull request from a feature branch (start an interactive CLI):
 gh pr create
 
+# Get PR as diff
+gh pr diff $pr_id
+
 # Create a public gist and open web browser to it:
 gh gist create hello.py -d "my Hello-World program in Python" -w -p
 

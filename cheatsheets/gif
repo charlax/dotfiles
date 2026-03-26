@@ -3,4 +3,7 @@
 # screencast will become screencast.gif
 gifify -o screencast --resize 800:-1 screencast.mkv
 
+# Extra main color from a gif
+magick input.gif +dither -colors 1 txt:- | grep -oE '#[0-9A-F]{6}' | head -1
+
 # See also: ffmpeg, gifify

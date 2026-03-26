@@ -11,3 +11,9 @@ magick convert foo.HEIC foo.jpg
 # mass convert .heic to jpg
 magick mogrify -monitor -format jpg *.HEIC
 find . -type f -iname '*.heic' -exec sh -c 'mogrify -format jpg "{}"' \;
+
+# get main color
+magick input.gif +dither -colors 1 txt:- | grep -oE '#[0-9A-F]{6}' | head -1
+
+# Install
+brew install imagemagick
