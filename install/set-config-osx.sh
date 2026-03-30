@@ -55,7 +55,7 @@ defaults write NSGlobalDomain com.apple.sound.beep.flash -int 0
 defaults write com.apple.finder FinderSounds -bool false
 
 # Always display the sound/audio menu item
-defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.audio.AudioFXMenulet" -bool true
+defaults -currentHost write com.apple.controlcenter Sound -int 18
 
 # ==============================================================================
 # Screen

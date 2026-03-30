@@ -61,7 +61,15 @@ Minimal structure supporting both macOS and Linux:
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }: {
+  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
+  let
+    # Helper: build a home-manager config for any Linux system string.
+    # system must match the target machine exactly (Nix does not auto-detect it).
+    mkHome = system: modules: home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${system};
+      inherit modules;
+    };
+  in {
     # macOS
     darwinConfigurations."<hostname>" = nix-darwin.lib.darwinSystem {
       modules = [
@@ -71,10 +79,10 @@ Minimal structure supporting both macOS and Linux:
       ];
     };
 
-    # Linux (home-manager standalone)
-    homeConfigurations."<username>@<hostname>" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ ./modules/home ./modules/linux ];
+    # Linux (home-manager standalone) — one entry per machine
+    homeConfigurations = {
+      "<username>@<x86-hostname>" = mkHome "x86_64-linux"  [ ./modules/home ./modules/linux ];
+      "<username>@<pi-hostname>"  = mkHome "aarch64-linux" [ ./modules/home ./modules/linux ];
     };
   };
 }
@@ -92,10 +100,26 @@ home.packages = with pkgs; [
   difftastic eza zoxide starship
   cloc tokei sd dust procs
   hexyl imagemagick mitmproxy
-  go rustup nodejs
   gnupg
+  # go, nodejs, rustup, python/poetry intentionally omitted — see note below
 ];
 ```
+
+**Language runtimes belong in per-project devShells, not here.** `go`, `nodejs`,
+`rustup`, `python`, and `poetry` are managed by work tooling at the machine level
+(specific versions, internal proxies, etc.). Installing them globally via
+home-manager would silently shadow the work-managed versions via PATH ordering.
+
+Instead, declare them per project with a `flake.nix` devShell:
+```nix
+# example: project-level flake.nix
+devShells.default = pkgs.mkShell {
+  packages = [ pkgs.go_1_23 pkgs.gotools ];
+};
+```
+Then `direnv` + `use flake` activates the right version automatically when you
+enter the project directory. This works on both work and personal machines without
+conflict — the work machine's global `go` is never touched.
 
 macOS-only (nix-darwin or Homebrew casks where unavailable in nixpkgs):
 - `rectangle`, `kitty`, `ghostty`, `shottr` — check nixpkgs first; fall back to `homebrew.casks` in nix-darwin if not available
@@ -103,7 +127,8 @@ macOS-only (nix-darwin or Homebrew casks where unavailable in nixpkgs):
 Linux-only:
 ```nix
 home.packages = with pkgs; [
-  xclip strace wireshark
+  xclip  # X11 clipboard — skip on headless Raspberry Pi
+  strace wireshark
 ];
 ```
 
@@ -187,6 +212,82 @@ darwin-rebuild switch --flake .#<hostname>
 home-manager switch --flake .#<username>@<hostname>
 ```
 
+#### Verification checklist
+
+**Before migration:** snapshot git config for later diffing.
+```bash
+git config --list | sort > /tmp/git-before.txt
+```
+
+**Packages resolve to nix store paths** (not `/usr/local/bin` or `/opt/homebrew`):
+```bash
+which bat fd fzf ripgrep jq eza zoxide starship gh
+# Expected: /nix/store/<hash>-<name>/bin/<tool>
+```
+
+**Shell — open a brand new terminal window** (not `source ~/.zshrc`; session variables
+only initialize on a fresh login shell):
+```bash
+echo $DOTFILES        # ~/.dotfiles
+echo $PATH            # includes ~/.dotfiles/bin and /nix/store paths
+type ll               # aliases loaded
+zoxide --version      # zoxide integration active
+starship --version    # prompt integration active
+fzf --version         # fzf integration active
+```
+
+**`bin/` scripts still reachable** (out of scope for migration but must stay on PATH):
+```bash
+which git-rebase-main   # or any other bin/ script
+```
+
+**Dotfile symlink targets point to the nix store** (not directly into `~/.dotfiles`):
+```bash
+ls -la ~/.tmux.conf ~/.config/kitty ~/.config/ghostty
+# Before: ~/.dotfiles/tmux/tmux.conf
+# After:  /nix/store/<hash>/...
+```
+
+**Git config parity:**
+```bash
+git config --list | sort > /tmp/git-after.txt
+diff /tmp/git-before.txt /tmp/git-after.txt
+# Diff should be empty or limited to path format changes (store paths vs dotfiles paths)
+```
+
+**GPG signing still works:**
+```bash
+echo test | gpg --clearsign
+git commit --allow-empty -m "test gpg signing"
+```
+
+**Parallel operation with `install.py`:** running `python3 install.py` after a
+`home-manager switch` must not clobber home-manager-managed files. Confirm that any
+file listed in both `home.file` and `CONFIGURATION_FILES` in `install.py` has been
+removed from one side before both are run together.
+
+**Rollback smoke test:**
+```bash
+# 1. Introduce a deliberate bad change (e.g. reference a nonexistent package)
+# 2. Confirm switch fails without corrupting the active generation
+# 3. Roll back:
+home-manager generations
+home-manager switch --switch-generation <previous-number>
+# 4. Verify shell is functional again
+```
+
+**Linux (x86_64):** apply on an actual x86_64 machine and confirm the flake key
+(`<username>@<x86-hostname>`) matches.
+
+**Linux (aarch64 / Raspberry Pi):** apply on the Pi directly using the
+`aarch64-linux` flake key. Confirm store paths resolved to ARM binaries — no
+compilation output should appear during `switch` (all packages have pre-built
+aarch64 binaries in `cache.nixos.org`):
+```bash
+file $(which bat)
+# Expected: ELF 64-bit LSB executable, ARM aarch64
+```
+
 ### 8. Decommission install.py (package + symlink parts)
 
 Once home-manager is stable:
@@ -202,6 +303,21 @@ Nix keeps generations — roll back any time:
 home-manager generations
 home-manager switch --switch-generation <number>
 ```
+
+## Raspberry Pi (aarch64-linux)
+
+- **System string:** use `aarch64-linux` in `homeConfigurations` — Nix does not
+  detect the host architecture automatically
+- **Apply directly on the Pi** — cross-applying from macOS via `--system` is
+  possible but error-prone; simpler to SSH in and run `home-manager switch` there
+- **Binary cache:** all packages in this plan have pre-built aarch64 binaries on
+  `cache.nixos.org`, so the first `switch` is download-heavy but should not
+  trigger compilation. Do not disable `substituters`.
+- **Storage:** the Nix store grows with each generation. On an SD card, run
+  `nix-collect-garbage -d` periodically and keep at most 3 generations to avoid
+  filling the card.
+- **Headless Pi:** `xclip` requires X11 — skip it in `modules/linux/packages.nix`
+  if the Pi has no display.
 
 ## Notes
 
