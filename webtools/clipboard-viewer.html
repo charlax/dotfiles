@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clipboard Viewer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --subtle: #484f58;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --red: #f85149;
+      --purple: #bc8cff;
+      --orange: #e3b341;
+      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+
+      --primary: #1f6feb;
+      --primary-hover: #388bfd;
+      --primary-border: #388bfd;
+      --accent-tint: #1f6feb33;
+      --accent-tint-border: #1f6feb66;
+      --hover-overlay: #ffffff08;
+
+      --error-bg: #2d1117;
+      --error-border: #6e1c1c;
+      --warn-bg: #2d2200;
+      --warn-border: #6b5000;
+
+      --badge-text-bg: #1f4a1f;
+      --badge-text-border: #2d6a2d;
+      --badge-html-bg: #3d2900;
+      --badge-html-border: #6b4600;
+      --badge-image-bg: #2d1b4e;
+      --badge-image-border: #4a3070;
+      --badge-json-bg: #1a2d4a;
+      --badge-json-border: #1f6feb55;
+      --badge-other-bg: #1e2128;
+
+      --frame-bg: #fff;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fa;
+        --bg2: #ffffff;
+        --bg3: #f0f2f4;
+        --border: #d0d7de;
+        --text: #1f2328;
+        --muted: #656d76;
+        --subtle: #9ba1a8;
+        --accent: #0969da;
+        --green: #1a7f37;
+        --yellow: #9a6700;
+        --red: #cf222e;
+        --purple: #8250df;
+        --orange: #953800;
+
+        --primary: #0969da;
+        --primary-hover: #0860ca;
+        --primary-border: #0860ca;
+        --accent-tint: #0969da1a;
+        --accent-tint-border: #0969da33;
+        --hover-overlay: #00000008;
+
+        --error-bg: #ffebe9;
+        --error-border: #ff818266;
+        --warn-bg: #fff8c5;
+        --warn-border: #d4a72c;
+
+        --badge-text-bg: #dafbe1;
+        --badge-text-border: #82cf95;
+        --badge-html-bg: #fff1e5;
+        --badge-html-border: #d4a574;
+        --badge-image-bg: #fbefff;
+        --badge-image-border: #d8b4fe;
+        --badge-json-bg: #ddf4ff;
+        --badge-json-border: #54aeff66;
+        --badge-other-bg: #f0f2f4;
+
+        --frame-bg: #ffffff;
+      }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    header h1 span { color: var(--muted); font-weight: 400; }
+
+    .btn {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 12px;
+      transition: background 0.1s, border-color 0.1s;
+    }
+
+    .btn:hover { background: var(--bg3); border-color: var(--accent-tint-border); }
+    .btn:active { background: var(--bg2); }
+    .btn.primary { background: var(--primary); border-color: var(--primary-border); color: #fff; }
+    .btn.primary:hover { background: var(--primary-hover); }
+
+    .status-bar {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+    .dot.ok { background: var(--green); }
+    .dot.err { background: var(--red); }
+    .dot.warn { background: var(--yellow); }
+
+    main {
+      flex: 1;
+      padding: 20px;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    #empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 80px 20px;
+      color: var(--muted);
+    }
+
+    #empty-state .icon { font-size: 40px; opacity: 0.4; }
+    #empty-state p { font-size: 13px; }
+    #empty-state small { font-size: 11px; color: var(--subtle); }
+
+    #error-state {
+      display: none;
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      color: var(--red);
+      font-size: 12px;
+    }
+
+    .item-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .item-header {
+      background: var(--bg3);
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .item-index {
+      background: var(--accent-tint);
+      border: 1px solid var(--accent-tint-border);
+      color: var(--accent);
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+    }
+
+    .type-section {
+      border-bottom: 1px solid var(--border);
+    }
+    .type-section:last-child { border-bottom: none; }
+
+    .type-header {
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.1s;
+    }
+    .type-header:hover { background: var(--hover-overlay); }
+
+    .type-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .badge-text { background: var(--badge-text-bg); color: var(--green); border: 1px solid var(--badge-text-border); }
+    .badge-html { background: var(--badge-html-bg); color: var(--orange); border: 1px solid var(--badge-html-border); }
+    .badge-image { background: var(--badge-image-bg); color: var(--purple); border: 1px solid var(--badge-image-border); }
+    .badge-json { background: var(--badge-json-bg); color: var(--accent); border: 1px solid var(--badge-json-border); }
+    .badge-other { background: var(--badge-other-bg); color: var(--muted); border: 1px solid var(--border); }
+
+    .type-meta { color: var(--muted); font-size: 11px; margin-left: auto; }
+    .chevron { color: var(--muted); transition: transform 0.2s; font-size: 10px; }
+    .type-section.collapsed .chevron { transform: rotate(-90deg); }
+
+    .type-body {
+      padding: 0 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .type-section.collapsed .type-body { display: none; }
+
+    .view-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--subtle);
+      margin-bottom: 4px;
+    }
+
+    pre.content-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.5;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .rendered-frame {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--frame-bg);
+    }
+
+    .image-preview {
+      max-width: 100%;
+      max-height: 400px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: block;
+    }
+
+    .hex-grid {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      overflow-x: auto;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .hex-row {
+      display: flex;
+      gap: 8px;
+      font-size: 11px;
+      line-height: 1.8;
+      font-family: var(--mono);
+    }
+
+    .hex-addr { color: var(--subtle); min-width: 52px; }
+    .hex-bytes { color: var(--accent); flex: 1; letter-spacing: 0.05em; }
+    .hex-ascii { color: var(--green); min-width: 130px; }
+
+    details.base64-details {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    details.base64-details summary {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--bg3);
+      user-select: none;
+      list-style: none;
+    }
+    details.base64-details summary::before { content: '▶  '; font-size: 9px; }
+    details.base64-details[open] summary::before { content: '▼  '; }
+    details.base64-details summary:hover { color: var(--text); }
+
+    details.base64-details pre {
+      margin: 0;
+      padding: 10px 12px;
+      background: var(--bg);
+      font-size: 11px;
+      color: var(--muted);
+      word-break: break-all;
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .copy-btn {
+      font-size: 10px;
+      padding: 2px 8px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--mono);
+      transition: all 0.1s;
+    }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+    .stats-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .stat strong { color: var(--text); }
+
+    .api-warning {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--yellow);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>clipboard<span>-viewer</span></h1>
+    <button class="btn primary" id="readBtn">⌘ Read Clipboard</button>
+    <button class="btn" id="clearBtn">Clear</button>
+    <div class="status-bar">
+      <div class="dot" id="statusDot"></div>
+      <span id="statusText">idle</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="api-warning" class="api-warning" style="display:none">
+      ⚠ <strong>Clipboard API not fully available.</strong>
+      Falling back to text-only mode. For full MIME type support, open this file via a local server
+      (<code>python3 -m http.server</code>) or use Chrome/Edge with <code>--allow-file-access-from-files</code>.
+    </div>
+    <div id="error-state"></div>
+    <div id="output"></div>
+    <div id="empty-state">
+      <div class="icon">⎘</div>
+      <p>Click <strong>Read Clipboard</strong> to inspect clipboard contents</p>
+      <small>Supports text/plain · text/html · image/* · application/json · arbitrary binary</small>
+    </div>
+  </main>
+
+  <script>
+    const readBtn = document.getElementById('readBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const output = document.getElementById('output');
+    const emptyState = document.getElementById('empty-state');
+    const errorState = document.getElementById('error-state');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const apiWarning = document.getElementById('api-warning');
+
+    function setStatus(state, msg) {
+      statusDot.className = 'dot ' + (state === 'ok' ? 'ok' : state === 'err' ? 'err' : state === 'warn' ? 'warn' : '');
+      statusText.textContent = msg;
+    }
+
+    function showError(msg) {
+      errorState.textContent = '✖ ' + msg;
+      errorState.style.display = 'block';
+      setStatus('err', 'error');
+    }
+
+    function clearError() {
+      errorState.style.display = 'none';
+    }
+
+    // --- Utilities ---
+
+    function humanBytes(n) {
+      if (n < 1024) return n + ' B';
+      if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+      return (n / 1024 / 1024).toFixed(2) + ' MB';
+    }
+
+    function toBase64(buf) {
+      const bytes = new Uint8Array(buf);
+      let binary = '';
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      return btoa(binary);
+    }
+
+    function toHex(buf, maxBytes = 512) {
+      const bytes = new Uint8Array(buf);
+      const rows = [];
+      const total = Math.min(bytes.length, maxBytes);
+      for (let i = 0; i < total; i += 16) {
+        const slice = bytes.slice(i, i + 16);
+        const addr = i.toString(16).padStart(8, '0');
+        const hexParts = [];
+        const asciiParts = [];
+        for (let j = 0; j < 16; j++) {
+          if (j < slice.length) {
+            hexParts.push(slice[j].toString(16).padStart(2, '0'));
+            asciiParts.push(slice[j] >= 32 && slice[j] < 127 ? String.fromCharCode(slice[j]) : '·');
+          } else {
+            hexParts.push('  ');
+            asciiParts.push(' ');
+          }
+          if (j === 7) hexParts.push('');
+        }
+        rows.push({ addr, hex: hexParts.join(' '), ascii: asciiParts.join('') });
+      }
+      return { rows, truncated: bytes.length > maxBytes, total: bytes.length };
+    }
+
+    function makeEl(tag, attrs = {}, children = []) {
+      const el = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'className') el.className = v;
+        else if (k === 'textContent') el.textContent = v;
+        else if (k === 'innerHTML') el.innerHTML = v;
+        else el.setAttribute(k, v);
+      }
+      for (const child of children) {
+        if (typeof child === 'string') el.appendChild(document.createTextNode(child));
+        else if (child) el.appendChild(child);
+      }
+      return el;
+    }
+
+    function copyBtn(getText, label = 'copy') {
+      const btn = makeEl('button', { className: 'copy-btn', textContent: label });
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(getText());
+          btn.textContent = 'copied!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = label; btn.classList.remove('copied'); }, 1500);
+        } catch { btn.textContent = 'failed'; }
+      });
+      return btn;
+    }
+
+    function label(text) {
+      return makeEl('div', { className: 'view-label', textContent: text });
+    }
+
+    // --- Type badge ---
+    function typeBadge(mimeType) {
+      let cls = 'badge-other';
+      if (mimeType.startsWith('text/html')) cls = 'badge-html';
+      else if (mimeType.startsWith('text/')) cls = 'badge-text';
+      else if (mimeType.startsWith('image/')) cls = 'badge-image';
+      else if (mimeType === 'application/json') cls = 'badge-json';
+      return makeEl('span', { className: 'type-badge ' + cls, textContent: mimeType });
+    }
+
+    // --- Renderers ---
+
+    function renderStats(buf, extra = {}) {
+      const row = makeEl('div', { className: 'stats-row' });
+      const items = [
+        ['bytes', humanBytes(buf.byteLength)],
+        ['chars', buf.byteLength.toLocaleString()],
+        ...Object.entries(extra)
+      ];
+      for (const [k, v] of items) {
+        row.appendChild(makeEl('span', { className: 'stat' }, [
+          makeEl('strong', { textContent: v }), ' ' + k
+        ]));
+      }
+      return row;
+    }
+
+    function renderBase64(buf) {
+      const b64 = toBase64(buf);
+      const details = makeEl('details', { className: 'base64-details' });
+      details.appendChild(makeEl('summary', { textContent: 'Base64 (' + b64.length + ' chars)' }));
+      const pre = makeEl('pre', { textContent: b64 });
+      details.appendChild(pre);
+      return details;
+    }
+
+    function renderHex(buf) {
+      const { rows, truncated, total } = toHex(buf);
+      const grid = makeEl('div', { className: 'hex-grid' });
+      for (const { addr, hex, ascii } of rows) {
+        const row = makeEl('div', { className: 'hex-row' }, [
+          makeEl('span', { className: 'hex-addr', textContent: addr }),
+          makeEl('span', { className: 'hex-bytes', textContent: hex }),
+          makeEl('span', { className: 'hex-ascii', textContent: ascii }),
+        ]);
+        grid.appendChild(row);
+      }
+      if (truncated) {
+        grid.appendChild(makeEl('div', {
+          className: 'hex-row',
+          textContent: `… ${(total - 512).toLocaleString()} more bytes not shown`
+        }));
+      }
+      return grid;
+    }
+
+    async function renderType(mimeType, blob) {
+      const buf = await blob.arrayBuffer();
+      const section = makeEl('div', { className: 'type-section' });
+
+      const hdr = makeEl('div', { className: 'type-header' }, [
+        makeEl('span', { className: 'chevron', textContent: '▼' }),
+        typeBadge(mimeType),
+        makeEl('span', { className: 'type-meta', textContent: humanBytes(buf.byteLength) }),
+      ]);
+      section.appendChild(hdr);
+
+      hdr.addEventListener('click', () => section.classList.toggle('collapsed'));
+
+      const body = makeEl('div', { className: 'type-body' });
+      section.appendChild(body);
+
+      // Stats
+      body.appendChild(renderStats(buf));
+
+      if (mimeType.startsWith('text/') || mimeType === 'application/json') {
+        const text = await blob.text();
+
+        if (mimeType === 'text/html') {
+          // Raw source
+          const srcWrap = makeEl('div');
+          const srcHdr = makeEl('div', { style: 'display:flex;align-items:center;gap:8px;margin-bottom:4px;' }, [
+            label('HTML Source'),
+            copyBtn(() => text),
+          ]);
+          srcWrap.appendChild(srcHdr);
+          srcWrap.appendChild(makeEl('pre', { className: 'content-block', textContent: text }));
+          body.appendChild(srcWrap);
+
+          // Rendered
+          const rendWrap = makeEl('div');
+          rendWrap.appendChild(label('Rendered Preview'));
+          const iframe = makeEl('iframe', {
+            className: 'rendered-frame',
+            sandbox: 'allow-same-origin',
+            srcdoc: text,
+          });
+          rendWrap.appendChild(iframe);
+          body.appendChild(rendWrap);
+
+          // Auto-size iframe
+          iframe.addEventListener('load', () => {
+            try {
+              iframe.style.height = (iframe.contentDocument.documentElement.scrollHeight + 20) + 'px';
+            } catch {}
+          });
+
+        } else if (mimeType === 'application/json') {
+          let prettyText = text;
+          let extra = {};
+          try {
+            const parsed = JSON.parse(text);
+            prettyText = JSON.stringify(parsed, null, 2);
+            extra = { keys: Array.isArray(parsed) ? parsed.length + ' items' : Object.keys(parsed).length + ' keys' };
+          } catch {}
+          body.appendChild(renderStats(buf, extra));
+          const wrap = makeEl('div');
+          const hdrRow = makeEl('div', { style: 'display:flex;align-items:center;gap:8px;margin-bottom:4px;' }, [
+            label('JSON'),
+            copyBtn(() => prettyText, 'copy pretty'),
+            copyBtn(() => text, 'copy raw'),
+          ]);
+          wrap.appendChild(hdrRow);
+          wrap.appendChild(makeEl('pre', { className: 'content-block', textContent: prettyText }));
+          body.appendChild(wrap);
+
+        } else {
+          // text/plain and other text/*
+          const wrap = makeEl('div');
+          const hdrRow = makeEl('div', { style: 'display:flex;align-items:center;gap:8px;margin-bottom:4px;' }, [
+            label('Plain Text'),
+            copyBtn(() => text),
+          ]);
+          wrap.appendChild(hdrRow);
+          wrap.appendChild(makeEl('pre', { className: 'content-block', textContent: text }));
+          body.appendChild(wrap);
+
+          // Character stats
+          const lineCount = (text.match(/\n/g) || []).length + (text.length ? 1 : 0);
+          const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+          body.appendChild(renderStats(buf, { lines: lineCount, words: wordCount }));
+        }
+
+      } else if (mimeType.startsWith('image/')) {
+        const url = URL.createObjectURL(blob);
+        const img = makeEl('img', { className: 'image-preview', src: url, alt: mimeType });
+        body.appendChild(label('Image Preview'));
+        body.appendChild(img);
+
+        // Dimensions once loaded
+        img.addEventListener('load', () => {
+          const dim = makeEl('span', { className: 'stat' }, [
+            makeEl('strong', { textContent: img.naturalWidth + '×' + img.naturalHeight }),
+            ' px'
+          ]);
+          body.insertBefore(dim, img);
+        });
+
+      } else {
+        // Generic binary
+        body.appendChild(label('Hex Dump'));
+        body.appendChild(renderHex(buf));
+      }
+
+      // Base64 for everything
+      body.appendChild(renderBase64(buf));
+
+      return section;
+    }
+
+    // --- Main read ---
+
+    async function readClipboard() {
+      clearError();
+      output.innerHTML = '';
+      emptyState.style.display = 'none';
+      setStatus('', 'reading…');
+      readBtn.disabled = true;
+
+      try {
+        let items;
+        let fallbackMode = false;
+
+        try {
+          items = await navigator.clipboard.read();
+        } catch (err) {
+          // Try text-only fallback
+          if (err.name === 'NotAllowedError') {
+            throw err;
+          }
+          // API might not support read() — fall back
+          fallbackMode = true;
+          apiWarning.style.display = 'block';
+          const text = await navigator.clipboard.readText();
+          const blob = new Blob([text], { type: 'text/plain' });
+          items = [{
+            types: ['text/plain'],
+            getType: () => Promise.resolve(blob),
+          }];
+        }
+
+        if (!items || items.length === 0) {
+          emptyState.style.display = 'flex';
+          setStatus('warn', 'empty');
+          return;
+        }
+
+        if (!fallbackMode) apiWarning.style.display = 'none';
+
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          const card = makeEl('div', { className: 'item-card' });
+
+          const cardHdr = makeEl('div', { className: 'item-header' }, [
+            makeEl('span', { className: 'item-index', textContent: 'item ' + i }),
+            makeEl('span', { textContent: item.types.length + ' type' + (item.types.length !== 1 ? 's' : '') }),
+          ]);
+          card.appendChild(cardHdr);
+
+          for (const mimeType of item.types) {
+            try {
+              const blob = await item.getType(mimeType);
+              const section = await renderType(mimeType, blob);
+              card.appendChild(section);
+            } catch (typeErr) {
+              const errSection = makeEl('div', { className: 'type-section' });
+              errSection.appendChild(makeEl('div', { className: 'type-header' }, [
+                typeBadge(mimeType),
+                makeEl('span', { className: 'type-meta', textContent: '⚠ ' + typeErr.message }),
+              ]));
+              card.appendChild(errSection);
+            }
+          }
+
+          output.appendChild(card);
+        }
+
+        const totalTypes = items.reduce((s, it) => s + it.types.length, 0);
+        setStatus('ok', items.length + ' item' + (items.length !== 1 ? 's' : '') + ', ' + totalTypes + ' type' + (totalTypes !== 1 ? 's' : ''));
+
+      } catch (err) {
+        if (err.name === 'NotAllowedError') {
+          showError('Permission denied. Click the page and try again, or allow clipboard access in browser settings.');
+        } else {
+          showError(err.message || String(err));
+        }
+        emptyState.style.display = 'flex';
+      } finally {
+        readBtn.disabled = false;
+      }
+    }
+
+    readBtn.addEventListener('click', readClipboard);
+    clearBtn.addEventListener('click', () => {
+      output.innerHTML = '';
+      clearError();
+      emptyState.style.display = 'flex';
+      setStatus('', 'idle');
+    });
+
+    // Check API availability
+    if (!navigator.clipboard) {
+      apiWarning.textContent = '⚠ Clipboard API not available. This page requires HTTPS or localhost.';
+      apiWarning.style.display = 'block';
+      readBtn.disabled = true;
+      setStatus('err', 'no API');
+    }
+  </script>
+</body>
+</html>
