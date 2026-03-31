@@ -25,3 +25,6 @@ mlr --itsv --ocsv cat items.tsv > items.csv
 # https://github.com/google/re2/wiki/Syntax
 # Escaping metacharacters seems broken, see https://github.com/johnkerl/miller/issues/297
 then put '${Proxy addresses} = sub(${Proxy addresses}, ".smtp"i, "")'
+
+# See also:
+# csv
