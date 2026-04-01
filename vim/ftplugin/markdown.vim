@@ -57,5 +57,40 @@ setl conceallevel=2
 " Disable auto-indent for new list items since ContinueProseList() handles it
 let g:vim_markdown_new_list_item_indent = 0
 
+" Smart paste: indent each pasted line to match the current list item's
+" content column when pasting linewise into a list context.
+function! SmartMarkdownPaste(reg, cmd) abort
+    let l:line = getline('.')
+    " Match list markers: unordered (-, *, +) or ordered (1.)
+    let l:marker = matchstr(l:line, '^\s*[-*+]\s\+\|^\s*\d\+\.\s\+')
+    " Only indent-adjust linewise registers in list context
+    if empty(l:marker) || getregtype(a:reg) !=# 'V'
+        execute 'normal! "' . a:reg . a:cmd
+        return
+    endif
+
+    let l:lines = getreg(a:reg, 1, 1)
+    " If pasted content is itself a list, paste as-is
+    let l:first = get(filter(copy(l:lines), '!empty(v:val)'), 0, '')
+    if l:first =~# '^\s*[-*+]\s\+\|^\s*\d\+\.\s\+'
+        execute 'normal! "' . a:reg . a:cmd
+        return
+    endif
+
+    let l:indent = repeat(' ', len(l:marker))
+    let l:indented = map(copy(l:lines), 'empty(v:val) ? v:val : l:indent . v:val')
+
+    " Stash and restore @z so we don't clobber it
+    let l:save_z = getreg('z', 1, 1)
+    let l:save_z_type = getregtype('z')
+    call setreg('z', l:indented, 'V')
+    execute 'normal! "z' . a:cmd
+    call setreg('z', l:save_z, l:save_z_type)
+endfunction
+
+nnoremap <buffer> p :<C-U>call SmartMarkdownPaste(v:register, 'p')<CR>
+nnoremap <buffer> P :<C-U>call SmartMarkdownPaste(v:register, 'P')<CR>
+nnoremap <buffer> <D-v> :<C-U>call SmartMarkdownPaste('+', 'p')<CR>
+
 " https://github.com/preservim/vim-markdown support folding
 " see cheats for keyboard shortcuts

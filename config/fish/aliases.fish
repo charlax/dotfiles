@@ -101,6 +101,9 @@ alias ctg='g -l --python . | ctags -L - -f tags'
 alias ctag='ctg'
 
 # Other tools
+alias tz='timezone'
+alias utc='timezone'
+
 alias timestamp='date +%s'
 alias timestamp_ms='python -c "import time; print(int(time.time() * 1000))"'
 alias generate_secret='openssl rand -base64 32'

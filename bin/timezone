@@ -1,0 +1,329 @@
+#!/usr/bin/env python3
+"""Show current time in local, UTC, Paris, and California.
+
+Usage:
+    timezone                         Show all zones (table + timeline)
+    timezone '<query>'               Convert a specific time ad hoc
+
+Ad hoc query format (free-form, forgiving):
+    '6:20pm to utc'                  Implies local as source
+    '6:20 pm local to utc'           Explicit source zone
+    '14:30 paris to california'      Any known zone name as source or dest
+    '2pm utc to paris'               12h or 24h time
+    '9am'                            No dest: show all zones for that time
+
+Known zone names: local, utc, paris, california, london, tokyo, berlin,
+sydney, and common abbreviations (pst, pdt, est, edt, cet, cest, bst…).
+"""
+
+import re
+import sys
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+ZONES = [
+    ("Local", None),
+    ("UTC", "UTC"),
+    ("Paris", "Europe/Paris"),
+    ("California", "America/Los_Angeles"),
+]
+
+TZ_ALIASES: dict[str, str | None] = {
+    "local": None,
+    "here": None,
+    "utc": "UTC",
+    "gmt": "UTC",
+    "paris": "Europe/Paris",
+    "france": "Europe/Paris",
+    "cet": "Europe/Paris",
+    "cest": "Europe/Paris",
+    "california": "America/Los_Angeles",
+    "ca": "America/Los_Angeles",
+    "pacific": "America/Los_Angeles",
+    "pst": "America/Los_Angeles",
+    "pdt": "America/Los_Angeles",
+    "pt": "America/Los_Angeles",
+    "la": "America/Los_Angeles",
+    "est": "America/New_York",
+    "edt": "America/New_York",
+    "et": "America/New_York",
+    "new york": "America/New_York",
+    "ny": "America/New_York",
+    "london": "Europe/London",
+    "uk": "Europe/London",
+    "bst": "Europe/London",
+    "tokyo": "Asia/Tokyo",
+    "jst": "Asia/Tokyo",
+    "berlin": "Europe/Berlin",
+    "sydney": "Australia/Sydney",
+    "aest": "Australia/Sydney",
+}
+
+TIMELINE_WIDTH = 48
+
+# ANSI colors
+BOLD = "\033[1m"
+DIM = "\033[2m"
+RESET = "\033[0m"
+GREEN = "\033[32m"
+CYAN = "\033[36m"
+YELLOW = "\033[33m"
+
+
+def use_color() -> bool:
+    return sys.stdout.isatty()
+
+
+def c(code: str, text: str) -> str:
+    return f"{code}{text}{RESET}" if use_color() else text
+
+
+def get_times() -> list[tuple[str, datetime]]:
+    now = datetime.now().astimezone()
+    result = []
+    for name, tz in ZONES:
+        dt = now if tz is None else now.astimezone(ZoneInfo(tz))
+        result.append((name, dt))
+    return result
+
+
+def format_utc_offset(dt: datetime) -> str:
+    total = int(dt.utcoffset().total_seconds())
+    sign = "+" if total >= 0 else "-"
+    total = abs(total)
+    h, rem = divmod(total, 3600)
+    m = rem // 60
+    return f"UTC{sign}{h}" if m == 0 else f"UTC{sign}{h}:{m:02d}"
+
+
+def diff_hours(base: datetime, other: datetime) -> float:
+    return (other.utcoffset() - base.utcoffset()).total_seconds() / 3600
+
+
+def diff_label(hours: float) -> str:
+    if hours == 0:
+        return "(local)"
+    h = abs(hours)
+    label = f"{h:.0f}h" if h == int(h) else f"{h:.1f}h"
+    sign = "+" if hours > 0 else "-"
+    return f"local {sign} {label}"
+
+
+def print_line_view(times: list[tuple[str, datetime]]) -> None:
+    local_dt = times[0][1]
+    sorted_times = sorted(times, key=lambda t: diff_hours(local_dt, t[1]))
+    print(c(BOLD, "Times"))
+    print("─" * 63)
+    for name, dt in sorted_times:
+        time_str = dt.strftime("%Y-%m-%d  %H:%M:%S")
+        abbr = dt.strftime("%Z")
+        offset = format_utc_offset(dt)
+        hours = diff_hours(local_dt, dt)
+        note = c(DIM, "(local)") if hours == 0 else c(YELLOW, diff_label(hours))
+        if hours == 0:
+            time_str = c(BOLD, time_str)
+        print(f"  {c(CYAN, f'{name:<12}')}  {time_str}  {abbr:<5}  {offset:<9}  {note}")
+
+
+def print_timeline_view(times: list[tuple[str, datetime]]) -> None:
+    print()
+    print(c(BOLD, "Timeline  (24h)"))
+    print("─" * 63)
+
+    prefix = " " * 16
+    tick_positions = {0: "0h", 6: "6h", 12: "12h", 18: "18h", 24: "24h"}
+    header_bar = [" "] * (TIMELINE_WIDTH + 4)
+    for hour, label in tick_positions.items():
+        pos = round(hour / 24 * TIMELINE_WIDTH)
+        for i, ch in enumerate(label):
+            if pos + i < len(header_bar):
+                header_bar[pos + i] = ch
+    print(prefix + "".join(header_bar))
+
+    for name, dt in times:
+        hour_frac = dt.hour + dt.minute / 60
+        pos = min(round(hour_frac / 24 * TIMELINE_WIDTH), TIMELINE_WIDTH - 1)
+        bar = ["─"] * TIMELINE_WIDTH
+        bar[pos] = c(GREEN, "●")
+        time_str = c(BOLD, dt.strftime("%H:%M"))
+        print(f"  {c(CYAN, f'{name:<12}')}  {''.join(bar)}  {time_str}")
+
+
+IANA_TO_DISPLAY = {iana: display for display, iana in ZONES if iana is not None}
+
+
+def resolve_tz(name: str) -> tuple[str, str | None]:
+    """Resolve a loose timezone name to (display_name, IANA_key_or_None)."""
+    key = name.strip().lower()
+    if key in TZ_ALIASES:
+        iana = TZ_ALIASES[key]
+        if iana is None:
+            return "Local", None
+        display = IANA_TO_DISPLAY.get(iana, iana)
+        return display, iana
+    # Try as a raw IANA name
+    try:
+        ZoneInfo(name)
+        display = IANA_TO_DISPLAY.get(name, name)
+        return display, name
+    except Exception:
+        pass
+    return name, None
+
+
+def parse_time_query(query: str) -> tuple[datetime, str | None, str | None]:
+    """Parse a free-form time query.
+
+    Returns (source_datetime, source_tz_display, dest_tz_key_or_None).
+    """
+    q = query.strip()
+
+    # Split on "to" (case-insensitive) — but only at word boundary
+    to_match = re.search(r"\bto\b", q, re.IGNORECASE)
+    if to_match:
+        left = q[: to_match.start()].strip()
+        right = q[to_match.end() :].strip()
+    else:
+        left = q
+        right = None
+
+    # Extract time from left side
+    time_pat = re.compile(
+        r"(\d{1,2})(?::(\d{2}))?(?::(\d{2}))?\s*(am|pm)?",
+        re.IGNORECASE,
+    )
+    time_match = time_pat.search(left)
+    if not time_match:
+        print(f"Could not parse a time from: {query!r}", file=sys.stderr)
+        sys.exit(1)
+
+    hour = int(time_match.group(1))
+    minute = int(time_match.group(2) or 0)
+    second = int(time_match.group(3) or 0)
+    ampm = (time_match.group(4) or "").lower()
+
+    if ampm == "pm" and hour != 12:
+        hour += 12
+    elif ampm == "am" and hour == 12:
+        hour = 0
+
+    # Extract source tz from left side (text outside the time match)
+    tz_text_left = (left[: time_match.start()] + left[time_match.end() :]).strip()
+    # Remove noise words
+    tz_text_left = re.sub(
+        r"\b(time|at|in|on)\b", "", tz_text_left, flags=re.IGNORECASE
+    ).strip()
+
+    if tz_text_left:
+        src_display, src_iana = resolve_tz(tz_text_left)
+    else:
+        src_display, src_iana = "Local", None
+
+    # Build source datetime (today's date in source tz)
+    now = datetime.now().astimezone()
+    if src_iana is None:
+        src_tz = now.tzinfo
+    else:
+        src_tz = ZoneInfo(src_iana)
+
+    today = now.astimezone(src_tz).date()
+    source_dt = datetime(
+        today.year, today.month, today.day, hour, minute, second, tzinfo=src_tz
+    )
+
+    # Resolve destination tz
+    if right:
+        dest_text = re.sub(
+            r"\b(time|timezone|tz)\b", "", right, flags=re.IGNORECASE
+        ).strip()
+        _, dest_iana = resolve_tz(dest_text)
+    else:
+        dest_iana = "ALL"  # sentinel: show all zones
+
+    return source_dt, src_display, dest_iana
+
+
+def print_conversion(
+    source_dt: datetime, src_display: str, dest_tz: str | None
+) -> None:
+    src_abbr = source_dt.strftime("%Z")
+    src_time = source_dt.strftime("%H:%M")
+
+    if dest_tz == "ALL":
+        # Show source time converted to all known zones
+        src_label = (
+            src_display
+            if src_display.upper() == src_abbr
+            else f"{src_display} {src_abbr}"
+        )
+        print(f"{src_label} {src_time}  →  all zones")
+        print("─" * 40)
+        for name, tz in ZONES:
+            if tz is None:
+                dest_dt = source_dt.astimezone()
+            else:
+                dest_dt = source_dt.astimezone(ZoneInfo(tz))
+            dest_abbr = dest_dt.strftime("%Z")
+            dest_time = dest_dt.strftime("%H:%M")
+            day_diff = (dest_dt.date() - source_dt.date()).days
+            day_tag = ""
+            if day_diff == 1:
+                day_tag = c(DIM, " (+1d)")
+            elif day_diff == -1:
+                day_tag = c(DIM, " (-1d)")
+            elif day_diff != 0:
+                day_tag = c(DIM, f" ({day_diff:+d}d)")
+            print(
+                f"  {c(CYAN, f'{name:<12}')}  {dest_abbr:<5}  {c(BOLD, dest_time)}{day_tag}"
+            )
+    else:
+        if dest_tz is None:
+            dest_tz_obj = datetime.now().astimezone().tzinfo
+            dest_name = "Local"
+        else:
+            dest_tz_obj = ZoneInfo(dest_tz)
+            dest_name = IANA_TO_DISPLAY.get(dest_tz, dest_tz)
+        dest_dt = source_dt.astimezone(dest_tz_obj)
+        dest_abbr = dest_dt.strftime("%Z")
+        dest_time = dest_dt.strftime("%H:%M")
+        day_diff = (dest_dt.date() - source_dt.date()).days
+        day_tag = ""
+        if day_diff == 1:
+            day_tag = c(DIM, " (+1d)")
+        elif day_diff == -1:
+            day_tag = c(DIM, " (-1d)")
+        elif day_diff != 0:
+            day_tag = c(DIM, f" ({day_diff:+d}d)")
+        src_label = (
+            src_display
+            if src_display.upper() == src_abbr
+            else f"{src_display} {src_abbr}"
+        )
+        dst_label = (
+            dest_name if dest_name.upper() == dest_abbr else f"{dest_name} {dest_abbr}"
+        )
+        print(
+            f"{src_label} {c(BOLD, src_time)}  →  {dst_label} {c(BOLD, dest_time)}{day_tag}"
+        )
+
+
+def main() -> None:
+    if len(sys.argv) > 1:
+        query = " ".join(sys.argv[1:])
+        source_dt, src_display, dest_tz = parse_time_query(query)
+        print_conversion(source_dt, src_display, dest_tz)
+    else:
+        print(
+            c(
+                DIM,
+                "tip: timezone '<time> [zone] to <zone>'  e.g. '6pm to utc' or '14:30 paris to california'",
+            )
+        )
+        print()
+        times = get_times()
+        print_line_view(times)
+        print_timeline_view(times)
+
+
+if __name__ == "__main__":
+    main()

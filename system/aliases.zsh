@@ -138,6 +138,9 @@ alias ctag='ctg'
 alias tma="if tmux has; then tmux attach; else tmux new; fi"
 
 
+alias tz='timezone'
+alias utc='timezone'
+
 alias timestamp="date +'%s'"
 alias timestamp_ms="python -c 'import time; print(int(time.time() * 1000))'"
 
