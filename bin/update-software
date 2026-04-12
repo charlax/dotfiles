@@ -55,8 +55,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo apt upgrade -y
 fi
 
-log_info "Updating pip"
-pip3 install --user --upgrade pip  || true
 
 if command -v npm >/dev/null 2>&1; then
     log_info "Updating npm"
