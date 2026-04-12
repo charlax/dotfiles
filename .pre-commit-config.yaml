@@ -5,6 +5,7 @@ repos:
     rev: v0.10.0.1
     hooks:
     - id: shellcheck
+      args: ['-x']
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:

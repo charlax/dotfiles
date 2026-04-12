@@ -14,7 +14,7 @@
 # vimdiff before after
 # Google the name
 
-# shellcheck source=./helpers/setup.sh
+# shellcheck source=helpers/setup.sh
 . "$(dirname "$0")/../helpers/setup.sh" # Load helper script from dotfiles/helpers.
 
 
