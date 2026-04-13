@@ -162,7 +162,7 @@ augroup END
 " Enable asyncomplete
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noinsert,noselect,fuzzy
 let g:asyncomplete_popup_delay = 200
 
 " Register fuzzy file completion source
