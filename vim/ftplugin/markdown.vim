@@ -63,8 +63,8 @@ function! SmartMarkdownPaste(reg, cmd) abort
     let l:line = getline('.')
     " Match list markers: unordered (-, *, +) or ordered (1.)
     let l:marker = matchstr(l:line, '^\s*[-*+]\s\+\|^\s*\d\+\.\s\+')
-    " Only indent-adjust linewise registers in list context
-    if empty(l:marker) || getregtype(a:reg) !=# 'V'
+    " Only indent-adjust linewise OS-clipboard pastes in list context
+    if empty(l:marker) || getregtype(a:reg) !=# 'V' || (a:reg !=# '+' && a:reg !=# '*')
         execute 'normal! "' . a:reg . a:cmd
         return
     endif
