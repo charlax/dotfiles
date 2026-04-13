@@ -1,5 +1,4 @@
 if vim.g.neovide then
-  vim.o.guifont = "RobotoMono Nerd Font:h14"
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y') -- Copy
   vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
