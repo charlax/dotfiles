@@ -91,15 +91,26 @@ The `install.py` script is the main entry point. It:
    - External integrations (brew, fzf, asdf, starship, zoxide)
 4. `zsh/aliases.zsh`: Command aliases
 
-### Vim Plugin Management
+### Vim Configuration
 
-Uses [vim-plug](https://github.com/junegunn/vim-plug) for plugin management. Key plugins include:
-- ALE (Asynchronous Lint Engine)
-- vim-lsp (Language Server Protocol support)
-- fzf.vim (fuzzy finding)
-- vim-fugitive (Git integration)
-- vim-go (Go development)
-- UltiSnips (snippets)
+Key files in `vim/`:
+- `vimrc`: Main entry point — plugin declarations (vim-plug), options, sources other files
+- `keys.vim`: All key mappings (leader = `<Space>`)
+- `pluginsrc.vim`: Plugin-specific settings and configuration
+- `my_functions.vim`: Custom Vim functions
+- `abbreviations.vim`: Abbreviations
+- `ftplugin/`: Filetype-specific settings (go, python, javascript, markdown, etc.)
+- `after/ftplugin/`, `after/syntax/`: Overrides applied after default ftplugin/syntax
+- `snippets_my/`: Custom UltiSnips snippets
+- `lua/asyncomplete/`: Lua config for async completion
+- `init.lua`: Neovim init (thin — config lives in `vimrc` shared between vim/neovim)
+- `config/`: Additional config files sourced by vimrc
+
+Plugin management: [vim-plug](https://github.com/junegunn/vim-plug), installed to `~/.vim/plugged`. Key plugins:
+- ALE (linting/fixing), vim-lsp + asyncomplete (LSP), UltiSnips (snippets)
+- fzf.vim (fuzzy finding), vim-fugitive (Git), vim-go (Go)
+
+Symlinks: `vim/vimrc` → `~/.vimrc`, `vim/` → `~/.vim` (via `install.py`)
 
 ### Pre-commit Hooks
 
@@ -135,7 +146,7 @@ Key environment variables set in `system/path.zsh`:
 
 ### Making Changes to Dotfiles
 
-1. Edit files directly in `~/.dotfiles/`
+1. Edit files directly in this repository
 2. Changes are immediately reflected in your environment (via symlinks)
 3. For ZSH changes: run `reload_zshrc!` alias or `. ~/.zshrc`
 4. For Vim changes: use `:ReloadVimConfig` command or `:source $MYVIMRC`
@@ -146,7 +157,7 @@ Key environment variables set in `system/path.zsh`:
 
 ### Adding New Configuration Files
 
-1. Add the file to `~/.dotfiles/` in the appropriate directory
+1. Add the file to the appropriate directory in this repository
 2. Add it to the `CONFIGURATION_FILES` tuple in `install.py`
 3. Format: `("source/path", ".target/path")` or just `"source/path"` if target is `~/.basename`
 4. Re-run `python3 install.py` to create the symlink
