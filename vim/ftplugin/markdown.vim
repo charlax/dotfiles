@@ -92,5 +92,35 @@ nnoremap <buffer> p :<C-U>call SmartMarkdownPaste(v:register, 'p')<CR>
 nnoremap <buffer> P :<C-U>call SmartMarkdownPaste(v:register, 'P')<CR>
 nnoremap <buffer> <D-v> :<C-U>call SmartMarkdownPaste('+', 'p')<CR>
 
+" Listify: convert selected lines into a markdown list.
+" Detects indentation from the previous line if it's a list item,
+" removes blank lines, and prefixes each line with '- '.
+function! Listify() range abort
+    let l:prev_lnum = a:firstline - 1
+    let l:indent = ''
+    if l:prev_lnum >= 1
+        let l:prev_line = getline(l:prev_lnum)
+        let l:marker = matchstr(l:prev_line, '^\s*[-*+]\s\+\|^\s*\d\+\.\s\+')
+        if !empty(l:marker)
+            let l:indent = matchstr(l:prev_line, '^\s*')
+        endif
+    endif
+
+    let l:lines = getline(a:firstline, a:lastline)
+    let l:result = []
+    for l:line in l:lines
+        if l:line =~# '^\s*$'
+            continue
+        endif
+        let l:content = substitute(l:line, '^\s*\(.\{-}\)\s*$', '\1', '')
+        call add(l:result, l:indent . '- ' . l:content)
+    endfor
+
+    execute a:firstline . ',' . a:lastline . 'delete _'
+    call append(a:firstline - 1, l:result)
+endfunction
+
+xnoremap <buffer> <Leader>l :call Listify()<CR>
+
 " https://github.com/preservim/vim-markdown support folding
 " see cheats for keyboard shortcuts
