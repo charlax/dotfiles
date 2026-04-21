@@ -91,6 +91,29 @@ if [ $PUSH = true ]; then
     echo "Pushing your work"
 
     if [ $YES = true ] || confirm "Should I push? [Y/n]"; then
+        BRANCH=$(git rev-parse --abbrev-ref HEAD)
+        REMOTE="origin/$BRANCH"
+
+        # Check if remote branch exists before fetching
+        if git ls-remote --exit-code origin "$BRANCH" >/dev/null 2>&1; then
+            BEFORE_FETCH=$(git rev-parse "$REMOTE" 2>/dev/null || true)
+            git fetch origin "$BRANCH"
+            AFTER_FETCH=$(git rev-parse "$REMOTE")
+
+            if [ "$BEFORE_FETCH" != "$AFTER_FETCH" ]; then
+                # Remote moved forward — check if branches haven't diverged
+                # (our local base should equal the old remote tip)
+                MERGE_BASE=$(git merge-base HEAD "$REMOTE")
+                if [ "$MERGE_BASE" = "$BEFORE_FETCH" ]; then
+                    echo "Remote has new commits, rebasing..."
+                    git rebase "$REMOTE"
+                else
+                    echo >&2 "Branches have diverged, cannot auto-rebase. Aborting push."
+                    exit 1
+                fi
+            fi
+        fi
+
         git push
     fi
 fi

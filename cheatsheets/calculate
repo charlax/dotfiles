@@ -3,3 +3,17 @@ zcal     # (zsh, might require autoload zcalc)
 bc
 python   # the simplest!
 gmetric  # for conversions
+qalc     # from Qalculate (a GUI app, supports Linux/macOS) `brew install qalculate-gtk`
+
+# Math functions
+
+# With Python
+math.log(x)
+math.log10(x)
+
+# With bc -l (Math library)
+bc -l
+l(100)/l(10)
+
+# With qalc (supports continuous display of expression evaluation
+log(10, 10)   # =1
