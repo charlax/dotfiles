@@ -23,31 +23,37 @@ inoremap <D-i> __<Left>
 
 " Check task items [ ] Todo -> [.] In progress -> [x] Done
 function! Checkbox()
-    let l:lnum = line('.')
-    let l:line = getline(l:lnum)
     let l:curs = winsaveview()
-
-    if l:line =~# '\s*-\s*\[\s*\].*'
-        " [ ] -> [x]
-        let l:line = substitute(l:line, '\[\s*\]', '[x]', '')
-        let l:today = strftime('%Y-%m-%d')
-        let l:line = substitute(l:line, 'TODO_DATE', l:today, '')  " first only
-        call setline(l:lnum, l:line)
-    elseif l:line =~# '\s*-\s*\[\.\].*'
-        " [.] -> [ ]
-        let l:line = substitute(l:line, '\[.\]', '[ ]', '')
-        call setline(l:lnum, l:line)
-    elseif l:line =~# '\s*-\s*\[x\].*'
-        " [x] -> [.]
-        let l:line = substitute(l:line, '\[x\]', '[.]', '')
-        call setline(l:lnum, l:line)
-    endif
-
+    call Checkbox_line(line('.'))
     call winrestview(l:curs)
 endfunction
 
-" leader enter marks tasks as done
-nnoremap <Leader><Enter> :call Checkbox()<CR>
+" Toggle checkboxes over a range of lines
+function! CheckboxRange() range abort
+    for l:lnum in range(a:firstline, a:lastline)
+        call Checkbox_line(l:lnum)
+    endfor
+endfunction
+
+function! Checkbox_line(lnum) abort
+    let l:line = getline(a:lnum)
+    if l:line =~# '\s*-\s*\[\s*\].*'
+        let l:line = substitute(l:line, '\[\s*\]', '[x]', '')
+        let l:today = strftime('%Y-%m-%d')
+        let l:line = substitute(l:line, 'TODO_DATE', l:today, '')
+        call setline(a:lnum, l:line)
+    elseif l:line =~# '\s*-\s*\[\.\].*'
+        let l:line = substitute(l:line, '\[.\]', '[ ]', '')
+        call setline(a:lnum, l:line)
+    elseif l:line =~# '\s*-\s*\[x\].*'
+        let l:line = substitute(l:line, '\[x\]', '[.]', '')
+        call setline(a:lnum, l:line)
+    endif
+endfunction
+
+" leader enter marks tasks as done (normal and visual)
+nnoremap <Leader><Enter> :call Checkbox_line(line('.'))<CR>
+xnoremap <Leader><Enter> :call CheckboxRange()<CR>
 
 " Do not conceal code blocks
 let g:vim_markdown_conceal_code_blocks = 0
