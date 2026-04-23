@@ -128,5 +128,28 @@ endfunction
 
 xnoremap <buffer> <Leader>l :call Listify()<CR>
 
+" Text object for markdown emphasis: i* / a* works for *italic* and **bold**
+function! s:SelectStar(around) abort
+    let l:open = searchpos('\*', 'bcW', line('.'))
+    if l:open == [0, 0] | return | endif
+    let l:close = searchpos('\*', 'nW', line('.'))
+    if l:close == [0, 0] || l:close[1] <= l:open[1] | return | endif
+
+    if a:around
+        call cursor(l:open[0], l:open[1])
+        normal! v
+        call cursor(l:close[0], l:close[1])
+    else
+        call cursor(l:open[0], l:open[1] + 1)
+        normal! v
+        call cursor(l:close[0], l:close[1] - 1)
+    endif
+endfunction
+
+onoremap <buffer> i* :<C-U>call <SID>SelectStar(0)<CR>
+xnoremap <buffer> i* :<C-U>call <SID>SelectStar(0)<CR>
+onoremap <buffer> a* :<C-U>call <SID>SelectStar(1)<CR>
+xnoremap <buffer> a* :<C-U>call <SID>SelectStar(1)<CR>
+
 " https://github.com/preservim/vim-markdown support folding
 " see cheats for keyboard shortcuts
