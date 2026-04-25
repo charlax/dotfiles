@@ -61,7 +61,9 @@ if command -v npm >/dev/null 2>&1; then
     npm install npm@latest -g
 fi
 
-log_info "Updating poetry completions."
-poetry completions zsh > ~/.zfunc/_poetry || true
+if command -v poetry >/dev/null 2>&1; then
+    log_info "Updating poetry completions."
+    poetry completions zsh > ~/.zfunc/_poetry
+fi
 
 install_python_tools
