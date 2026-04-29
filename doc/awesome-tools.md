@@ -131,6 +131,7 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
   - Py (run Python for every line)
   - `sqlp` (Polars SQL)
   - Validate
+- [GitHub - garritfra/cell: A terminal spreadsheet editor with Vim keybindings · GitHub](https://github.com/garritfra/cell)
 
 ### Database
 
@@ -149,6 +150,10 @@ See [cheatsheets](../cheatsheets/csv). See also Analytics.
 - [D2](https://d2lang.com/)
   - [ASCII output | D2 Documentation](https://d2lang.com/blog/ascii/)
 - [MonoSketch - Unleash your ideas with ASCII](https://monosketch.io/)
+- [Mockdown — ASCII Wireframe Editor](https://www.mockdown.design/)
+- [Wiretext — Unicode Wireframe Design Tool](https://wiretext.app/)
+- [ASCIIFlow](https://asciiflow.com/#/)
+- [AsciiDraw](https://asciidraw.github.io/#/)
 
 ### Disk usage
 
@@ -278,6 +283,7 @@ See `./cheatsheets/dns`
 - [charmbracelet/glow: Render markdown on the CLI, with pizzazz! 💅🏻](https://github.com/charmbracelet/glow)
 - [yshavit/mdq: like jq but for Markdown: find specific elements in a md doc](https://github.com/yshavit/mdq)
 - [GitHub - taf2/mdvi: cli based Markdown viewer](https://github.com/taf2/mdvi)
+- [Quarkdown | Markdown with superpowers](https://quarkdown.com/)
 
 ### Network
 
