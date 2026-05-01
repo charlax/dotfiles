@@ -3,6 +3,7 @@
 # /// script
 # dependencies = [
 #   "jinja2",
+#   "textual",
 # ]
 # ///
 
@@ -49,6 +50,82 @@ from typing import Dict, Set, Any, List, Optional
 from string import Formatter
 
 from jinja2 import Environment, meta
+
+try:
+    from textual.app import App, ComposeResult
+    from textual.binding import Binding
+    from textual.containers import Horizontal, Vertical, VerticalScroll
+    from textual.widgets import Button, Footer, Header, Input, Label
+
+    _TEXTUAL_AVAILABLE = True
+
+    class TemplateFormApp(App):  # type: ignore[type-arg]
+        CSS = """
+        Screen { align: center middle; }
+        #form-container {
+            width: 80; height: auto; max-height: 90vh;
+            border: round $primary; padding: 1 2;
+        }
+        .field-row { height: auto; margin-bottom: 1; }
+        .field-label { width: 100%; color: $text-muted; }
+        #button-row { height: 3; margin-top: 1; align-horizontal: right; }
+        Button { margin-left: 1; }
+        """
+        BINDINGS = [
+            Binding("ctrl+s", "submit", "Submit", priority=True),
+            Binding("escape", "cancel", "Cancel", priority=True),
+        ]
+
+        def __init__(self, names: List[str]) -> None:
+            super().__init__()
+            self._names = names
+
+        def compose(self) -> ComposeResult:
+            yield Header(show_clock=False)
+            with VerticalScroll(id="form-container"):
+                for name in self._names:
+                    with Vertical(classes="field-row"):
+                        yield Label(name, classes="field-label")
+                        yield Input(
+                            placeholder=name,
+                            id=f"field-{_sanitize_id(name)}",
+                            name=name,
+                        )
+                with Horizontal(id="button-row"):
+                    yield Button("Cancel [Esc]", variant="error", id="btn-cancel")
+                    yield Button("Submit [Ctrl+S]", variant="primary", id="btn-submit")
+            yield Footer()
+
+        def on_mount(self) -> None:
+            inputs = self.query(Input)
+            if inputs:
+                inputs.first().focus()
+
+        def on_button_pressed(self, event: Button.Pressed) -> None:
+            if event.button.id == "btn-submit":
+                self.action_submit()
+            elif event.button.id == "btn-cancel":
+                self.action_cancel()
+
+        def on_input_submitted(self, event: Input.Submitted) -> None:
+            inputs = list(self.query(Input))
+            if not inputs:
+                return
+            if event.input is inputs[-1]:
+                self.action_submit()
+            else:
+                inputs[inputs.index(event.input) + 1].focus()
+
+        def action_submit(self) -> None:
+            self.exit(
+                {inp.name: inp.value.strip() for inp in self.query(Input) if inp.name}
+            )
+
+        def action_cancel(self) -> None:
+            self.exit(SENTINEL_CANCELLED, return_code=1)
+
+except ImportError:
+    _TEXTUAL_AVAILABLE = False
 
 TEMPLATE_POST_TAGS = ["template_post", "template-post"]
 
@@ -108,6 +185,26 @@ def get_context(names: Set[str], base: Dict[str, str]) -> Dict[str, str]:
         return acc
 
     return reduce(reducer, sorted(names), base)
+
+
+SENTINEL_CANCELLED = object()
+
+
+def _sanitize_id(name: str) -> str:
+    return re.sub(r"[^a-zA-Z0-9_-]", "_", name)
+
+
+def _is_interactive_tty() -> bool:
+    return sys.stdin.isatty() and sys.stdout.isatty()
+
+
+def get_context_tui(names: Set[str], base: Dict[str, str]) -> Dict[str, str]:
+    app = TemplateFormApp(sorted(names))
+    result = app.run()
+    if result is SENTINEL_CANCELLED or app.return_code != 0:
+        print("Cancelled.", file=sys.stderr)
+        sys.exit(1)
+    return {**base, **result}
 
 
 def get_required_variables(template: str) -> List[str]:
@@ -282,7 +379,12 @@ def main(
             print(f"wrote file: {filename}")
 
     else:
-        context = get_context(required_variables, base_context)
+        if not required_variables:
+            context = dict(base_context)
+        elif _TEXTUAL_AVAILABLE and _is_interactive_tty():
+            context = get_context_tui(required_variables, base_context)
+        else:
+            context = get_context(required_variables, base_context)
         filename = get_filename(filename_template, context, output_dir)
         rendered = get_rendered_content(content_template, context, use_jinja=use_jinja)
 
